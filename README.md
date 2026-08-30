@@ -1,26 +1,21 @@
-# Systems Lab — Gracián Baena
+# Systems Hub — PLAY · Gracián Baena
 
-PLAY del portfolio. [Hub](https://gracianb.github.io/GracianB/) · [Live](https://gracianb.github.io/systems-lab/)
+Live: [gracianb.github.io/systems-lab](https://gracianb.github.io/systems-lab/)  
+Hub: [gracianb.github.io/GracianB](https://gracianb.github.io/GracianB/)
 
-## Play ahora
+Tres capas:
 
-| Pieza | Live | Repo |
-|:------|:-----|:-----|
-| **Project Ohana** | [jugar](https://gracianb.github.io/project-ohana/) | [project-ohana](https://github.com/GracianB/project-ohana) |
-| **Vórtice** | [jugar](https://vortex-gilt-xi.vercel.app/) | [vortex](https://github.com/GracianB/vortex) |
+1. **PLAY** — prototipos que se pulsan
+2. **Departamento CS** — Bodytone Support OS en producción
+3. **Motores** — reglas, HITL, chatbot, voz
 
-Vórtice live: https://vortex-gilt-xi.vercel.app/
+| Pieza | Live |
+|:------|:-----|
+| **Project Ohana** | [jugar](https://gracianb.github.io/project-ohana/) |
+| **Vórtice** | [jugar](https://vortex-gilt-xi.vercel.app/) |
+| **Bodytone Support OS** | [Help Center](https://bodytonehelp.zendesk.com/hc/es) |
+| **Calculadora** | [Apps Script](https://script.google.com/macros/s/AKfycbxcStxaVuy72iZNs6isCJ49ixX4I51Gal4N8QidqY3etF-z7ksos5hrvtcIMnzf0mc/exec) |
 
-## Sistemas live
-
-- Bodytone Help Center: https://bodytonehelp.zendesk.com/hc/es
-- Calculadora Apps Script: https://script.google.com/macros/s/AKfycbxcStxaVuy72iZNs6isCJ49ixX4I51Gal4N8QidqY3etF-z7ksos5hrvtcIMnzf0mc/exec
-
-## En este repo
-
-- `Aigoritmo/` — multi-avatar chatbot (no .env)
-- `bodytone-chatbot/` — widget de soporte (sin secretos)
-- `calculadora-mantenimiento/` — ServicePack Pro UI
-- `profile-finder/` — Enricher web UI
+En este repo (sin secretos): `Aigoritmo/`, `bodytone-chatbot/`, `calculadora-mantenimiento/`, `profile-finder/`.
 
 No subir `.env`, `google-service-account.json` ni `venv/`.

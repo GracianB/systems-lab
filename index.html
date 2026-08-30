@@ -5,31 +5,31 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#03050c">
   <meta name="author" content="Gracián Baena">
-  <meta name="description" content="Automatizar no es responder: es resolver. Help Center Zendesk, chatbot, APIs, calculadoras. Prueba de Gracián Baena.">
-  <title>PLAY — Gracián Baena</title>
+  <meta name="description" content="PLAY · Systems Hub. Ohana, Vórtice y Bodytone Support OS: cómo se construye un departamento de CS. Gracián Baena.">
+  <title>PLAY — Systems Hub · Gracián Baena</title>
   <link rel="canonical" href="https://gracianb.github.io/systems-lab/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <meta property="og:title" content="Systems Lab — Gracián Baena">
-  <meta property="og:description" content="Proof lab: live Zendesk Help Center + Apps Script calculator + protected demos.">
+  <meta property="og:title" content="PLAY — Systems Hub · Gracián Baena">
+  <meta property="og:description" content="Ohana · Vórtice · Bodytone Support OS. Prototipos y un departamento de CS en producción.">
   <meta property="og:url" content="https://gracianb.github.io/systems-lab/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./i18n.js"></script>
-  <script src="./main.js" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=lab2">
+  <script src="./i18n.js?v=lab2"></script>
+  <script src="./main.js?v=lab2" defer></script>
 </head>
 <body>
   <header class="top">
     <a class="brand" href="./">
       <span class="mark">PL</span>
-      <div><b>PLAY</b><small data-i18n="brandSub">SISTEMAS EN LA MESA</small></div>
+      <div><b>PLAY</b><small data-i18n="brandSub">SYSTEMS HUB</small></div>
     </a>
     <nav class="nav">
-      <a href="https://gracianb.github.io/project-ohana/" data-i18n="navOhana">Ohana</a>
-      <a href="https://vortex-gilt-xi.vercel.app/" data-i18n="navVortex">Vórtice</a>
-      <a href="https://gracianb.github.io/professional-deck/" data-i18n="navDeck">Deck</a>
-      <a href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="navZendesk">Zendesk live</a>
+      <a href="#play">Ohana</a>
+      <a href="#play">Vórtice</a>
+      <a href="#cs" data-i18n="navCs">CS</a>
+      <a href="#lab" data-i18n="navLab">Lab</a>
       <a href="https://gracianb.github.io/GracianB/" data-i18n="navHub">Hub</a>
       <div class="seg" role="group">
         <button type="button" class="seg-btn" data-set-lang="es" aria-pressed="true">ES</button>
@@ -39,18 +39,82 @@
   </header>
 
   <section class="hero">
-    <p class="eyebrow" data-i18n="eyebrow">CUARTO PORTFOLIO · SYSTEMS LAB</p>
-    <h1 data-i18n-html="h1">Sistemas que<br><em>responden y actúan.</em></h1>
-    <p class="lead" data-i18n="lead">Prueba para entrevista. Help Center público en Zendesk (lo monté yo) + tres motores + calculadora live en Apps Script. Sin tarifas reales ni credenciales.</p>
+    <p class="eyebrow" data-i18n="eyebrow">03 · PLAY · SYSTEMS HUB</p>
+    <h1 data-i18n-html="h1">Sistemas que<br><em>se pueden pulsar.</em></h1>
+    <p class="lead" data-i18n="lead">Dos prototipos live, un departamento de CS en producción y los motores que lo sostienen. El mismo criterio: el sistema resuelve, no solo responde.</p>
     <div class="actions">
-      <a class="btn btn-y" href="https://gracianb.github.io/project-ohana/" rel="noopener" data-i18n="ctaOhana">PLAY Ohana →</a>
-      <a class="btn btn-g" href="https://vortex-gilt-xi.vercel.app/" rel="noopener" data-i18n="ctaVortex">PLAY Vórtice →</a>
+      <a class="btn btn-y" href="#play" data-i18n="ctaPlay">PLAY →</a>
+      <a class="btn btn-g" href="#cs" data-i18n="ctaCs">Departamento CS →</a>
       <a class="btn btn-g" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="ctaLive">Zendesk live →</a>
     </div>
     <div class="pills">
-      <span class="pill live" data-i18n="pill1">1 sistema live</span>
-      <span class="pill" data-i18n="pill2">3 demos protegidas</span>
-      <span class="pill" data-i18n="pill3">1 calculadora Apps Script</span>
+      <span class="pill live" data-i18n="pill1">Ohana + Vórtice live</span>
+      <span class="pill live" data-i18n="pill2">Help Center en producción</span>
+      <span class="pill" data-i18n="pill3">Motores de reglas · HITL</span>
+    </div>
+  </section>
+
+  <section class="play" id="play">
+    <p class="eyebrow" data-i18n="playEyebrow">PULSAR</p>
+    <h2 data-i18n="playH">Dos prototipos. Entra y juega.</h2>
+    <div class="featured">
+      <a class="feat feat-ohana" href="https://gracianb.github.io/project-ohana/" rel="noopener">
+        <div class="feat-stage stage-ohana" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <header><span class="code" data-i18n="ohCode">P1 · PLAY</span><span class="badge live-b">LIVE</span></header>
+        <h3 data-i18n="ohH">Project Ohana</h3>
+        <p data-i18n="ohP">Juego canvas: mundos, evoluciones, habilidades. GitHub Pages.</p>
+        <span class="feat-cta" data-i18n="ohCta">Jugar Ohana →</span>
+      </a>
+      <a class="feat feat-vortex" href="https://vortex-gilt-xi.vercel.app/" rel="noopener">
+        <div class="feat-stage stage-vortex" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b></div>
+        <header><span class="code" data-i18n="vxCode">P2 · PLAY</span><span class="badge live-b">LIVE</span></header>
+        <h3 data-i18n="vxH">Vórtice</h3>
+        <p data-i18n="vxP">Campo WebGL: miles de muestras hacia el cursor. Vercel.</p>
+        <span class="feat-cta" data-i18n="vxCta">Abrir Vórtice →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="cs" id="cs">
+    <p class="eyebrow" data-i18n="csEyebrow">DEPARTAMENTO CS</p>
+    <h2 data-i18n="csH">Así se construye un CS que resuelve.</h2>
+    <p class="lead cs-lead" data-i18n="csLead">Bodytone Support OS no es un chatbot de feria. Es el departamento: canal público, intenciones, enrutado, agente que consulta sistemas y tickets con contexto. Lo diseñé y lo dejé en producción.</p>
+
+    <article class="cs-hero">
+      <header>
+        <span class="code" data-i18n="s0code">00 · LIVE</span>
+        <span class="badge live-b" data-i18n="s0badge">PÚBLICO · ZENDESK</span>
+      </header>
+      <h3 data-i18n="s0h">Bodytone Support OS</h3>
+      <p data-i18n="s0p">El cliente elige intención. El sistema enruta, traza y deja el caso en Zendesk. La web de ayuda es mía; Zendesk es el motor.</p>
+      <ol class="method">
+        <li><span>01</span><b data-i18n="m1">Escuchar</b><small data-i18n="m1s">Intención, canal, idioma</small></li>
+        <li><span>02</span><b data-i18n="m2">Decidir</b><small data-i18n="m2s">Enrutado y prioridad</small></li>
+        <li><span>03</span><b data-i18n="m3">Construir</b><small data-i18n="m3s">Help Center + agente</small></li>
+        <li><span>04</span><b data-i18n="m4">Activar</b><small data-i18n="m4s">Ticket con contexto</small></li>
+      </ol>
+      <div class="actions">
+        <a class="btn btn-y" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="s0cta">Ver Ayuda Bodytone ↗</a>
+        <a class="btn btn-g" href="./bodytone-chatbot/frontend/index.html" data-i18n="botCta">Widget chatbot ↗</a>
+      </div>
+    </article>
+
+    <div class="pillars">
+      <article>
+        <span class="code">01</span>
+        <h3 data-i18n="p1h">Canal</h3>
+        <p data-i18n="p1p">Help Center público: formularios, intenciones, seguimiento. El cliente no escribe a ciegas.</p>
+      </article>
+      <article>
+        <span class="code">02</span>
+        <h3 data-i18n="p2h">Agente</h3>
+        <p data-i18n="p2p">Chatbot con RAG, envíos, productos y tickets. Actúa; no recita un guion.</p>
+      </article>
+      <article>
+        <span class="code">03</span>
+        <h3 data-i18n="p3h">Ops</h3>
+        <p data-i18n="p3p">Reglas de precio, mantenimiento, matching. El agente consulta, no improvisa.</p>
+      </article>
     </div>
   </section>
 
@@ -68,63 +132,43 @@
       <ul>
         <li data-i18n="ag1">Lee al cliente, consulta datos reales, ejecuta la acción.</li>
         <li data-i18n="ag2">Escala a humano solo con contexto. El cliente no repite.</li>
-        <li data-i18n="ag3">Eso es lo que construí: Zendesk, RAG, envíos, tickets, voz.</li>
+        <li data-i18n="ag3">Zendesk, RAG, envíos, tickets, voz: eso ya lo monté.</li>
       </ul>
     </div>
   </section>
 
   <section class="lab" id="lab">
-    <p class="eyebrow" data-i18n="lab">LABORATORIO</p>
-    <h2 data-i18n="labH">Los sistemas. El mismo criterio.</h2>
+    <p class="eyebrow" data-i18n="lab">MOTORES</p>
+    <h2 data-i18n="labH">El mismo criterio, otras piezas.</h2>
 
-    <div class="grid" style="margin-top:28px">
-
-      <article class="card live">
-        <header><span class="code" data-i18n="ohCode">P1 · PLAY</span><span class="badge" data-i18n="ohBadge">CANVAS</span></header>
-        <h2 data-i18n="ohH">Project Ohana</h2>
-        <p data-i18n="ohP">Juego canvas modular: mundos, evoluciones, habilidades. Entra y juega.</p>
-        <div class="meta"><span>Canvas</span><span>JS</span><span>GitHub Pages</span></div>
-        <div class="demo">
-          <a class="btn btn-y" href="https://gracianb.github.io/project-ohana/" rel="noopener" data-i18n="ohCta">Jugar Ohana ↗</a>
-        </div>
-      </article>
-
-      <article class="card live">
-        <header><span class="code" data-i18n="vxCode">P2 · PLAY</span><span class="badge" data-i18n="vxBadge">WEBGL</span></header>
-        <h2 data-i18n="vxH">Vórtice</h2>
-        <p data-i18n="vxP">Campo de datos WebGL: miles de muestras que fluyen, orbitan u ondulan hacia el cursor.</p>
-        <div class="meta"><span>WebGL</span><span>React</span><span>TanStack</span></div>
-        <div class="demo">
-          <a class="btn btn-y" href="https://vortex-gilt-xi.vercel.app/" rel="noopener" data-i18n="vxCta">Abrir Vórtice ↗</a>
-        </div>
-      </article>
-      <article class="card live">
-        <header><span class="code" data-i18n="s0code">00 · LIVE</span><span class="badge" data-i18n="s0badge">PÚBLICO · ZENDESK</span></header>
-        <h2 data-i18n="s0h">Bodytone Support OS</h2>
-        <p data-i18n="s0p">Help Center que diseñé y dejé en producción: intenciones, formularios, enrutado y seguimiento. La web de ayuda es mía; Zendesk es el motor.</p>
-        <div class="meta"><span>Zendesk</span><span>Help Center</span><span>CX Ops</span></div>
-        <div class="demo">
-          <a class="btn btn-y" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="s0cta">Ver Ayuda Bodytone ↗</a>
-        </div>
-      </article>
-
+    <div class="grid">
       <article class="card live">
         <header><span class="code" data-i18n="s1code">01 · LIVE</span><span class="badge" data-i18n="s1badge">APPS SCRIPT</span></header>
         <h2 data-i18n="s1h">Calculadora (motor de reglas)</h2>
-        <p data-i18n="s1p">Web app en Google Apps Script. Producto, plano, logística o mantenimiento — el motor absorbe reglas. Demo real, sin publicar fórmulas internas.</p>
-        <div class="meta"><span>Apps Script</span><span>Rules</span><span>PDF / propuesta</span></div>
+        <p data-i18n="s1p">Producto, plano, logística. El agente no improvisa el precio: consulta reglas. Live en Apps Script.</p>
+        <div class="meta"><span>Apps Script</span><span>Rules</span><span>CS × Sales</span></div>
         <div class="demo">
           <a class="btn btn-y" href="https://script.google.com/macros/s/AKfycbxcStxaVuy72iZNs6isCJ49ixX4I51Gal4N8QidqY3etF-z7ksos5hrvtcIMnzf0mc/exec" target="_blank" rel="noopener" data-i18n="s1cta">Abrir calculadora ↗</a>
         </div>
       </article>
 
       <article class="card">
-        <header><span class="code" data-i18n="s2code">02</span><span class="badge" data-i18n="s2badge">DEMO MUESTRA</span></header>
+        <header><span class="code">02 · SRC</span><span class="badge">CHATBOT</span></header>
+        <h2 data-i18n="botCardH">Bodytone Chatbot</h2>
+        <p data-i18n="botCardP">Widget de soporte: RAG, envíos, productos, tickets Zendesk. Frontend aquí; backend sin claves.</p>
+        <div class="meta"><span>Flask</span><span>RAG</span><span>Zendesk</span></div>
+        <div class="demo">
+          <a class="btn btn-y" href="./bodytone-chatbot/frontend/index.html" data-i18n="botCta">Abrir widget ↗</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <header><span class="code" data-i18n="s2code">03</span><span class="badge" data-i18n="s2badge">DEMO MUESTRA</span></header>
         <h2 data-i18n="s2h">Profile Finder</h2>
         <p data-i18n="s2p">Nombre → señales → coincidencia probable → validación humana. Datos de ejemplo.</p>
         <div class="meta"><span>Matching</span><span>HITL</span></div>
         <div class="demo">
-          <label>Nombre</label>
+          <label data-i18n="lblName">Nombre</label>
           <input id="q-name" value="Ana Ruiz" autocomplete="off">
           <button class="btn btn-g" type="button" data-run="find" data-i18n="find">Buscar</button>
           <a class="btn btn-g" href="./profile-finder/EnricherWeb.html">UI Enricher ↗</a>
@@ -133,12 +177,12 @@
       </article>
 
       <article class="card">
-        <header><span class="code" data-i18n="s3code">03</span><span class="badge" data-i18n="s3badge">DEMO MUESTRA</span></header>
+        <header><span class="code" data-i18n="s3code">04</span><span class="badge" data-i18n="s3badge">DEMO MUESTRA</span></header>
         <h2 data-i18n="s3h">Outreach HITL</h2>
         <p data-i18n="s3p">Segmento → borrador GenAI → revisión humana. No envía nada.</p>
         <div class="meta"><span>GenAI</span><span>HITL</span></div>
         <div class="demo">
-          <label>Segmento</label>
+          <label data-i18n="lblSeg">Segmento</label>
           <select id="q-seg">
             <option value="saas">SaaS / CS</option>
             <option value="gym">Fitness / ops</option>
@@ -149,34 +193,24 @@
       </article>
 
       <article class="card">
-        <header><span class="code">05 · SRC</span><span class="badge">CHATBOT</span></header>
-        <h2>Bodytone Chatbot</h2>
-        <p>Widget de soporte: RAG, envíos, productos, tickets Zendesk. Frontend estático aquí; el backend no lleva claves.</p>
-        <div class="meta"><span>Flask</span><span>RAG</span><span>Zendesk</span></div>
-        <div class="demo">
-          <a class="btn btn-y" href="./bodytone-chatbot/frontend/index.html">Abrir widget ↗</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <header><span class="code">06 · SRC</span><span class="badge">AIGORITMO</span></header>
+        <header><span class="code">05 · SRC</span><span class="badge">AIGORITMO</span></header>
         <h2>Aigoritmo</h2>
-        <p>Plataforma de avatares: OpenAI, Gemini, Ollama, voz Piper / ElevenLabs / Realtime. Código en este repo (sin .env).</p>
+        <p data-i18n="aiP">Avatares: OpenAI, Gemini, Ollama, voz Piper / ElevenLabs / Realtime. Código en este repo, sin .env.</p>
         <div class="meta"><span>Flask</span><span>LLM</span><span>Voice</span></div>
         <div class="demo">
           <a class="btn btn-y" href="./Aigoritmo/flask_app/app/templates/index.html">UI plantilla ↗</a>
         </div>
       </article>
 
-      <article class="card span">
-        <header><span class="code" data-i18n="s4code">04</span><span class="badge" data-i18n="s4badge">DEMO MUESTRA</span></header>
+      <article class="card">
+        <header><span class="code" data-i18n="s4code">06</span><span class="badge" data-i18n="s4badge">DEMO MUESTRA</span></header>
         <h2 data-i18n="s4h">Calculadora de mantenimientos</h2>
         <p data-i18n="s4p">Máquina + tipo de visita → plan de muestra. Horas de ejemplo, no tarifas Bodytone.</p>
         <div class="meta"><span>Ops</span><span>Preventivo / correctivo</span></div>
         <div class="demo">
           <div class="row row-2">
             <div>
-              <label>Equipo</label>
+              <label data-i18n="lblEq">Equipo</label>
               <select id="q-machine">
                 <option value="cinta">Cinta / treadmill</option>
                 <option value="bici">Bici indoor</option>
@@ -184,7 +218,7 @@
               </select>
             </div>
             <div>
-              <label>Tipo</label>
+              <label data-i18n="lblKind">Tipo</label>
               <select id="q-kind">
                 <option value="preventivo">Preventivo</option>
                 <option value="correctivo">Correctivo</option>
@@ -192,20 +226,22 @@
             </div>
           </div>
           <button class="btn btn-g" type="button" data-run="mant" data-i18n="plan">Plan</button>
-          <a class="btn btn-y" href="./calculadora-mantenimiento/index.html">Abrir ServicePack Pro ↗</a>
+          <a class="btn btn-y" href="./calculadora-mantenimiento/index.html">ServicePack Pro ↗</a>
           <div class="out" id="out-mant">SAMPLE · no rates</div>
         </div>
       </article>
     </div>
   </section>
 
-  <p class="note" data-i18n="note">Live = verificable. Demos muestra = misma lógica, datos ficticios. Pedir walkthrough para el motor completo.</p>
+  <p class="note" data-i18n="note">Live = se abre ahora. Demos muestra = misma lógica, datos ficticios. Pedir walkthrough para el motor completo.</p>
   <footer class="foot">
     <span data-i18n="foot">Gracián Baena · Murcia · CS × Data × AI</span>
     <span>
+      <a href="https://gracianb.github.io/GracianB/">hub</a> ·
       <a href="https://gracianb.github.io/professional-deck/">deck</a> ·
-      <a href="https://www.linkedin.com/in/gracianbaena">linkedin</a> ·
-      <a href="mailto:gracianbaenagonzalez@gmail.com">mail</a>
+      <a href="https://gracianb.github.io/project-ohana/">ohana</a> ·
+      <a href="https://vortex-gilt-xi.vercel.app/">vórtice</a> ·
+      <a href="https://www.linkedin.com/in/gracianbaena">linkedin</a>
     </span>
   </footer>
 </body>
