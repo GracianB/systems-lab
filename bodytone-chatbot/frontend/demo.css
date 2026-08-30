@@ -1,0 +1,90 @@
+body.demo-on {
+  margin: 0;
+  min-height: 100svh;
+  background:
+    radial-gradient(900px 420px at 80% -10%, rgba(122, 243, 255, .18), transparent 60%),
+    #03050c;
+  color: #eafdff;
+}
+.demo-ribbon {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 40;
+  margin: 0;
+  padding: 6px 10px;
+  font: 700 11px/1.2 ui-monospace, monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #031016;
+  background: #7af3ff;
+}
+.demo-embed .demo-ribbon { opacity: .9; }
+.bt-suggest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 8px 12px;
+}
+.bt-suggest__btn {
+  cursor: pointer;
+  border: 1px solid rgba(122, 243, 255, .35);
+  background: transparent;
+  color: inherit;
+  font: 600 12px system-ui, sans-serif;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+.bt-suggest__btn:hover { background: rgba(122, 243, 255, .12); }
+.bt-drop-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  place-items: center;
+  background: rgba(3, 5, 12, .72);
+  color: #7af3ff;
+  text-align: center;
+  pointer-events: none;
+}
+body.is-dropping .bt-drop-overlay { display: grid; }
+.bt-drop-overlay b { display: block; font-size: 28px; }
+.bt-drop-overlay span { color: #8aa4b8; }
+.bt-drop-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 12px 8px;
+}
+.bt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 600 11px/1.3 system-ui, sans-serif;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #123;
+  color: #eafdff;
+}
+.bt-chip button {
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 14px;
+}
+.chat-widget__footer.is-drop,
+.chat-widget__form.is-drop {
+  outline: 2px dashed #7af3ff;
+  outline-offset: -6px;
+}
+body.demo-embed #bodytone-chat-widget.chat-widget--maximized,
+body.demo-embed #bodytone-chat-widget.chat-widget--open {
+  inset: 48px 12px 12px;
+}
+body.demo-embed #bodytone-chat-widget.chat-widget--maximized .chat-widget__container,
+body.demo-embed .chat-widget--open.chat-widget--maximized .chat-widget__container {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}

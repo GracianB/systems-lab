@@ -15,9 +15,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=lab6">
-  <script src="./i18n.js?v=lab6"></script>
-  <script src="./main.js?v=lab6" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=lab7">
+  <script src="./i18n.js?v=lab7"></script>
+  <script src="./main.js?v=lab7" defer></script>
 </head>
 <body>
   <header class="top">
@@ -29,6 +29,7 @@
       <a href="#juegos" data-i18n="navGames">Juegos</a>
       <a href="#apps" data-i18n="navApps">Apps</a>
       <a href="#cs" data-i18n="navCs">CS</a>
+      <a href="#agente" data-i18n="navAgent">Agente</a>
       <a href="https://gracianb.github.io/GracianB/" data-i18n="navHub">Hub</a>
       <div class="seg" role="group">
         <button type="button" class="seg-btn" data-set-lang="es" aria-pressed="true">ES</button>
@@ -155,6 +156,19 @@
     <h2 data-i18n="csH">El departamento. No el discurso.</h2>
     <p class="lead cs-lead" data-i18n="csLead">Monté el Support OS de Bodytone y lo dejé en el aire. El cliente entra, dice qué necesita, el sistema enruta, el caso aterriza en Zendesk. Eso es un ecosistema de CS: canal, criterio, cierre. Un botón. El de verdad.</p>
 
+    <article class="agent-block" id="agente">
+      <header>
+        <span class="code" data-i18n="agCode">WIDGET · DEMO</span>
+        <span class="badge" data-i18n="agBadge">PRIVADO · SIN CLAVES</span>
+      </header>
+      <h3 data-i18n="agTitle">Agente CS</h3>
+      <p data-i18n="agDesc">Mi widget. Arrastra un archivo. Pregunta por un envío, un manual o un ticket. El backend real no está publicado. Abajo, el canal que sí está en producción.</p>
+      <div class="agent-stage">
+        <iframe src="./bodytone-chatbot/frontend/?embed=1" title="Agente CS" loading="lazy"></iframe>
+      </div>
+      <p class="hint"><a href="./bodytone-chatbot/frontend/" data-i18n="botCta">Abrir a pantalla completa →</a></p>
+    </article>
+
     <article class="cs-hero">
       <header>
         <span class="code">LIVE</span>
@@ -170,7 +184,6 @@
       </ol>
       <div class="actions">
         <a class="btn btn-y" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="s0cta">Entrar al Help Center →</a>
-        <a class="btn btn-g" href="./bodytone-chatbot/frontend/" data-i18n="botCta">Abrir el widget →</a>
       </div>
     </article>
 
