@@ -56,16 +56,24 @@ button { cursor: pointer; }
   margin: 0 0 12px; color: var(--ice); font: 700 11px var(--mono);
   letter-spacing: .2em; text-transform: uppercase;
 }
-.hero h1, .play h2, .cs h2, .lab h2 {
-  margin: 0; font-family: var(--display); font-weight: 800;
-  letter-spacing: -.04em;
+.hero h1, .play > h2, .cs > h2, .lab > h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 .hero h1 {
-  font-size: clamp(52px, 11vw, 118px); line-height: .82;
+  font-size: clamp(36px, 6vw, 72px);
+  line-height: 0.96;
+  max-width: 13ch;
   text-shadow: 0 0 40px var(--glow);
 }
 .hero h1 em { font-style: italic; color: var(--ice); }
-.play h2, .cs h2, .lab h2 { font-size: clamp(28px, 5vw, 48px); }
+.play > h2, .cs > h2, .lab > h2 {
+  font-size: clamp(26px, 3.2vw, 40px);
+  line-height: 1.08;
+  max-width: 18ch;
+}
 .lead { max-width: 640px; color: var(--muted); font-size: 17px; margin-top: 16px; }
 .cs-lead { max-width: 720px; }
 .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
@@ -94,7 +102,7 @@ button { cursor: pointer; }
 }
 .feat:hover { transform: translateY(-4px); box-shadow: 0 0 40px var(--glow); }
 .feat header { display: flex; justify-content: space-between; align-items: center; }
-.feat h3 { margin: 0; font-family: var(--display); font-size: 32px; }
+.feat h3 { margin: 0; font-family: var(--display); font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
 .feat p { margin: 0; color: var(--muted); }
 .feat-cta { margin-top: auto; color: var(--ice); font: 700 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .feat-stage {
@@ -137,7 +145,7 @@ button { cursor: pointer; }
   padding: 28px;
   box-shadow: 0 0 40px var(--glow);
 }
-.cs-hero h3 { margin: 12px 0 8px; font-family: var(--display); font-size: clamp(28px, 4vw, 42px); }
+.cs-hero h3 { margin: 12px 0 8px; font-family: var(--display); font-size: clamp(24px, 3vw, 34px); font-weight: 700; letter-spacing: -0.02em; }
 .cs-hero > p { color: var(--muted); max-width: 62ch; }
 .cs-hero header { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 .method {
@@ -174,7 +182,14 @@ button { cursor: pointer; }
 }
 .card.live { border-color: var(--ice); box-shadow: 0 0 24px var(--glow); }
 .card header { display: flex; justify-content: space-between; }
-.card h2 { margin: 0; font-family: var(--display); font-size: 26px; }
+.card h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
 .card p { margin: 0; color: var(--muted); }
 .meta { display: flex; gap: 6px; flex-wrap: wrap; }
 .meta span { font: 600 10px var(--mono); border: 1px solid var(--line); padding: 4px 8px; color: var(--muted); }
@@ -193,7 +208,7 @@ select, input {
 @media (max-width: 720px) {
   .nav a { display: none; }
   .nav .seg { display: flex; }
-  .hero h1 { font-size: clamp(40px, 16vw, 64px); }
+  .hero h1 { font-size: clamp(32px, 10vw, 48px); max-width: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
