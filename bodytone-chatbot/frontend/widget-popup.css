@@ -1,0 +1,591 @@
+/* ================================================================================= */
+/* == COMPONENT: SETTINGS MODAL (PREMIUM ENHANCED)                               == */
+/* == Version: 8.0 - Spectacularly Enhanced                                      == */
+/* ================================================================================= */
+
+/* ─── 1. Modal Overlay & Entrance Animation ─── */
+#settings-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--bt-z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--bt-space-lg);
+  
+  /* Enhanced gradient overlay */
+  background: radial-gradient(
+    circle at 50% 50%,
+    hsla(220, 15%, 5%, 0) 0%,
+    hsla(220, 15%, 5%, 0) 100%
+  );
+  backdrop-filter: blur(0px) saturate(1);
+  -webkit-backdrop-filter: blur(0px) saturate(1);
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              backdrop-filter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              -webkit-backdrop-filter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              visibility 0s linear 0.4s;
+}
+
+#settings-modal-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+  background: radial-gradient(
+    circle at 50% 50%,
+    hsla(220, 15%, 5%, 0.85) 0%,
+    hsla(220, 15%, 3%, 0.95) 100%
+  );
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  transition-delay: 0s;
+}
+
+/* ─── 2. Modal Dialog & Sophisticated Entrance ─── */
+.settings-modal__dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  max-width: 520px;
+  max-height: min(90dvh, 700px);
+  
+  /* Enhanced glass morphism background */
+  background: linear-gradient(
+    145deg,
+    hsla(220, 15%, 25%, 0.95) 0%,
+    hsla(220, 12%, 22%, 0.98) 50%,
+    hsla(220, 10%, 18%, 0.99) 100%
+  );
+  
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 40px -12px hsla(220, 15%, 0%, 0.4),
+    0 8px 32px -8px hsla(220, 15%, 0%, 0.3),
+    inset 0 1px 0 hsla(0, 0%, 100%, 0.1);
+  
+  /* Enhanced premium border */
+  border: 1px solid;
+  border-image: linear-gradient(
+    135deg,
+    hsla(200, 70%, 60%, 0.4) 0%,
+    hsla(280, 70%, 60%, 0.3) 50%,
+    hsla(200, 70%, 60%, 0.4) 100%
+  ) 1;
+  
+  /* Smoother entrance animation */
+  transform: scale(0.92) translateY(40px) rotateX(8deg);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+#settings-modal-overlay.is-visible .settings-modal__dialog {
+  transform: scale(1) translateY(0) rotateX(0);
+  opacity: 1;
+}
+
+/* Enhanced light sweep effect */
+.settings-modal__dialog::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -200%;
+  width: 150%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    hsla(180, 90%, 70%, 0.15) 20%,
+    hsla(200, 90%, 80%, 0.4) 50%,
+    hsla(280, 90%, 70%, 0.15) 80%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+
+#settings-modal-overlay.is-visible .settings-modal__dialog::before {
+  opacity: 1;
+  animation: light-sweep 4s 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ─── 3. Modal Structure (Header, Body, Footer) ─── */
+.settings-modal__header,
+.settings-modal__footer {
+  padding: var(--bt-space-sm) var(--bt-space-lg);
+  background: linear-gradient(
+    180deg,
+    hsla(220, 15%, 20%, 0.8) 0%,
+    hsla(220, 12%, 18%, 0.9) 100%
+  );
+  backdrop-filter: blur(10px) saturate(1.1);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.settings-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--bt-header-height);
+  border-bottom: 1px solid hsla(200, 50%, 60%, 0.2);
+  box-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.05);
+}
+
+.settings-modal__title {
+  font-size: var(--bt-font-size-lg);
+  font-weight: var(--bt-font-weight-semibold);
+  background: linear-gradient(
+    135deg,
+    hsl(0, 0%, 95%) 0%,
+    hsl(200, 30%, 85%) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.3);
+}
+
+.settings-modal__close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: hsl(0, 0%, 70%);
+  background: linear-gradient(
+    135deg,
+    hsla(220, 15%, 25%, 0.6) 0%,
+    hsla(220, 15%, 20%, 0.8) 100%
+  );
+  border: 1px solid hsla(0, 0%, 100%, 0.1);
+  transition: 
+    color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.settings-modal__close-btn:hover {
+  color: hsl(0, 0%, 100%);
+  background: linear-gradient(
+    135deg,
+    hsla(0, 80%, 60%, 0.8) 0%,
+    hsla(0, 80%, 50%, 0.9) 100%
+  );
+  transform: rotate(180deg) scale(1.15);
+  box-shadow: 
+    0 4px 12px hsla(0, 80%, 50%, 0.4),
+    0 0 20px hsla(0, 80%, 50%, 0.3);
+}
+
+.settings-modal__body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: var(--bt-space-lg);
+  background: linear-gradient(
+    180deg,
+    hsla(220, 15%, 28%, 0.7) 0%,
+    hsla(220, 12%, 25%, 0.8) 50%,
+    hsla(220, 10%, 22%, 0.9) 100%
+  );
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  scrollbar-gutter: stable;
+  position: relative;
+  z-index: 2;
+}
+
+.settings-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--bt-space-sm);
+  border-top: 1px solid hsla(200, 50%, 60%, 0.2);
+  box-shadow: 0 -1px 0 hsla(0, 0%, 100%, 0.05);
+}
+
+/* ─── 4. Enhanced Form Animation ─── */
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bt-space-xl);
+}
+
+#settings-modal-overlay.is-visible .settings-form__section > * {
+  opacity: 0;
+  animation: item-in-settings 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+#settings-modal-overlay.is-visible .settings-form__section:nth-of-type(1) .settings-form__group:nth-child(1) { animation-delay: 0.3s; }
+#settings-modal-overlay.is-visible .settings-form__section:nth-of-type(1) .settings-form__group:nth-child(2) { animation-delay: 0.4s; }
+#settings-modal-overlay.is-visible .settings-form__section:nth-of-type(2) .settings-form__sub-legend           { animation-delay: 0.5s; }
+#settings-modal-overlay.is-visible .settings-form__section:nth-of-type(2) .settings-form__group:nth-child(2) { animation-delay: 0.6s; }
+#settings-modal-overlay.is-visible .settings-form__section:nth-of-type(2) .settings-form__group:nth-child(3) { animation-delay: 0.7s; }
+#settings-modal-overlay.is-visible .settings-form__section:nth-of-type(2) .settings-form__group:nth-child(4) { animation-delay: 0.8s; }
+
+.settings-form__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bt-space-lg);
+}
+
+.settings-form__section--actions {
+  padding-top: var(--bt-space-lg);
+  border-top: 1px solid hsla(200, 50%, 60%, 0.2);
+  position: relative;
+}
+
+.settings-form__section--actions::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsla(200, 70%, 60%, 0.6) 50%,
+    transparent 100%
+  );
+}
+
+.settings-form__sub-legend {
+  font-size: var(--bt-font-size-md);
+  font-weight: var(--bt-font-weight-semibold);
+  background: linear-gradient(
+    135deg,
+    hsl(200, 30%, 75%) 0%,
+    hsl(280, 30%, 70%) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: calc(-1 * var(--bt-space-sm));
+}
+
+.settings-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bt-space-xxs);
+}
+
+.settings-form__description a {
+  color: hsl(200, 70%, 70%);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: 
+    color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-bottom-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    text-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.settings-form__description a:hover {
+  color: hsl(200, 80%, 80%);
+  border-bottom-color: hsl(200, 80%, 80%);
+  text-shadow: 0 0 8px hsla(200, 80%, 80%, 0.4);
+}
+
+/* ─── 5. Premium Enhanced Components ─── */
+.settings-form__group--checkbox {
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--bt-space-sm);
+  cursor: pointer;
+  position: relative;
+  padding: var(--bt-space-xs) 0;
+  border-radius: 8px;
+  transition: background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.settings-form__group--checkbox:hover {
+  background-color: hsla(220, 15%, 30%, 0.3);
+}
+
+.settings-form__checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  background: linear-gradient(
+    135deg,
+    hsla(220, 15%, 28%, 0.8) 0%,
+    hsla(220, 12%, 25%, 0.9) 100%
+  );
+  border: 2px solid hsla(200, 50%, 60%, 0.3);
+  border-radius: 6px;
+  display: grid;
+  place-content: center;
+  position: relative;
+  transition: 
+    all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.settings-form__checkbox::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(
+    135deg,
+    hsl(0, 0%, 100%) 0%,
+    hsl(200, 30%, 90%) 100%
+  );
+  clip-path: polygon(14% 44%, 0 65%, 28% 90%, 88% 12%, 70% 0, 28% 58%);
+  transform: scale(0) rotate(-180deg);
+  opacity: 0;
+  transition: 
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.settings-form__checkbox:checked {
+  background: linear-gradient(
+    135deg,
+    hsl(200, 70%, 60%) 0%,
+    hsl(280, 70%, 60%) 100%
+  );
+  border-color: hsl(200, 70%, 60%);
+  box-shadow: 
+    0 0 20px hsla(200, 70%, 60%, 0.6),
+    0 0 40px hsla(200, 70%, 60%, 0.3),
+    inset 0 1px 0 hsla(0, 0%, 100%, 0.3);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.settings-form__checkbox:checked::before {
+  transform: scale(1) rotate(0);
+  opacity: 1;
+}
+
+.settings-form__label--checkbox {
+  color: hsl(0, 0%, 90%);
+  font-weight: var(--bt-font-weight-medium);
+  line-height: 22px;
+  cursor: pointer;
+  flex: 1;
+  transition: color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.settings-form__group--checkbox:hover .settings-form__label--checkbox {
+  color: hsl(0, 0%, 100%);
+}
+
+/* Enhanced buttons */
+.settings-form__button {
+  padding: 0.7em 1.4em;
+  font-size: var(--bt-font-size-sm);
+  font-weight: var(--bt-font-weight-semibold);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: 
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.settings-form__button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsla(0, 0%, 100%, 0.1) 50%,
+    transparent 100%
+  );
+  transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.settings-form__button:hover::before {
+  left: 100%;
+}
+
+.settings-form__button:hover:not(:disabled) {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 8px 25px hsla(0, 0%, 0%, 0.3),
+    0 4px 12px hsla(0, 0%, 0%, 0.2);
+}
+
+.settings-form__button:active:not(:disabled) {
+  transform: translateY(-2px) scale(0.98);
+  box-shadow: 
+    0 4px 12px hsla(0, 0%, 0%, 0.2),
+    0 2px 6px hsla(0, 0%, 0%, 0.1);
+  transition-duration: 0.1s;
+}
+
+.settings-form__button--primary {
+  background: linear-gradient(
+    135deg,
+    hsl(200, 70%, 60%) 0%,
+    hsl(280, 70%, 60%) 100%
+  );
+  color: hsl(0, 0%, 100%);
+}
+
+.settings-form__button--primary:hover:not(:disabled) {
+  box-shadow: 
+    0 8px 25px hsla(200, 70%, 60%, 0.4),
+    0 4px 12px hsla(200, 70%, 60%, 0.3),
+    0 0 30px hsla(200, 70%, 60%, 0.3);
+}
+
+.settings-form__button--secondary {
+  background: linear-gradient(
+    135deg,
+    hsla(220, 15%, 25%, 0.8) 0%,
+    hsla(220, 12%, 22%, 0.9) 100%
+  );
+  border-color: hsla(200, 50%, 60%, 0.3);
+  color: hsl(200, 30%, 80%);
+}
+
+.settings-form__button--secondary:hover:not(:disabled) {
+  border-color: hsl(200, 70%, 60%);
+  color: hsl(200, 70%, 70%);
+  box-shadow: 
+    0 8px 25px hsla(0, 0%, 0%, 0.3),
+    0 0 20px hsla(200, 70%, 60%, 0.2);
+}
+
+.settings-form__button--danger {
+  background: linear-gradient(
+    135deg,
+    hsl(0, 70%, 60%) 0%,
+    hsl(0, 80%, 50%) 100%
+  );
+  color: hsl(0, 0%, 100%);
+}
+
+.settings-form__button--danger:hover:not(:disabled) {
+  box-shadow: 
+    0 8px 25px hsla(0, 70%, 50%, 0.4),
+    0 4px 12px hsla(0, 70%, 50%, 0.3),
+    0 0 30px hsla(0, 70%, 50%, 0.3);
+}
+
+/* Enhanced confirmation state */
+.settings-form__button.needs-confirmation {
+  background: linear-gradient(
+    135deg,
+    hsl(0, 90%, 65%) 0%,
+    hsl(0, 90%, 55%) 100%
+  ) !important;
+  border-color: hsl(0, 90%, 55%) !important;
+  color: hsl(0, 0%, 100%) !important;
+  animation: pulse-danger 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.settings-form__button.needs-confirmation::before {
+  content: "Confirmar";
+  margin-right: var(--bt-space-xs);
+  font-weight: var(--bt-font-weight-bold);
+}
+
+/* Enhanced toast notifications */
+.settings-form__status.is-active {
+  animation: toast-in-settings 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ─── Enhanced Keyframe Animations ─── */
+@keyframes light-sweep {
+  0% {
+    left: -200%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 200%;
+    opacity: 0;
+  }
+}
+
+@keyframes item-in-settings {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95) rotateX(10deg);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1.02) rotateX(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0);
+  }
+}
+
+@keyframes toast-in-settings {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulse-danger {
+  0% {
+    box-shadow: 
+      0 0 0 0 hsla(0, 90%, 60%, 0.8),
+      0 8px 25px hsla(0, 70%, 50%, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 15px hsla(0, 90%, 60%, 0),
+      0 8px 25px hsla(0, 70%, 50%, 0.4);
+  }
+  100% {
+    box-shadow: 
+      0 0 0 0 hsla(0, 90%, 60%, 0),
+      0 8px 25px hsla(0, 70%, 50%, 0.4);
+  }
+}
+/* demo drop zone */
+.chat-widget__footer.is-drop,
+.chat-widget__form.is-drop {
+  outline: 2px dashed #7af3ff;
+  outline-offset: -6px;
+  background: rgba(122, 243, 255, 0.08);
+}
+.bt-drop-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 12px 8px;
+}
+.bt-chip {
+  font: 600 11px/1.3 ui-sans-serif, system-ui, sans-serif;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #123;
+  color: #eafdff;
+}

@@ -1,0 +1,616 @@
+/* ================================================================================= */
+/* == COMPONENT: VOICE FEEDBACK - ULTRA ENHANCED EDITION                        == */
+/* == Version: 11.0 (Beyond Sci-Fi - Neural Interface Level)                     == */
+/* ================================================================================= */
+/* == NUEVAS CARACTERÍSTICAS ULTRA:                                               == */
+/* == 1. SISTEMA DE PARTÍCULAS CSS: Partículas flotantes que reaccionan          == */
+/* == 2. INTERFAZ CUÁNTICA: Múltiples capas de profundidad con paralaje          == */
+/* == 3. VISUALIZADOR NEURONAL: 12 barras con patrones sinápticos                == */
+/* == 4. GEOMETRÍA PROCEDURAL: Formas geométricas que se transforman             == */
+/* == 5. SISTEMA DE ENERGÍA: Múltiples núcleos de energía interconectados        == */
+/* == 6. HOLOGRAMAS DINÁMICOS: Efectos de interferencia holográfica              == */
+/* ================================================================================= */
+
+/* ─── CSS CUSTOM PROPERTIES (Variables Ultra) ─── */
+:root {
+  /* Colores principales mejorados */
+  --voice-primary: #00d4ff;
+  --voice-secondary: #ff006e;
+  --voice-accent: #ffbe0b;
+  --voice-neural: #8338ec;
+  --voice-quantum: #3a86ff;
+  
+  /* Gradientes complejos */
+  --voice-gradient-neural: linear-gradient(135deg, 
+    var(--voice-primary) 0%, 
+    var(--voice-neural) 50%, 
+    var(--voice-secondary) 100%);
+  --voice-gradient-quantum: conic-gradient(
+    from 0deg at 50% 50%,
+    var(--voice-primary) 0deg,
+    var(--voice-quantum) 120deg,
+    var(--voice-accent) 240deg,
+    var(--voice-primary) 360deg);
+  
+  /* Sombras avanzadas */
+  --voice-shadow-neural: 0 0 20px var(--voice-primary),
+                         0 0 40px var(--voice-neural),
+                         0 0 60px var(--voice-secondary);
+  --voice-shadow-quantum: 0 0 30px var(--voice-quantum),
+                          inset 0 0 20px rgba(0, 212, 255, 0.1);
+  
+  /* Filtros */
+  --voice-blur-soft: blur(8px);
+  --voice-blur-medium: blur(16px);
+  --voice-blur-hard: blur(24px);
+  
+  /* Timing mejorado */
+  --voice-duration-ultra: 0.8s;
+  --voice-duration-neural: 1.2s;
+  --voice-duration-quantum: 2.4s;
+  
+  /* Z-index layers */
+  --voice-z-base: 1000;
+  --voice-z-particles: 1001;
+  --voice-z-core: 1002;
+  --voice-z-interface: 1003;
+  --voice-z-hologram: 1004;
+}
+
+/* █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ */
+/* █ █                                                                         █ █ */
+/* █ █   MAIN CONTAINER - QUANTUM INTERFACE                                    █ █ */
+/* █ █                                                                         █ █ */
+/* █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ */
+
+.chat-widget__voice-feedback {
+  position: absolute;
+  inset: 0;
+  z-index: var(--voice-z-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 4vw, 32px);
+  padding: clamp(20px, 6vw, 48px);
+  border-radius: 24px;
+  
+  /* Ultra background con múltiples capas */
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(255, 0, 110, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(131, 56, 236, 0.05) 0%, transparent 70%),
+    linear-gradient(135deg, 
+      hsla(220, 15%, 8%, 0.95) 0%, 
+      hsla(220, 20%, 12%, 0.85) 50%, 
+      hsla(220, 15%, 8%, 0.95) 100%);
+  
+  /* Backdrop filter mejorado */
+  backdrop-filter: blur(20px) saturate(1.2) contrast(1.1);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2) contrast(1.1);
+  
+  /* Entrada holográfica ultra mejorada */
+  perspective: 1200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: 
+    scale(0.85) 
+    rotateX(-25deg) 
+    rotateY(5deg) 
+    translateY(40px) 
+    translateZ(-50px);
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  
+  /* Transiciones ultra suaves */
+  transition: 
+    opacity var(--voice-duration-ultra) cubic-bezier(0.23, 1, 0.32, 1),
+    transform var(--voice-duration-ultra) cubic-bezier(0.23, 1, 0.32, 1),
+    visibility 0s linear var(--voice-duration-ultra),
+    backdrop-filter var(--voice-duration-ultra) ease-out;
+  
+  will-change: opacity, transform, backdrop-filter;
+  
+  /* Overflow para contener partículas */
+  overflow: hidden;
+}
+
+.chat-widget__voice-feedback:not([hidden]) {
+  opacity: 1;
+  transform: 
+    scale(1) 
+    rotateX(0deg) 
+    rotateY(0deg) 
+    translateY(0px) 
+    translateZ(0px);
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* ─── MÚLTIPLES NÚCLEOS DE ENERGÍA ─── */
+.chat-widget__voice-feedback::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  z-index: var(--voice-z-core);
+  border-radius: inherit;
+  background: var(--voice-gradient-quantum);
+  filter: blur(2px);
+  opacity: 0;
+  animation: quantum-core-rotation var(--voice-duration-quantum) linear infinite;
+  transition: opacity var(--voice-duration-neural) ease-out;
+}
+
+.chat-widget__voice-feedback::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  z-index: calc(var(--voice-z-core) - 1);
+  border-radius: inherit;
+  background: conic-gradient(
+    from 180deg,
+    transparent 0%,
+    var(--voice-neural) 25%,
+    transparent 50%,
+    var(--voice-secondary) 75%,
+    transparent 100%
+  );
+  filter: blur(4px);
+  opacity: 0;
+  animation: quantum-core-rotation calc(var(--voice-duration-quantum) * 1.5) linear infinite reverse;
+  transition: opacity var(--voice-duration-neural) ease-out;
+}
+
+.chat-widget__voice-feedback:not([hidden])::before,
+.chat-widget__voice-feedback:not([hidden])::after {
+  opacity: 0.6;
+  transition-delay: 0.4s;
+}
+
+/* ─── SISTEMA DE PARTÍCULAS CSS ─── */
+.chat-widget__voice-feedback .voice-feedback__particles {
+  position: absolute;
+  inset: 0;
+  z-index: var(--voice-z-particles);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.voice-feedback__particles::before,
+.voice-feedback__particles::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--voice-primary);
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: particles-float-1 4s ease-in-out infinite;
+  box-shadow: 
+    0 0 10px var(--voice-primary),
+    0 0 20px var(--voice-primary),
+    0 0 30px var(--voice-primary);
+}
+
+.voice-feedback__particles::after {
+  background: var(--voice-secondary);
+  animation: particles-float-2 3.5s ease-in-out infinite;
+  animation-delay: -1.5s;
+  box-shadow: 
+    0 0 10px var(--voice-secondary),
+    0 0 20px var(--voice-secondary),
+    0 0 30px var(--voice-secondary);
+}
+
+/* █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ */
+/* █ █                                                                         █ █ */
+/* █ █   STAGGERED ANIMATIONS ULTRA                                            █ █ */
+/* █ █                                                                         █ █ */
+/* █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ */
+
+.chat-widget__voice-feedback:not([hidden]) .voice-feedback__status,
+.chat-widget__voice-feedback:not([hidden]) .voice-feedback__timer,
+.chat-widget__voice-feedback:not([hidden]) .voice-feedback__visualizer,
+.chat-widget__voice-feedback:not([hidden]) .voice-feedback__particles {
+  opacity: 0;
+  animation: neural-interface-entrance var(--voice-duration-neural) cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.chat-widget__voice-feedback:not([hidden]) .voice-feedback__particles  { animation-delay: 0.1s; }
+.chat-widget__voice-feedback:not([hidden]) .voice-feedback__status     { animation-delay: 0.3s; }
+.chat-widget__voice-feedback:not([hidden]) .voice-feedback__timer      { animation-delay: 0.5s; }
+.chat-widget__voice-feedback:not([hidden]) .voice-feedback__visualizer { animation-delay: 0.7s; }
+
+/* ─── STATUS & TIMER ULTRA ─── */
+.voice-feedback__status {
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 600;
+  color: var(--voice-primary);
+  text-shadow: 
+    0 0 10px var(--voice-primary),
+    0 0 20px var(--voice-primary),
+    0 0 30px var(--voice-primary);
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: var(--voice-z-interface);
+  
+  /* Efecto de hologram */
+  background: var(--voice-gradient-neural);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  transition: all var(--voice-duration-ultra) ease;
+}
+
+.voice-feedback__status::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  color: var(--voice-quantum);
+  transform: translate(1px, 1px);
+  opacity: 0.3;
+  animation: hologram-glitch 3s ease-in-out infinite;
+}
+
+.voice-feedback__timer {
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  font-size: clamp(14px, 3vw, 18px);
+  font-weight: 500;
+  color: var(--voice-quantum);
+  font-variant-numeric: tabular-nums;
+  
+  background: 
+    linear-gradient(135deg, 
+      rgba(0, 212, 255, 0.1) 0%, 
+      rgba(131, 56, 236, 0.1) 100%);
+  
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  backdrop-filter: blur(10px);
+  
+  box-shadow: 
+    var(--voice-shadow-quantum),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  position: relative;
+  overflow: hidden;
+}
+
+.voice-feedback__timer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 100%);
+  animation: timer-shine 2s ease-in-out infinite;
+}
+
+/* █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ */
+/* █ █                                                                         █ █ */
+/* █ █   NEURAL VISUALIZER ULTRA (12 BARS)                                    █ █ */
+/* █ █                                                                         █ █ */
+/* █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ */
+
+.voice-feedback__visualizer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 80px;
+  width: 180px;
+  position: relative;
+  z-index: var(--voice-z-interface);
+  
+  /* Contenedor con efecto de profundidad */
+  perspective: 800px;
+  transform-style: preserve-3d;
+  
+  /* Fondo del visualizador */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 212, 255, 0.05) 0%,
+    transparent 70%
+  );
+  border-radius: 16px;
+  padding: 12px;
+  
+  /* Borde holográfico */
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  backdrop-filter: blur(5px);
+  
+  overflow: visible;
+}
+
+.voice-visualizer__bar {
+  width: 10px;
+  height: 100%;
+  border-radius: 5px;
+  position: relative;
+  transform-origin: bottom center;
+  transform-style: preserve-3d;
+  
+  /* Gradiente base más complejo */
+  background: linear-gradient(
+    to top,
+    var(--voice-primary) 0%,
+    var(--voice-quantum) 40%,
+    var(--voice-neural) 70%,
+    var(--voice-secondary) 100%
+  );
+  
+  /* Sombra ultra mejorada */
+  box-shadow: 
+    0 0 15px var(--voice-primary),
+    0 0 30px var(--voice-quantum),
+    inset 0 0 10px rgba(255, 255, 255, 0.1);
+  
+  /* Animaciones por defecto más complejas */
+  animation: neural-pulse-complex var(--voice-duration-neural) ease-in-out infinite;
+  
+  will-change: transform, background, box-shadow;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Highlight superior */
+.voice-visualizer__bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 100%
+  );
+  border-radius: 5px 5px 0 0;
+  filter: blur(1px);
+}
+
+/* Reflejo inferior */
+.voice-visualizer__bar::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 212, 255, 0.3) 0%,
+    transparent 100%
+  );
+  border-radius: 0 0 5px 5px;
+  filter: blur(2px);
+  transform: scaleY(0.5);
+}
+
+/* Variaciones por barra (12 barras) */
+.voice-visualizer__bar:nth-child(1)  { animation-delay: -0.1s; animation-duration: 1.1s; }
+.voice-visualizer__bar:nth-child(2)  { animation-delay: -0.2s; animation-duration: 0.9s; }
+.voice-visualizer__bar:nth-child(3)  { animation-delay: -0.3s; animation-duration: 1.3s; }
+.voice-visualizer__bar:nth-child(4)  { animation-delay: -0.4s; animation-duration: 1.0s; }
+.voice-visualizer__bar:nth-child(5)  { animation-delay: -0.5s; animation-duration: 1.2s; }
+.voice-visualizer__bar:nth-child(6)  { animation-delay: -0.6s; animation-duration: 0.8s; }
+.voice-visualizer__bar:nth-child(7)  { animation-delay: -0.7s; animation-duration: 1.4s; }
+.voice-visualizer__bar:nth-child(8)  { animation-delay: -0.8s; animation-duration: 1.1s; }
+.voice-visualizer__bar:nth-child(9)  { animation-delay: -0.9s; animation-duration: 0.95s; }
+.voice-visualizer__bar:nth-child(10) { animation-delay: -1.0s; animation-duration: 1.25s; }
+.voice-visualizer__bar:nth-child(11) { animation-delay: -1.1s; animation-duration: 0.85s; }
+.voice-visualizer__bar:nth-child(12) { animation-delay: -1.2s; animation-duration: 1.35s; }
+
+/* Patrones alternos */
+.voice-visualizer__bar:nth-child(even) { 
+  animation-name: neural-pulse-alt;
+  background: linear-gradient(
+    to top,
+    var(--voice-quantum) 0%,
+    var(--voice-neural) 40%,
+    var(--voice-accent) 70%,
+    var(--voice-primary) 100%
+  );
+}
+
+.voice-visualizer__bar:nth-child(3n) { 
+  animation-name: neural-pulse-chaos;
+  background: linear-gradient(
+    to top,
+    var(--voice-secondary) 0%,
+    var(--voice-accent) 50%,
+    var(--voice-quantum) 100%
+  );
+}
+
+/* █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ */
+/* █ █                                                                         █ █ */
+/* █ █   COMPONENT STATES ULTRA                                                █ █ */
+/* █ █                                                                         █ █ */
+/* █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ */
+
+/* ─── PROCESSING STATE ─── */
+.chat-widget__voice-feedback.is-processing .voice-feedback__status {
+  color: var(--voice-quantum);
+  animation: processing-pulse 2s ease-in-out infinite;
+}
+
+.chat-widget__voice-feedback.is-processing .voice-visualizer__bar {
+  animation: neural-sync-breathing 2.5s ease-in-out infinite alternate;
+}
+
+/* Neural scanline mejorado */
+.chat-widget__voice-feedback.is-processing .voice-feedback__visualizer::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 120%;
+  height: 8px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--voice-quantum) 20%,
+    var(--voice-primary) 50%,
+    var(--voice-quantum) 80%,
+    transparent 100%
+  );
+  filter: blur(3px);
+  animation: neural-scanline 1.8s ease-in-out infinite;
+  z-index: var(--voice-z-hologram);
+}
+
+/* ─── ERROR STATE ULTRA ─── */
+.chat-widget__voice-feedback.has-error {
+  animation: catastrophic-system-failure 0.6s ease-in-out infinite;
+}
+
+.chat-widget__voice-feedback.has-error .voice-feedback__status {
+  color: var(--voice-secondary);
+  text-shadow: 
+    0 0 10px var(--voice-secondary),
+    0 0 20px var(--voice-secondary),
+    0 0 30px var(--voice-secondary);
+  animation: error-text-chaos 0.4s linear infinite;
+}
+
+.chat-widget__voice-feedback.has-error::before {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    var(--voice-secondary) 30%,
+    transparent 60%
+  );
+  animation: error-core-meltdown 1s linear infinite;
+}
+
+.chat-widget__voice-feedback.has-error .voice-visualizer__bar {
+  background: var(--voice-secondary);
+  box-shadow: 
+    0 0 20px var(--voice-secondary),
+    0 0 40px var(--voice-secondary),
+    inset 0 0 10px rgba(255, 0, 110, 0.3);
+  animation: neural-system-breakdown 0.3s ease-out forwards;
+}
+
+/* █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ */
+/* █ █                                                                         █ █ */
+/* █ █   ULTRA KEYFRAME ANIMATIONS                                             █ █ */
+/* █ █                                                                         █ █ */
+/* █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ */
+
+/* Entrada neural mejorada */
+@keyframes neural-interface-entrance {
+  0% { 
+    opacity: 0; 
+    transform: translateY(30px) rotateX(15deg) scale(0.9); 
+    filter: blur(10px); 
+  }
+  60% { 
+    opacity: 0.8; 
+    transform: translateY(-5px) rotateX(-2deg) scale(1.02); 
+    filter: blur(2px); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) rotateX(0deg) scale(1); 
+    filter: blur(0px); 
+  }
+}
+
+/* Rotación cuántica de núcleos */
+@keyframes quantum-core-rotation {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(90deg) scale(1.05); }
+  50% { transform: rotate(180deg) scale(1); }
+  75% { transform: rotate(270deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Partículas flotantes */
+@keyframes particles-float-1 {
+  0%, 100% { transform: translate(10px, 10px) rotate(0deg); opacity: 0.3; }
+  25% { transform: translate(60px, 30px) rotate(90deg); opacity: 0.8; }
+  50% { transform: translate(120px, 20px) rotate(180deg); opacity: 0.5; }
+  75% { transform: translate(80px, 50px) rotate(270deg); opacity: 0.7; }
+}
+
+@keyframes particles-float-2 {
+  0%, 100% { transform: translate(150px, 60px) rotate(0deg); opacity: 0.4; }
+  25% { transform: translate(100px, 10px) rotate(-90deg); opacity: 0.9; }
+  50% { transform: translate(40px, 40px) rotate(-180deg); opacity: 0.6; }
+  75% { transform: translate(90px, 70px) rotate(-270deg); opacity: 0.8; }
+}
+
+/* Pulso neural complejo */
+@keyframes neural-pulse-complex {
+  0%, 100% { 
+    transform: scaleY(0.3) rotateX(0deg); 
+    filter: hue-rotate(0deg) saturate(1);
+  }
+  20% { 
+    transform: scaleY(0.8) rotateX(5deg); 
+    filter: hue-rotate(30deg) saturate(1.2);
+  }
+  40% { 
+    transform: scaleY(0.5) rotateX(-3deg); 
+    filter: hue-rotate(60deg) saturate(0.8);
+  }
+  60% { 
+    transform: scaleY(1.0) rotateX(2deg); 
+    filter: hue-rotate(90deg) saturate(1.4);
+  }
+  80% { 
+    transform: scaleY(0.7) rotateX(-1deg); 
+    filter: hue-rotate(120deg) saturate(1.1);
+  }
+}
+
+@keyframes neural-pulse-alt {
+  0%, 100% { 
+    transform: scaleY(0.4) rotateY(0deg); 
+    filter: brightness(1) contrast(1);
+  }
+  33% { 
+    transform: scaleY(0.9) rotateY(10deg); 
+    filter: brightness(1.2) contrast(1.1);
+  }
+  66% { 
+    transform: scaleY(0.6) rotateY(-5deg); 
+    filter: brightness(0.9) contrast(1.2);
+  }
+}
+
+@keyframes neural-pulse-chaos {
+  0%, 100% { 
+    transform: scaleY(0.2) rotateZ(0deg); 
+    filter: blur(0px) hue-rotate(0deg);
+  }
+  25% { 
+    transform: scaleY(1.1) rotateZ(2deg); 
+    filter: blur(1px) hue-rotate(45deg);
+  }
+  50% { 
+    transform: scaleY(0.3) rotateZ(-1deg); 
+    filter: blur(0px) hue-rotate(90deg);
+  }
+  75% { 
+    transform: scaleY(0.8) rotateZ(1deg); 
+    filter: blur(1px) hue-rotate(135deg);
+  }
+}
+
+/* Respiración sincronizada */
+@keyframes neural-sync-breathing {
+  0% { transform: scaleY(0.5) rotateX(0deg); opacity: 0.8; }
+  100% { transform: scaleY(0.7) rotateX(2deg); opacity: 1; }
+}
+ 

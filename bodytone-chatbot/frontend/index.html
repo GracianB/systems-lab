@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Asistente Virtual Bodytone</title>
+    <meta name="description" content="Asistente virtual de Bodytone para soporte y ventas.">
+    
+    <!-- CSS Links -->
+    <!-- Asumo que tus archivos CSS se llaman así. Si no, ajústalos. -->
+    <link rel="stylesheet" href="widget-base.css"> 
+    <link rel="stylesheet" href="widget-components.css">
+    <link rel="stylesheet" href="widget-popup.css">
+    <script src="./demo.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="./images/favicon.svg" type="image/svg+xml">
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.11/purify.min.js" integrity="sha512-ce0fmuEgWrpnIXWKQrSgJ5FsBsr/hnOsxdWvk5lu1GThckasLwc+TAFERLNIwWnWqBoWV4GPDJiz2PSPntinVA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script type="module" src="script.js" defer></script>
+</head>
+<body>
+    <!-- Announcer for screen readers -->
+    <div class="sr-only" aria-live="polite" aria-atomic="true" id="chat-widget-announcer"></div>
+
+    <!-- <<-- CORRECCIÓN: Inicia con la clase 'chat-widget--closed' para que empiece cerrado -->
+    <main id="bodytone-chat-widget" class="chat-widget chat-widget--closed" role="region" aria-label="Asistente Virtual Bodytone">
+
+        <!-- TOGGLE BUTTON -->
+        <button id="chat-toggle-btn" class="chat-widget__toggle bt-button" aria-expanded="false" aria-controls="chat-container" aria-label="Abrir chat con Asistente Bodytone" data-tooltip="Abrir Chat">
+            <span class="chat-widget__toggle-icon chat-widget__toggle-icon--open" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 12H5.17L4 15.17V4h15v10z"/><path d="M7 7h10v2H7zm0 3h10v2H7z"/></svg>
+            </span>
+            <span class="chat-widget__toggle-icon chat-widget__toggle-icon--close" aria-hidden="true" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+            </span>
+            <span class="chat-widget__toggle-badge" aria-hidden="true" data-unread-count="0" style="display: none;"></span>
+        </button>
+
+        <!-- CHAT WINDOW -->
+        <section id="chat-container" class="chat-widget__container" aria-hidden="true" role="dialog" aria-modal="false" inert>
+
+        <!-- ======================================================= -->
+        <!-- == HEADER CORREGIDO - SIN ESTILOS EN LÍNEA           == -->
+        <!-- ======================================================= -->
+        <header class="chat-widget__header">
+            <div class="chat-widget__header-main">
+                <div class="chat-widget__header-info">
+                    <div class="chat-widget__logo">
+                        <img src="./images/BTLOGO.png" alt="Logotipo de Bodytone">
+                    </div>
+                    <div class="chat-widget__header-text">
+                        <h1 id="chat-widget-title" class="chat-widget__title">Asistente Bodytone</h1>
+                        <div class="chat-widget__status" data-status="online">
+                            <span class="chat-widget__status-dot"></span>
+                            <span class="chat-widget__status-text">En línea</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-widget__header-controls">
+
+                    <button id="minimize-chat-btn" type="button" class="chat-widget__header-btn bt-button" aria-label="Minimizar chat" data-tooltip="Minimizar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13H5v-2h14v2z"></path>
+                        </svg>
+                    </button>
+
+                    <!-- BOTÓN DE MAXIMIZAR/RESTAURAR (CORREGIDO) -->
+                    <button id="toggle-size-btn" type="button" class="chat-widget__header-btn bt-button" aria-label="Maximizar chat" data-tooltip="Maximizar" aria-expanded="false">
+                        <svg class="maximize-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 12h-2v3h-3v2h5v-5zM7 9h3V7H5v5h2V9zm14-6H3v18h18V3zm-2 16H5V5h14v14z"></path>
+                        </svg>
+                        <!-- <<--- CORRECCIÓN: Se ha eliminado el style="display: none;" de esta línea -->
+                        <svg class="restore-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 3h-7v2h5v5h2V3zM3 3h7v2H5v5H3V3zm18 18h-7v-2h5v-5h2v7zM3 21h7v-2H5v-5H3v7z"></path>
+                        </svg>
+                    </button>
+                    
+                    <button id="settings-btn" type="button" class="chat-widget__header-btn bt-button" aria-label="Configuración del chat" data-tooltip="Configuración">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69-.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19-.15-.24.42-.12.64l2 3.46c.12-.22.39.3.61-.22l2.49-1c.52.4 1.08.73 1.69-.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22-.07.49-.12.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"></path>
+                        </svg>
+                    </button>
+                    
+                    <button id="close-chat" type="button" class="chat-widget__header-btn chat-widget__header-btn--close bt-button" aria-label="Cerrar chat" data-tooltip="Cerrar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+            <!-- CHAT CONTENT AREA -->
+            <div class="chat-widget__content-area">
+                <div id="panel-current" class="chat-widget__conversation-panel">
+                    <div id="chat-body" class="chat-widget__body" role="log" tabindex="0">
+                        <div id="chat-messages" class="chat-widget__messages-list">
+                            <!-- Los mensajes se añadirán aquí con JavaScript -->
+                        </div>
+                        <div id="typing-indicator" class="message message--bot message--typing" role="status" hidden>
+                            <div class="message__avatar"><img src="./images/avatar.png" alt=""></div>
+                            <div class="message__main">
+                                <div class="message__bubble">
+                                    <div class="typing-dots"><span class="typing-dots__dot"></span><span class="typing-dots__dot"></span><span class="typing-dots__dot"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER WITH INPUT FORM -->
+            <footer class="chat-widget__footer">
+                <div id="suggestions-panel" class="chat-widget__suggestions" role="listbox" hidden></div>
+                <div id="voice-feedback-area" class="chat-widget__voice-feedback" hidden>
+                    <div id="voice-status-display" class="voice-feedback__status">Escuchando...</div>
+                    <div id="voice-timer-display" class="voice-feedback__timer">0:00</div>
+                    <div id="voice-visualizer-container" class="voice-feedback__visualizer">
+                        <span class="voice-visualizer__bar"></span><span class="voice-visualizer__bar"></span><span class="voice-visualizer__bar"></span>
+                    </div>
+                </div>
+                <form id="message-form" class="chat-widget__form">
+                    <div class="chat-widget__input-area">
+                        <div class="chat-widget__input-wrapper">
+                            <label for="message-input" class="sr-only">Escribe tu mensaje</label>
+                            <textarea id="message-input" class="chat-widget__textarea" placeholder="Escribe tu consulta o usa el micrófono" rows="1" maxlength="1000" required data-min-rows="1" data-max-rows="6"></textarea>
+                            <div id="message-counter" class="chat-widget__char-counter" aria-live="off" aria-atomic="true">0 / 1000</div>
+                        </div>
+                        <button type="button" id="voice-input" class="chat-widget__input-btn bt-button" aria-label="Iniciar grabación de voz" data-tooltip="Entrada por voz">
+                            <svg class="mic-icon--ready" viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.39-.98.88C16.58 14.86 14.49 17 12 17s-4.58-2.14-4.93-5.12c-.08-.49-.49-.88-.98-.88-.55 0-1 .45-1 1 0 3.02 2.19 5.5 5.01 5.91V21H11v-2.09c2.82-.41 5-2.89 5-5.91 0-.55-.45-1-1-1z"/></svg>
+                        </button>
+                        <button type="submit" id="send-message" class="chat-widget__send-btn bt-button" disabled aria-label="Enviar mensaje" data-tooltip="Enviar">
+                            <svg viewBox="0 0 24 24"><path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                        </button>
+                    </div>
+                    <div id="message-input-error" class="chat-widget__input-error" role="alert" hidden></div>
+                </form>
+            </footer>
+        </section>
+    </main>
+    
+    <!-- AUDIO ELEMENTS -->
+    <audio id="chat-notification-sound" src="./audio/notification.mp3" preload="auto"></audio>
+    <audio id="piper-tts-audio-player" preload="auto"></audio>
+
+    <!-- SETTINGS MODAL (Controlled by JS) -->
+    <div id="settings-modal-overlay" class="settings-modal__overlay" hidden>
+        <aside id="settings-modal-dialog" class="settings-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="settings-modal-title" hidden>
+            <header class="settings-modal__header">
+                <h2 id="settings-modal-title" class="settings-modal__title">Configuración del Chat</h2>
+                <button id="close-settings-modal" type="button" class="settings-modal__close-btn bt-button" aria-label="Cerrar configuración">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+                </button>
+            </header>
+            <section class="settings-modal__body">
+                <form id="settings-form" novalidate>
+                    <div class="settings-form__section">
+                        <label class="settings-form__group settings-form__group--checkbox">
+                            <input type="checkbox" id="setting-notification-sound" name="notificationSound" class="settings-form__checkbox">
+                            <span class="settings-form__label--checkbox">Activar sonido para nuevos mensajes</span>
+                        </label>
+                        <label class="settings-form__group settings-form__group--checkbox">
+                            <input type="checkbox" id="setting-allow-analytics" name="allowAnalytics" class="settings-form__checkbox">
+                            <span class="settings-form__label--checkbox">Permitir análisis anónimo de uso</span>
+                            <span class="settings-form__description">Ayuda a mejorar el asistente. <a href="#" target="_blank" rel="noopener noreferrer">Leer más</a></span>
+                        </label>
+                    </div>
+                    <div class="settings-form__section settings-form__section--actions">
+                        <h3 class="settings-form__sub-legend">Acciones de Datos</h3>
+                        <div class="settings-form__group settings-form__group--action">
+                            <button type="button" id="clear-conversation-data" class="settings-form__button settings-form__button--secondary">Borrar mensajes</button>
+                        </div>
+                        <div class="settings-form__group settings-form__group--action">
+                            <button type="button" id="clear-settings" class="settings-form__button settings-form__button--danger">Restablecer configuración</button>
+                        </div>
+                        <div class="settings-form__group settings-form__group--action">
+                            <button type="button" id="new-conversation-btn" class="settings-form__button settings-form__button--primary">Nueva Conversación</button>
+                        </div>
+                    </div>
+                    <div id="settings-status" class="settings-form__status" role="status" aria-live="polite"></div>
+                </form>
+            </section>
+            <footer class="settings-modal__footer">
+                <button type="button" id="cancel-settings" class="settings-form__button settings-form__button--secondary">Cancelar</button>
+                <button type="submit" form="settings-form" class="settings-form__button settings-form__button--primary">Guardar</button>
+            </footer>
+        </aside>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+{
+  "embedding": {
+    "provider": "sentence-transformers",
+    "model_name": "all-MiniLM-L6-v2",
+    "normalize": true
+  },
+  "vector_db": {
+    "provider": "chromadb",
+    "path": "database/bodytone_knowledge_db",
+    "collection_name": "bodytone_rag_content_v1",
+    "distance_function": "cosine"
+  },
+  "batch_size": 64,
+  "logging_level": "INFO",
+  "data_sources": [
+    {
+      "id": "products_main_csv",
+      "type": "csv",
+      "enabled": true,
+      "path": "data/productos.csv",
+      "doc_type_tag": "producto",
+      "csv_delimiter": "|",
+      "csv_encoding": "utf-8",
+      "csv_required_columns": [
+        "product_id",
+        "name"
+      ],
+      "chunking": {
+        "chunker_type": "bodytone_field",
+        "chunk_on_fields": [
+          "description",
+          "technical_specs",
+          "features",
+          "use_cases",
+          "faq"
+        ],
+        "metadata_fields": [
+          "category",
+          "brand"
+        ]
+      }
+    },
+    {
+      "id": "support_main_csv",
+      "type": "csv",
+      "enabled": true,
+      "path": "data/soporte_faq.csv",
+      "doc_type_tag": "soporte",
+      "csv_delimiter": "|",
+      "csv_encoding": "utf-8",
+      "csv_required_columns": [
+        "question",
+        "answer"
+      ],
+      "chunking": {
+        "chunker_type": "bodytone_field",
+        "metadata_fields": [
+          "topic"
+        ]
+      }
+    },
+    {
+      "id": "support_extra_jsonl",
+      "type": "json",
+      "enabled": true,
+      "path": "data/soporte_extra.jsonl",
+      "doc_type_tag": "soporte",
+      "json_path_to_items": null,
+      "json_required_keys": [
+        "question",
+        "answer"
+      ],
+      "chunking": {
+        "chunker_type": "bodytone_field",
+        "metadata_fields": [
+          "topic",
+          "internal_code"
+        ]
+      }
+    },
+    {
+      "id": "products_nested_json",
+      "type": "json",
+      "enabled": true,
+      "path": "data/productos_web.json",
+      "doc_type_tag": "producto",
+      "json_path_to_items": "data.catalog.items",
+      "json_required_keys": [
+        "sku",
+        "product_name"
+      ],
+      "chunking": {
+        "chunker_type": "bodytone_field",
+        "chunk_on_fields": [
+          "details",
+          "specifications"
+        ],
+        "metadata_fields": [
+          "sku",
+          "product_name",
+          "web_category"
+        ]
+      }
+    },
+    {
+      "id": "legacy_docs_csv",
+      "type": "csv",
+      "enabled": false,
+      "path": "data/legacy/old_docs.csv",
+      "doc_type_tag": "legacy_producto",
+      "csv_delimiter": ",",
+      "csv_encoding": "latin-1",
+      "csv_required_columns": ["ID", "Nombre", "Texto"],
+      "chunking": {
+        "chunker_type": "bodytone_field",
+        "chunk_on_fields": ["Texto"],
+        "metadata_fields": ["ID", "Nombre"]
+      }
+    }
+  ]
+}
