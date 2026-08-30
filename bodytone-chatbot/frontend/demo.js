@@ -21,7 +21,7 @@
       return "Demo · ticket: abriría el caso en Zendesk con el contexto de este chat. Prueba pública: bodytonehelp.zendesk.com/hc/es" + attach;
     }
     if (/hola|buenas|hey/.test(t)) {
-      return "Hola. Soy el widget de Bodytone en modo demo. Pregunta por un envío, un manual o un ticket — o suelta un archivo aquí." + attach;
+      return "Hola. Widget en modo demo. Pregunta por un envío, un manual o un ticket — o suelta un archivo aquí." + attach;
     }
     return "Demo · el agente real consulta RAG, envíos, productos y Zendesk. Esta página es el widget; el backend no está publicado (sin claves)." + attach;
   }

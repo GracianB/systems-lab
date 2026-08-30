@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- *  Main Frontend Script for Bodytone Chat Widget - v6.0.6 (The Final Menu)
+ *  Main Frontend Script for CS Chat Widget - v6.0.6 (The Final Menu)
  * ============================================================================
  *
  *  Key Improvements in v6.0.6:
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const sanitizedBubbleContent = _processMarkdown(rawContent);
 
         if (sender === 'user' || sender === 'bot') {
-            const senderName = sender === 'user' ? 'Tú' : 'Asistente Bodytone';
+            const senderName = sender === 'user' ? 'Tú' : 'Agente CS';
             const textElementId = `${msgId}-text`; const senderNameId = `${msgId}-sender`;
             article.setAttribute('aria-labelledby', `${senderNameId} ${textElementId}`);
             let avatarHtml = '';
@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * Appends the initial welcome message with clear, distinct, and complete user actions.
      */
     const appendWelcomeMessage = (isNewConversation = false) => {
-        const welcomeMessageHtml = "👋 ¡Hola! Soy tu **asistente experto** en Bodytone. ¿Cómo puedo ayudarte hoy?";
+        const welcomeMessageHtml = "👋 Hola. Soy un agente de CS. Pregunta por un envío, un manual o un ticket — o suelta un archivo.";
         
         // <<< MENÚ DE BIENVENIDA DEFINITIVO Y COMPLETO >>>
         const welcomeQuickActions = [
@@ -672,7 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (state.isChatOpen) scrollToBottom(true);
             const widgetVersion = widgetElements.chatWidget?.dataset.widgetVersion || 'N/A';
             console.log(`${SCRIPT_LOG_PREFIX} Chat Widget Initialized (v6.0.6). Widget HTML Version: ${widgetVersion}`);
-            announceToSr("Asistente virtual Bodytone listo.", "assertive");
+            announceToSr("Agente CS listo.", "assertive");
         } catch (error) {
              console.error(`${SCRIPT_LOG_PREFIX} FATAL ERROR during main initialization sequence:`, error);
              announceToSr("Error crítico al inicializar el asistente.", "assertive");
