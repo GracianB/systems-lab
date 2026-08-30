@@ -1,24 +1,26 @@
 # Systems Lab — Gracián Baena
 
-Fourth GitHub Pages portfolio. Proof for interviews (GuruSup and similar).
+PLAY del portfolio. [Hub](https://gracianb.github.io/GracianB/) · [Live](https://gracianb.github.io/systems-lab/)
 
-Live:
+## Play ahora
 
-- Bodytone Help Center (Zendesk, designed and shipped by Gracián): https://bodytonehelp.zendesk.com/hc/es
-- Calculator (Google Apps Script): https://script.google.com/macros/s/AKfycbxcStxaVuy72iZNs6isCJ49ixX4I51Gal4N8QidqY3etF-z7ksos5hrvtcIMnzf0mc/exec
+| Pieza | Live | Repo |
+|:------|:-----|:-----|
+| **Project Ohana** | [jugar](https://gracianb.github.io/project-ohana/) | [project-ohana](https://github.com/GracianB/project-ohana) |
+| **Vórtice** | [código](https://github.com/GracianB/vortex) · Vercel Hobby (gratis) | [vortex](https://github.com/GracianB/vortex) |
 
-Site: https://gracianb.github.io/systems-lab/
+Vórtice es WebGL/SSR: GitHub Pages no lo sirve. En [Vercel](https://vercel.com/new) importa el repo (plan Hobby, 0 €, uso personal).
 
-Projects in this repo:
+## Sistemas live
+
+- Bodytone Help Center: https://bodytonehelp.zendesk.com/hc/es
+- Calculadora Apps Script: https://script.google.com/macros/s/AKfycbxcStxaVuy72iZNs6isCJ49ixX4I51Gal4N8QidqY3etF-z7ksos5hrvtcIMnzf0mc/exec
+
+## En este repo
 
 - `Aigoritmo/` — multi-avatar chatbot (no .env)
-- `bodytone-chatbot/` — Bodytone support widget (no secrets)
-- `calculadora-mantenimiento/` — ServicePack Pro UI (catalog/rates stubbed)
-- `profile-finder/` — Enricher web UI only
+- `bodytone-chatbot/` — widget de soporte (sin secretos)
+- `calculadora-mantenimiento/` — ServicePack Pro UI
+- `profile-finder/` — Enricher web UI
 
-Gym equipment cost calculator (live Apps Script):
-https://script.google.com/macros/s/AKfycbxcStxaVuy72iZNs6isCJ49ixX4I51Gal4N8QidqY3etF-z7ksos5hrvtcIMnzf0mc/exec
-
-Do not commit `.env`, `google-service-account.json`, `technicians.js` originals, or `venv/`.
-
-Sample demos use fictional data. No client rates, no credentials.
+No subir `.env`, `google-service-account.json` ni `venv/`.
