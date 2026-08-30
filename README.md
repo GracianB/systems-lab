@@ -16,6 +16,4 @@ Tres capas:
 | **Bodytone Support OS** | [Help Center](https://bodytonehelp.zendesk.com/hc/es) |
 | **Calculadora** | [Apps Script](https://script.google.com/macros/s/AKfycbxcStxaVuy72iZNs6isCJ49ixX4I51Gal4N8QidqY3etF-z7ksos5hrvtcIMnzf0mc/exec) |
 
-En este repo (sin secretos): `Aigoritmo/`, `bodytone-chatbot/`, `calculadora-mantenimiento/`, `profile-finder/`.
-
-No subir `.env`, `google-service-account.json` ni `venv/`.
+En este repo: el hub estático. Widget chatbot, Aigoritmo y Enricher no están publicados (walkthrough). Prueba pública: Help Center Bodytone.
