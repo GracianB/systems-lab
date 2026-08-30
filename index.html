@@ -5,31 +5,30 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#03050c">
   <meta name="author" content="Gracián Baena">
-  <meta name="description" content="PLAY · Systems Hub. Ohana, Vórtice y Bodytone Support OS: cómo se construye un departamento de CS. Gracián Baena.">
-  <title>PLAY — Systems Hub · Gracián Baena</title>
+  <meta name="description" content="Juegos, apps y un Customer Success en producción. Gracián Baena — PLAY.">
+  <title>PLAY — Juegos, apps y CS · Gracián Baena</title>
   <link rel="canonical" href="https://gracianb.github.io/systems-lab/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <meta property="og:title" content="PLAY — Systems Hub · Gracián Baena">
-  <meta property="og:description" content="Ohana · Vórtice · Bodytone Support OS. Prototipos y un departamento de CS en producción.">
+  <meta property="og:title" content="PLAY — Juegos, apps y CS · Gracián Baena">
+  <meta property="og:description" content="Tócalo. Si no se abre, no está. Ohana, Vórtice y el Help Center de Bodytone.">
   <meta property="og:url" content="https://gracianb.github.io/systems-lab/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=lab4">
-  <script src="./i18n.js?v=lab4"></script>
-  <script src="./main.js?v=lab4" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=lab5">
+  <script src="./i18n.js?v=lab5"></script>
+  <script src="./main.js?v=lab5" defer></script>
 </head>
 <body>
   <header class="top">
     <a class="brand" href="./">
       <span class="mark">PL</span>
-      <div><b>PLAY</b><small data-i18n="brandSub">SYSTEMS HUB</small></div>
+      <div><b>PLAY</b><small data-i18n="brandSub">Juegos · Apps · CS</small></div>
     </a>
     <nav class="nav">
-      <a href="#play">Ohana</a>
-      <a href="#play">Vórtice</a>
+      <a href="#juegos" data-i18n="navGames">Juegos</a>
+      <a href="#apps" data-i18n="navApps">Apps</a>
       <a href="#cs" data-i18n="navCs">CS</a>
-      <a href="#lab" data-i18n="navLab">Lab</a>
       <a href="https://gracianb.github.io/GracianB/" data-i18n="navHub">Hub</a>
       <div class="seg" role="group">
         <button type="button" class="seg-btn" data-set-lang="es" aria-pressed="true">ES</button>
@@ -39,133 +38,63 @@
   </header>
 
   <section class="hero">
-    <p class="eyebrow" data-i18n="eyebrow">03 · PLAY · SYSTEMS HUB</p>
-    <h1 data-i18n-html="h1">Sistemas que<br><em>se pueden pulsar.</em></h1>
-    <p class="lead" data-i18n="lead">Dos prototipos live, un departamento de CS en producción y los motores que lo sostienen. El mismo criterio: el sistema resuelve, no solo responde.</p>
+    <p class="eyebrow" data-i18n="eyebrow">GRACIÁN BAENA · PLAY</p>
+    <h1 data-i18n-html="h1">No te lo explico.<br><em>Púlsalo.</em></h1>
+    <p class="lead" data-i18n="lead">Tres bloques, cero humo. Juegos para engancharte. Apps que calculan. Y el Customer Success que dejé vivo en Bodytone. Si no se abre en el navegador, no está en esta página.</p>
     <div class="actions">
-      <a class="btn btn-y" href="#play" data-i18n="ctaPlay">PLAY →</a>
-      <a class="btn btn-g" href="#cs" data-i18n="ctaCs">Departamento CS →</a>
-      <a class="btn btn-g" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="ctaLive">Zendesk live →</a>
+      <a class="btn btn-y" href="#juegos" data-i18n="ctaPlay">Jugar ahora →</a>
+      <a class="btn btn-g" href="#apps" data-i18n="ctaApps">Ver las apps →</a>
+      <a class="btn btn-g" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="ctaLive">Entrar al CS live →</a>
     </div>
     <div class="pills">
-      <span class="pill live" data-i18n="pill1">Ohana + Vórtice live</span>
-      <span class="pill live" data-i18n="pill2">Help Center en producción</span>
-      <span class="pill" data-i18n="pill3">Motores de reglas · HITL</span>
+      <span class="pill live" data-i18n="pill1">2 juegos live</span>
+      <span class="pill live" data-i18n="pill2">1 Help Center en producción</span>
+      <span class="pill" data-i18n="pill3">4 apps para probar</span>
     </div>
   </section>
 
-  <section class="play" id="play">
-    <p class="eyebrow" data-i18n="playEyebrow">PULSAR</p>
-    <h2 data-i18n="playH">Dos prototipos. Entra y juega.</h2>
+  <section class="play" id="juegos">
+    <p class="eyebrow" data-i18n="playEyebrow">01 · JUEGOS</p>
+    <h2 data-i18n="playH">Pierde dos minutos. Luego hablamos.</h2>
+    <p class="lead" data-i18n="playLead">Si un prototipo no se deja tocar, es un PDF con pretensiones. Estos dos están encendidos.</p>
     <div class="featured">
       <a class="feat feat-ohana" href="https://gracianb.github.io/project-ohana/" rel="noopener">
         <div class="feat-stage stage-ohana" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-        <header><span class="code" data-i18n="ohCode">P1 · PLAY</span><span class="badge live-b">LIVE</span></header>
-        <h3 data-i18n="ohH">Project Ohana</h3>
-        <p data-i18n="ohP">Juego canvas: mundos, evoluciones, habilidades. GitHub Pages.</p>
-        <span class="feat-cta" data-i18n="ohCta">Jugar Ohana →</span>
+        <header><span class="code">01</span><span class="badge live-b">LIVE</span></header>
+        <h3 data-i18n="ohH">Ohana</h3>
+        <p data-i18n="ohP">Un juego. Mundos, evoluciones, habilidades. Entra. No hace falta manual.</p>
+        <span class="feat-cta" data-i18n="ohCta">Jugar →</span>
       </a>
       <a class="feat feat-vortex" href="https://vortex-gilt-xi.vercel.app/" rel="noopener">
         <div class="feat-stage stage-vortex" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b></div>
-        <header><span class="code" data-i18n="vxCode">P2 · PLAY</span><span class="badge live-b">LIVE</span></header>
+        <header><span class="code">02</span><span class="badge live-b">LIVE</span></header>
         <h3 data-i18n="vxH">Vórtice</h3>
-        <p data-i18n="vxP">Campo WebGL: miles de muestras hacia el cursor. Vercel.</p>
-        <span class="feat-cta" data-i18n="vxCta">Abrir Vórtice →</span>
+        <p data-i18n="vxP">Mueve el cursor. Miles de puntos te siguen. Eso es el prototipo, no una captura.</p>
+        <span class="feat-cta" data-i18n="vxCta">Abrir →</span>
       </a>
     </div>
   </section>
 
-  <section class="cs" id="cs">
-    <p class="eyebrow" data-i18n="csEyebrow">DEPARTAMENTO CS</p>
-    <h2 data-i18n="csH">Así se construye un CS que resuelve.</h2>
-    <p class="lead cs-lead" data-i18n="csLead">Bodytone Support OS no es un chatbot de feria. Es el departamento: canal público, intenciones, enrutado, agente que consulta sistemas y tickets con contexto. Lo diseñé y lo dejé en producción.</p>
-
-    <article class="cs-hero">
-      <header>
-        <span class="code" data-i18n="s0code">00 · LIVE</span>
-        <span class="badge live-b" data-i18n="s0badge">PÚBLICO · ZENDESK</span>
-      </header>
-      <h3 data-i18n="s0h">Bodytone Support OS</h3>
-      <p data-i18n="s0p">El cliente elige intención. El sistema enruta, traza y deja el caso en Zendesk. La web de ayuda es mía; Zendesk es el motor.</p>
-      <ol class="method">
-        <li><span>01</span><b data-i18n="m1">Escuchar</b><small data-i18n="m1s">Intención, canal, idioma</small></li>
-        <li><span>02</span><b data-i18n="m2">Decidir</b><small data-i18n="m2s">Enrutado y prioridad</small></li>
-        <li><span>03</span><b data-i18n="m3">Construir</b><small data-i18n="m3s">Help Center + agente</small></li>
-        <li><span>04</span><b data-i18n="m4">Activar</b><small data-i18n="m4s">Ticket con contexto</small></li>
-      </ol>
-      <div class="actions">
-        <a class="btn btn-y" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="s0cta">Ver Ayuda Bodytone ↗</a>
-      </div>
-    </article>
-
-    <div class="pillars">
-      <article>
-        <span class="code">01</span>
-        <h3 data-i18n="p1h">Canal</h3>
-        <p data-i18n="p1p">Help Center público: formularios, intenciones, seguimiento. El cliente no escribe a ciegas.</p>
-      </article>
-      <article>
-        <span class="code">02</span>
-        <h3 data-i18n="p2h">Agente</h3>
-        <p data-i18n="p2p">Chatbot con RAG, envíos, productos y tickets. Actúa; no recita un guion.</p>
-      </article>
-      <article>
-        <span class="code">03</span>
-        <h3 data-i18n="p3h">Ops</h3>
-        <p data-i18n="p3p">Reglas de precio, mantenimiento, matching. El agente consulta, no improvisa.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="split" aria-label="Responder vs resolver">
-    <div class="box">
-      <h3 data-i18n="botH">Un chatbot responde</h3>
-      <ul>
-        <li data-i18n="bot1">Sigue un guion. Cuando no puede, pasa a una persona.</li>
-        <li data-i18n="bot2">El trabajo sigue ahí. Solo llega más tarde.</li>
-        <li data-i18n="bot3">No consulta sistemas. No cierra el caso.</li>
-      </ul>
-    </div>
-    <div class="box good">
-      <h3 data-i18n="agH">Un agente resuelve</h3>
-      <ul>
-        <li data-i18n="ag1">Lee al cliente, consulta datos reales, ejecuta la acción.</li>
-        <li data-i18n="ag2">Escala a humano solo con contexto. El cliente no repite.</li>
-        <li data-i18n="ag3">Zendesk, RAG, envíos, tickets, voz: eso ya lo monté.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="lab" id="lab">
-    <p class="eyebrow" data-i18n="lab">MOTORES</p>
-    <h2 data-i18n="labH">El mismo criterio, otras piezas.</h2>
+  <section class="lab" id="apps">
+    <p class="eyebrow" data-i18n="lab">02 · APPS</p>
+    <h2 data-i18n="labH">Herramientas que deciden. Tú validas.</h2>
+    <p class="lead" data-i18n="appsLead">Un precio, un nombre, un borrador, una visita. El sistema propone. Una persona cierra. Eso es HITL: humano en el bucle, no teatro.</p>
 
     <div class="grid">
       <article class="card live">
-        <header><span class="code" data-i18n="s1code">01 · LIVE</span><span class="badge" data-i18n="s1badge">APPS SCRIPT</span></header>
-        <h2 data-i18n="s1h">Calculadora (motor de reglas)</h2>
-        <p data-i18n="s1p">Producto, plano, logística. El agente no improvisa el precio: consulta reglas. Live en Apps Script.</p>
-        <div class="meta"><span>Apps Script</span><span>Rules</span><span>CS × Sales</span></div>
+        <header><span class="code">01 · LIVE</span><span class="badge" data-i18n="s1badge">APPS SCRIPT</span></header>
+        <h2 data-i18n="s1h">Calculadora de gimnasio</h2>
+        <p data-i18n="s1p">¿Cuánto cuesta equipar una sala? El número no se inventa: corre reglas. Ábrela.</p>
+        <div class="meta"><span>Apps Script</span><span>Reglas</span><span>Sales × CS</span></div>
         <div class="demo">
-          <a class="btn btn-y" href="https://script.google.com/macros/s/AKfycbxcStxaVuy72iZNs6isCJ49ixX4I51Gal4N8QidqY3etF-z7ksos5hrvtcIMnzf0mc/exec" target="_blank" rel="noopener" data-i18n="s1cta">Abrir calculadora ↗</a>
+          <a class="btn btn-y" href="https://script.google.com/macros/s/AKfycbxcStxaVuy72iZNs6isCJ49ixX4I51Gal4N8QidqY3etF-z7ksos5hrvtcIMnzf0mc/exec" target="_blank" rel="noopener" data-i18n="s1cta">Abrir calculadora →</a>
         </div>
       </article>
 
       <article class="card">
-        <header><span class="code">02 · SRC</span><span class="badge">CHATBOT</span></header>
-        <h2 data-i18n="botCardH">Bodytone Chatbot</h2>
-        <p data-i18n="botCardP">Widget de soporte: RAG, envíos, productos, tickets Zendesk. El frontend no está publicado aquí; la prueba pública es el Help Center.</p>
-        <div class="meta"><span>Flask</span><span>RAG</span><span>Zendesk</span></div>
-        <div class="demo">
-          <a class="btn btn-y" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="s0cta">Ver Ayuda Bodytone ↗</a>
-          <p class="hint" data-i18n="botHint">Walkthrough del widget bajo petición.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <header><span class="code" data-i18n="s2code">03</span><span class="badge" data-i18n="s2badge">DEMO MUESTRA</span></header>
+        <header><span class="code">02</span><span class="badge" data-i18n="s2badge">PRUÉBALA AQUÍ</span></header>
         <h2 data-i18n="s2h">Profile Finder</h2>
-        <p data-i18n="s2p">Nombre → señales → coincidencia probable → validación humana. Datos de ejemplo.</p>
+        <p data-i18n="s2p">Escribes un nombre. Salen tres coincidencias. Tú eliges. El falso positivo no pasa solo.</p>
         <div class="meta"><span>Matching</span><span>HITL</span></div>
         <div class="demo">
           <label data-i18n="lblName">Nombre</label>
@@ -176,9 +105,9 @@
       </article>
 
       <article class="card">
-        <header><span class="code" data-i18n="s3code">04</span><span class="badge" data-i18n="s3badge">DEMO MUESTRA</span></header>
-        <h2 data-i18n="s3h">Outreach HITL</h2>
-        <p data-i18n="s3p">Segmento → borrador GenAI → revisión humana. No envía nada.</p>
+        <header><span class="code">03</span><span class="badge" data-i18n="s3badge">PRUÉBALA AQUÍ</span></header>
+        <h2 data-i18n="s3h">Outreach</h2>
+        <p data-i18n="s3p">Un borrador. Tú lo lees. Nada se envía. Así se evita el email que no querías firmar.</p>
         <div class="meta"><span>GenAI</span><span>HITL</span></div>
         <div class="demo">
           <label data-i18n="lblSeg">Segmento</label>
@@ -192,20 +121,10 @@
       </article>
 
       <article class="card">
-        <header><span class="code">05 · SRC</span><span class="badge">AIGORITMO</span></header>
-        <h2>Aigoritmo</h2>
-        <p data-i18n="aiP">Avatares: OpenAI, Gemini, Ollama, voz Piper / ElevenLabs / Realtime. Código en repo privado — walkthrough bajo petición.</p>
-        <div class="meta"><span>Flask</span><span>LLM</span><span>Voice</span></div>
-        <div class="demo">
-          <p class="hint" data-i18n="aiHint">No hay UI pública en Pages. Pedir demo.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <header><span class="code" data-i18n="s4code">06</span><span class="badge" data-i18n="s4badge">DEMO MUESTRA</span></header>
-        <h2 data-i18n="s4h">Calculadora de mantenimientos</h2>
-        <p data-i18n="s4p">Máquina + tipo de visita → plan de muestra. Horas de ejemplo, no tarifas Bodytone.</p>
-        <div class="meta"><span>Ops</span><span>Preventivo / correctivo</span></div>
+        <header><span class="code">04</span><span class="badge" data-i18n="s4badge">PRUÉBALA AQUÍ</span></header>
+        <h2 data-i18n="s4h">Plan de mantenimiento</h2>
+        <p data-i18n="s4p">Cinta, bici o fuerza. Preventivo o correctivo. Un plan de visita — horas de ejemplo, no tarifas Bodytone.</p>
+        <div class="meta"><span>Ops</span><span>Campo</span></div>
         <div class="demo">
           <div class="row row-2">
             <div>
@@ -224,22 +143,81 @@
               </select>
             </div>
           </div>
-          <button class="btn btn-g" type="button" data-run="mant" data-i18n="plan">Plan</button>
+          <button class="btn btn-g" type="button" data-run="mant" data-i18n="plan">Ver plan</button>
           <div class="out" id="out-mant">SAMPLE · no rates</div>
         </div>
       </article>
     </div>
   </section>
 
-  <p class="note" data-i18n="note">Live = se abre ahora. Demos muestra = misma lógica, datos ficticios. Pedir walkthrough para el motor completo.</p>
+  <section class="cs" id="cs">
+    <p class="eyebrow" data-i18n="csEyebrow">03 · CUSTOMER SUCCESS</p>
+    <h2 data-i18n="csH">El departamento. No el discurso.</h2>
+    <p class="lead cs-lead" data-i18n="csLead">Monté el Support OS de Bodytone y lo dejé en el aire. El cliente entra, dice qué necesita, el sistema enruta, el caso aterriza en Zendesk. Eso es un ecosistema de CS: canal, criterio, cierre. Un botón. El de verdad.</p>
+
+    <article class="cs-hero">
+      <header>
+        <span class="code">LIVE</span>
+        <span class="badge live-b" data-i18n="s0badge">BODYTONE · ZENDESK</span>
+      </header>
+      <h3 data-i18n="s0h">Bodytone Support OS</h3>
+      <p data-i18n="s0p">La web de ayuda la diseñé yo. Zendesk es el motor. El cliente no escribe al vacío: elige intención, deja rastro, y el equipo recibe contexto.</p>
+      <ol class="method">
+        <li><span>01</span><b data-i18n="m1">Canal</b><small data-i18n="m1s">El cliente elige. No adivina el buzón.</small></li>
+        <li><span>02</span><b data-i18n="m2">Criterio</b><small data-i18n="m2s">Qué es urgente. A quién va. En qué idioma.</small></li>
+        <li><span>03</span><b data-i18n="m3">Acción</b><small data-i18n="m3s">El sistema consulta. No recita un guion.</small></li>
+        <li><span>04</span><b data-i18n="m4">Cierre</b><small data-i18n="m4s">Ticket con contexto. Nadie pide que lo cuente otra vez.</small></li>
+      </ol>
+      <div class="actions">
+        <a class="btn btn-y" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="s0cta">Entrar al Help Center →</a>
+      </div>
+    </article>
+
+    <div class="pillars">
+      <article>
+        <span class="code">01</span>
+        <h3 data-i18n="p1h">Support</h3>
+        <p data-i18n="p1p">La puerta pública. Formularios, intenciones, seguimiento. El cliente sabe dónde está su caso.</p>
+      </article>
+      <article>
+        <span class="code">02</span>
+        <h3 data-i18n="p2h">Success</h3>
+        <p data-i18n="p2p">Menos tickets repetidos. Más adopción. El dato llega al equipo que puede actuar.</p>
+      </article>
+      <article>
+        <span class="code">03</span>
+        <h3 data-i18n="p3h">Ops</h3>
+        <p data-i18n="p3p">Precio, mantenimiento, matching. El agente consulta reglas. No improvisa el número.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="split" aria-label="Responder vs resolver">
+    <div class="box">
+      <h3 data-i18n="botH">Lo que aburre</h3>
+      <ul>
+        <li data-i18n="bot1">Un bot que pide perdón y pasa el marrón.</li>
+        <li data-i18n="bot2">El cliente cuenta la historia dos veces.</li>
+        <li data-i18n="bot3">El trabajo no se fue. Solo llegó más tarde.</li>
+      </ul>
+    </div>
+    <div class="box good">
+      <h3 data-i18n="agH">Lo que yo monto</h3>
+      <ul>
+        <li data-i18n="ag1">Lee, consulta, actúa. Escala solo con contexto.</li>
+        <li data-i18n="ag2">El cliente no se repite. El agente no adivina.</li>
+        <li data-i18n="ag3">Eso ya está en producción. El botón de arriba lo prueba.</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="note" data-i18n="note">Live = se abre ahora. Lo demás, en esta misma página, con datos de ejemplo. Si quieres el motor completo, 30 minutos y lo vemos.</p>
   <footer class="foot">
-    <span data-i18n="foot">Gracián Baena · Murcia · CS × Data × AI</span>
+    <span data-i18n="foot">Gracián Baena · Murcia · personas, datos, sistemas</span>
     <span>
       <a href="https://gracianb.github.io/GracianB/">hub</a> ·
       <a href="https://gracianb.github.io/professional-deck/">deck</a> ·
-      <a href="https://gracianb.github.io/project-ohana/">ohana</a> ·
-      <a href="https://vortex-gilt-xi.vercel.app/">vórtice</a> ·
-      <a href="https://www.linkedin.com/in/gracianbaena">linkedin</a>
+      <a href="https://calendar.app.google/n99psBFktwYyoAWi9">agenda</a>
     </span>
   </footer>
 </body>
