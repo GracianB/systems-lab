@@ -7,9 +7,9 @@ PLAY del portfolio. [Hub](https://gracianb.github.io/GracianB/) · [Live](https:
 | Pieza | Live | Repo |
 |:------|:-----|:-----|
 | **Project Ohana** | [jugar](https://gracianb.github.io/project-ohana/) | [project-ohana](https://github.com/GracianB/project-ohana) |
-| **Vórtice** | [código](https://github.com/GracianB/vortex) · Vercel Hobby (gratis) | [vortex](https://github.com/GracianB/vortex) |
+| **Vórtice** | [jugar](https://vortex-gilt-xi.vercel.app/) | [vortex](https://github.com/GracianB/vortex) |
 
-Vórtice es WebGL/SSR: GitHub Pages no lo sirve. En [Vercel](https://vercel.com/new) importa el repo (plan Hobby, 0 €, uso personal).
+Vórtice live: https://vortex-gilt-xi.vercel.app/
 
 ## Sistemas live
 
