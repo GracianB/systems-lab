@@ -147,9 +147,9 @@ button { cursor: pointer; }
 .agent-block > p { color: var(--muted); max-width: 62ch; }
 .agent-stage {
   margin-top: 18px;
-  height: min(72vh, 720px);
+  height: min(78vh, 640px);
   border: 1px solid var(--ice);
-  background: #050814;
+  background: #0a0e18;
   box-shadow: 0 0 28px var(--glow);
   overflow: hidden;
 }

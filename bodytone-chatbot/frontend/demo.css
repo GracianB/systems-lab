@@ -1,3 +1,8 @@
+html.demo-embed, body.demo-embed {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
 body.demo-on {
   margin: 0;
   min-height: 100svh;
@@ -5,6 +10,11 @@ body.demo-on {
     radial-gradient(900px 420px at 80% -10%, rgba(122, 243, 255, .18), transparent 60%),
     #03050c;
   color: #eafdff;
+}
+body.demo-embed {
+  min-height: 0;
+  height: 100%;
+  background: #0a0e18;
 }
 .demo-ribbon {
   position: fixed;
@@ -19,7 +29,7 @@ body.demo-on {
   color: #031016;
   background: #7af3ff;
 }
-.demo-embed .demo-ribbon { opacity: .9; }
+body.demo-embed .demo-ribbon { display: none; }
 .bt-suggest {
   display: flex;
   flex-wrap: wrap;
@@ -78,13 +88,32 @@ body.is-dropping .bt-drop-overlay { display: grid; }
   outline: 2px dashed #7af3ff;
   outline-offset: -6px;
 }
-body.demo-embed #bodytone-chat-widget.chat-widget--maximized,
-body.demo-embed #bodytone-chat-widget.chat-widget--open {
-  inset: 48px 12px 12px;
+
+/* Embed: fill the iframe. Do not use the floating/maximized layout. */
+html.demo-embed #bodytone-chat-widget,
+body.demo-embed #bodytone-chat-widget {
+  position: absolute !important;
+  inset: 0 !important;
+  transform: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  contain: none !important;
 }
-body.demo-embed #bodytone-chat-widget.chat-widget--maximized .chat-widget__container,
-body.demo-embed .chat-widget--open.chat-widget--maximized .chat-widget__container {
-  width: 100%;
-  height: 100%;
-  max-width: none;
+html.demo-embed .chat-widget__container,
+body.demo-embed .chat-widget__container {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  box-shadow: none !important;
+}
+body.demo-embed .chat-widget__toggle,
+body.demo-embed #toggle-size-btn,
+body.demo-embed #minimize-chat-btn,
+body.demo-embed #close-chat {
+  display: none !important;
 }

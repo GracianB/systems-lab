@@ -5,6 +5,7 @@
 (function () {
   const orig = window.fetch.bind(window);
   const EMBED = /(?:\?|&)embed=1(?:&|$)/.test(location.search);
+  if (EMBED) document.documentElement.classList.add("demo-embed");
 
   function replyFor(message, files) {
     const t = (message || "").toLowerCase();
@@ -178,13 +179,21 @@
     });
 
     window.setTimeout(function () {
+      const widget = document.getElementById("bodytone-chat-widget");
       const btn = document.getElementById("chat-toggle-btn");
-      if (btn) btn.click();
-      if (EMBED) {
-        const max = document.getElementById("toggle-size-btn");
-        if (max) max.click();
+      if (EMBED && widget) {
+        widget.classList.remove("chat-widget--closed", "chat-widget--maximized");
+        widget.classList.add("chat-widget--open");
+        const box = document.getElementById("chat-container");
+        if (box) {
+          box.removeAttribute("inert");
+          box.setAttribute("aria-hidden", "false");
+        }
+        if (btn) btn.setAttribute("aria-expanded", "true");
+      } else if (btn) {
+        btn.click();
       }
       suggestions();
-    }, 280);
+    }, 200);
   });
 })();
