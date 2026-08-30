@@ -22,32 +22,31 @@
         attach
       );
     }
-    if (/manual|repuesto|error e0|producto|stock|disponib|cinta|bici/.test(t)) {
+    if (/manual|factura|invoice|billing|cobro|pago/.test(t)) {
       return (
-        "**Manual · Cinta X9**\n\n" +
-        "• Guía de usuario (PDF)\n" +
-        "• Error E04: sensor de velocidad — recalibrar, no sustituir aún\n" +
-        "• Stock recambios: 3 ud. en almacén Sur\n\n" +
-        "_Demo. El motor real cruza RAG + CSV de catálogo._" +
+        "**Factura INV-1904** · emitida.\n\n" +
+        "Estado: pagada el 12/08.\n" +
+        "PDF listo para reenviar.\n\n" +
+        "_Demo. El agente real consultaría facturación._" +
         attach
       );
     }
     if (/ticket|zendesk|reclam|incidencia|queja/.test(t)) {
       return (
         "**Borrador de ticket**\n\n" +
-        "Asunto: Incidencia — cinta no arranca\n" +
+        "Asunto: No puedo acceder a mi cuenta\n" +
         "Prioridad: media\n" +
         "Contexto: este hilo, listo para un humano.\n\n" +
-        "Nadie pide que lo cuentes otra vez. El canal público está en el Help Center." +
+        "Nadie pide que lo cuentes otra vez." +
         attach
       );
     }
     if (/hola|buenas|hey|hi\b/.test(t)) {
-      return "Hola. Pregunta por un **envío**, un **manual** o un **ticket**. O suelta un archivo abajo." + attach;
+      return "Hola. Pregunta por un **envío**, una **factura** o un **ticket**. O suelta un archivo abajo." + attach;
     }
     return (
       "Te leo. En producción consultaría sistemas y, si hace falta, escalaría con este contexto.\n\n" +
-      "Prueba: «dónde está mi pedido», «manual de la cinta», «abrir un ticket»." +
+      "Prueba: «dónde está mi pedido», «mi factura», «abrir un ticket»." +
       attach
     );
   }
@@ -101,8 +100,8 @@
     wrap.id = "bt-suggest";
     wrap.className = "bt-suggest";
     [["Envío", "¿Dónde está mi pedido GB-4821?"],
-     ["Manual", "Necesito el manual de la cinta y el error E04"],
-     ["Ticket", "Abre un ticket: la cinta no arranca"]].forEach(function (row) {
+     ["Factura", "Necesito mi última factura"],
+     ["Ticket", "Abre un ticket: no puedo acceder"]].forEach(function (row) {
       const b = document.createElement("button");
       b.type = "button";
       b.className = "bt-suggest__btn";

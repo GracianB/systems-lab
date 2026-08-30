@@ -51,7 +51,7 @@ button { cursor: pointer; }
 .seg { display: flex; border: 1px solid var(--line); }
 .seg-btn[aria-pressed="true"] { background: var(--ice); color: #031016; }
 
-.hero, .play, .cs, .lab, .note, .foot, .split { max-width: var(--max); margin: 0 auto; padding: 28px 20px 56px; }
+.hero, .play, .cs, .lab, .note, .foot, .split, .agent-block { max-width: var(--max); margin: 0 auto; padding: 28px 20px 56px; }
 .eyebrow {
   margin: 0 0 12px; color: var(--ice); font: 700 11px var(--mono);
   letter-spacing: .2em; text-transform: uppercase;
@@ -139,10 +139,8 @@ button { cursor: pointer; }
 .code { font: 700 11px var(--mono); color: var(--ice); letter-spacing: .12em; }
 
 .agent-block {
-  margin-top: 28px;
   border: 1px solid var(--line);
   background: var(--bg-2);
-  padding: 22px;
 }
 .agent-block header { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 .agent-block h3 { margin: 12px 0 8px; font-family: var(--display); font-size: clamp(24px, 3vw, 34px); font-weight: 700; }
