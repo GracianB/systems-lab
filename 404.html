@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>404 — PLAY · Gracián Baena</title>
+  <title>404 — Gracián Baena</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://gracianb.github.io/systems-lab/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,11 +26,12 @@
     .card { max-width: 28rem; }
     .mark {
       display: grid; place-items: center;
-      width: 42px; height: 42px;
+      width: 40px; height: 40px;
       border: 1px solid var(--ice);
       border-radius: var(--r);
       color: var(--ice);
       font: 800 12px var(--mono);
+      letter-spacing: .04em;
       margin-bottom: 28px;
     }
     p.kicker {
@@ -45,6 +46,7 @@
       letter-spacing: -.03em;
     }
     p.lead { margin: 0 0 28px; color: var(--muted); line-height: 1.5; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; }
     a {
       display: inline-flex;
       min-height: 44px;
@@ -58,16 +60,24 @@
       text-decoration: none;
       border-radius: var(--r);
     }
+    a.ghost {
+      background: transparent;
+      color: var(--ice);
+      border: 1px solid color-mix(in srgb, var(--ice) 50%, transparent);
+    }
     :focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="mark">PL</div>
+    <div class="mark">GB</div>
     <p class="kicker">404</p>
     <h1>Esta ruta no existe.</h1>
-    <p class="lead">PLAY vive en la raíz de systems-lab. Ohana, Vórtice y el Help Center están allí.</p>
-    <a href="./index.html">Volver a PLAY →</a>
+    <p class="lead">Este es el mundo PLAY de Gracián Baena. Ohana, Vórtice y el Help Center están en la raíz.</p>
+    <div class="actions">
+      <a href="./index.html">Volver →</a>
+      <a class="ghost" href="https://gracianb.github.io/GracianB/">Hub</a>
+    </div>
   </div>
 </body>
 </html>
