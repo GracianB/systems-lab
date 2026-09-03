@@ -1,10 +1,10 @@
 window.LAB_I18N = {
   es: {
     htmlLang: "es",
-    title: "PLAY — Juegos y CS · Gracián Baena",
+    title: "Gracián Baena — PLAY · técnica",
     skip: "Saltar al contenido",
     menu: "Menú",
-    brandSub: "Juegos · CS",
+    brandSub: "PLAY · técnica",
     navGames: "Juegos",
     navApps: "Apps",
     navCs: "CS",
@@ -89,10 +89,10 @@ window.LAB_I18N = {
   },
   en: {
     htmlLang: "en",
-    title: "PLAY — Games and CS · Gracián Baena",
+    title: "Gracián Baena — PLAY · skill",
     skip: "Skip to content",
     menu: "Menu",
-    brandSub: "Games · CS",
+    brandSub: "PLAY · skill",
     navGames: "Games",
     navApps: "Apps",
     navCs: "CS",
