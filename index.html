@@ -5,36 +5,63 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#06070a">
   <meta name="author" content="Gracián Baena">
-  <meta name="description" content="Habilidad técnica de Gracián Baena: juegos y Customer Success en producción.">
+  <meta name="description" content="PLAY · técnica — Ohana, Vórtice y el Customer Success público de Bodytone. Mundo técnico del hub Gracián Baena.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
   <title>Gracián Baena — PLAY · técnica</title>
   <link rel="canonical" href="https://gracianb.github.io/systems-lab/">
   <link rel="alternate" hreflang="es" href="https://gracianb.github.io/systems-lab/?lang=es">
   <link rel="alternate" hreflang="en" href="https://gracianb.github.io/systems-lab/?lang=en">
   <link rel="alternate" hreflang="x-default" href="https://gracianb.github.io/systems-lab/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="og:title" content="Gracián Baena — PLAY · técnica">
-  <meta property="og:description" content="Ohana, Vórtice y el Help Center de Bodytone. Abajo, un ejemplo de agente.">
+  <meta property="og:description" content="Ohana, Vórtice y el Help Center de Bodytone. Abajo, un ejemplo de agente. Live = se abre ahora.">
   <meta property="og:url" content="https://gracianb.github.io/systems-lab/">
+  <meta property="og:image" content="https://gracianb.github.io/GracianB/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gracián Baena — PLAY · técnica">
+  <meta name="twitter:description" content="Ohana · Vórtice · Bodytone Support OS. Mundo técnico del hub.">
+  <meta name="twitter:image" content="https://gracianb.github.io/GracianB/og-cover.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=lab-v2">
-  <script src="./i18n.js?v=lab-v2"></script>
-  <script src="./main.js?v=lab-v2" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=systems-final">
+  <script src="./i18n.js?v=systems-final"></script>
+  <script src="./main.js?v=systems-final" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Gracián Baena — PLAY · técnica",
+    "url": "https://gracianb.github.io/systems-lab/",
+    "author": {
+      "@type": "Person",
+      "name": "Gracián Baena",
+      "url": "https://gracianb.github.io/GracianB/"
+    },
+    "inLanguage": ["es", "en"],
+    "isPartOf": { "@type": "WebSite", "name": "GracianB Hub", "url": "https://gracianb.github.io/GracianB/" }
+  }
+  </script>
 </head>
 <body>
   <div class="fx" aria-hidden="true">
     <div class="fx-noise"></div>
     <div class="fx-grid"></div>
+    <div class="fx-beam"></div>
     <div class="fx-scan"></div>
     <div class="fx-orb fx-orb-a"></div>
     <div class="fx-orb fx-orb-b"></div>
+    <div class="fx-orb fx-orb-c"></div>
   </div>
 
   <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
 
   <header class="topbar">
-    <a class="brand" href="https://gracianb.github.io/GracianB/" aria-label="Gracián Baena">
+    <a class="brand" href="https://gracianb.github.io/GracianB/" aria-label="Gracián Baena — volver al hub">
       <span class="brand-mark">GB</span>
       <div class="brand-text">
         <b>GRACIÁN BAENA</b>
@@ -64,17 +91,20 @@
   </header>
 
   <main id="main" class="shell">
-    <section class="hero">
-      <div class="hero-frame">
-        <div class="hero-meta-row">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <div class="hero-kicker">
           <span class="pulse-dot" aria-hidden="true"></span>
-          <p class="eyebrow" data-i18n="eyebrow">GRACIÁN BAENA · PLAY</p>
+          <p class="eyebrow" data-i18n="eyebrow">03 · PLAY · TÉCNICA</p>
         </div>
-        <h1 data-i18n-html="h1">No te lo explico.<br><em>Púlsalo.</em></h1>
+        <p class="hero-tag" data-i18n-html="tagline">No te lo explico.<br><em>Púlsalo.</em></p>
+        <h1 id="hero-title" class="visually-hidden" data-i18n="h1plain">No te lo explico. Púlsalo.</h1>
         <p class="lead" data-i18n="lead">Juegos. El Customer Success público de Bodytone. Y, abajo, un ejemplo de agente. Si no se abre en el navegador, no está.</p>
+        <a class="proof" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener noreferrer" data-i18n="proof">1 sistema live · Bodytone Zendesk ↗</a>
         <div class="actions">
           <a class="btn btn-play" href="#juegos" data-i18n="ctaPlay">Jugar ahora →</a>
           <a class="btn btn-ghost" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="ctaLive">Help Center live →</a>
+          <a class="btn btn-ghost" href="https://gracianb.github.io/GracianB/" data-i18n="ctaHub">← Hub</a>
         </div>
         <div class="pills">
           <span class="pill live"><i></i> <span data-i18n="pill1">2 juegos live</span></span>
@@ -82,24 +112,30 @@
           <span class="pill" data-i18n="pill3">1 ejemplo de agente</span>
         </div>
       </div>
-      <aside class="hero-rail" aria-hidden="true">
-        <div class="rail-card">
-          <span class="rail-code">01</span>
-          <b>OHANA</b>
-          <small>canvas · live</small>
-        </div>
-        <div class="rail-card">
-          <span class="rail-code">02</span>
-          <b>VÓRTICE</b>
-          <small>webgl · live</small>
-        </div>
-        <div class="rail-card rail-live">
-          <span class="rail-code">CS</span>
-          <b>BODYTONE</b>
-          <small>zendesk · prod</small>
+
+      <aside class="hero-right" aria-hidden="true">
+        <div class="name-panel">
+          <div class="name-glow"></div>
+          <span class="name-index">03 / PLAY</span>
+          <div class="hero-name">
+            <span class="name-line first">Gracián</span>
+            <span class="name-line last">Baena</span>
+          </div>
+          <div class="name-foot">
+            <span class="name-rule"></span>
+            <span class="name-role" data-i18n="nameRole">OHANA · VÓRTICE · CS</span>
+          </div>
+          <ol class="hero-method">
+            <li><span>01</span><b>Ohana</b></li>
+            <li><span>02</span><b>Vórtice</b></li>
+            <li><span>CS</span><b>Bodytone</b></li>
+            <li><span>EX</span><b>Agente</b></li>
+          </ol>
         </div>
       </aside>
     </section>
+
+    <a class="scroll-cue" href="#juegos" data-i18n="scroll">Bajar a juegos ↓</a>
 
     <section class="play" id="juegos">
       <div class="section-head">
@@ -184,7 +220,7 @@
           <span></span><span></span><span></span>
           <b>agent · demo</b>
         </div>
-        <iframe src="./bodytone-chatbot/frontend/?embed=1&v=2" title="Ejemplo de agente CS" loading="lazy"></iframe>
+        <iframe src="./bodytone-chatbot/frontend/?embed=1&v=systems-final" title="Ejemplo de agente CS" loading="lazy"></iframe>
       </div>
       <p class="hint"><a href="./bodytone-chatbot/frontend/" data-i18n="botCta">Pantalla completa →</a></p>
     </article>
@@ -217,6 +253,7 @@
       <nav class="foot-links" aria-label="Ecosystem">
         <a href="https://gracianb.github.io/GracianB/">hub</a>
         <a href="https://gracianb.github.io/professional-deck/">deck</a>
+        <a href="https://gracianb.github.io/yoga-instructor/">yoga</a>
         <a href="https://calendar.app.google/n99psBFktwYyoAWi9">agenda</a>
       </nav>
     </div>
@@ -231,6 +268,7 @@
       <a href="https://gracianb.github.io/project-ohana/">Ohana</a>
       <a href="https://vortex-gilt-xi.vercel.app/">Vórtice</a>
       <a href="https://bodytonehelp.zendesk.com/hc/es">Zendesk</a>
+      <a href="https://gracianb.github.io/yoga-instructor/">Yoga</a>
     </div>
   </div>
 </body>
