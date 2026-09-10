@@ -18,9 +18,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=lab-v2-final">
-  <script src="./i18n.js?v=lab-v2-final"></script>
-  <script src="./main.js?v=lab-v2-final" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=lab-final-1">
+  <script src="./i18n.js?v=lab-final-1"></script>
+  <script src="./main.js?v=lab-final-1" defer></script>
 </head>
 <body>
   <div class="fx" aria-hidden="true">
@@ -53,8 +53,12 @@
         <button type="button" class="seg-btn" data-set-lang="en" aria-pressed="false">EN</button>
       </div>
       <div class="seg" role="group" aria-label="Theme">
-        <button type="button" class="seg-btn" data-set-theme="dark" aria-pressed="true" title="Dark">☾</button>
-        <button type="button" class="seg-btn" data-set-theme="light" aria-pressed="false" title="Light">☀</button>
+        <button type="button" class="seg-btn seg-icon" data-set-theme="dark" aria-pressed="true" title="Dark">
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M6.1 1.2a6.8 6.8 0 0 0 8.7 8.7A7 7 0 1 1 6.1 1.2z"/></svg>
+        </button>
+        <button type="button" class="seg-btn seg-icon" data-set-theme="light" aria-pressed="false" title="Light">
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.5M8 13.3v1.5M1.2 8h1.5M13.3 8h1.5M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg>
+        </button>
       </div>
       <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="drawer">
         <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -68,7 +72,7 @@
       <div class="hero-frame">
         <div class="hero-meta-row">
           <span class="pulse-dot" aria-hidden="true"></span>
-          <p class="eyebrow" data-i18n="eyebrow">GRACIÁN BAENA · PLAY</p>
+          <p class="eyebrow" data-i18n="eyebrow">02 · PLAY · TÉCNICA</p>
         </div>
         <h1 data-i18n-html="h1">No te lo explico.<br><em>Púlsalo.</em></h1>
         <p class="lead" data-i18n="lead">Juegos. El Customer Success público de Bodytone. Y, abajo, un ejemplo de agente. Si no se abre en el navegador, no está.</p>
@@ -82,22 +86,22 @@
           <span class="pill" data-i18n="pill3">1 ejemplo de agente</span>
         </div>
       </div>
-      <aside class="hero-rail" aria-hidden="true">
-        <div class="rail-card">
+      <aside class="hero-rail">
+        <a class="rail-card" href="https://gracianb.github.io/project-ohana/" rel="noopener">
           <span class="rail-code">01</span>
           <b>OHANA</b>
           <small>canvas · live</small>
-        </div>
-        <div class="rail-card">
+        </a>
+        <a class="rail-card" href="https://vortex-gilt-xi.vercel.app/" target="_blank" rel="noopener">
           <span class="rail-code">02</span>
           <b>VÓRTICE</b>
           <small>webgl · live</small>
-        </div>
-        <div class="rail-card rail-live">
+        </a>
+        <a class="rail-card rail-live" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener">
           <span class="rail-code">CS</span>
           <b>BODYTONE</b>
           <small>zendesk · prod</small>
-        </div>
+        </a>
       </aside>
     </section>
 
@@ -217,6 +221,8 @@
       <nav class="foot-links" aria-label="Ecosystem">
         <a href="https://gracianb.github.io/GracianB/">hub</a>
         <a href="https://gracianb.github.io/professional-deck/">deck</a>
+        <a href="https://gracianb.github.io/yoga-instructor/">yoga</a>
+        <a href="https://www.linkedin.com/in/gracianbaena">linkedin</a>
         <a href="https://calendar.app.google/n99psBFktwYyoAWi9">agenda</a>
       </nav>
     </div>
@@ -228,6 +234,8 @@
       <a href="#cs" data-i18n="navCs">CS</a>
       <a href="#agente" data-i18n="navAgent">Agente</a>
       <a href="https://gracianb.github.io/GracianB/" data-i18n="navHub">Hub</a>
+      <a href="https://gracianb.github.io/professional-deck/">Deck</a>
+      <a href="https://gracianb.github.io/yoga-instructor/">Yoga</a>
       <a href="https://gracianb.github.io/project-ohana/">Ohana</a>
       <a href="https://vortex-gilt-xi.vercel.app/">Vórtice</a>
       <a href="https://bodytonehelp.zendesk.com/hc/es">Zendesk</a>

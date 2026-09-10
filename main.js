@@ -185,10 +185,34 @@
         }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    document.querySelectorAll(".hero-left, .name-panel, .feat, .cs-hero, .pillars article, .agent-block, .box").forEach((el) => {
+    document.querySelectorAll(".hero-frame, .rail-card, .feat, .cs-hero, .pillars article, .agent-block, .box").forEach((el) => {
       el.classList.add("reveal");
       io.observe(el);
     });
+  }
+
+  if (!reduce) {
+    const fx = document.querySelector(".fx");
+    window.addEventListener("pointermove", (e) => {
+      if (!fx) return;
+      const x = (e.clientX / window.innerWidth - 0.5) * 28;
+      const y = (e.clientY / window.innerHeight - 0.5) * 18;
+      fx.style.setProperty("--mx", x.toFixed(1) + "px");
+      fx.style.setProperty("--my", y.toFixed(1) + "px");
+    }, { passive: true });
+
+    const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (fine) {
+      document.querySelectorAll(".feat").forEach((card) => {
+        card.addEventListener("pointermove", (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = `translateY(-8px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 6).toFixed(2)}deg)`;
+        });
+        card.addEventListener("pointerleave", () => { card.style.transform = ""; });
+      });
+    }
   }
 
   window.LAB_GAS = GAS;

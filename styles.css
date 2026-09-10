@@ -627,5 +627,74 @@ iframe { border: 0; width: 100%; display: block; }
   html { scroll-behavior: auto; }
   .fx-scan, .pulse-dot, .stage-ohana i, .stage-vortex b, .stage-ring { animation: none !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .feat:hover, .btn:hover, .pillars article:hover { transform: none; }
+  .feat:hover, .btn:hover, .pillars article:hover, .rail-card:hover { transform: none; }
 }
+
+/* —— PLAY final pass —— */
+.seg-icon { width: 38px; padding: 0; display: grid; place-items: center; }
+.seg-icon svg { display: block; }
+.hero {
+  min-height: calc(100svh - var(--header) - 24px);
+  align-items: center;
+}
+.hero-frame {
+  box-shadow:
+    var(--shadow-ice),
+    0 0 0 1px color-mix(in srgb, var(--ice) 18%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--ice) 22%, transparent);
+}
+.hero-frame::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ice), transparent);
+  opacity: .7;
+}
+.rail-card {
+  transition: transform .28s var(--ease), border-color .2s, box-shadow .28s, background .2s;
+}
+.rail-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--ice) 55%, transparent);
+  box-shadow: 0 16px 40px var(--ice-dim);
+}
+.feat {
+  transform-style: preserve-3d;
+}
+.feat:hover {
+  transform: translateY(-8px);
+  border-color: color-mix(in srgb, var(--ice) 60%, transparent);
+  box-shadow: 0 24px 70px var(--ice-glow);
+}
+.feat-stage { height: 180px; }
+.cs-hero {
+  box-shadow: var(--shadow-ice);
+}
+.cs-hero:hover .cs-glow { opacity: 1; }
+.pillars article:hover {
+  box-shadow: var(--shadow-sm);
+}
+.agent-stage {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--ice) 16%, transparent),
+    0 20px 60px var(--ice-dim);
+}
+.agent-stage iframe { height: min(620px, 72vh); }
+.box.good:hover {
+  box-shadow: var(--shadow-ice);
+}
+.fx-orb-a { transform: translate(var(--mx, 0px), var(--my, 0px)); }
+.fx-orb-b { transform: translate(calc(var(--mx, 0px) * -0.5), calc(var(--my, 0px) * -0.4)); }
+
+@media (min-width: 900px) {
+  .hero { grid-template-columns: 1.4fr .6fr; gap: 22px; }
+}
+
+[data-theme="light"] .hero-frame {
+  background:
+    radial-gradient(ellipse 80% 60% at 0% 0%, var(--ice-dim), transparent 55%),
+    linear-gradient(160deg, #fff, var(--surface));
+}
+[data-theme="light"] .feat-stage,
+[data-theme="light"] .agent-stage { background: #12151c; }
