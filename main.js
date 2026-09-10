@@ -185,7 +185,7 @@
         }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    document.querySelectorAll(".feat, .cs-hero, .pillars article, .agent-block, .box").forEach((el) => {
+    document.querySelectorAll(".hero-left, .name-panel, .feat, .cs-hero, .pillars article, .agent-block, .box").forEach((el) => {
       el.classList.add("reveal");
       io.observe(el);
     });
