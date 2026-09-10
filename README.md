@@ -4,7 +4,7 @@
 
 # **GRACIÁN BAENA**
 
-### PLAY · técnica — mundo 03 del hub
+### PLAY · técnica — mundo 02 del hub
 
 **Ice neon · hub chrome.** Fraunces · Inter · JetBrains Mono · **GB → hub**. No es una marca aparte: es el track técnico del ecosistema.
 
@@ -17,8 +17,8 @@
 [![Live](https://img.shields.io/badge/%F0%9F%9A%80_LIVE-systems--lab-7af3ff?style=for-the-badge&labelColor=06070a)](https://gracianb.github.io/systems-lab/)
 [![Hub](https://img.shields.io/badge/HUB-GracianB-f3d437?style=for-the-badge&labelColor=06070a)](https://gracianb.github.io/GracianB/)
 [![Corporate](https://img.shields.io/badge/01-professional--deck-f4f3ee?style=for-the-badge&labelColor=06070a)](https://gracianb.github.io/professional-deck/)
-[![Yoga](https://img.shields.io/badge/02-yoga--instructor-7dcaa5?style=for-the-badge&labelColor=06070a)](https://gracianb.github.io/yoga-instructor/)
-[![Play](https://img.shields.io/badge/03-PLAY-7af3ff?style=for-the-badge&labelColor=06070a)](https://gracianb.github.io/systems-lab/)
+[![Play](https://img.shields.io/badge/02-PLAY-7af3ff?style=for-the-badge&labelColor=06070a)](https://gracianb.github.io/systems-lab/)
+[![Yoga](https://img.shields.io/badge/03-yoga--instructor-7dcaa5?style=for-the-badge&labelColor=06070a)](https://gracianb.github.io/yoga-instructor/)
 [![Ohana](https://img.shields.io/badge/Ohana-canvas-7af3ff?style=for-the-badge&labelColor=06070a)](https://gracianb.github.io/project-ohana/)
 [![Vortex](https://img.shields.io/badge/Vortex-WebGL-7af3ff?style=for-the-badge&labelColor=06070a)](https://vortex-gilt-xi.vercel.app/)
 [![Zendesk](https://img.shields.io/badge/Bodytone-Help_Center-7af3ff?style=for-the-badge&labelColor=06070a)](https://bodytonehelp.zendesk.com/hc/es)
@@ -58,8 +58,8 @@ El **mundo técnico** del hub [GracianB](https://gracianb.github.io/GracianB/): 
          ┌─────────────────────┼─────────────────────┐
          ▼                     ▼                     ▼
 ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐
-│ 01 professional │   │ 02 yoga-        │   │ 03 PLAY         │
-│ deck            │   │ instructor      │   │ systems-lab     │
+│ 01 professional │   │ 02 PLAY         │   │ 03 yoga-        │
+│ deck            │   │ systems-lab     │   │ instructor      │
 │ CS × Data × AI  │   │ Presence        │   │ ice neon track  │
 └─────────────────┘   └─────────────────┘   └────────┬────────┘
                                                      │
