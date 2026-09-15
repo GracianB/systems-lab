@@ -698,3 +698,118 @@ iframe { border: 0; width: 100%; display: block; }
 }
 [data-theme="light"] .feat-stage,
 [data-theme="light"] .agent-stage { background: #12151c; }
+
+/* ══════════════════════════════════════════════════════════════
+   PLAY MAX PASS · v=lab-max-1
+   Ice-neon particle net · boot sequence · scroll rail · spotlight
+   · magnetic CTAs. Additive. Ice / electric-yellow / sage.
+   ══════════════════════════════════════════════════════════════ */
+
+/* —— particle network (behind atmosphere) —— */
+.fx-net {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; opacity: .9; mix-blend-mode: screen;
+}
+[data-theme="light"] .fx-net { mix-blend-mode: multiply; opacity: .5; }
+
+/* —— scroll progress rail —— */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  height: 2px; pointer-events: none; background: transparent;
+}
+.scroll-progress i {
+  display: block; height: 100%; width: var(--sp, 0%);
+  background: linear-gradient(90deg, var(--ice), var(--yellow) 55%, var(--sage));
+  box-shadow: 0 0 12px var(--ice-glow), 0 0 22px var(--yellow-glow);
+  transition: width .12s linear;
+}
+
+/* —— cursor spotlight (ice) —— */
+.spotlight {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  opacity: 0; transition: opacity .5s cubic-bezier(.22,1,.36,1);
+  mix-blend-mode: screen;
+  background: radial-gradient(240px circle at var(--sx,50%) var(--sy,50%),
+    color-mix(in srgb, var(--ice) 14%, transparent), transparent 62%);
+}
+[data-theme="light"] .spotlight {
+  mix-blend-mode: multiply;
+  background: radial-gradient(240px circle at var(--sx,50%) var(--sy,50%),
+    color-mix(in srgb, var(--ice) 12%, transparent), transparent 62%);
+}
+body.has-spot .spotlight { opacity: 1; }
+
+/* —— PLAY boot overlay —— */
+.lab-intro { display: none; }
+html.intro-on .lab-intro {
+  display: grid; place-content: center; justify-items: center; gap: 20px;
+  position: fixed; inset: 0; z-index: 300; opacity: 1;
+  background: radial-gradient(ellipse 62% 52% at 50% 42%, #0a0f14, #06070a 72%);
+}
+html.intro-done .lab-intro {
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .6s cubic-bezier(.22,1,.36,1), visibility 0s .6s;
+}
+[data-theme="light"] html.intro-on .lab-intro,
+html.intro-on[data-theme="light"] .lab-intro {
+  background: radial-gradient(ellipse 62% 52% at 50% 42%, #fff, #e9ecec 72%);
+}
+.li-core { position: relative; width: 120px; height: 120px; display: grid; place-items: center; overflow: hidden; border-radius: 12px; }
+.li-mark { position: absolute; inset: 0; overflow: visible; }
+.li-frame {
+  stroke: color-mix(in srgb, var(--ice) 70%, transparent);
+  stroke-dasharray: 336; stroke-dashoffset: 336;
+  filter: drop-shadow(0 0 6px var(--ice-glow));
+  animation: li-draw 1s cubic-bezier(.22,1,.36,1) forwards;
+}
+.li-ring {
+  stroke: color-mix(in srgb, var(--yellow) 65%, transparent);
+  stroke-dasharray: 214; stroke-dashoffset: 214; transform-origin: 60px 60px;
+  animation: li-draw 1s cubic-bezier(.22,1,.36,1) .2s forwards, li-spin 8s linear 1s infinite;
+  filter: drop-shadow(0 0 5px var(--yellow-glow));
+}
+@keyframes li-draw { to { stroke-dashoffset: 0; } }
+@keyframes li-spin { to { transform: rotate(360deg); } }
+.li-scanline {
+  position: absolute; left: 0; right: 0; top: 0; height: 24px;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--ice) 30%, transparent), transparent);
+  animation: li-scan 2.2s linear .4s infinite;
+  pointer-events: none;
+}
+@keyframes li-scan { 0% { transform: translateY(-24px); } 100% { transform: translateY(120px); } }
+.li-gb {
+  position: relative; z-index: 1;
+  font: 800 26px/1 var(--mono, "JetBrains Mono", monospace); letter-spacing: .08em;
+  color: var(--ink); text-shadow: 0 0 20px var(--ice-glow);
+  opacity: 0; animation: li-pop .7s cubic-bezier(.22,1,.36,1) .45s both;
+}
+@keyframes li-pop { 0% { opacity: 0; transform: scale(.6); filter: blur(6px); } 100% { opacity: 1; transform: scale(1); filter: none; } }
+.li-title {
+  margin: 0; font: 800 12px/1 var(--mono, "JetBrains Mono", monospace); letter-spacing: .3em;
+  color: var(--ice); opacity: 0; animation: li-fade .7s ease .8s forwards;
+}
+@keyframes li-fade { to { opacity: 1; } }
+.li-words { display: flex; gap: 8px 14px; flex-wrap: wrap; justify-content: center; }
+.li-words .lw { font: 800 9px/1 var(--mono, "JetBrains Mono", monospace); letter-spacing: .18em; opacity: 0; animation: lw-in .6s cubic-bezier(.22,1,.36,1) both; }
+.lw-1 { color: var(--ice); animation-delay: .95s; }
+.lw-2 { color: var(--yellow); animation-delay: 1.1s; }
+.lw-3 { color: var(--sage); animation-delay: 1.25s; }
+@keyframes lw-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.li-bar { width: 190px; height: 2px; border-radius: 2px; background: color-mix(in srgb, var(--ink) 12%, transparent); overflow: hidden; }
+.li-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--ice), var(--yellow), var(--sage)); animation: li-load 1.9s cubic-bezier(.22,1,.36,1) .3s forwards; }
+@keyframes li-load { to { width: 100%; } }
+
+/* —— magnetic hero CTAs —— */
+.hero .actions .btn { transition: translate .18s cubic-bezier(.22,1,.36,1); }
+
+@media (max-width: 640px) {
+  .li-core { width: 96px; height: 96px; }
+  .li-gb { font-size: 21px; }
+  .spotlight { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-net { display: none; }
+  .spotlight { display: none !important; }
+  .li-frame, .li-ring, .li-scanline, .li-gb, .li-title, .li-words .lw, .li-bar i { animation: none !important; opacity: 1; stroke-dashoffset: 0; }
+}

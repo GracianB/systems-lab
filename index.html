@@ -18,17 +18,53 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=lab-final-1">
-  <script src="./i18n.js?v=lab-final-1"></script>
-  <script src="./main.js?v=lab-final-1" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=lab-max-1">
+  <script>
+    /* PLAY boot — decide before first paint, with failsafe */
+    (function () {
+      try {
+        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var seen = false;
+        try { seen = sessionStorage.getItem("lab-intro-seen") === "1"; } catch (e) {}
+        if (!reduce && !seen) {
+          document.documentElement.classList.add("intro-on");
+          setTimeout(function () { document.documentElement.classList.add("intro-done"); }, 3000);
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <script src="./i18n.js?v=lab-max-1"></script>
+  <script src="./main.js?v=lab-max-1" defer></script>
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"><i></i></div>
+  <div class="spotlight" aria-hidden="true"></div>
+
   <div class="fx" aria-hidden="true">
+    <canvas class="fx-net"></canvas>
     <div class="fx-noise"></div>
     <div class="fx-grid"></div>
     <div class="fx-scan"></div>
     <div class="fx-orb fx-orb-a"></div>
     <div class="fx-orb fx-orb-b"></div>
+  </div>
+
+  <div class="lab-intro" id="lab-intro" aria-hidden="true">
+    <div class="li-core">
+      <svg class="li-mark" viewBox="0 0 120 120" width="120" height="120" fill="none">
+        <rect class="li-frame" x="18" y="18" width="84" height="84" rx="10" stroke-width="1.4"/>
+        <circle class="li-ring" cx="60" cy="60" r="34" stroke-width="1.4"/>
+      </svg>
+      <span class="li-gb">GB</span>
+      <span class="li-scanline" aria-hidden="true"></span>
+    </div>
+    <p class="li-title">SYSTEMS&nbsp;LAB</p>
+    <div class="li-words">
+      <span class="lw lw-1">OHANA</span>
+      <span class="lw lw-2">VÓRTICE</span>
+      <span class="lw lw-3">CS&nbsp;LIVE</span>
+    </div>
+    <div class="li-bar"><i></i></div>
   </div>
 
   <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
