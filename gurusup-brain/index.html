@@ -432,6 +432,16 @@
   .facts article:nth-child(4){background:#f3eefe}
   .facts article:nth-child(5){background:#e8fbf3}
   .facts article:nth-child(6){background:#fff6d8}
+  .casebox{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 18px}
+  .casebox article{background:#fff;border:1px solid #e6eeea;border-radius:16px;padding:12px 14px}
+  .casebox span{display:block;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1fae76}
+  .casebox b{display:block;margin-top:4px;font-size:.95rem;letter-spacing:-.02em;line-height:1.3}
+  .tempbar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;list-style:none;margin:0 0 18px;padding:0}
+  .tempbar li{border-radius:14px;padding:10px 12px;font-size:.8rem;font-weight:750}
+  .tempbar li.fria{background:#e7f1ff;color:#1d3d66}
+  .tempbar li.templada{background:#fff6d8;color:#6a4b10}
+  .tempbar li.caliente{background:#ffe4e6;color:#7a2430}
+  .tempbar li.on{outline:2px solid #2ecf8f}
   .ficha-card h3{margin:0 0 12px;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:#1fae76}
   .timeline{display:flex;gap:8px;list-style:none;margin:0 0 22px;padding:0}
   .timeline li{
@@ -825,6 +835,17 @@
         <article><span>CSM</span><b>Ana Ferreras</b></article>
         <article><span>Salud</span><b id="fichaHealth">Estable</b></article>
       </div>
+      <h3>Caso</h3>
+      <div class="casebox">
+        <article><span>Caso abierto</span><b id="fichaCase">Ninguno</b></article>
+        <article><span>Responsable</span><b id="fichaOwner">Ana Ferreras</b></article>
+        <article><span>Siguiente paso</span><b id="fichaNext">Escuchar hasta la renovación</b></article>
+        <article><span>Último email recibido</span><b id="fichaIn">22 sep 2026</b></article>
+        <article><span>Última respuesta</span><b id="fichaOut">22 sep 2026</b></article>
+        <article><span>Días para renovar</span><b id="fichaDays">—</b></article>
+      </div>
+      <h3>Temperatura</h3>
+      <ol id="fichaTemps" class="tempbar"></ol>
       <h3>Fase del ciclo</h3>
       <ol id="fichaPhases" class="timeline"></ol>
       <h3>Tier de valor</h3>
@@ -1590,12 +1611,17 @@ const TIERS = [
 
 function fichaSnapshot(){
   const topic = brain.lastTopic;
+  const last = brain.log.length ? brain.log[brain.log.length - 1].type : "";
   let phase = "adopcion";
   if (topic === "onboarding") phase = "onboarding";
   else if (topic === "descuento") phase = "expansion";
   else if (topic === "cancelacion") phase = brain.resolved.cancelacion ? "renovacion" : "riesgo";
   else if (topic === "envios" || topic === "horario" || !topic) phase = "adopcion";
-  return { topic, phase };
+  return { topic, phase, last };
+}
+
+function hoyCorto(){
+  return new Date().toLocaleDateString("es-ES", { day:"numeric", month:"short", year:"numeric" });
 }
 
 function renderFicha(){
@@ -1604,6 +1630,39 @@ function renderFicha(){
   const snap = fichaSnapshot();
   const health = { onboarding:"En alta", adopcion:"Estable", expansion:"Oportunidad", renovacion:"Renovación cerca", riesgo:"Atención" };
   document.getElementById("fichaHealth").textContent = health[snap.phase] || "Estable";
+  const renew = new Date("2026-10-18T00:00:00");
+  const today = new Date(); today.setHours(0,0,0,0);
+  const days = Math.round((renew - today) / 86400000);
+  document.getElementById("fichaDays").textContent = days + " días";
+  const names = { envios:"Envíos a Portugal", cancelacion:"Baja de la suscripción", horario:"Horario de soporte", onboarding:"Alta", descuento:"Descuento" };
+  const temps = { onboarding:"caliente", adopcion:"templada", expansion:"templada", renovacion:"templada", riesgo:"caliente" };
+  const temp = snap.topic ? temps[snap.phase] : "fria";
+  document.getElementById("fichaCase").textContent = snap.topic ? names[snap.topic] : "Ninguno";
+  document.getElementById("fichaOwner").textContent = snap.topic ? brain.responsibleFor(snap.topic).split(" · ")[0] : "Ana Ferreras";
+  const hoy = hoyCorto();
+  let inbound = "22 sep 2026 · seguimiento de adopción";
+  let outbound = "22 sep 2026 · el alta ya está cerrada";
+  let next = "Escuchar. La renovación es el 18 oct 2026.";
+  if (snap.topic){
+    inbound = hoy + " · el cliente escribe";
+    if (snap.last === "answered"){ outbound = hoy + " · citada la fuente"; next = "Ninguno. La fuente bastó."; }
+    else if (snap.last === "stale"){ outbound = hoy + " · contestada y marcada"; next = "Quien manda en el tema confirma si sigue vigente."; }
+    else if (snap.last === "resolved" || snap.last === "reaffirmed"){ outbound = hoy + " · la persona dejó la fuente"; next = "Ninguno. El siguiente caso de este tema ya no escala."; }
+    else { outbound = hoy + " · solo un mensaje de espera"; next = brain.responsibleFor(snap.topic).split(" · ")[0] + " tiene que zanjarlo."; }
+  }
+  if (snap.phase === "riesgo") next = "Ana elige una política antes del 18 oct. No se inventa la baja.";
+  if (snap.phase === "expansion" && snap.last !== "resolved" && snap.last !== "reaffirmed") next = "Alex escribe el descuento, o se dice que no existe.";
+  document.getElementById("fichaIn").textContent = inbound;
+  document.getElementById("fichaOut").textContent = outbound;
+  document.getElementById("fichaNext").textContent = next;
+  const tempList = document.getElementById("fichaTemps");
+  tempList.innerHTML = "";
+  [["fria","Fría","Poco contacto"],["templada","Templada","Uso normal"],["caliente","Caliente","Hay que entrar ya"]].forEach(t => {
+    const li = document.createElement("li");
+    li.className = t[0] + (t[0] === temp ? " on" : "");
+    li.textContent = t[1] + " · " + t[2];
+    tempList.appendChild(li);
+  });
   const phaseList = document.getElementById("fichaPhases");
   phaseList.innerHTML = "";
   const phaseIndex = PHASES.findIndex(p => p[0] === snap.phase);
