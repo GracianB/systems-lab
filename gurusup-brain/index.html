@@ -493,7 +493,7 @@
   .foot span{white-space:nowrap}
   .foot a{color:#c8f8e0;text-decoration:none;font-weight:650}
   .foot a:hover{color:#fff}
-  .workspace{flex:1;display:flex;flex-direction:column;gap:12px;padding:12px;min-height:0}
+  .workspace{flex:1;display:flex;flex-direction:column;gap:12px;padding:12px 12px 96px;min-height:0}
   .split{flex:1;display:grid;grid-template-columns:minmax(280px,.72fr) minmax(420px,1.45fr);gap:12px;min-height:0}
   .col{
     background:#fff;border:1px solid #e3e9e6;border-radius:18px;
@@ -584,7 +584,7 @@
   html,body{height:auto;min-height:100%}
   #app{height:auto;min-height:100vh;overflow:visible}
   .workspace{height:auto;min-height:calc(100vh - 64px);box-sizing:border-box}
-  .split{height:calc(100vh - 162px);min-height:420px;max-height:calc(100vh - 162px);align-items:stretch}
+  .split{height:calc(100vh - 210px);min-height:420px;max-height:calc(100vh - 210px);align-items:stretch}
   .col{height:100%;min-height:0;max-height:100%;overflow:hidden}
   .brain-side .wa-card{
     margin:12px 12px 8px;
@@ -601,7 +601,7 @@
   .wa-body{flex:1 1 auto;min-height:0;max-height:none;overflow-y:auto}
   .wa-thread.active{display:flex;flex:1 1 auto;min-height:0;overflow:hidden}
   .wa-idle{flex:1}
-  .kb-dock{flex:none;max-height:none;margin-top:8px}
+  .kb-dock{flex:none;max-height:none;margin:28px 0 12px}
   .below{margin-top:4px}
   .below #log{max-height:none}
   .kb-dock .kbList{
