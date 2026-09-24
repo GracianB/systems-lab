@@ -363,30 +363,39 @@
   #app[hidden],#cover[hidden]{display:none}
   #app{min-height:100vh;background:#eef3f0;display:flex;flex-direction:column}
   .topbar{
-    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-    padding:12px 18px;background:#07140f;color:#f4f7f5;
+    display:flex;flex-direction:column;align-items:stretch;gap:10px;
+    padding:14px 18px 12px;background:#07140f;color:#f4f7f5;
   }
-  .topbar .brand{font-weight:800;letter-spacing:-.03em;font-size:1.05rem}
-  .topbar .brand span{color:#2ecf8f;font-weight:600;margin-left:8px}
+  .top-main{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  #backCover{
+    background:none;border:0;padding:0;cursor:pointer;text-align:left;color:#fff;
+    font-weight:800;font-size:1.25rem;letter-spacing:-.04em;line-height:1;
+  }
+  #backCover small{display:block;margin-top:4px;color:#8fbfa8;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
   .topbar .stat-row{margin:0}
   .topbar .stat-chip{background:rgba(255,255,255,.06);border-color:transparent;color:#d5e4dc}
   .topbar .stat-chip .lbl{color:#9aada4}
   .topbar .spacer{flex:1}
-  .topbar button,#reset{
+  #traceBtn,#soundToggle{
     background:transparent;color:#d5e4dc;border:1px solid rgba(255,255,255,.16);
     border-radius:999px;padding:7px 12px;cursor:pointer;font-weight:650;font-size:.78rem;
   }
-  .tools{display:flex;align-items:center;gap:8px}
-  .tools button{
-    height:36px;padding:0 14px;border-radius:12px;font-size:.78rem;font-weight:750;
-    cursor:pointer;letter-spacing:-.01em;
-  }
-  #soundToggle{background:rgba(255,255,255,.08);color:#d7e6de;border:1px solid rgba(255,255,255,.14)}
-  #clearChat{background:#f4f7f5;color:#07140f;border:1px solid #f4f7f5}
-  #reset{background:transparent;color:#ffb4b6;border:1px solid rgba(229,72,77,.55)}
-  #soundToggle:hover{background:rgba(255,255,255,.14)}
+  .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .acts button{text-align:left;border-radius:14px;padding:10px 14px;cursor:pointer}
+  .acts strong{display:block;font-size:.84rem}
+  .acts em{display:block;margin-top:2px;font-style:normal;font-size:.72rem;font-weight:550;opacity:.72}
+  #clearChat{background:#f4f7f5;color:#07140f;border:0}
+  #reset{background:transparent;color:#ffd4d4;border:1px solid rgba(229,72,77,.5)}
   #clearChat:hover{background:#fff}
-  #reset:hover{background:rgba(229,72,77,.16)}
+  #reset:hover{background:rgba(229,72,77,.14)}
+  .foot{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    margin:4px 12px 18px;padding:16px 18px;border-radius:16px;
+    background:#07140f;color:#d7e6de;
+  }
+  .foot strong{display:block;color:#fff;letter-spacing:-.03em}
+  .foot span,.foot a{color:#8fbfa8;font-size:.78rem}
+  .foot a{text-decoration:none}
   .workspace{flex:1;display:flex;flex-direction:column;gap:12px;padding:12px;min-height:0}
   .split{flex:1;display:grid;grid-template-columns:minmax(280px,.72fr) minmax(420px,1.45fr);gap:12px;min-height:calc(100vh - 88px)}
   .col{
@@ -457,7 +466,7 @@
   html,body{height:auto;min-height:100%}
   #app{height:auto;min-height:100vh;overflow:visible}
   .workspace{height:auto;min-height:calc(100vh - 64px);box-sizing:border-box}
-  .split{height:calc(100vh - 88px);min-height:520px;max-height:calc(100vh - 88px);align-items:stretch}
+  .split{height:calc(100vh - 168px);min-height:480px;max-height:calc(100vh - 168px);align-items:stretch}
   .col{height:100%;min-height:0;max-height:100%;overflow:hidden}
   .brain-side .wa-card{
     margin:12px 12px 8px;
@@ -612,20 +621,22 @@
 
 <div id="app" hidden>
   <header class="topbar">
-    <div class="brand">Brain</div>
-    <div class="lamp" id="lamp"><i></i><span id="lampText">Listo</span></div>
-    <button id="traceBtn" type="button">Ver regla</button>
-    <span class="keyhint">teclas 1–4</span>
-    <div class="stat-row" id="statRow">
-      <div class="stat-chip answered"><span class="num" id="statAnswered">0</span><span class="lbl">contestadas</span></div>
-      <div class="stat-chip escalated"><span class="num" id="statEscalated">0</span><span class="lbl">escaladas</span></div>
-      <div class="stat-chip resolved"><span class="num" id="statResolved">0</span><span class="lbl">aprendidas</span></div>
-    </div>
-    <div class="spacer"></div>
-    <div class="tools">
+    <div class="top-main">
+      <button id="backCover" type="button">Brain<small>volver a entrar</small></button>
+      <div class="lamp" id="lamp"><i></i><span id="lampText">Listo</span></div>
+      <button id="traceBtn" type="button">Ver regla</button>
+      <span class="keyhint">teclas 1–4</span>
+      <div class="spacer"></div>
+      <div class="stat-row" id="statRow">
+        <div class="stat-chip answered"><span class="num" id="statAnswered">0</span><span class="lbl">contestadas</span></div>
+        <div class="stat-chip escalated"><span class="num" id="statEscalated">0</span><span class="lbl">escaladas</span></div>
+        <div class="stat-chip resolved"><span class="num" id="statResolved">0</span><span class="lbl">aprendidas</span></div>
+      </div>
       <button id="soundToggle" type="button">Sonido</button>
-      <button id="clearChat" type="button">Limpiar chat</button>
-      <button id="reset" type="button">Reiniciar base</button>
+    </div>
+    <div class="acts">
+      <button id="clearChat" type="button"><strong>Limpiar chat</strong><em>Borra la conversación. Lo que editaste en la base se queda.</em></button>
+      <button id="reset" type="button"><strong>Reiniciar base</strong><em>Devuelve los documentos de origen. El 14, si lo cambiaste, desaparece.</em></button>
     </div>
   </header>
 
@@ -697,6 +708,11 @@
       <div class="kbList" id="kb"></div>
     </section>
   </div>
+  <footer class="foot">
+    <div><strong>Brain</strong><span>Gracián Baena · lectura, no es el producto de GuruSup</span></div>
+    <span>1 fuente clara · 2 conflicto · 3 no sabe · 4 caducada</span>
+    <a href="mailto:gracianbaenagonzalez@gmail.com">gracianbaenagonzalez@gmail.com</a>
+  </footer>
 </div>
 
 
@@ -1566,6 +1582,12 @@ else document.getElementById("gateKey").focus();
 document.getElementById("enter").onclick = () => {
   document.getElementById("cover").hidden = true;
   document.getElementById("app").hidden = false;
+};
+
+document.getElementById("backCover").onclick = () => {
+  document.getElementById("app").hidden = true;
+  document.getElementById("cover").hidden = false;
+  window.scrollTo(0, 0);
 };
 
 document.addEventListener("keydown", e => {
