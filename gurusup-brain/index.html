@@ -1,0 +1,1480 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>GuruSup Brain — Demo</title>
+<meta name="description" content="Demo de gobernanza de conocimiento para agentes: un agente de soporte que no se inventa lo que no sabe. Detecta conflictos, huecos y fuentes caducadas. 100% en el navegador, sin backend." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='3' fill='%232ecf8f'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f8f7;
+    --surface:#ffffff;
+    --surface-2:#fbfbfa;
+    --border:#e6e9e8;
+    --border-soft:#eef1f0;
+    --text:#171717;
+    --muted:#6b7280;
+    --muted-2:#9aa3a1;
+    --brand:#2ecf8f;
+    --brand-dark:#1fae76;
+    --brand-ink:#08361f;
+    --brand-tint:#e7faf1;
+    --danger:#e5484d;
+    --danger-tint:#fdecec;
+    --warn:#d98a1f;
+    --warn-tint:#fdf3e2;
+    --info:#3b7dd8;
+    --info-tint:#eaf1fc;
+    --wa-header:#075e54;
+    --wa-accent:#25d366;
+    --wa-bg:#e9e3d8;
+    --wa-out:#d9fdd3;
+    --shadow-sm:0 1px 2px rgba(16,24,20,.04);
+    --shadow-md:0 8px 24px -8px rgba(16,24,20,.12);
+    --shadow-lg:0 24px 60px -20px rgba(16,24,20,.22);
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:
+      radial-gradient(900px 420px at 12% -8%, rgba(46,207,143,.10), transparent 60%),
+      radial-gradient(700px 380px at 100% 0%, rgba(46,207,143,.06), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:"Inter", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:"JetBrains Mono", ui-monospace, Consolas, monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:40px 20px 64px}
+
+  /* ---------- Hero ---------- */
+  .hero{display:flex;flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:30px}
+  .logo{height:30px;width:auto;color:#111}
+  .badge-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .demo-pill{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--brand-tint);color:var(--brand-ink);
+    border:1px solid rgba(46,207,143,.35);
+    padding:4px 11px;border-radius:999px;font-size:.72rem;font-weight:700;
+    letter-spacing:.03em;text-transform:uppercase;
+  }
+  .demo-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--brand-dark);box-shadow:0 0 0 3px rgba(46,207,143,.25)}
+  .demo-pill.alt{background:var(--surface-2);color:var(--muted);border-color:var(--border)}
+  h1{
+    font-size:2.15rem;line-height:1.14;margin:2px 0 0;font-weight:800;letter-spacing:-.02em;
+    max-width:660px;
+  }
+  h1 .accent{color:var(--brand-dark)}
+  .lede{color:var(--muted);font-size:1.02rem;line-height:1.55;max-width:660px;margin:0}
+  .lede b{color:var(--text);font-weight:650}
+  .lede a{color:var(--brand-dark);font-weight:600;text-decoration:none}
+  .lede a:hover{text-decoration:underline}
+
+  .stat-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+  .stat-chip{
+    display:flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:8px 13px;box-shadow:var(--shadow-sm);
+  }
+  .stat-chip .num{font-size:1.05rem;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums;transition:transform .25s ease}
+  .stat-chip .num.bump{animation:bump .35s ease}
+  .stat-chip .lbl{font-size:.7rem;color:var(--muted);font-weight:600}
+  .stat-chip.answered .num{color:var(--muted)}
+  .stat-chip.escalated .num{color:var(--warn)}
+  .stat-chip.resolved .num{color:var(--brand-dark)}
+
+  /* ---------- Governance legend ---------- */
+  .gov-legend{
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:2px;
+    padding:12px 15px;background:var(--surface);border:1px solid var(--border);
+    border-radius:14px;box-shadow:var(--shadow-sm);max-width:660px;
+  }
+  .gov-legend .gl-title{font-size:.7rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted-2)}
+  .gov-chip{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--text);font-weight:600}
+  .gov-chip .gd{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  .gov-chip .gd.conflict{background:var(--danger)}
+  .gov-chip .gd.gap{background:var(--warn)}
+  .gov-chip .gd.stale{background:var(--info)}
+  .gov-legend .gl-note{flex-basis:100%;font-size:.72rem;color:var(--muted);margin-top:2px}
+  .gov-legend .gl-note b{color:var(--brand-dark);font-weight:700}
+
+  .sound-toggle{
+    display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;
+    border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:.15s;
+  }
+  .sound-toggle:hover{border-color:var(--brand);color:var(--brand-dark)}
+  .sound-toggle svg{width:15px;height:15px}
+
+  :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+  /* ---------- Layout ---------- */
+  .grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;align-items:start}
+  @media (max-width:920px){.grid{grid-template-columns:1fr}}
+
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-sm);
+    padding:18px;
+    display:flex;flex-direction:column;
+  }
+  .card-title{
+    display:flex;align-items:center;justify-content:space-between;
+    margin:-2px 0 14px;
+  }
+  .card-title h2{font-size:.78rem;margin:0;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .card-title .hint{font-size:.72rem;color:var(--muted-2)}
+
+  /* ---------- Chat ---------- */
+  .chat-card{padding:0;overflow:hidden}
+  .chat-head{
+    display:flex;align-items:center;gap:10px;padding:16px 18px;
+    border-bottom:1px solid var(--border-soft);background:var(--surface-2);
+  }
+  .bot-avatar{
+    width:34px;height:34px;border-radius:10px;background:linear-gradient(155deg,var(--brand),var(--brand-dark));
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:var(--shadow-sm);
+  }
+  .bot-avatar svg{width:16px;height:16px;color:#fff}
+  .chat-head .who{font-weight:700;font-size:.9rem}
+  .chat-head .status{display:flex;align-items:center;gap:5px;font-size:.74rem;color:var(--muted)}
+  .chat-head .status .d{width:6px;height:6px;border-radius:50%;background:var(--brand);animation:pulse 2s infinite}
+
+  #chat{height:360px;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+  .row{display:flex;gap:8px;align-items:flex-end;max-width:90%;animation:rise .25s ease}
+  .row.user{align-self:flex-end;flex-direction:row-reverse}
+  .row.bot{align-self:flex-start}
+  .mini-avatar{width:24px;height:24px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+  .row.bot .mini-avatar{background:var(--brand-tint)}
+  .row.bot .mini-avatar svg{width:12px;height:12px;color:var(--brand-ink)}
+  .msg{padding:10px 13px;border-radius:14px;font-size:.89rem;line-height:1.48;white-space:pre-wrap}
+  .row.user .msg{background:var(--text);color:#fff;border-bottom-right-radius:4px}
+  .row.bot .msg{background:var(--surface-2);border:1px solid var(--border-soft);border-bottom-left-radius:4px}
+  .row.bot.escalated .msg{background:var(--warn-tint);border-color:#f0d9a8}
+  .row.bot.stale .msg{background:var(--info-tint);border-color:#c5d9f3}
+  .row.bot.resolved .msg{background:var(--brand-tint);border-color:#a9e6cb;animation:glow 1s ease}
+  .msg .meta{display:flex;align-items:center;gap:5px;margin-top:7px;font-size:.71rem;color:var(--muted);font-weight:600}
+  .msg .meta.escalated{color:#a3690f}
+  .msg .meta.resolved{color:var(--brand-ink)}
+  .msg .meta.stale{color:#2a5da8}
+  .msg .meta.cs{color:var(--brand-dark)}
+  .gov-action{
+    margin-top:8px;display:inline-flex;align-items:center;gap:6px;
+    background:var(--info);border:none;color:#fff;font-weight:650;font-size:.74rem;
+    padding:6px 11px;border-radius:9px;cursor:pointer;transition:.15s;
+  }
+  .gov-action:hover{filter:brightness(1.05)}
+  .gov-action[disabled]{opacity:.5;pointer-events:none}
+  .typing{display:flex;gap:4px;padding:12px 13px}
+  .typing span{width:6px;height:6px;border-radius:50%;background:var(--muted-2);animation:blink 1.2s infinite}
+  .typing span:nth-child(2){animation-delay:.2s}
+  .typing span:nth-child(3){animation-delay:.4s}
+
+  .quick{display:flex;flex-wrap:wrap;gap:7px;padding:0 18px 14px}
+  .quick button{
+    background:var(--surface);border:1px solid var(--border);color:var(--text);
+    padding:6px 12px;border-radius:999px;font-size:.78rem;cursor:pointer;transition:.15s;font-weight:500;
+  }
+  .quick button:hover{border-color:var(--brand);color:var(--brand-ink);background:var(--brand-tint)}
+
+  .inputRow{display:flex;gap:8px;padding:14px 18px;border-top:1px solid var(--border-soft);background:var(--surface-2)}
+  .inputRow input{
+    flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);
+    padding:11px 14px;border-radius:11px;font-size:.9rem;outline:none;transition:.15s;
+  }
+  .inputRow input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(46,207,143,.15)}
+  .inputRow button{
+    background:var(--text);border:none;color:#fff;font-weight:650;
+    padding:0 18px;border-radius:11px;cursor:pointer;font-size:.88rem;transition:.15s;
+  }
+  .inputRow button:hover{background:var(--brand-dark)}
+
+  /* ---------- WhatsApp simulation ---------- */
+  .wa-card{padding:0;overflow:hidden;min-height:190px}
+  .wa-idle{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;padding:34px 18px;color:var(--muted-2);text-align:center;flex:1;
+  }
+  .wa-idle svg{width:26px;height:26px;opacity:.5}
+  .wa-idle .t1{font-size:.85rem;font-weight:600;color:var(--muted)}
+  .wa-idle .t2{font-size:.76rem;max-width:220px}
+
+  .wa-thread{display:none;flex-direction:column}
+  .wa-thread.active{display:flex}
+  .wa-header{
+    display:flex;align-items:center;gap:10px;padding:12px 16px;
+    background:var(--wa-header);color:#fff;
+  }
+  .wa-avatar{
+    width:32px;height:32px;border-radius:50%;background:#0b7a6c;
+    display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;flex-shrink:0;
+  }
+  .wa-header .name{font-size:.86rem;font-weight:650}
+  .wa-header .sub{font-size:.7rem;opacity:.8;display:flex;align-items:center;gap:5px}
+  .wa-header .sub .d{width:6px;height:6px;border-radius:50%;background:var(--wa-accent)}
+  .wa-header .sub.typing .d{animation:pulse .8s infinite}
+
+  .wa-body{
+    background:var(--wa-bg);padding:14px 12px;display:flex;flex-direction:column;gap:8px;
+    min-height:170px;max-height:320px;overflow-y:auto;
+  }
+  .wa-bubble{max-width:86%;padding:8px 10px 6px;border-radius:9px;font-size:.82rem;line-height:1.42;position:relative;animation:rise .2s ease;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+  .wa-bubble.in{background:#fff;align-self:flex-start;border-top-left-radius:2px}
+  .wa-bubble.in .sender{display:block;font-size:.68rem;font-weight:700;color:var(--brand-dark);margin-bottom:2px}
+  .wa-bubble.out{background:var(--wa-out);align-self:flex-end;border-top-right-radius:2px}
+  .wa-bubble .time{display:block;text-align:right;font-size:.62rem;color:#8a9591;margin-top:3px}
+  .wa-bubble .time .ticks{color:#53bdeb;margin-left:2px}
+
+  .wa-options{display:flex;flex-direction:column;gap:6px;align-self:flex-start;max-width:88%}
+  .wa-option{
+    background:#fff;border:1px solid #d8e0dc;border-radius:10px;padding:8px 10px;cursor:pointer;
+    text-align:left;font-size:.78rem;line-height:1.4;transition:.15s;
+  }
+  .wa-option:hover{border-color:var(--wa-accent);background:#f3fbf7}
+  .wa-option .src{display:block;margin-top:4px;color:var(--muted-2);font-size:.68rem}
+  .wa-option[disabled]{opacity:.5;pointer-events:none}
+  .wa-option.affirm{border-color:#a9e6cb;background:#f0fbf5}
+
+  .wa-compose{display:flex;gap:7px;padding:10px 12px;background:#f0f0f0}
+  .wa-compose input{
+    flex:1;border:none;border-radius:20px;padding:9px 14px;font-size:.82rem;outline:none;background:#fff;
+  }
+  .wa-compose button{
+    width:34px;height:34px;border-radius:50%;border:none;background:var(--wa-accent);color:#fff;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .wa-compose button svg{width:15px;height:15px}
+  .wa-compose[hidden]{display:none}
+
+  .wa-status-line{padding:8px 14px;font-size:.72rem;color:var(--muted-2);background:var(--wa-bg);text-align:center}
+
+  /* ---------- Log ---------- */
+  #log{display:flex;flex-direction:column;gap:0;max-height:180px;overflow-y:auto;padding-right:2px}
+  .ev{position:relative;padding:8px 0 8px 20px;font-size:.79rem;border-left:2px solid var(--border-soft);margin-left:5px}
+  .ev:last-child{border-color:transparent}
+  .ev::before{content:"";position:absolute;left:-5px;top:10px;width:8px;height:8px;border-radius:50%;background:var(--muted-2);border:2px solid var(--surface)}
+  .ev .lbl{color:var(--text);font-weight:600;display:block}
+  .ev .sub{color:var(--muted);font-size:.73rem}
+  .ev.conflict::before{background:var(--danger)}
+  .ev.gap::before{background:var(--warn)}
+  .ev.stale::before{background:var(--info)}
+  .ev.escalated::before{background:var(--warn)}
+  .ev.resolved::before{background:var(--brand)}
+  .ev.reaffirmed::before{background:var(--brand)}
+  .ev.answered::before{background:#9aa3a1}
+  .ev.retrieval::before{background:#c8ced2}
+  .empty-log{color:var(--muted-2);font-size:.82rem;padding:8px 0}
+
+  /* ---------- KB ---------- */
+  .kbList{display:flex;flex-direction:column;gap:9px;max-height:260px;overflow-y:auto;padding-right:2px}
+  .doc{
+    border:1px solid var(--border);border-radius:13px;padding:11px 12px;font-size:.8rem;
+    background:var(--surface-2);transition:.15s;
+  }
+  .doc .topline{display:flex;justify-content:space-between;align-items:center;color:var(--muted);margin-bottom:5px;font-size:.72rem;gap:8px}
+  .doc .topline .topic{font-weight:700;color:var(--text);text-transform:capitalize}
+  .doc .text{color:var(--text);line-height:1.4}
+  .doc .src{margin-top:6px;color:var(--muted-2);font-size:.72rem}
+  .doc:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+  .doc.conflict{border-color:#f3c6c7;background:var(--danger-tint)}
+  .doc.stale{border-color:#c5d9f3;background:var(--info-tint)}
+  .doc.canonical{border-color:#a9e6cb;background:var(--brand-tint)}
+  .doc.gap-note{border-style:dashed;color:var(--muted)}
+  .tag{font-size:.66rem;padding:2px 8px;border-radius:999px;background:var(--brand);color:#fff;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+  .tag.conflict{background:var(--danger)}
+  .tag.gap{background:var(--warn)}
+  .tag.stale{background:var(--info)}
+
+  footer{margin-top:22px;display:flex;justify-content:space-between;align-items:center;color:var(--muted-2);font-size:.78rem;flex-wrap:wrap;gap:10px}
+  footer a{color:var(--muted-2)}
+  footer button{background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:7px 13px;border-radius:9px;cursor:pointer;font-weight:600;font-size:.78rem}
+  footer button:hover{color:var(--text);border-color:var(--brand)}
+
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  @keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.28)}100%{transform:scale(1)}}
+  @keyframes glow{0%{box-shadow:0 0 0 0 rgba(46,207,143,.45)}100%{box-shadow:0 0 0 10px rgba(46,207,143,0)}}
+
+  @media (max-width:560px){
+    .wrap{padding:26px 16px 48px}
+    h1{font-size:1.7rem}
+    .lede{font-size:.95rem}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  }
+
+  ::-webkit-scrollbar{width:7px;height:7px}
+  ::-webkit-scrollbar-thumb{background:#d8dcda;border-radius:99px}
+
+  /* ---------- Portada ---------- */
+  #cover{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 20px;
+    background:
+      radial-gradient(900px 480px at 80% -10%, rgba(46,207,143,.22), transparent 55%),
+      radial-gradient(700px 420px at 0% 100%, rgba(46,207,143,.10), transparent 50%),
+      #07140f;
+    color:#f4f7f5;
+  }
+  .cover-inner{width:min(920px,100%)}
+  .cover-kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    color:#9ddec4;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .cover-kicker i{width:7px;height:7px;border-radius:50%;background:#2ecf8f;display:block}
+  #cover h1{
+    color:#fff;font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.02;
+    max-width:14ch;margin:14px 0 0;letter-spacing:-.035em;
+  }
+  #cover h1 em{font-style:normal;color:#2ecf8f}
+  .cover-lead{max-width:46ch;color:#c9d5cf;font-size:1.08rem;line-height:1.55;margin:16px 0 0}
+  .cover-lead b{color:#fff}
+  .cover-signals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+  .cover-signals article{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;padding:16px 16px 18px;
+  }
+  .cover-signals strong{display:block;margin-bottom:6px;font-size:.95rem}
+  .cover-signals span{color:#aebbb4;font-size:.84rem;line-height:1.4}
+  .cover-signals .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px}
+  .cover-signals .dot.c{background:#e5484d}
+  .cover-signals .dot.g{background:#d98a1f}
+  .cover-signals .dot.s{background:#3b7dd8}
+  #enter{
+    margin-top:28px;
+    background:#2ecf8f;color:#062117;border:0;
+    font-weight:800;font-size:1rem;
+    padding:14px 22px;border-radius:999px;cursor:pointer;
+  }
+  #enter:hover{background:#46e0a2}
+  .cover-note{display:block;margin-top:14px;color:#7e9088;font-size:.78rem}
+  #app[hidden],#cover[hidden]{display:none}
+  #app{min-height:100vh;background:#eef3f0;display:flex;flex-direction:column}
+  .topbar{
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    padding:12px 18px;background:#07140f;color:#f4f7f5;
+  }
+  .topbar .brand{font-weight:800;letter-spacing:-.03em;font-size:1.05rem}
+  .topbar .brand span{color:#2ecf8f;font-weight:600;margin-left:8px}
+  .topbar .stat-row{margin:0}
+  .topbar .stat-chip{background:rgba(255,255,255,.06);border-color:transparent;color:#d5e4dc}
+  .topbar .stat-chip .lbl{color:#9aada4}
+  .topbar .spacer{flex:1}
+  .topbar button,#reset{
+    background:transparent;color:#d5e4dc;border:1px solid rgba(255,255,255,.16);
+    border-radius:999px;padding:7px 12px;cursor:pointer;font-weight:650;font-size:.78rem;
+  }
+  .workspace{flex:1;display:flex;flex-direction:column;gap:12px;padding:12px;min-height:0}
+  .split{flex:1;display:grid;grid-template-columns:minmax(280px,.72fr) minmax(420px,1.45fr);gap:12px;min-height:calc(100vh - 88px)}
+  .col{
+    background:#fff;border:1px solid #e3e9e6;border-radius:18px;
+    display:flex;flex-direction:column;min-height:0;overflow:hidden;
+    box-shadow:0 10px 30px -18px rgba(7,20,15,.35);
+  }
+  .col-head{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:12px 14px;border-bottom:1px solid #eef1f0;
+  }
+  .col-head h2{margin:0;font-size:.95rem}
+  .col-head p{margin:2px 0 0;color:#6b7280;font-size:.75rem}
+  .who-pill{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1fae76}
+  .col .quick{padding:10px 12px 0}
+  .col-head,.scenarios,.col .inputRow,.wa-header,.wa-compose,.wa-status-line{flex:0 0 auto}
+  .col #chat{flex:1 1 auto;height:auto;min-height:0;overflow-y:auto}
+  .col #chat,.wa-body{scrollbar-gutter:stable}
+  .col .inputRow{border-top:1px solid #eef1f0}
+  .brain-side{background:#f7faf8}
+  .brain-side .wa-card{border:0;border-radius:0;box-shadow:none;flex:1;min-height:220px}
+  .brain-side #log{max-height:150px}
+  .kb-dock{max-height:32vh;overflow:auto}
+  .kb-dock .kbList{max-height:none}
+  @media (max-width:900px){
+    .cover-signals,.split,.cover-grid{grid-template-columns:1fr}
+    .split{min-height:0}
+    #app{height:auto;overflow:auto}
+  }
+
+  #cover{
+    background:
+      radial-gradient(520px 320px at 78% 18%, rgba(46,207,143,.28), transparent 60%),
+      linear-gradient(180deg, #07140f 0%, #0c1c16 100%);
+  }
+  .cover-grid{
+    width:min(1080px,100%);
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:48px;
+    align-items:center;
+  }
+  .cover-stage{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr auto;
+    gap:10px;
+    min-height:340px;
+    padding:14px;
+    border-radius:28px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.7);
+  }
+  .pane{border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px;min-height:150px}
+  .pane b{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
+  .pane i{font-style:normal;font-size:.86rem;line-height:1.35;opacity:.85}
+  .pane.client{background:#f4f7f5;color:#14211b}
+  .pane.client b{color:#1fae76}
+  .bubble{align-self:flex-end;background:#14211b;color:#fff;border-radius:12px 12px 4px 12px;padding:8px 10px;font-size:.78rem;max-width:90%}
+  .bubble.bot{align-self:flex-start;background:#e7f7ef;color:#08361f;border-radius:12px 12px 12px 4px}
+  .pane.gs{background:#075e54;color:#fff}
+  .pane.base{grid-column:1 / -1;background:#101814;color:#d7e6de;min-height:72px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chips span{border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:4px 8px;font-size:.72rem}
+  .chips .bad{border-color:#e5484d;color:#ffb4b6}
+
+  html,body{height:auto;min-height:100%}
+  #app{height:auto;min-height:100vh;overflow:visible}
+  .workspace{height:auto;min-height:calc(100vh - 64px);box-sizing:border-box}
+  .split{height:calc(100vh - 88px);min-height:520px;max-height:calc(100vh - 88px);align-items:stretch}
+  .col{height:100%;min-height:0;max-height:100%;overflow:hidden}
+  .brain-side .wa-card{
+    margin:12px 12px 8px;
+    border:7px solid #10211b;
+    border-radius:26px;
+    overflow:hidden;
+    flex:1 1 auto;
+    min-height:0;
+    max-height:none;
+    background:#10211b;
+    display:flex;
+    flex-direction:column;
+  }
+  .wa-body{flex:1 1 auto;min-height:0;max-height:none;overflow-y:auto}
+  .wa-thread.active{display:flex;flex:1 1 auto;min-height:0;overflow:hidden}
+  .wa-idle{flex:1}
+  .kb-dock{flex:none;max-height:none;margin-top:8px}
+  .below{margin-top:4px}
+  .below #log{max-height:none}
+  .kb-dock .kbList{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-auto-flow:row;
+    gap:10px;
+    max-height:none;
+    overflow:visible;
+    padding-bottom:8px;
+  }
+  .lamp{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:#d7e6de}
+  .lamp i{width:8px;height:8px;border-radius:50%;background:#7e9088;box-shadow:0 0 0 4px rgba(255,255,255,.06)}
+  .lamp.ok i{background:#2ecf8f}
+  .lamp.hot i{background:#e5484d}
+  .lamp.warn i{background:#d98a1f}
+  .lamp.old i{background:#3b7dd8}
+  .scenarios{display:flex;gap:6px;flex-wrap:wrap;padding:10px 12px 0}
+  .scenarios button{border-radius:999px;border:1px solid #d7e0db;background:#fff;padding:6px 10px;font-size:.74rem;font-weight:700;cursor:pointer}
+  .scenarios button.ok{border-color:#a9e6cb}
+  .scenarios button.hot{border-color:#f3c0c2}
+  .scenarios button.old{border-color:#c5d7f3}
+  .trace{margin:0 0 12px;background:#10211b;color:#e7f3ec;border-radius:14px;padding:12px 14px}
+  .trace b{display:block;font-size:.84rem}
+  .trace p{margin:6px 0;white-space:pre-wrap;color:#c5d5cc;font-size:.8rem;line-height:1.4}
+  .trace span{font-size:.72rem;color:#8fbfa8}
+  .edit-doc{border:0;background:transparent;color:#1fae76;font-weight:800;font-size:.7rem;cursor:pointer}
+  .edit-area{width:100%;min-height:72px;border:1px solid #c9ddd2;border-radius:8px;padding:8px;font:inherit}
+  .wa-bubble .time .ticks{color:#9aa3a1}
+  .wa-bubble .time .ticks.read{color:#53bdeb}
+  .wa-typing{align-self:flex-start;background:#fff;border-radius:12px;padding:10px 12px;display:flex;gap:4px}
+  .wa-typing i{width:6px;height:6px;border-radius:50%;background:#8a9591;display:block;animation:blink 1s infinite}
+  .wa-typing i:nth-child(2){animation-delay:.15s}
+  .wa-typing i:nth-child(3){animation-delay:.3s}
+  .col{background:linear-gradient(#fff,#f7faf8)}
+  .brain-side{background:#e7f3ee}
+  .scenarios button.on{background:#10211b;color:#fff;border-color:#10211b}
+  .scenarios button.learned{box-shadow:inset 0 -2px 0 #1fae76}
+  .keyhint{font-size:.72rem;color:#8fbfa8;font-weight:700;letter-spacing:.04em}
+  .doc.hit{outline:2px solid #1fae76;box-shadow:0 0 0 4px rgba(46,207,143,.18)}
+  .msg .when{display:block;margin-top:6px;font-size:.66rem;opacity:.62;font-weight:600}
+  .wa-os{display:flex;justify-content:space-between;align-items:center;padding:8px 14px 4px;color:#d7e6de;font-size:.68rem;font-weight:700;letter-spacing:.04em}
+</style>
+</head>
+<body>
+<div id="cover">
+  <div class="cover-grid">
+    <div class="cover-inner">
+      <div class="cover-kicker"><i></i> GuruSup Brain · demo</div>
+      <h1>No contesta si <em>no sabe</em>.</h1>
+      <p class="cover-lead">Tres sitios. El cliente pregunta a la izquierda. GuruSup, a la derecha, solo habla con quien manda en ese tema. La base, abajo, es lo único que el agente puede usar.</p>
+      <div class="cover-signals">
+        <article><strong><span class="dot c"></span>Conflicto</strong><span>Dos fuentes vivas. No elige la más nueva.</span></article>
+        <article><strong><span class="dot g"></span>Hueco</strong><span>No está escrito. No se lo inventa.</span></article>
+        <article><strong><span class="dot s"></span>Caducada</strong><span>Contesta, y pide revisión.</span></article>
+      </div>
+      <button id="enter" type="button">Entrar al salón</button>
+      <span class="cover-note">Gracián Baena · lectura del Brain de GuruSup · sin servidor</span>
+    </div>
+    <div class="cover-stage" aria-hidden="true">
+      <div class="pane client">
+        <b>Cliente</b>
+        <span class="bubble">¿Puedo cancelar?</span>
+        <span class="bubble bot">Hay dos políticas. No elijo.</span>
+      </div>
+      <div class="pane gs">
+        <b>GuruSup</b>
+        <i>Ana, junio dice 24 h. Agosto dice devolución. ¿Cuál sigue?</i>
+      </div>
+      <div class="pane base">
+        <b>Base</b>
+        <div class="chips"><span>envíos · única</span><span class="bad">cancelación · 2 fuentes</span><span>horario · vieja</span><span>descuento · vacío</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <header class="topbar">
+    <div class="brand">Brain</div>
+    <div class="lamp" id="lamp"><i></i><span id="lampText">Listo</span></div>
+    <button id="traceBtn" type="button">Ver regla</button>
+    <span class="keyhint">teclas 1–4</span>
+    <div class="stat-row" id="statRow">
+      <div class="stat-chip answered"><span class="num" id="statAnswered">0</span><span class="lbl">al instante</span></div>
+      <div class="stat-chip escalated"><span class="num" id="statEscalated">0</span><span class="lbl">escaladas</span></div>
+      <div class="stat-chip resolved"><span class="num" id="statResolved">0</span><span class="lbl">aprendidas</span></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="sound-toggle" id="soundToggle" type="button" title="Sonido" aria-label="Sonido">Sonido</button>
+    <button id="clearChat" type="button">Limpiar chat</button>
+    <button id="reset" type="button">Reiniciar base</button>
+  </header>
+
+  <div class="workspace">
+    <div class="split">
+      <section class="col">
+        <div class="col-head">
+          <div>
+            <div class="who-pill">Cliente</div>
+            <h2>La pregunta</h2>
+            <p>Lo que ve quien escribe al soporte.</p>
+          </div>
+        </div>
+        <div class="scenarios" id="quick"></div>
+        <div id="chat"></div>
+        <div class="inputRow">
+          <input id="input" type="text" placeholder="Escribe como el cliente..." />
+          <button id="send" type="button">Enviar</button>
+        </div>
+      </section>
+
+      <section class="col brain-side">
+        <div class="col-head">
+          <div>
+            <div class="who-pill">GuruSup</div>
+            <h2>Quien sabe del tema</h2>
+            <p id="gsHint">Solo aparece si el Brain no puede cerrar solo.</p>
+          </div>
+        </div>
+        <div class="card wa-card">
+          <div class="wa-os"><span>WhatsApp</span><span id="waClock">--:--</span></div>
+          <div class="wa-idle" id="waIdle">
+            <span class="t1">En silencio</span>
+            <span class="t2">Si la fuente es única y reciente, GuruSup no molesta a nadie.</span>
+          </div>
+          <div class="wa-thread" id="waThread">
+            <div class="wa-header">
+              <div class="wa-avatar" id="waAvatar">?</div>
+              <div style="flex:1">
+                <div class="name" id="waName">—</div>
+                <div class="sub"><span class="d"></span><span id="waSub">en línea</span></div>
+              </div>
+            </div>
+            <div class="wa-body" id="waBody"></div>
+            <div class="wa-compose" id="waCompose" hidden>
+              <input id="waInput" type="text" placeholder="Responde como esta persona..." />
+              <button id="waSend" type="button" aria-label="Enviar">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20l18-8L3 4v6l12 2-12 2z"/></svg>
+              </button>
+            </div>
+            <div class="wa-status-line" id="waStatusLine" style="display:none"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="card below">
+      <div class="card-title"><h2>Qué decide</h2><span class="hint">la regla, no un porcentaje</span></div>
+      <div id="trace" class="trace" hidden>
+        <b id="traceRule">—</b>
+        <p id="traceChunk"></p>
+        <span id="traceMs"></span>
+      </div>
+      <div id="log"><div class="empty-log">Todavía no hay pregunta.</div></div>
+    </section>
+
+    <section class="card kb-dock">
+      <div class="card-title"><h2>Base de conocimiento</h2><span class="hint" id="kb-count"></span></div>
+      <div class="kbList" id="kb"></div>
+    </section>
+  </div>
+</div>
+
+
+<script>
+/* =========================================================================
+   GuruSup Brain — gobernanza de conocimiento para agentes, 100% navegador.
+   Tres señales deterministas: conflicto entre fuentes, hueco sin documentar,
+   y fuente caducada (stale). Puerto directo de la versión Python (FastAPI):
+   https://github.com/GracianB/gurusup-brain-demo
+   ========================================================================= */
+
+/* Umbral de revisión: una fuente vigente que no se toca desde hace más de
+   estos días se marca para revisión (governance de "contexto obsoleto").
+   Es una regla explícita, no un modelo — se puede defender y ajustar. */
+const REVIEW_AFTER_DAYS = 180;
+
+const KB = [
+  { id:"doc-cancel-1", topic:"cancelacion", date:"2026-06-01",
+    text:"Los clientes pueden cancelar su suscripción hasta 24h antes de la renovación, sin coste ni penalización.",
+    source:"Notion · Políticas de Facturación (v3)" },
+  { id:"doc-cancel-2", topic:"cancelacion", date:"2026-08-15",
+    text:"Los clientes pueden cancelar su suscripción en cualquier momento, con devolución proporcional de los días no usados.",
+    source:"Slack #producto · anuncio de Ana Ferreras" },
+  { id:"doc-envios-1", topic:"envios", date:"2026-08-01",
+    text:"Los envíos a Portugal y Francia tardan entre 3 y 5 días laborables.",
+    source:"Google Drive · Manual de Logística" },
+  { id:"doc-horario-1", topic:"horario", date:"2026-01-01",
+    text:"El horario de atención al cliente es de 9:00 a 18:00 (lunes a viernes, hora de Madrid).",
+    source:"Web pública · gurusup.com/soporte" },
+  { id:"doc-onboarding-1", topic:"onboarding", date:"2026-07-01",
+    text:"El onboarding de un cliente nuevo dura entre 3 y 5 días e incluye una llamada de bienvenida con Customer Success.",
+    source:"Notion · Playbook de Onboarding" },
+  // "descuento" existe como topic pero SIN documentos -> gap real
+];
+
+const RESPONSIBLE_BY_TOPIC = {
+  cancelacion: "Ana Ferreras · Customer Success Lead",
+  envios: "Equipo de Logística",
+  horario: "Operaciones",
+  onboarding: "Equipo de Customer Success",
+  descuento: "Alex García Puig · Founding GTM",
+  general: "Víctor Mollá · CEO",
+};
+
+const TOPIC_KEYWORDS = {
+  cancelacion: ["cancelar","cancelación","cancelacion","baja","cancelo","darme de baja"],
+  envios: ["envío","envio","entrega","enviar","paquete","portugal","francia"],
+  horario: ["horario","atención","atencion","horas","abierto","cerrado"],
+  onboarding: ["onboarding","alta","nuevo cliente","empezar","bienvenida"],
+  descuento: ["descuento","estudiante","beca","precio especial","promoción","promocion"],
+};
+
+function hasTerm(message, keyword){
+  const src = message.toLowerCase();
+  const k = keyword.toLowerCase();
+  const letter = /[a-záéíóúüñ]/;
+  let i = src.indexOf(k);
+  while (i !== -1){
+    const beforeOk = i === 0 || !letter.test(src[i - 1]);
+    const after = src[i + k.length] || "";
+    const afterOk = !after || !letter.test(after) || after === "s";
+    if (beforeOk && afterOk) return true;
+    i = src.indexOf(k, i + 1);
+  }
+  return false;
+}
+
+function daysBetween(iso){
+  const then = new Date(iso + "T00:00:00");
+  const today = new Date();
+  return Math.floor((today - then) / 86400000);
+}
+function ageLabel(days){
+  const m = Math.round(days / 30);
+  if (m <= 1) return "hace 1 mes";
+  if (m < 12) return `hace ${m} meses`;
+  const y = Math.floor(m / 12);
+  return `hace más de ${y} año${y > 1 ? "s" : ""}`;
+}
+
+class GuruSupBrain {
+  constructor(){ this.reset(); }
+
+  reset(){
+    this.kb = KB.map(d => ({...d}));
+    this.resolved = {};
+    this.log = [];
+    this.pending = null;
+    this.lastTopic = null;
+  }
+
+  _emit(type, detail = {}){
+    const ev = { id: Math.random().toString(36).slice(2,10), ts: Date.now()/1000, type, detail };
+    this.log.push(ev);
+    return ev;
+  }
+
+  findTopic(message){
+    const m = message.toLowerCase();
+    for (const [topic, keywords] of Object.entries(TOPIC_KEYWORDS)){
+      if (keywords.some(k => hasTerm(m, k))) return topic;
+    }
+    return null;
+  }
+
+  docsForTopic(topic){
+    let docs = this.kb.filter(d => d.topic === topic);
+    if (this.resolved[topic]){
+      const canonicalId = this.resolved[topic];
+      docs = docs.filter(d => d.id === canonicalId);
+    }
+    return docs;
+  }
+
+  responsibleFor(topic){
+    return RESPONSIBLE_BY_TOPIC[topic || "general"] || "el equipo responsable";
+  }
+
+  ask(message){
+    const topic = this.findTopic(message);
+    this.lastTopic = topic;
+    this._emit("retrieval", { query: message, topic });
+
+    if (topic === null){
+      this._emit("gap", { query: message, topic: "general" });
+      return this._escalate("general", "gap", message);
+    }
+
+    const docs = this.docsForTopic(topic);
+    if (!docs.length){
+      this._emit("gap", { topic });
+      return this._escalate(topic, "gap", message);
+    }
+
+    const distinctTexts = new Set(docs.map(d => d.text));
+    if (distinctTexts.size > 1){
+      this._emit("conflict", { topic, docs: docs.map(d => ({id:d.id,date:d.date,source:d.source,text:d.text})) });
+      return this._escalate(topic, "conflict", message, docs);
+    }
+
+    // Única fuente vigente -> se responde. Pero comprobamos si está caducada.
+    const doc = docs[0];
+    const age = daysBetween(doc.date);
+    const isStale = age > REVIEW_AFTER_DAYS;
+
+    this._emit("answered", { topic, doc_id: doc.id, stale: isStale, age });
+    if (isStale) this._emit("stale", { topic, doc_id: doc.id, age });
+    this.pending = null;
+
+    return {
+      status: "answered",
+      answer: doc.text,
+      sources: [{date: doc.date, source: doc.source}],
+      escalated_to: null,
+      pending: null,
+      stale: isStale,
+      stale_age: age,
+      review_owner: isStale ? this.responsibleFor(topic) : null,
+      topic,
+      doc_id: doc.id,
+    };
+  }
+
+  // Prepara una revisión de una fuente caducada (no bloquea al cliente:
+  // la respuesta ya se ha dado; esto es el "hunting" en segundo plano).
+  reviewPending(topic){
+    const docs = this.docsForTopic(topic);
+    if (!docs.length) return null;
+    const doc = docs[0];
+    const responsible = this.responsibleFor(topic);
+    this._emit("escalated", { topic, reason: "review", to: responsible });
+    const pending = {
+      id: Math.random().toString(36).slice(2,10),
+      topic, reason: "review", question: `¿Sigue vigente la política de "${topic}"?`,
+      contact: responsible,
+      stale_age: daysBetween(doc.date),
+      options: [{ id: doc.id, date: doc.date, source: doc.source, text: doc.text }],
+    };
+    this.pending = pending;
+    return pending;
+  }
+
+  _escalate(topic, reason, question, docs = null){
+    const responsible = this.responsibleFor(topic);
+    this._emit("escalated", { topic, reason, to: responsible });
+
+    const pending = {
+      id: Math.random().toString(36).slice(2,10),
+      topic, reason, question, contact: responsible,
+      options: docs ? docs.map(d => ({id:d.id,date:d.date,source:d.source,text:d.text})) : [],
+    };
+    this.pending = pending;
+
+    const interim = reason === "conflict"
+      ? `Dame un segundo, esto tiene dos versiones distintas y no quiero adivinar — se lo confirmo a ${responsible.split(" · ")[0]} ahora mismo 👀`
+      : `Buena pregunta — no lo tengo documentado, así que prefiero confirmarlo antes de responderte mal. Se lo pregunto a ${responsible.split(" · ")[0]} y te contesto en nada 👀`;
+
+    return {
+      status: "escalated", answer: interim,
+      sources: docs ? docs.map(d => ({date:d.date, source:d.source})) : [],
+      escalated_to: responsible, topic, reason, pending,
+    };
+  }
+
+  resolve(topic, { docId = null, freeText = null, reaffirm = false } = {}){
+    const contact = this.responsibleFor(topic);
+    let canonical;
+    let mode = "resolved";
+
+    if (docId){
+      const validIds = new Set(this.kb.filter(d => d.topic === topic).map(d => d.id));
+      if (!validIds.has(docId)) throw new Error(`doc_id '${docId}' no pertenece al topic '${topic}'`);
+      canonical = docId;
+      if (reaffirm){
+        // Revisión: la persona confirma que sigue vigente -> refrescamos la fecha.
+        const d = this.kb.find(x => x.id === docId);
+        if (d) d.date = new Date().toISOString().slice(0,10);
+        mode = "reaffirmed";
+      }
+    } else if (freeText && freeText.trim()){
+      const newDoc = {
+        id: `human-${topic}-${Math.random().toString(36).slice(2,8)}`,
+        topic, date: new Date().toISOString().slice(0,10),
+        text: freeText.trim(), source: `WhatsApp · ${contact}`,
+      };
+      this.kb.push(newDoc);
+      canonical = newDoc.id;
+    } else {
+      throw new Error("hay que pasar doc_id o free_text");
+    }
+
+    this.resolved[topic] = canonical;
+    this._emit(mode === "reaffirmed" ? "reaffirmed" : "resolved", { topic, doc_id: canonical });
+    const doc = this.kb.find(d => d.id === canonical);
+    this.pending = null;
+    return { status:"resolved", mode, topic, contact, canonical_doc: {id:doc.id,date:doc.date,source:doc.source,text:doc.text} };
+  }
+}
+
+const brain = new GuruSupBrain();
+
+/* ---------------- UI ---------------- */
+
+const chatEl = document.getElementById("chat");
+const logEl = document.getElementById("log");
+const kbEl = document.getElementById("kb");
+const kbCountEl = document.getElementById("kb-count");
+const inputEl = document.getElementById("input");
+const quickEl = document.getElementById("quick");
+
+const waIdle = document.getElementById("waIdle");
+const waThread = document.getElementById("waThread");
+const waAvatar = document.getElementById("waAvatar");
+const waName = document.getElementById("waName");
+const waSub = document.getElementById("waSub");
+const waBody = document.getElementById("waBody");
+const waCompose = document.getElementById("waCompose");
+const waInput = document.getElementById("waInput");
+const waStatusLine = document.getElementById("waStatusLine");
+
+const BOT_ICON = `<svg viewBox="0 0 254 254" fill="none"><path d="M142.601 0L127.157 38.853L111.876 0H87.0041L114.965 70.5525H139.349L166.985 0H142.601Z" fill="currentColor"/><path d="M253.989 142.601L215.136 127.157L253.989 111.876V87.0041L183.436 114.965V139.349L253.989 166.985V142.601Z" fill="currentColor"/><path d="M111.388 253.989L126.832 215.136L142.113 253.989H166.985L139.024 183.436H114.64L87.0041 253.989L111.388 253.989Z" fill="currentColor"/><path d="M6.62982e-07 111.388L38.853 126.832L2.96594e-07 142.113L0 166.985L70.5525 139.024V114.64L9.5376e-07 87.0041L6.62982e-07 111.388Z" fill="currentColor"/><path d="M78.3896 94.9368L97.7343 75.5921L43.9259 21.7837L24.5812 41.1284L78.3896 94.9368Z" fill="currentColor"/><path d="M157.232 75.592L176.577 94.9368L230.385 41.1284L211.04 21.7837L157.232 75.592Z" fill="currentColor"/><path d="M176.577 157.036L157.232 176.381L211.04 230.189L230.385 210.844L176.577 157.036Z" fill="currentColor"/><path d="M97.7344 176.381L78.3896 157.036L24.5812 210.845L43.926 230.189L97.7344 176.381Z" fill="currentColor"/></svg>`;
+
+const SCENARIOS = [
+  { key: "1", topic: "envios", label: "1 · Fuente clara", text: "¿Cuánto tardan los envíos a Portugal?", kind: "ok" },
+  { key: "2", topic: "cancelacion", label: "2 · Conflicto", text: "¿Puedo cancelar mi suscripción?", kind: "hot" },
+  { key: "3", topic: "descuento", label: "3 · No sabe", text: "¿Tenéis descuento para estudiantes?", kind: "hot" },
+  { key: "4", topic: "horario", label: "4 · Caducada", text: "¿Cuál es el horario de atención?", kind: "old" },
+];
+
+const HAPPY_REPLIES = [
+  "¡Perfecto, muchas gracias! 🙌",
+  "Genial, gracias por confirmarlo 😊",
+  "Entendido, ¡gracias por la rapidez!",
+  "Buenísimo, gracias por aclarármelo 🙏"
+];
+
+function now(){
+  return new Date().toLocaleTimeString("es-ES", {hour:"2-digit", minute:"2-digit"});
+}
+function initials(name){
+  return name.split(/[\s·]+/).filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
+}
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+/* ---------------- sound (synthesized, no external assets) ---------------- */
+
+let soundOn = true;
+try { soundOn = localStorage.getItem("gsb_sound") !== "off"; } catch(e){}
+let audioCtx = null;
+function getCtx(){
+  if (!audioCtx){
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){ return null; }
+  }
+  return audioCtx;
+}
+function beep(freq, dur, vol = 0.05, type = "sine"){
+  if (!soundOn) return;
+  const ctx = getCtx();
+  if (!ctx) return;
+  if (ctx.state === "suspended") ctx.resume();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = type;
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(vol, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
+  osc.connect(gain).connect(ctx.destination);
+  osc.start();
+  osc.stop(ctx.currentTime + dur);
+}
+const sound = {
+  send: () => beep(720, 0.06, 0.04),
+  answer: () => beep(880, 0.12, 0.05),
+  waIn: () => { beep(660, 0.08, 0.05); setTimeout(() => beep(880, 0.1, 0.05), 90); },
+  waOut: () => beep(520, 0.07, 0.05),
+  resolved: () => { beep(660, 0.08, 0.05); setTimeout(() => beep(990, 0.14, 0.06), 100); },
+};
+
+function updateSoundIcon(){
+  const btn = document.getElementById("soundToggle");
+  if (!btn) return;
+  btn.textContent = soundOn ? "Sonido" : "Silencio";
+}
+document.getElementById("soundToggle").onclick = () => {
+  soundOn = !soundOn;
+  try { localStorage.setItem("gsb_sound", soundOn ? "on" : "off"); } catch(e){}
+  updateSoundIcon();
+  if (soundOn) beep(880, 0.08, 0.05);
+};
+updateSoundIcon();
+
+/* ---------------- stats ---------------- */
+
+const stats = { answered: 0, escalated: 0, resolved: 0 };
+function bumpStat(key){
+  stats[key]++;
+  const el = document.getElementById("stat" + key[0].toUpperCase() + key.slice(1));
+  el.textContent = stats[key];
+  el.classList.remove("bump");
+  void el.offsetWidth;
+  el.classList.add("bump");
+}
+
+/* ---------------- main chat ---------------- */
+
+function setLamp(kind, text){
+  const lamp = document.getElementById("lamp");
+  const label = document.getElementById("lampText");
+  if (!lamp || !label) return;
+  lamp.className = "lamp" + (kind ? " " + kind : "");
+  label.textContent = text;
+}
+
+function showTrace(rule, chunk, ms){
+  const box = document.getElementById("trace");
+  if (!box) return;
+  document.getElementById("traceRule").textContent = rule;
+  document.getElementById("traceChunk").textContent = chunk || "";
+  const shown = ms < 1 ? "<1" : String(Math.round(ms));
+  document.getElementById("traceMs").textContent = shown + " ms · la regla corre en esta máquina. El modelo no decide.";
+  box.hidden = false;
+}
+
+function addMsg(text, who, meta){
+  meta = meta || {};
+  const row = document.createElement("div");
+  row.className = "row " + who + (meta.cls ? " " + meta.cls : "");
+
+  if (who === "bot"){
+    const av = document.createElement("div");
+    av.className = "mini-avatar";
+    av.innerHTML = BOT_ICON;
+    row.appendChild(av);
+  }
+
+  const bubble = document.createElement("div");
+  const msg = document.createElement("div");
+  msg.className = "msg";
+  msg.textContent = text;
+  const when = document.createElement("span");
+  when.className = "when";
+  when.textContent = now();
+  msg.appendChild(when);
+
+  if (meta.metaText){
+    const m = document.createElement("span");
+    m.className = "meta" + (meta.cls ? " " + meta.cls : "");
+    m.textContent = meta.metaText;
+    msg.appendChild(m);
+  }
+  if (meta.metaText2){
+    const m2 = document.createElement("span");
+    m2.className = "meta " + (meta.cls2 || "");
+    m2.textContent = meta.metaText2;
+    msg.appendChild(m2);
+  }
+  if (meta.action){
+    const btn = document.createElement("button");
+    btn.className = "gov-action";
+    btn.textContent = meta.action.label;
+    btn.onclick = () => { btn.disabled = true; meta.action.onClick(); };
+    msg.appendChild(btn);
+  }
+
+  bubble.appendChild(msg);
+  row.appendChild(bubble);
+  chatEl.appendChild(row);
+  chatEl.scrollTop = chatEl.scrollHeight;
+  return row;
+}
+
+function addTyping(){
+  const row = document.createElement("div");
+  row.className = "row bot";
+  row.id = "typingRow";
+  const av = document.createElement("div");
+  av.className = "mini-avatar";
+  av.innerHTML = BOT_ICON;
+  row.appendChild(av);
+  const bubble = document.createElement("div");
+  bubble.className = "msg typing";
+  bubble.innerHTML = "<span></span><span></span><span></span>";
+  row.appendChild(bubble);
+  chatEl.appendChild(row);
+  chatEl.scrollTop = chatEl.scrollHeight;
+}
+function removeTyping(){
+  const el = document.getElementById("typingRow");
+  if (el) el.remove();
+}
+
+async function sendMessage(text){
+  if (!text.trim()) return;
+  sound.send();
+  addMsg(text, "user");
+  inputEl.value = "";
+  addTyping();
+  await sleep(450);
+
+  const t0 = performance.now();
+  const data = brain.ask(text);
+  const ms = performance.now() - t0;
+  removeTyping();
+
+  const escalated = data.status === "escalated";
+  sound.answer();
+
+  if (escalated){
+    let metaText = "";
+    if (data.escalated_to){
+      metaText = "🔎 Consultando con " + data.escalated_to.split(" · ")[0] + "...";
+      bumpStat("escalated");
+    }
+    addMsg(data.answer, "bot", {cls: "escalated", metaText});
+    const gap = data.pending && data.pending.reason === "gap";
+    setLamp("hot", gap ? "Hueco · no inventa" : "Conflicto · no elige");
+    showTrace(
+      gap ? "Hueco · no hay documento" : "Conflicto · dos textos vivos",
+      gap ? "Ningún documento cubre esta pregunta." : (data.pending.options || []).map(o => o.source + " — " + o.text).join("\n\n"),
+      ms
+    );
+    if (data.pending) openWhatsapp(data.pending);
+  } else {
+    // Respuesta con fuente. Si la fuente está caducada, se responde igual
+    // (no se bloquea al cliente) pero se ofrece revisarla con el responsable.
+    bumpStat("answered");
+    const srcMeta = "✓ Fuente: " + data.sources.map(s => s.source + " (" + s.date + ")").join(" · ");
+
+    if (data.stale){
+      addMsg(data.answer, "bot", {
+        cls: "stale",
+        metaText: srcMeta,
+        metaText2: `⚠ Esta política no se revisa desde ${ageLabel(data.stale_age)}. La marco para revisión con ${data.review_owner.split(" · ")[0]}.`,
+        cls2: "stale",
+        action: {
+          label: "🔎 Revisar ahora",
+          onClick: () => {
+            const pending = brain.reviewPending(data.topic);
+            bumpStat("escalated");
+            if (pending) openWhatsapp(pending);
+            refreshLog();
+          }
+        }
+      });
+      setLamp("old", "Caducada · contesta igual");
+      showTrace("Caducada · se responde y se marca", data.answer, ms);
+    } else {
+      addMsg(data.answer, "bot", {cls: "", metaText: srcMeta});
+      setLamp("ok", "Fuente única");
+      showTrace("Fuente única · se cita y se calla", data.answer, ms);
+    }
+  }
+
+  refreshLog();
+  refreshKB();
+  if (!escalated && !data.stale) revealHit();
+}
+
+/* ---------------- whatsapp simulation ---------------- */
+
+let currentPending = null;
+
+function showWaIdle(){
+  waIdle.style.display = "flex";
+  waThread.classList.remove("active");
+  waBody.innerHTML = "";
+  waCompose.hidden = true;
+  waStatusLine.style.display = "none";
+  currentPending = null;
+  const hint = document.getElementById("gsHint");
+  if (hint) hint.textContent = "Solo aparece si el Brain no puede cerrar solo.";
+}
+
+async function openWhatsapp(pending){
+  currentPending = pending;
+  waIdle.style.display = "none";
+  waThread.classList.add("active");
+  waBody.innerHTML = "";
+  waStatusLine.style.display = "none";
+  waCompose.hidden = true;
+
+  waAvatar.textContent = initials(pending.contact);
+  waName.textContent = pending.contact;
+  const hint = document.getElementById("gsHint");
+  if (hint) hint.textContent = pending.contact;
+  waSub.textContent = "escribiendo...";
+  waSub.parentElement.classList.add("typing");
+
+  await sleep(550);
+  sound.waIn();
+  const typing = document.createElement("div");
+  typing.className = "wa-typing";
+  typing.innerHTML = "<i></i><i></i><i></i>";
+  waBody.appendChild(typing);
+  await sleep(800);
+  typing.remove();
+  waSub.parentElement.classList.remove("typing");
+  waSub.textContent = "en línea";
+
+  const incoming = document.createElement("div");
+  incoming.className = "wa-bubble in";
+  let question;
+  if (pending.reason === "conflict"){
+    question = `Tengo dos fuentes distintas sobre "${pending.topic}" y no coinciden. ¿Cuál sigue vigente?`;
+  } else if (pending.reason === "review"){
+    question = `La política de "${pending.topic}" no se revisa desde ${ageLabel(pending.stale_age)}. ¿Sigue vigente o la actualizamos?`;
+  } else {
+    question = `Un cliente pregunta: "${pending.question}". No tengo esto documentado — ¿cómo respondemos?`;
+  }
+  incoming.innerHTML = `<span class="sender">GuruSup Brain</span>${question}<span class="time">${now()}</span>`;
+  waBody.appendChild(incoming);
+
+  const hasOptions = (pending.reason === "conflict" || pending.reason === "review") && pending.options.length;
+  if (hasOptions){
+    const opts = document.createElement("div");
+    opts.className = "wa-options";
+    if (pending.reason === "review"){
+      const opt = pending.options[0];
+      const b = document.createElement("button");
+      b.className = "wa-option affirm";
+      b.innerHTML = `✅ Sigue vigente<span class="src">${opt.source} · ${opt.date}</span>`;
+      b.onclick = () => sendWaReply({docId: opt.id, reaffirm: true, text: "Sigue vigente ✅"}, opts);
+      opts.appendChild(b);
+    } else {
+      pending.options.forEach(opt => {
+        const b = document.createElement("button");
+        b.className = "wa-option";
+        b.innerHTML = `${opt.text}<span class="src">${opt.source} · ${opt.date}</span>`;
+        b.onclick = () => sendWaReply({docId: opt.id, text: opt.text}, opts);
+        opts.appendChild(b);
+      });
+    }
+    waBody.appendChild(opts);
+  }
+
+  // gap y review permiten además escribir una respuesta/actualización nueva.
+  if (pending.reason === "gap" || pending.reason === "review"){
+    waCompose.hidden = false;
+    waInput.value = "";
+    waInput.placeholder = pending.reason === "review"
+      ? "...o escribe la política actualizada"
+      : "Escribe la respuesta como si fueras esta persona...";
+    waInput.focus();
+  } else {
+    waCompose.hidden = true;
+  }
+  waBody.scrollTop = waBody.scrollHeight;
+}
+
+async function sendWaReply({docId, freeText, reaffirm, text}, optionsEl){
+  if (!currentPending) return;
+  const pending = currentPending;
+
+  if (optionsEl){
+    Array.from(optionsEl.querySelectorAll(".wa-option")).forEach(b => b.setAttribute("disabled", "disabled"));
+  }
+  waCompose.hidden = true;
+  sound.waOut();
+
+  const out = document.createElement("div");
+  out.className = "wa-bubble out";
+  out.innerHTML = `${text}<span class="time">${now()}<span class="ticks">✓✓</span></span>`;
+  waBody.appendChild(out);
+  waBody.scrollTop = waBody.scrollHeight;
+  setTimeout(() => {
+    const ticks = out.querySelector(".ticks");
+    if (ticks) ticks.classList.add("read");
+  }, 700);
+
+  waStatusLine.style.display = "block";
+  waStatusLine.textContent = pending.reason === "review" ? "Actualizando la fecha de revisión..." : "Actualizando el Brain...";
+
+  try {
+    const data = brain.resolve(pending.topic, {docId, freeText, reaffirm});
+    bumpStat("resolved");
+
+    await sleep(700);
+    waStatusLine.textContent = data.mode === "reaffirmed"
+      ? "✅ Fuente revisada y vigente — sin cambios para el cliente"
+      : "✅ Brain actualizado — respondiendo al cliente...";
+
+    await sleep(600);
+    sound.resolved();
+
+    if (data.mode === "reaffirmed"){
+      addMsg(data.canonical_doc.text, "bot", {
+        cls: "resolved",
+        metaText: "✅ Revisado y confirmado vigente por " + data.contact.split(" · ")[0] + " (hoy)",
+        metaText2: "🎯 Fuente al día: el próximo cliente la recibe sin ninguna alerta.",
+        cls2: "cs"
+      });
+    } else {
+      addMsg(data.canonical_doc.text, "bot", {
+        cls: "resolved",
+        metaText: "✅ Confirmado con " + data.contact.split(" · ")[0] + " · aprendido para siempre",
+        metaText2: "🎯 Hueco cerrado: los próximos clientes con esta duda reciben respuesta al instante.",
+        cls2: "cs"
+      });
+      await sleep(550);
+      addMsg(HAPPY_REPLIES[Math.floor(Math.random() * HAPPY_REPLIES.length)], "user");
+    }
+
+    await sleep(500);
+    setLamp("ok", "Aprendido · ya no se escala");
+    showWaIdle();
+  } catch (e) {
+    waStatusLine.textContent = "No se pudo resolver: " + e.message;
+  }
+  refreshLog();
+  refreshKB();
+}
+
+document.getElementById("waSend").onclick = () => {
+  const val = waInput.value.trim();
+  if (!val) return;
+  sendWaReply({freeText: val, text: val}, null);
+};
+waInput.addEventListener("keydown", e => {
+  if (e.key === "Enter"){
+    const val = waInput.value.trim();
+    if (!val) return;
+    sendWaReply({freeText: val, text: val}, null);
+  }
+});
+
+/* ---------------- log ---------------- */
+
+function eventLabel(ev){
+  switch(ev.type){
+    case "retrieval": return {lbl:"Buscando en la base de conocimiento", sub:`"${ev.detail.query}" → tema: ${ev.detail.topic || "no detectado"}`};
+    case "gap": return {lbl:"Sin documentación para este tema", sub:"no hay ningún doc que lo cubra"};
+    case "conflict": return {lbl:"Conflicto detectado", sub:`${ev.detail.docs?.length || 0} fuentes distintas para "${ev.detail.topic}"`};
+    case "stale": return {lbl:"Fuente caducada", sub:`"${ev.detail.topic}" no se revisa desde ${ageLabel(ev.detail.age)}`};
+    case "escalated": return {lbl:"Escalado por WhatsApp", sub:`${ev.detail.to} · motivo: ${ev.detail.reason}`};
+    case "resolved": return {lbl:"Resuelto", sub:`"${ev.detail.topic}" ya tiene una única fuente de verdad`};
+    case "reaffirmed": return {lbl:"Vigencia confirmada", sub:`"${ev.detail.topic}" revisado y refrescado a hoy`};
+    case "answered": return {lbl: ev.detail.stale ? "Respondido y marcado para revisión" : "Respondido con una sola fuente", sub:`doc ${ev.detail.doc_id}`};
+    default: return {lbl:ev.type, sub:""};
+  }
+}
+
+function refreshLog(){
+  logEl.innerHTML = "";
+  if (!brain.log.length){
+    logEl.innerHTML = '<div class="empty-log">Escribe algo en el chat para ver el razonamiento...</div>';
+    return;
+  }
+  brain.log.slice(-12).forEach(ev => {
+    const {lbl, sub} = eventLabel(ev);
+    const d = document.createElement("div");
+    d.className = "ev " + ev.type;
+    d.innerHTML = `<span class="lbl">${lbl}</span><span class="sub">${sub}</span>`;
+    logEl.appendChild(d);
+  });
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+/* ---------------- knowledge base panel ---------------- */
+
+function refreshKB(){
+  kbEl.innerHTML = "";
+  kbCountEl.textContent = brain.kb.length + " documentos";
+  const byTopic = {};
+  brain.kb.forEach(d => { (byTopic[d.topic] ||= []).push(d); });
+
+  const ALL_TOPICS = ["cancelacion","envios","horario","onboarding","descuento"];
+  ALL_TOPICS.forEach(t => { if (!byTopic[t]) byTopic[t] = []; });
+
+  Object.entries(byTopic).forEach(([topic, docs]) => {
+    const canonicalId = brain.resolved[topic];
+    const distinct = new Set(docs.map(d => d.text)).size;
+    const hasConflict = distinct > 1 && !canonicalId;
+
+    if (docs.length === 0){
+      const el = document.createElement("div");
+      el.className = "doc gap-note";
+      el.innerHTML = `<div class="topline"><span class="topic">${topic}</span><span class="tag gap">sin documentar</span></div><div class="text">Ningún documento cubre este tema todavía.</div>`;
+      kbEl.appendChild(el);
+      return;
+    }
+
+    docs.forEach(d => {
+      const isCanonical = canonicalId === d.id;
+      const shouldShow = !canonicalId || isCanonical;
+      if (!shouldShow) return;
+      const isStale = !isCanonical && !hasConflict && daysBetween(d.date) > REVIEW_AFTER_DAYS;
+      const el = document.createElement("div");
+      el.className = "doc" + (hasConflict ? " conflict" : "") + (isStale ? " stale" : "") + (isCanonical ? " canonical" : "") + (brain.lastTopic === topic ? " hit" : "");
+      let tag = "";
+      if (isCanonical) tag = '<span class="tag">fuente única</span>';
+      else if (hasConflict) tag = '<span class="tag conflict">conflicto</span>';
+      else if (isStale) tag = '<span class="tag stale">revisar</span>';
+      el.innerHTML = `
+        <div class="topline">
+          <span class="topic">${d.topic} · ${d.date}</span>
+          ${tag}
+        </div>
+        <div class="text">${d.text}</div>
+        <div class="src">${d.source}</div>
+      `;
+      const edit = document.createElement("button");
+      edit.type = "button";
+      edit.className = "edit-doc";
+      edit.textContent = "Editar";
+      edit.onclick = () => {
+        const box = el.querySelector(".text");
+        if (!box) return;
+        const area = document.createElement("textarea");
+        area.className = "edit-area";
+        area.value = d.text;
+        box.replaceWith(area);
+        edit.textContent = "Guardar";
+        edit.onclick = () => {
+          const next = area.value.trim();
+          if (next) d.text = next;
+          setLamp("warn", "Base cambiada · vuelve a preguntar");
+          refreshKB();
+        };
+      };
+      el.querySelector(".topline").appendChild(edit);
+      kbEl.appendChild(el);
+    });
+  });
+  markLearned();
+}
+
+/* ---------------- wiring ---------------- */
+
+function markLearned(){
+  document.querySelectorAll(".scenarios button").forEach(b => {
+    b.classList.toggle("learned", Boolean(b.dataset.topic && brain.resolved[b.dataset.topic]));
+  });
+}
+
+function revealHit(){
+  const hit = document.querySelector(".doc.hit");
+  if (hit) hit.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function clearChat(){
+  chatEl.innerHTML = "";
+  showWaIdle();
+  setLamp("", "Listo");
+  brain.log = [];
+  const trace = document.getElementById("trace");
+  if (trace) trace.hidden = true;
+  refreshLog();
+  addMsg("Chat limpio. La base sigue como la dejaste.", "bot");
+}
+
+document.getElementById("send").onclick = () => sendMessage(inputEl.value);
+inputEl.addEventListener("keydown", e => { if (e.key === "Enter") sendMessage(inputEl.value); });
+document.getElementById("clearChat").onclick = clearChat;
+document.getElementById("reset").onclick = () => {
+  brain.reset();
+  chatEl.innerHTML = "";
+  showWaIdle();
+  setLamp("", "Listo");
+  addMsg("Demo reiniciada. Pregúntame algo 👋", "bot");
+  refreshLog();
+  refreshKB();
+  const trace = document.getElementById("trace");
+  if (trace) trace.hidden = true;
+};
+
+SCENARIOS.forEach(p => {
+  const b = document.createElement("button");
+  b.textContent = p.label;
+  b.className = p.kind;
+  b.dataset.q = p.text;
+  b.dataset.topic = p.topic;
+  b.dataset.key = p.key;
+  b.onclick = () => {
+    document.querySelectorAll(".scenarios button").forEach(x => x.classList.remove("on"));
+    b.classList.add("on");
+    sendMessage(p.text);
+  };
+  quickEl.appendChild(b);
+});
+
+document.getElementById("traceBtn").onclick = () => {
+  const box = document.getElementById("trace");
+  box.hidden = !box.hidden;
+};
+
+document.getElementById("enter").onclick = () => {
+  document.getElementById("cover").hidden = true;
+  document.getElementById("app").hidden = false;
+};
+
+document.addEventListener("keydown", e => {
+  const field = e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA");
+  if (!field && e.key === "Enter" && !document.getElementById("cover").hidden){
+    document.getElementById("enter").click();
+    return;
+  }
+  if (field && e.target.value) return;
+  if (document.getElementById("app").hidden) return;
+  const btn = document.querySelector('.scenarios button[data-key="' + e.key + '"]');
+  if (!btn) return;
+  e.preventDefault();
+  btn.click();
+});
+
+showWaIdle();
+document.getElementById("waClock").textContent = now();
+addMsg("Elige un caso arriba. No hace falta escribir.", "bot");
+refreshLog();
+refreshKB();
+</script>
+</body>
+</html>
