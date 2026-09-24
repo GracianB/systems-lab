@@ -1931,7 +1931,6 @@ document.getElementById("gateForm").addEventListener("submit", async (e) => {
     return;
   }
   if (hex === GATE_HASH){
-    sessionStorage.setItem("brain-gate", "ok");
     openDemo();
   } else {
     err.textContent = "No es esa.";
@@ -1944,8 +1943,7 @@ document.getElementById("gateForm").addEventListener("submit", async (e) => {
   }
 });
 
-if (sessionStorage.getItem("brain-gate") === "ok") openDemo();
-else document.getElementById("gateKey").focus();
+document.getElementById("gateKey").focus();
 
 document.getElementById("enter").onclick = () => {
   document.getElementById("cover").hidden = true;
