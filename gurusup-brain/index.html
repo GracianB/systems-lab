@@ -363,39 +363,29 @@
   #app[hidden],#cover[hidden]{display:none}
   #app{min-height:100vh;background:#eef3f0;display:flex;flex-direction:column}
   .topbar{
-    display:flex;flex-direction:column;align-items:stretch;gap:10px;
-    padding:14px 18px 12px;background:#07140f;color:#f4f7f5;
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    padding:10px 16px;background:#07140f;color:#f4f7f5;
   }
-  .top-main{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
   #backCover{
-    background:none;border:0;padding:0;cursor:pointer;text-align:left;color:#fff;
-    font-weight:800;font-size:1.25rem;letter-spacing:-.04em;line-height:1;
+    background:none;border:0;padding:0;cursor:pointer;color:#fff;
+    font-weight:800;font-size:1.05rem;letter-spacing:-.04em;
   }
-  #backCover small{display:block;margin-top:4px;color:#8fbfa8;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
-  .topbar .stat-row{margin:0}
-  .topbar .stat-chip{background:rgba(255,255,255,.06);border-color:transparent;color:#d5e4dc}
+  .topbar .stat-row{margin:0;gap:6px}
+  .topbar .stat-chip{background:rgba(255,255,255,.06);border-color:transparent;color:#d5e4dc;padding:5px 10px}
   .topbar .stat-chip .lbl{color:#9aada4}
   .topbar .spacer{flex:1}
-  #traceBtn,#soundToggle{
-    background:transparent;color:#d5e4dc;border:1px solid rgba(255,255,255,.16);
-    border-radius:999px;padding:7px 12px;cursor:pointer;font-weight:650;font-size:.78rem;
+  .barbtn{
+    background:transparent;color:#d7e6de;border:1px solid rgba(255,255,255,.14);
+    border-radius:999px;padding:6px 11px;cursor:pointer;font-weight:650;font-size:.75rem;
   }
-  .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .acts button{text-align:left;border-radius:14px;padding:10px 14px;cursor:pointer}
-  .acts strong{display:block;font-size:.84rem}
-  .acts em{display:block;margin-top:2px;font-style:normal;font-size:.72rem;font-weight:550;opacity:.72}
-  #clearChat{background:#f4f7f5;color:#07140f;border:0}
-  #reset{background:transparent;color:#ffd4d4;border:1px solid rgba(229,72,77,.5)}
+  .barbtn:hover{border-color:rgba(255,255,255,.4)}
+  #clearChat{background:#f4f7f5;color:#07140f;border-color:#f4f7f5}
   #clearChat:hover{background:#fff}
-  #reset:hover{background:rgba(229,72,77,.14)}
   .foot{
-    display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
-    margin:4px 12px 18px;padding:16px 18px;border-radius:16px;
-    background:#07140f;color:#d7e6de;
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    margin:0 16px 16px;color:#8a9690;font-size:.75rem;
   }
-  .foot strong{display:block;color:#fff;letter-spacing:-.03em}
-  .foot span,.foot a{color:#8fbfa8;font-size:.78rem}
-  .foot a{text-decoration:none}
+  .foot a{color:#5f6e68;text-decoration:none}
   .workspace{flex:1;display:flex;flex-direction:column;gap:12px;padding:12px;min-height:0}
   .split{flex:1;display:grid;grid-template-columns:minmax(280px,.72fr) minmax(420px,1.45fr);gap:12px;min-height:calc(100vh - 88px)}
   .col{
@@ -466,7 +456,7 @@
   html,body{height:auto;min-height:100%}
   #app{height:auto;min-height:100vh;overflow:visible}
   .workspace{height:auto;min-height:calc(100vh - 64px);box-sizing:border-box}
-  .split{height:calc(100vh - 168px);min-height:480px;max-height:calc(100vh - 168px);align-items:stretch}
+  .split{height:calc(100vh - 76px);min-height:480px;max-height:calc(100vh - 76px);align-items:stretch}
   .col{height:100%;min-height:0;max-height:100%;overflow:hidden}
   .brain-side .wa-card{
     margin:12px 12px 8px;
@@ -621,23 +611,18 @@
 
 <div id="app" hidden>
   <header class="topbar">
-    <div class="top-main">
-      <button id="backCover" type="button">Brain<small>volver a entrar</small></button>
-      <div class="lamp" id="lamp"><i></i><span id="lampText">Listo</span></div>
-      <button id="traceBtn" type="button">Ver regla</button>
-      <span class="keyhint">teclas 1–4</span>
-      <div class="spacer"></div>
-      <div class="stat-row" id="statRow">
-        <div class="stat-chip answered"><span class="num" id="statAnswered">0</span><span class="lbl">contestadas</span></div>
-        <div class="stat-chip escalated"><span class="num" id="statEscalated">0</span><span class="lbl">escaladas</span></div>
-        <div class="stat-chip resolved"><span class="num" id="statResolved">0</span><span class="lbl">aprendidas</span></div>
-      </div>
-      <button id="soundToggle" type="button">Sonido</button>
+    <button id="backCover" type="button" title="Volver a entrar">Brain</button>
+    <div class="lamp" id="lamp"><i></i><span id="lampText">Listo</span></div>
+    <span class="keyhint">1–4</span>
+    <div class="spacer"></div>
+    <div class="stat-row" id="statRow">
+      <div class="stat-chip answered"><span class="num" id="statAnswered">0</span><span class="lbl">contestadas</span></div>
+      <div class="stat-chip escalated"><span class="num" id="statEscalated">0</span><span class="lbl">escaladas</span></div>
+      <div class="stat-chip resolved"><span class="num" id="statResolved">0</span><span class="lbl">aprendidas</span></div>
     </div>
-    <div class="acts">
-      <button id="clearChat" type="button"><strong>Limpiar chat</strong><em>Borra la conversación. Lo que editaste en la base se queda.</em></button>
-      <button id="reset" type="button"><strong>Reiniciar base</strong><em>Devuelve los documentos de origen. Lo que hayas editado se pierde.</em></button>
-    </div>
+    <button id="traceBtn" class="barbtn" type="button">Regla</button>
+    <button id="soundToggle" class="barbtn" type="button">Sonido</button>
+    <button id="clearChat" class="barbtn" type="button">Limpiar chat</button>
   </header>
 
   <div class="workspace">
@@ -709,8 +694,8 @@
     </section>
   </div>
   <footer class="foot">
-    <div><strong>Brain</strong><span>Gracián Baena · lectura, no es el producto de GuruSup</span></div>
-    <span>1 fuente clara · 2 conflicto · 3 no sabe · 4 caducada</span>
+    <span>Gracián Baena · no es el producto de GuruSup</span>
+    <span>1 fuente · 2 conflicto · 3 no sabe · 4 caducada</span>
     <a href="mailto:gracianbaenagonzalez@gmail.com">gracianbaenagonzalez@gmail.com</a>
   </footer>
 </div>
@@ -1506,17 +1491,6 @@ function clearChat(){
 document.getElementById("send").onclick = () => sendMessage(inputEl.value);
 inputEl.addEventListener("keydown", e => { if (e.key === "Enter") sendMessage(inputEl.value); });
 document.getElementById("clearChat").onclick = clearChat;
-document.getElementById("reset").onclick = () => {
-  brain.reset();
-  chatEl.innerHTML = "";
-  showWaIdle();
-  setLamp("", "Listo");
-  addMsg("Demo reiniciada. Pregúntame algo 👋", "bot");
-  refreshLog();
-  refreshKB();
-  const trace = document.getElementById("trace");
-  if (trace) trace.hidden = true;
-};
 
 SCENARIOS.forEach(p => {
   const b = document.createElement("button");
