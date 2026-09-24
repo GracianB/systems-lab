@@ -510,7 +510,14 @@
       #07140f;
     color:#f4f7f5;
   }
-  #gate form{width:min(420px,100%)}
+  #gate form{
+    width:min(440px,100%);
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:28px;
+    padding:36px 32px 28px;
+    box-shadow:0 30px 80px -36px rgba(0,0,0,.8);
+  }
   #gate p{margin:0;color:#9ddec4;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
   #gate h1{margin:10px 0 0;font-size:2.4rem;letter-spacing:-.04em;color:#fff}
   #gate .lead{margin-top:10px;color:#c9d5cf;font-size:.95rem;line-height:1.45;text-transform:none;letter-spacing:0;font-weight:450}
@@ -527,6 +534,15 @@
   #gate .err{margin-top:10px;color:#ffb4b6;font-size:.85rem;letter-spacing:0;text-transform:none;font-weight:650}
   #gate .forgot{display:inline-block;margin-top:16px;color:#9ddec4;font-size:.85rem}
   #gate[hidden]{display:none}
+  #gate input.bad{animation:shake .35s ease}
+  @keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .cover-keys{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .cover-keys span{
+    border:1px solid rgba(255,255,255,.12);border-radius:999px;
+    padding:6px 10px;font-size:.75rem;color:#d7e6de;font-weight:700;
+  }
+  .cover-keys b{color:#2ecf8f;font-weight:800}
+  .scenarios button{padding:8px 12px;font-size:.8rem}
   .doc.hit{outline:2px solid #1fae76;box-shadow:0 0 0 4px rgba(46,207,143,.18)}
   .msg .when{display:block;margin-top:6px;font-size:.66rem;opacity:.62;font-weight:600}
   .wa-os{display:flex;justify-content:space-between;align-items:center;padding:8px 14px 4px;color:#d7e6de;font-size:.68rem;font-weight:700;letter-spacing:.04em}
@@ -557,6 +573,12 @@
         <article><strong><span class="dot s"></span>Caducada</strong><span>Contesta, y pide revisión.</span></article>
       </div>
       <button id="enter" type="button">Entrar al salón</button>
+      <div class="cover-keys">
+        <span><b>1</b> fuente clara</span>
+        <span><b>2</b> conflicto</span>
+        <span><b>3</b> no sabe</span>
+        <span><b>4</b> caducada</span>
+      </div>
       <span class="cover-note">Gracián Baena · lectura del Brain de GuruSup · sin servidor</span>
     </div>
     <div class="cover-stage" aria-hidden="true">
@@ -584,7 +606,7 @@
     <button id="traceBtn" type="button">Ver regla</button>
     <span class="keyhint">teclas 1–4</span>
     <div class="stat-row" id="statRow">
-      <div class="stat-chip answered"><span class="num" id="statAnswered">0</span><span class="lbl">al instante</span></div>
+      <div class="stat-chip answered"><span class="num" id="statAnswered">0</span><span class="lbl">contestadas</span></div>
       <div class="stat-chip escalated"><span class="num" id="statEscalated">0</span><span class="lbl">escaladas</span></div>
       <div class="stat-chip resolved"><span class="num" id="statResolved">0</span><span class="lbl">aprendidas</span></div>
     </div>
@@ -1517,10 +1539,16 @@ document.getElementById("gateForm").addEventListener("submit", async (e) => {
   } else {
     err.textContent = "No es esa.";
     err.hidden = false;
+    const field = document.getElementById("gateKey");
+    field.classList.remove("bad");
+    void field.offsetWidth;
+    field.classList.add("bad");
+    field.select();
   }
 });
 
 if (sessionStorage.getItem("brain-gate") === "ok") openDemo();
+else document.getElementById("gateKey").focus();
 
 document.getElementById("enter").onclick = () => {
   document.getElementById("cover").hidden = true;
