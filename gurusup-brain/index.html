@@ -503,13 +503,49 @@
   .scenarios button.on{background:#10211b;color:#fff;border-color:#10211b}
   .scenarios button.learned{box-shadow:inset 0 -2px 0 #1fae76}
   .keyhint{font-size:.72rem;color:#8fbfa8;font-weight:700;letter-spacing:.04em}
+  #gate{
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
+    background:
+      radial-gradient(520px 320px at 80% 0%, rgba(46,207,143,.28), transparent 60%),
+      #07140f;
+    color:#f4f7f5;
+  }
+  #gate form{width:min(420px,100%)}
+  #gate p{margin:0;color:#9ddec4;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  #gate h1{margin:10px 0 0;font-size:2.4rem;letter-spacing:-.04em;color:#fff}
+  #gate .lead{margin-top:10px;color:#c9d5cf;font-size:.95rem;line-height:1.45;text-transform:none;letter-spacing:0;font-weight:450}
+  #gate input{
+    width:100%;margin-top:18px;box-sizing:border-box;
+    background:#0c1c16;color:#fff;border:1px solid rgba(255,255,255,.14);
+    border-radius:12px;padding:14px 16px;font-size:1rem;
+  }
+  #gate input:focus{outline:2px solid #2ecf8f;border-color:transparent}
+  #gate button{
+    margin-top:12px;width:100%;background:#2ecf8f;color:#062117;border:0;
+    font-weight:800;font-size:1rem;padding:14px;border-radius:999px;cursor:pointer;
+  }
+  #gate .err{margin-top:10px;color:#ffb4b6;font-size:.85rem;letter-spacing:0;text-transform:none;font-weight:650}
+  #gate .forgot{display:inline-block;margin-top:16px;color:#9ddec4;font-size:.85rem}
+  #gate[hidden]{display:none}
   .doc.hit{outline:2px solid #1fae76;box-shadow:0 0 0 4px rgba(46,207,143,.18)}
   .msg .when{display:block;margin-top:6px;font-size:.66rem;opacity:.62;font-weight:600}
   .wa-os{display:flex;justify-content:space-between;align-items:center;padding:8px 14px 4px;color:#d7e6de;font-size:.68rem;font-weight:700;letter-spacing:.04em}
 </style>
 </head>
 <body>
-<div id="cover">
+<div id="gate">
+  <form id="gateForm">
+    <p>Demo privada</p>
+    <h1>La clave.</h1>
+    <p class="lead">Esto no es público. Si no la tienes, escríbeme y te la mando.</p>
+    <input id="gateKey" type="password" autocomplete="current-password" placeholder="Clave" required />
+    <p class="err" id="gateErr" hidden>No es esa.</p>
+    <button type="submit">Entrar</button>
+    <a class="forgot" href="mailto:gracianbaenagonzalez@gmail.com?subject=Clave%20de%20la%20demo%20Brain&body=Hola%20Graci%C3%A1n%2C%0A%0ANecesito%20la%20clave%20para%20entrar%20en%20la%20demo.">Olvidé la clave</a>
+    <p class="lead">gracianbaenagonzalez@gmail.com</p>
+  </form>
+</div>
+<div id="cover" hidden>
   <div class="cover-grid">
     <div class="cover-inner">
       <div class="cover-kicker"><i></i> GuruSup Brain · demo</div>
@@ -1450,6 +1486,41 @@ document.getElementById("traceBtn").onclick = () => {
   const box = document.getElementById("trace");
   box.hidden = !box.hidden;
 };
+
+const GATE_HASH = "e901538717695a9deb57c07d1e61399dbb0e74f0196870eefacb9bc507655c80";
+
+async function sha256(text){
+  const data = new TextEncoder().encode(text);
+  const buf = await crypto.subtle.digest("SHA-256", data);
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,"0")).join("");
+}
+
+function openDemo(){
+  document.getElementById("gate").hidden = true;
+  document.getElementById("cover").hidden = false;
+}
+
+document.getElementById("gateForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const err = document.getElementById("gateErr");
+  err.hidden = true;
+  let hex = "";
+  try { hex = await sha256(document.getElementById("gateKey").value.trim()); }
+  catch (_) {
+    err.textContent = "Ábrela desde el enlace https, no desde el archivo.";
+    err.hidden = false;
+    return;
+  }
+  if (hex === GATE_HASH){
+    sessionStorage.setItem("brain-gate", "ok");
+    openDemo();
+  } else {
+    err.textContent = "No es esa.";
+    err.hidden = false;
+  }
+});
+
+if (sessionStorage.getItem("brain-gate") === "ok") openDemo();
 
 document.getElementById("enter").onclick = () => {
   document.getElementById("cover").hidden = true;
