@@ -365,19 +365,15 @@
   #app[hidden],#cover[hidden]{display:none}
   #app{min-height:100vh;background:#eef3f0;display:flex;flex-direction:column}
   .topbar{
-    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;
     position:sticky;top:0;z-index:8;
     padding:10px 16px;background:#07140f;color:#f4f7f5;
   }
-  #backCover{
-    background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit;
-  }
-  #backCover b{color:#3dffb0}
-  .top-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  .top-left{display:flex;align-items:center;gap:12px;justify-self:start}
+  .top-actions{display:flex;align-items:center;gap:8px;justify-self:end}
   .topbar .stat-row{margin:0;gap:8px}
   .topbar .stat-chip{background:rgba(255,255,255,.06);border-color:transparent;color:#d5e4dc;padding:5px 10px}
   .topbar .stat-chip .lbl{color:#9aada4}
-  .topbar .spacer{flex:1;min-width:12px}
   .barbtn{
     background:transparent;color:#d7e6de;border:1px solid rgba(255,255,255,.14);
     border-radius:999px;padding:6px 11px;cursor:pointer;font-weight:650;font-size:.75rem;
@@ -763,9 +759,10 @@
 
 <div id="app" hidden>
   <header class="topbar">
-    <button id="fichaBtn" class="barbtn" type="button">Ficha</button>
-    <div class="lamp" id="lamp"><i></i><span id="lampText">Listo</span></div>
-    <div class="spacer"></div>
+    <div class="top-left">
+      <button id="fichaBtn" class="barbtn" type="button">Ficha</button>
+      <div class="lamp" id="lamp"><i></i><span id="lampText">Listo</span></div>
+    </div>
     <div class="stat-row" id="statRow">
       <div class="stat-chip answered"><span class="num" id="statAnswered">0</span><span class="lbl">contestadas</span></div>
       <div class="stat-chip escalated"><span class="num" id="statEscalated">0</span><span class="lbl">escaladas</span></div>
