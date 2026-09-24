@@ -368,20 +368,56 @@ iframe { border: 0; width: 100%; display: block; }
 }
 .stage-ohana {
   background:
-    radial-gradient(circle at 28% 62%, rgba(122,243,255,.28), transparent 42%),
-    radial-gradient(circle at 72% 36%, rgba(243,212,55,.16), transparent 36%),
-    linear-gradient(160deg, #070a12, #101622);
+    radial-gradient(circle at 22% 42%, rgba(126, 231, 255, .22), transparent 36%),
+    linear-gradient(180deg, #071226 0%, #102a43 62%, #071226 62%, #071226 100%);
 }
-.stage-ohana i {
-  position: absolute; width: 16px; height: 16px; border-radius: 50%;
-  background: var(--ice); opacity: .75;
-  box-shadow: 0 0 18px var(--ice-glow);
-  animation: floaty 3.8s ease-in-out infinite;
+.stage-ohana .oh-ground {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 38%;
+  background:
+    linear-gradient(180deg, #1c4a38, #0e2a22 40%, #07140f);
+  border-top: 2px solid rgba(126, 231, 255, .35);
 }
-.stage-ohana i:nth-child(2) { left: 16%; top: 58%; }
-.stage-ohana i:nth-child(3) { left: 40%; top: 34%; width: 11px; height: 11px; animation-delay: .35s; background: var(--yellow); }
-.stage-ohana i:nth-child(4) { left: 62%; top: 56%; animation-delay: .7s; }
-.stage-ohana i:nth-child(5) { left: 78%; top: 28%; width: 9px; height: 9px; animation-delay: 1s; background: var(--sage); }
+.stage-ohana .oh-hero,
+.stage-ohana .oh-foe {
+  position: absolute; bottom: 34%; border-radius: 40% 40% 12px 12px;
+  animation: floaty 3.2s ease-in-out infinite;
+}
+.stage-ohana .oh-hero {
+  left: 18%; width: 28px; height: 46px;
+  background: linear-gradient(180deg, #ffe9a8, #e23b3d);
+  box-shadow: 0 0 18px rgba(226, 59, 61, .45);
+}
+.stage-ohana .oh-hero::before {
+  content: ""; position: absolute; left: 8px; top: 8px;
+  width: 6px; height: 6px; border-radius: 50%; background: #071226;
+  box-shadow: 8px 0 0 #071226;
+}
+.stage-ohana .oh-foe {
+  right: 22%; width: 34px; height: 22px; bottom: 36%;
+  border-radius: 50%;
+  background: #c45a18;
+  animation-delay: .4s;
+}
+.stage-ohana .oh-foe::before,
+.stage-ohana .oh-foe::after {
+  content: ""; position: absolute; top: 4px; width: 5px; height: 5px; border-radius: 50%; background: #fff8ee;
+}
+.stage-ohana .oh-foe::before { left: 16px; }
+.stage-ohana .oh-foe::after { left: 24px; }
+.stage-ohana .oh-foe-2 {
+  right: 48%; width: 18px; height: 18px; bottom: 48%;
+  background: #ff6a4a; animation-delay: .8s;
+}
+.feat-facts {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin: 0; padding: 0; list-style: none;
+}
+.feat-facts li {
+  font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase;
+  padding: 5px 8px; border-radius: 999px;
+  color: #7ee7ff; background: rgba(126, 231, 255, .1);
+  border: 1px solid rgba(126, 231, 255, .28);
+}
 .stage-vortex {
   background: radial-gradient(circle at 50% 50%, rgba(122,243,255,.22), transparent 48%), #06080f;
 }
