@@ -190,10 +190,10 @@
   }
   .inputRow input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(46,207,143,.15)}
   .inputRow button{
-    background:var(--text);border:none;color:#fff;font-weight:650;
-    padding:0 18px;border-radius:11px;cursor:pointer;font-size:.88rem;transition:.15s;
+    background:#10211b;border:none;color:#fff;font-weight:750;
+    min-width:96px;height:44px;padding:0 16px;border-radius:11px;cursor:pointer;font-size:.88rem;
   }
-  .inputRow button:hover{background:var(--brand-dark)}
+  .inputRow button:hover{background:#1fae76}
 
   /* ---------- WhatsApp simulation ---------- */
   .wa-card{padding:0;overflow:hidden;min-height:190px}
@@ -363,17 +363,19 @@
   #app[hidden],#cover[hidden]{display:none}
   #app{min-height:100vh;background:#eef3f0;display:flex;flex-direction:column}
   .topbar{
-    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    position:sticky;top:0;z-index:8;
     padding:10px 16px;background:#07140f;color:#f4f7f5;
   }
   #backCover{
-    background:none;border:0;padding:0;cursor:pointer;color:#fff;
+    background:none;border:0;padding:0 4px 0 0;cursor:pointer;color:#fff;
     font-weight:800;font-size:1.05rem;letter-spacing:-.04em;
   }
-  .topbar .stat-row{margin:0;gap:6px}
+  .top-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  .topbar .stat-row{margin:0;gap:8px}
   .topbar .stat-chip{background:rgba(255,255,255,.06);border-color:transparent;color:#d5e4dc;padding:5px 10px}
   .topbar .stat-chip .lbl{color:#9aada4}
-  .topbar .spacer{flex:1}
+  .topbar .spacer{flex:1;min-width:12px}
   .barbtn{
     background:transparent;color:#d7e6de;border:1px solid rgba(255,255,255,.14);
     border-radius:999px;padding:6px 11px;cursor:pointer;font-weight:650;font-size:.75rem;
@@ -411,7 +413,7 @@
   }
   .foot a{color:#5f6e68;text-decoration:none}
   .workspace{flex:1;display:flex;flex-direction:column;gap:12px;padding:12px;min-height:0}
-  .split{flex:1;display:grid;grid-template-columns:minmax(280px,.72fr) minmax(420px,1.45fr);gap:12px;min-height:calc(100vh - 88px)}
+  .split{flex:1;display:grid;grid-template-columns:minmax(280px,.72fr) minmax(420px,1.45fr);gap:12px;min-height:0}
   .col{
     background:#fff;border:1px solid #e3e9e6;border-radius:18px;
     display:flex;flex-direction:column;min-height:0;overflow:hidden;
@@ -480,7 +482,7 @@
   html,body{height:auto;min-height:100%}
   #app{height:auto;min-height:100vh;overflow:visible}
   .workspace{height:auto;min-height:calc(100vh - 64px);box-sizing:border-box}
-  .split{height:calc(100vh - 76px);min-height:480px;max-height:calc(100vh - 76px);align-items:stretch}
+  .split{height:calc(100vh - 118px);min-height:440px;max-height:calc(100vh - 118px);align-items:stretch}
   .col{height:100%;min-height:0;max-height:100%;overflow:hidden}
   .brain-side .wa-card{
     margin:12px 12px 8px;
@@ -637,17 +639,18 @@
   <header class="topbar">
     <button id="backCover" type="button" title="Volver a entrar">Brain</button>
     <div class="lamp" id="lamp"><i></i><span id="lampText">Listo</span></div>
-    <span class="keyhint">1–4</span>
     <div class="spacer"></div>
     <div class="stat-row" id="statRow">
       <div class="stat-chip answered"><span class="num" id="statAnswered">0</span><span class="lbl">contestadas</span></div>
       <div class="stat-chip escalated"><span class="num" id="statEscalated">0</span><span class="lbl">escaladas</span></div>
       <div class="stat-chip resolved"><span class="num" id="statResolved">0</span><span class="lbl">aprendidas</span></div>
     </div>
-    <button id="logsBtn" class="barbtn" type="button">Logs</button>
-    <button id="traceBtn" class="barbtn" type="button">Regla</button>
-    <button id="soundToggle" class="barbtn" type="button">Sonido</button>
-    <button id="clearChat" class="barbtn" type="button">Limpiar chat</button>
+    <div class="top-actions">
+      <button id="logsBtn" class="barbtn" type="button">Logs</button>
+      <button id="traceBtn" class="barbtn" type="button">Regla</button>
+      <button id="soundToggle" class="barbtn" type="button">Sonido</button>
+      <button id="clearChat" class="barbtn" type="button">Limpiar chat</button>
+    </div>
   </header>
 
   <div class="workspace">
@@ -1595,6 +1598,7 @@ SCENARIOS.forEach(p => {
 document.getElementById("traceBtn").onclick = () => {
   const box = document.getElementById("trace");
   box.hidden = !box.hidden;
+  if (!box.hidden) box.scrollIntoView({ behavior: "smooth", block: "center" });
 };
 
 const GATE_HASH = "e901538717695a9deb57c07d1e61399dbb0e74f0196870eefacb9bc507655c80";
