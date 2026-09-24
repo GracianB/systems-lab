@@ -368,9 +368,9 @@
     padding:10px 16px;background:#07140f;color:#f4f7f5;
   }
   #backCover{
-    background:none;border:0;padding:0 4px 0 0;cursor:pointer;color:#fff;
-    font-weight:800;font-size:1.05rem;letter-spacing:-.04em;
+    background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit;
   }
+  #backCover b{color:#3dffb0}
   .top-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
   .topbar .stat-row{margin:0;gap:8px}
   .topbar .stat-chip{background:rgba(255,255,255,.06);border-color:transparent;color:#d5e4dc;padding:5px 10px}
@@ -407,6 +407,45 @@
   .logrow.stale b{color:#9ec1ff}
   .logrow strong{grid-column:1 / -1;font-size:.88rem}
   .logrow p{grid-column:1 / -1;margin:0;color:#c5d5cc;font-size:.78rem;line-height:1.4}
+  #ficha{
+    position:fixed;inset:0;z-index:30;background:rgba(7,20,15,.55);
+    display:flex;align-items:center;justify-content:center;padding:24px;
+  }
+  #ficha[hidden]{display:none}
+  .ficha-card{
+    width:min(720px,100%);background:#fff;color:#14211b;border-radius:22px;
+    padding:22px 22px 18px;box-shadow:0 30px 80px -30px rgba(0,0,0,.45);
+  }
+  .ficha-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .ficha-head p{margin:0;color:#1fae76;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+  .ficha-head h2{margin:4px 0 0;font-size:1.6rem;letter-spacing:-.04em}
+  .ficha-meta{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+  .ficha-meta span{background:#f3f7f4;border-radius:999px;padding:6px 10px;font-size:.75rem;font-weight:650}
+  .ficha-card h3{margin:0 0 10px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#5f6e68}
+  .timeline{display:flex;gap:0;list-style:none;margin:0 0 18px;padding:0}
+  .timeline li{flex:1;position:relative;text-align:center;font-size:.72rem;font-weight:700;color:#8a9690;padding-top:16px}
+  .timeline li::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:2px;background:#e1e8e4;
+  }
+  .timeline li i{
+    position:absolute;top:-4px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;
+    background:#fff;border:2px solid #c9d5ce;
+  }
+  .timeline li.on{color:#08361f}
+  .timeline li.on i{background:#2ecf8f;border-color:#2ecf8f;box-shadow:0 0 0 4px rgba(46,207,143,.25)}
+  .timeline li.done i{background:#1fae76;border-color:#1fae76}
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;list-style:none;margin:0;padding:0}
+  .tiers li{border:1px solid #e3e9e6;border-radius:14px;padding:10px 12px}
+  .tiers b{display:block;font-size:.84rem}
+  .tiers span{display:block;margin-top:4px;color:#5f6e68;font-size:.72rem;line-height:1.35}
+  .tiers li.on{background:#10211b;color:#fff;border-color:#10211b}
+  .tiers li.on span{color:#b7d0c4}
+  #fichaNote{margin:14px 0 0;font-size:.88rem;line-height:1.45}
+  #fichaClose{
+    background:#fff;color:#14211b;border:1px solid #d5ddd8;
+    border-radius:999px;padding:6px 12px;font-weight:700;cursor:pointer;
+  }
+  .foot button{background:none;border:0;padding:0;color:#d7e6de;font:inherit;cursor:pointer;text-align:left}
   .foot{
     position:fixed;left:0;right:0;bottom:0;z-index:7;
     height:44px;padding:0 18px;
@@ -656,7 +695,7 @@
 
 <div id="app" hidden>
   <header class="topbar">
-    <button id="backCover" type="button" title="Volver a entrar">Brain</button>
+    <button id="fichaBtn" class="barbtn" type="button">Ficha</button>
     <div class="lamp" id="lamp"><i></i><span id="lampText">Listo</span></div>
     <div class="spacer"></div>
     <div class="stat-row" id="statRow">
@@ -741,7 +780,7 @@
     </section>
   </div>
   <footer class="foot">
-    <span><b>Brain</b> · Gracián Baena · no es el producto de GuruSup</span>
+    <button id="backCover" type="button" title="Volver a entrar"><b>Brain</b> · Gracián Baena · no es el producto de GuruSup</button>
     <span>1 fuente · 2 conflicto · 3 no sabe · 4 caducada</span>
     <a href="mailto:gracianbaenagonzalez@gmail.com">gracianbaenagonzalez@gmail.com</a>
   </footer>
@@ -753,6 +792,27 @@
         <button id="logsClose" class="barbtn" type="button">Cerrar</button>
       </div>
       <div id="logsList"></div>
+    </div>
+  </div>
+  <div id="ficha" hidden>
+    <div class="ficha-card" role="dialog" aria-label="Ficha de cliente">
+      <div class="ficha-head">
+        <div>
+          <p>Ficha de cliente</p>
+          <h2>Lumen Studio</h2>
+        </div>
+        <button id="fichaClose" type="button">Cerrar</button>
+      </div>
+      <div class="ficha-meta">
+        <span>Plan Pro</span>
+        <span id="fichaOwner">Sin caso abierto</span>
+        <span id="fichaTopic">Aún no ha preguntado</span>
+      </div>
+      <h3>Fase del ciclo</h3>
+      <ol id="fichaPhases" class="timeline"></ol>
+      <h3>Tier de soporte</h3>
+      <ol id="fichaTiers" class="tiers"></ol>
+      <p id="fichaNote">Abre un caso con las teclas 1 a 4. La ficha marca la fase y el tier con lo que decida la regla, no con un porcentaje.</p>
     </div>
   </div>
 </div>
@@ -1438,6 +1498,7 @@ function eventLabel(ev){
 
 function refreshLog(){
   renderLogs();
+  renderFicha();
   logEl.innerHTML = "";
   if (!brain.log.length){
     logEl.innerHTML = '<div class="empty-log">Escribe algo en el chat para ver el razonamiento...</div>';
@@ -1495,6 +1556,84 @@ function openLogs(){
 }
 function closeLogs(){
   document.getElementById("logs").hidden = true;
+}
+
+const PHASES = [
+  ["onboarding", "Onboarding"],
+  ["adopcion", "Adopción"],
+  ["expansion", "Expansión"],
+  ["renovacion", "Renovación"],
+  ["riesgo", "Riesgo"],
+];
+const TIERS = [
+  ["1", "Primera línea", "Hay una fuente. Se contesta y se cita."],
+  ["2", "Responsable", "Hay conflicto, hueco o fuente vieja. Lo ve una persona."],
+  ["3", "Fuente nueva", "La persona decide. El siguiente caso ya no escala."],
+];
+
+function fichaSnapshot(){
+  const topic = brain.lastTopic;
+  const last = brain.log.length ? brain.log[brain.log.length - 1].type : "";
+  let phase = null;
+  if (topic === "onboarding") phase = "onboarding";
+  else if (topic === "descuento") phase = "expansion";
+  else if (topic === "cancelacion") phase = brain.resolved.cancelacion ? "renovacion" : "riesgo";
+  else if (topic === "envios" || topic === "horario") phase = "adopcion";
+  let tier = 0;
+  if (last === "resolved" || last === "reaffirmed") tier = 3;
+  else if (last === "escalated" || last === "conflict" || last === "gap" || last === "stale") tier = 2;
+  else if (last === "answered") tier = 1;
+  return { topic, phase, tier, last };
+}
+
+function renderFicha(){
+  const root = document.getElementById("ficha");
+  if (!root || root.hidden) return;
+  const snap = fichaSnapshot();
+  const names = { envios:"Envíos", cancelacion:"Cancelación", horario:"Horario", onboarding:"Onboarding", descuento:"Descuento" };
+  document.getElementById("fichaOwner").textContent = snap.topic ? brain.responsibleFor(snap.topic) : "Sin caso abierto";
+  document.getElementById("fichaTopic").textContent = snap.topic ? (names[snap.topic] || snap.topic) : "Aún no ha preguntado";
+  const phaseList = document.getElementById("fichaPhases");
+  phaseList.innerHTML = "";
+  const phaseIndex = PHASES.findIndex(p => p[0] === snap.phase);
+  PHASES.forEach((p, i) => {
+    const li = document.createElement("li");
+    if (i === phaseIndex) li.className = "on";
+    else if (phaseIndex > -1 && i < phaseIndex && snap.phase !== "riesgo") li.className = "done";
+    const dot = document.createElement("i");
+    li.append(dot, document.createTextNode(p[1]));
+    phaseList.appendChild(li);
+  });
+  const tierList = document.getElementById("fichaTiers");
+  tierList.innerHTML = "";
+  TIERS.forEach((t, i) => {
+    const li = document.createElement("li");
+    if (i + 1 === snap.tier) li.className = "on";
+    const b = document.createElement("b");
+    b.textContent = "Tier " + t[0] + " · " + t[1];
+    const span = document.createElement("span");
+    span.textContent = t[2];
+    li.append(b, span);
+    tierList.appendChild(li);
+  });
+  const notes = {
+    0: "Abre un caso con las teclas 1 a 4. La fase y el tier salen de la regla, no de un porcentaje.",
+    1: "Tier 1. Una sola fuente vigente. Customer Success no tiene que entrar.",
+    2: "Tier 2. El cliente no se queda sin respuesta inventada: el caso pasa a quien manda en ese tema.",
+    3: "Tier 3. La decisión ya es la fuente. La próxima pregunta de este tema vuelve a primera línea.",
+  };
+  let note = notes[snap.tier] || notes[0];
+  if (snap.phase === "riesgo") note = "Fase de riesgo. Hay dos políticas de baja y no se elige una en silencio. Hasta que Ana la zanje, no hay renovación clara.";
+  if (snap.phase === "renovacion") note = "La baja ya tiene una sola política. El ciclo pasa a renovación: el siguiente cliente oye esa versión.";
+  document.getElementById("fichaNote").textContent = note;
+}
+
+function openFicha(){
+  document.getElementById("ficha").hidden = false;
+  renderFicha();
+}
+function closeFicha(){
+  document.getElementById("ficha").hidden = true;
 }
 
 /* ---------------- knowledge base panel ---------------- */
@@ -1598,6 +1737,11 @@ document.getElementById("logsClose").onclick = closeLogs;
 document.getElementById("logs").addEventListener("click", e => {
   if (e.target.id === "logs") closeLogs();
 });
+document.getElementById("fichaBtn").onclick = openFicha;
+document.getElementById("fichaClose").onclick = closeFicha;
+document.getElementById("ficha").addEventListener("click", e => {
+  if (e.target.id === "ficha") closeFicha();
+});
 
 SCENARIOS.forEach(p => {
   const b = document.createElement("button");
@@ -1673,6 +1817,10 @@ document.getElementById("backCover").onclick = () => {
 };
 
 document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && !document.getElementById("ficha").hidden){
+    closeFicha();
+    return;
+  }
   if (e.key === "Escape" && !document.getElementById("logs").hidden){
     closeLogs();
     return;
