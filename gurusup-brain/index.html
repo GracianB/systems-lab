@@ -381,6 +381,30 @@
   .barbtn:hover{border-color:rgba(255,255,255,.4)}
   #clearChat{background:#f4f7f5;color:#07140f;border-color:#f4f7f5}
   #clearChat:hover{background:#fff}
+  #logs{
+    position:fixed;inset:0;z-index:40;
+    background:rgba(7,20,15,.55);
+    display:flex;align-items:stretch;justify-content:flex-end;
+  }
+  #logs[hidden]{display:none}
+  .logs-panel{
+    width:min(560px,100%);height:100%;
+    background:#0c1612;color:#e7f3ec;
+    display:flex;flex-direction:column;
+    box-shadow:-24px 0 60px rgba(0,0,0,.35);
+  }
+  .logs-head{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .logs-head strong{font-size:1rem;letter-spacing:-.03em}
+  .logs-head span{color:#8fbfa8;font-size:.75rem}
+  .logs-head button{margin-left:auto}
+  #logsList{flex:1;overflow:auto;padding:8px 0 24px}
+  .logrow{display:grid;grid-template-columns:72px 92px 1fr;gap:4px 10px;padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.05)}
+  .logrow time{color:#8fbfa8;font-size:.72rem;font-variant-numeric:tabular-nums}
+  .logrow b{font-size:.68rem;letter-spacing:.04em;text-transform:uppercase;color:#2ecf8f}
+  .logrow.conflict b,.logrow.gap b{color:#ffb4b6}
+  .logrow.stale b{color:#9ec1ff}
+  .logrow strong{grid-column:1 / -1;font-size:.88rem}
+  .logrow p{grid-column:1 / -1;margin:0;color:#c5d5cc;font-size:.78rem;line-height:1.4}
   .foot{
     display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
     margin:0 16px 16px;color:#8a9690;font-size:.75rem;
@@ -620,6 +644,7 @@
       <div class="stat-chip escalated"><span class="num" id="statEscalated">0</span><span class="lbl">escaladas</span></div>
       <div class="stat-chip resolved"><span class="num" id="statResolved">0</span><span class="lbl">aprendidas</span></div>
     </div>
+    <button id="logsBtn" class="barbtn" type="button">Logs</button>
     <button id="traceBtn" class="barbtn" type="button">Regla</button>
     <button id="soundToggle" class="barbtn" type="button">Sonido</button>
     <button id="clearChat" class="barbtn" type="button">Limpiar chat</button>
@@ -698,6 +723,16 @@
     <span>1 fuente · 2 conflicto · 3 no sabe · 4 caducada</span>
     <a href="mailto:gracianbaenagonzalez@gmail.com">gracianbaenagonzalez@gmail.com</a>
   </footer>
+  <div id="logs" hidden>
+    <div class="logs-panel" role="dialog" aria-label="Logs">
+      <div class="logs-head">
+        <strong>Logs</strong>
+        <span id="logsCount">0 eventos</span>
+        <button id="logsClose" class="barbtn" type="button">Cerrar</button>
+      </div>
+      <div id="logsList"></div>
+    </div>
+  </div>
 </div>
 
 
@@ -1380,6 +1415,7 @@ function eventLabel(ev){
 }
 
 function refreshLog(){
+  renderLogs();
   logEl.innerHTML = "";
   if (!brain.log.length){
     logEl.innerHTML = '<div class="empty-log">Escribe algo en el chat para ver el razonamiento...</div>';
@@ -1393,6 +1429,50 @@ function refreshLog(){
     logEl.appendChild(d);
   });
   logEl.scrollTop = logEl.scrollHeight;
+}
+
+function logClock(ts){
+  return new Date(ts * 1000).toLocaleTimeString("es-ES", {hour:"2-digit", minute:"2-digit", second:"2-digit"});
+}
+
+function renderLogs(){
+  const root = document.getElementById("logs");
+  const list = document.getElementById("logsList");
+  if (!root || root.hidden || !list) return;
+  list.innerHTML = "";
+  const count = document.getElementById("logsCount");
+  if (count) count.textContent = brain.log.length + (brain.log.length === 1 ? " evento" : " eventos");
+  if (!brain.log.length){
+    const empty = document.createElement("p");
+    empty.className = "logrow";
+    empty.textContent = "Todavía no ha pasado nada. Pulsa 1, 2, 3 o 4.";
+    list.appendChild(empty);
+    return;
+  }
+  brain.log.forEach(ev => {
+    const {lbl, sub} = eventLabel(ev);
+    const row = document.createElement("article");
+    row.className = "logrow " + ev.type;
+    const time = document.createElement("time");
+    time.textContent = logClock(ev.ts);
+    const kind = document.createElement("b");
+    kind.textContent = ev.type;
+    const title = document.createElement("strong");
+    title.textContent = lbl;
+    const detail = document.createElement("p");
+    detail.textContent = sub;
+    row.append(time, kind, title, detail);
+    list.appendChild(row);
+  });
+  list.scrollTop = list.scrollHeight;
+}
+
+function openLogs(){
+  document.getElementById("logs").hidden = false;
+  renderLogs();
+}
+function closeLogs(){
+  document.getElementById("logs").hidden = true;
 }
 
 /* ---------------- knowledge base panel ---------------- */
@@ -1491,6 +1571,11 @@ function clearChat(){
 document.getElementById("send").onclick = () => sendMessage(inputEl.value);
 inputEl.addEventListener("keydown", e => { if (e.key === "Enter") sendMessage(inputEl.value); });
 document.getElementById("clearChat").onclick = clearChat;
+document.getElementById("logsBtn").onclick = openLogs;
+document.getElementById("logsClose").onclick = closeLogs;
+document.getElementById("logs").addEventListener("click", e => {
+  if (e.target.id === "logs") closeLogs();
+});
 
 SCENARIOS.forEach(p => {
   const b = document.createElement("button");
@@ -1565,6 +1650,10 @@ document.getElementById("backCover").onclick = () => {
 };
 
 document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && !document.getElementById("logs").hidden){
+    closeLogs();
+    return;
+  }
   const field = e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA");
   if (!field && e.key === "Enter" && !document.getElementById("cover").hidden){
     document.getElementById("enter").click();
