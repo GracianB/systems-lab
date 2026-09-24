@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>GuruSup Brain — Demo</title>
 <meta name="description" content="Demo de gobernanza de conocimiento para agentes: un agente de soporte que no se inventa lo que no sabe. Detecta conflictos, huecos y fuentes caducadas. 100% en el navegador, sin backend." />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='3' fill='%232ecf8f'/></svg>">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#07140f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -152,7 +154,7 @@
   .row.bot{align-self:flex-start}
   .mini-avatar{width:24px;height:24px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
   .row.bot .mini-avatar{background:var(--brand-tint)}
-  .row.bot .mini-avatar svg{width:12px;height:12px;color:var(--brand-ink)}
+  .row.bot .mini-avatar svg{width:16px;height:16px;color:#1fae76}
   .msg{padding:10px 13px;border-radius:14px;font-size:.89rem;line-height:1.48;white-space:pre-wrap}
   .row.user .msg{background:var(--text);color:#fff;border-bottom-right-radius:4px}
   .row.bot .msg{background:var(--surface-2);border:1px solid var(--border-soft);border-bottom-left-radius:4px}
@@ -1118,7 +1120,7 @@ const waCompose = document.getElementById("waCompose");
 const waInput = document.getElementById("waInput");
 const waStatusLine = document.getElementById("waStatusLine");
 
-const BOT_ICON = `<svg viewBox="0 0 254 254" fill="none"><path d="M142.601 0L127.157 38.853L111.876 0H87.0041L114.965 70.5525H139.349L166.985 0H142.601Z" fill="currentColor"/><path d="M253.989 142.601L215.136 127.157L253.989 111.876V87.0041L183.436 114.965V139.349L253.989 166.985V142.601Z" fill="currentColor"/><path d="M111.388 253.989L126.832 215.136L142.113 253.989H166.985L139.024 183.436H114.64L87.0041 253.989L111.388 253.989Z" fill="currentColor"/><path d="M6.62982e-07 111.388L38.853 126.832L2.96594e-07 142.113L0 166.985L70.5525 139.024V114.64L9.5376e-07 87.0041L6.62982e-07 111.388Z" fill="currentColor"/><path d="M78.3896 94.9368L97.7343 75.5921L43.9259 21.7837L24.5812 41.1284L78.3896 94.9368Z" fill="currentColor"/><path d="M157.232 75.592L176.577 94.9368L230.385 41.1284L211.04 21.7837L157.232 75.592Z" fill="currentColor"/><path d="M176.577 157.036L157.232 176.381L211.04 230.189L230.385 210.844L176.577 157.036Z" fill="currentColor"/><path d="M97.7344 176.381L78.3896 157.036L24.5812 210.845L43.926 230.189L97.7344 176.381Z" fill="currentColor"/></svg>`;
+const BOT_ICON = `<svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="2.4"/><circle cx="16" cy="16" r="3.2" fill="currentColor"/></svg>`;
 
 const SCENARIOS = [
   { key: "1", topic: "envios", label: "1 · Fuente clara", text: "¿Cuánto tardan los envíos a Portugal?", kind: "ok" },
