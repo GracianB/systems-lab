@@ -433,7 +433,9 @@
   .facts article{background:transparent;border-radius:0;padding:4px 12px;border-left:1px solid #e4ece7}
   .facts article:first-child{border-left:0;padding-left:0}
   .facts span{display:block;font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#7b8b84;opacity:1}
-  .facts b{display:block;margin-top:4px;font-size:1rem;letter-spacing:-.02em}
+  .facts b[contenteditable]{border-bottom:1px dashed #9dceba;cursor:text;outline:none}
+  .facts b[contenteditable]:focus{background:#e7f8ef;border-radius:6px}
+  .block .hint{margin:-4px 0 10px;color:#7b8b84;font-size:.75rem}
   .casebox{display:grid;grid-template-columns:1.3fr 1fr 1.4fr;gap:8px;margin:0 0 14px}
   .casebox article{background:#f6f8f7;border:0;border-radius:12px;padding:10px 12px}
   .casebox article:nth-child(n+4){background:#fff;border:1px solid #e4ece7}
@@ -460,7 +462,7 @@
   .timeline li.on{background:#e7f8ef;color:#08361f;outline:2px solid #2ecf8f}
   .timeline li.on i{background:#2ecf8f}
   .tierbar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;list-style:none;margin:0;padding:0}
-  .tierbar li{border-radius:16px;padding:14px 14px 12px;background:#f6f7f6;color:#3d5248}
+  .tierbar li{border-radius:16px;padding:14px 14px 12px;background:#f6f7f6;color:#3d5248;cursor:pointer}
   .tierbar b{display:block;font-size:1rem}
   .tierbar span{display:block;margin-top:4px;font-size:.75rem;line-height:1.35}
   .tierbar li.t0{background:#f3f4f3}
@@ -527,9 +529,9 @@
   }
   #cover .reel::before{top:0}
   #cover .reel::after{bottom:0}
-  #cover.opening .reel{animation:reel 2.8s ease forwards}
-  #cover.opening .cover-grid{animation:gridIn 2.8s ease forwards;pointer-events:none}
-  .reel-mark{width:54px;height:54px;margin-bottom:22px}
+  #cover.opening .reel{animation:reel 3.2s ease forwards}
+  #cover.opening .cover-grid{animation:gridIn 3.2s ease forwards;pointer-events:none}
+  .reel-mark{width:72px;height:72px;margin-bottom:22px}
   .reel p{margin:0;color:#9ddec4;letter-spacing:.22em;font-size:.72rem;font-weight:800;text-transform:uppercase}
   .reel h2{
     margin:12px 0 0;color:#fff;font-size:clamp(3rem,7vw,5.6rem);
@@ -537,7 +539,7 @@
   }
   .reel h2 em{font-style:normal;color:#3dffb0}
   @keyframes reel{
-    0%{opacity:0}12%{opacity:1}72%{opacity:1}100%{opacity:0}
+    0%{opacity:1}70%{opacity:1}100%{opacity:0}
   }
   @keyframes gridIn{
     0%,68%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:none}
@@ -856,28 +858,30 @@
       <div class="ficha-head">
         <div>
           <p>Ficha de cliente</p>
-          <h2>Lumen Studio</h2>
+          <h2 id="fichaName" contenteditable="true" spellcheck="false">Lumen Studio</h2>
         </div>
         <button id="fichaClose" type="button">Cerrar</button>
       </div>
       <section class="block who">
         <h3>Cuenta</h3>
+        <p class="hint">Pulsa un dato para cambiarlo.</p>
         <div class="facts">
-          <article><span>Tipo</span><b>B2B · estudio</b></article>
-          <article><span>Cliente desde</span><b>18 oct 2024</b></article>
-          <article><span>Plan</span><b>Pro</b></article>
-          <article><span>CSM</span><b>Ana Ferreras</b></article>
+          <article><span>Tipo</span><b contenteditable="true" spellcheck="false">B2B · estudio</b></article>
+          <article><span>Cliente desde</span><b contenteditable="true" spellcheck="false">18 oct 2024</b></article>
+          <article><span>Plan</span><b contenteditable="true" spellcheck="false">Pro</b></article>
+          <article><span>CSM</span><b contenteditable="true" spellcheck="false">Ana Ferreras</b></article>
           <article><span>Salud</span><b id="fichaHealth">Estable</b></article>
         </div>
       </section>
       <section class="block money">
         <h3>Contrato</h3>
+        <p class="hint">Pulsa un dato para cambiarlo.</p>
         <div class="facts">
-          <article><span>Al mes</span><b>490 €</b></article>
-          <article><span>Al año</span><b>5.880 €</b></article>
-          <article><span>Pago</span><b>Domiciliación</b></article>
-          <article><span>Tipo</span><b>Anual automático</b></article>
-          <article><span>Renueva</span><b>18 oct 2026</b></article>
+          <article><span>Al mes</span><b contenteditable="true" spellcheck="false">490 €</b></article>
+          <article><span>Al año</span><b contenteditable="true" spellcheck="false">5.880 €</b></article>
+          <article><span>Pago</span><b contenteditable="true" spellcheck="false">Domiciliación</b></article>
+          <article><span>Tipo</span><b contenteditable="true" spellcheck="false">Anual automático</b></article>
+          <article><span>Renueva</span><b contenteditable="true" spellcheck="false">18 oct 2026</b></article>
         </div>
       </section>
       <section class="block caso">
@@ -890,13 +894,21 @@
           <article><span>Última respuesta</span><b id="fichaOut">22 sep 2026</b></article>
           <article><span>Días a renovar</span><b id="fichaDays">—</b></article>
         </div>
+        <p id="fichaNote"></p>
+      </section>
+      <section class="block">
         <h3>Temperatura</h3>
         <ol id="fichaTemps" class="tempbar"></ol>
+      </section>
+      <section class="block">
         <h3>Fase</h3>
         <ol id="fichaPhases" class="timeline"></ol>
+      </section>
+      <section class="block">
         <h3>Tier</h3>
+        <p class="hint">Pulsa un tier para mover la cuenta.</p>
         <ol id="fichaTiers" class="tierbar"></ol>
-        <p id="fichaNote"></p>
+      </section>
       </section>
     </div>
   </div>
@@ -1725,7 +1737,8 @@ function renderFicha(){
   tierList.innerHTML = "";
   TIERS.forEach(t => {
     const li = document.createElement("li");
-    li.className = t[1] + (t[0] === "1" ? " on" : "");
+    li.className = t[1] + (t[0] === accountTier ? " on" : "");
+    li.onclick = () => { accountTier = t[0]; renderFicha(); };
     const b = document.createElement("b");
     b.textContent = t[2];
     const span = document.createElement("span");
@@ -1887,17 +1900,23 @@ async function sha256(text){
   return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,"0")).join("");
 }
 
-function openDemo(cine){
+let accountTier = "1";
+
+function playReel(){
+  const cover = document.getElementById("cover");
+  cover.classList.remove("opening");
+  void cover.offsetWidth;
+  cover.classList.add("opening");
+  clearTimeout(playReel._t);
+  playReel._t = setTimeout(() => cover.classList.remove("opening"), 3200);
+}
+
+function openDemo(){
   document.getElementById("gate").hidden = true;
   const cover = document.getElementById("cover");
   cover.hidden = false;
   document.getElementById("app").hidden = true;
-  if (!cine) return;
-  cover.classList.remove("opening");
-  void cover.offsetWidth;
-  cover.classList.add("opening");
-  clearTimeout(openDemo._t);
-  openDemo._t = setTimeout(() => cover.classList.remove("opening"), 2800);
+  playReel();
 }
 
 document.getElementById("gateForm").addEventListener("submit", async (e) => {
@@ -1913,7 +1932,7 @@ document.getElementById("gateForm").addEventListener("submit", async (e) => {
   }
   if (hex === GATE_HASH){
     sessionStorage.setItem("brain-gate", "ok");
-    openDemo(true);
+    openDemo();
   } else {
     err.textContent = "No es esa.";
     err.hidden = false;
@@ -1925,7 +1944,7 @@ document.getElementById("gateForm").addEventListener("submit", async (e) => {
   }
 });
 
-if (sessionStorage.getItem("brain-gate") === "ok") openDemo(false);
+if (sessionStorage.getItem("brain-gate") === "ok") openDemo();
 else document.getElementById("gateKey").focus();
 
 document.getElementById("enter").onclick = () => {
@@ -1937,6 +1956,7 @@ document.getElementById("backCover").onclick = () => {
   document.getElementById("app").hidden = true;
   document.getElementById("cover").hidden = false;
   window.scrollTo(0, 0);
+  playReel();
 };
 
 document.addEventListener("keydown", e => {
@@ -1948,7 +1968,7 @@ document.addEventListener("keydown", e => {
     closeLogs();
     return;
   }
-  const field = e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA");
+  const field = e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.isContentEditable);
   if (!field && e.key === "Enter" && !document.getElementById("cover").hidden){
     document.getElementById("enter").click();
     return;
