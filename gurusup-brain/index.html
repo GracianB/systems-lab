@@ -408,10 +408,17 @@
   .logrow strong{grid-column:1 / -1;font-size:.88rem}
   .logrow p{grid-column:1 / -1;margin:0;color:#c5d5cc;font-size:.78rem;line-height:1.4}
   .foot{
-    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
-    margin:0 16px 16px;color:#8a9690;font-size:.75rem;
+    position:fixed;left:0;right:0;bottom:0;z-index:7;
+    height:44px;padding:0 18px;
+    display:flex;align-items:center;justify-content:space-between;gap:18px;
+    background:#07140f;color:#d7e6de;
+    border-top:1px solid rgba(61,255,176,.35);
+    font-size:.75rem;
   }
-  .foot a{color:#5f6e68;text-decoration:none}
+  .foot b{color:#3dffb0;font-weight:800;letter-spacing:-.03em}
+  .foot span{white-space:nowrap}
+  .foot a{color:#c8f8e0;text-decoration:none;font-weight:650}
+  .foot a:hover{color:#fff}
   .workspace{flex:1;display:flex;flex-direction:column;gap:12px;padding:12px;min-height:0}
   .split{flex:1;display:grid;grid-template-columns:minmax(280px,.72fr) minmax(420px,1.45fr);gap:12px;min-height:0}
   .col{
@@ -482,7 +489,7 @@
   html,body{height:auto;min-height:100%}
   #app{height:auto;min-height:100vh;overflow:visible}
   .workspace{height:auto;min-height:calc(100vh - 64px);box-sizing:border-box}
-  .split{height:calc(100vh - 118px);min-height:440px;max-height:calc(100vh - 118px);align-items:stretch}
+  .split{height:calc(100vh - 162px);min-height:420px;max-height:calc(100vh - 162px);align-items:stretch}
   .col{height:100%;min-height:0;max-height:100%;overflow:hidden}
   .brain-side .wa-card{
     margin:12px 12px 8px;
@@ -734,7 +741,7 @@
     </section>
   </div>
   <footer class="foot">
-    <span>Gracián Baena · no es el producto de GuruSup</span>
+    <span><b>Brain</b> · Gracián Baena · no es el producto de GuruSup</span>
     <span>1 fuente · 2 conflicto · 3 no sabe · 4 caducada</span>
     <a href="mailto:gracianbaenagonzalez@gmail.com">gracianbaenagonzalez@gmail.com</a>
   </footer>
