@@ -408,42 +408,56 @@
   .logrow strong{grid-column:1 / -1;font-size:.88rem}
   .logrow p{grid-column:1 / -1;margin:0;color:#c5d5cc;font-size:.78rem;line-height:1.4}
   #ficha{
-    position:fixed;inset:0;z-index:30;background:rgba(7,20,15,.55);
-    display:flex;align-items:center;justify-content:center;padding:24px;
+    position:fixed;inset:0;z-index:30;background:rgba(7,20,15,.45);
+    display:flex;align-items:center;justify-content:center;padding:28px;
   }
   #ficha[hidden]{display:none}
   .ficha-card{
-    width:min(720px,100%);background:#fff;color:#14211b;border-radius:22px;
-    padding:22px 22px 18px;box-shadow:0 30px 80px -30px rgba(0,0,0,.45);
+    width:min(980px,100%);max-height:calc(100vh - 56px);overflow:auto;
+    background:#fff;color:#14211b;border-radius:28px;
+    border-top:8px solid #2ecf8f;
+    padding:28px 32px 26px;
+    box-shadow:0 40px 90px -36px rgba(7,20,15,.45);
   }
-  .ficha-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-  .ficha-head p{margin:0;color:#1fae76;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-  .ficha-head h2{margin:4px 0 0;font-size:1.6rem;letter-spacing:-.04em}
-  .ficha-meta{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
-  .ficha-meta span{background:#f3f7f4;border-radius:999px;padding:6px 10px;font-size:.75rem;font-weight:650}
-  .ficha-card h3{margin:0 0 10px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#5f6e68}
-  .timeline{display:flex;gap:0;list-style:none;margin:0 0 18px;padding:0}
-  .timeline li{flex:1;position:relative;text-align:center;font-size:.72rem;font-weight:700;color:#8a9690;padding-top:16px}
-  .timeline li::before{
-    content:"";position:absolute;top:0;left:0;right:0;height:2px;background:#e1e8e4;
+  .ficha-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+  .ficha-head p{margin:0;color:#1fae76;font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+  .ficha-head h2{margin:6px 0 0;font-size:2.4rem;letter-spacing:-.045em}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 22px}
+  .facts article{border-radius:16px;padding:12px 14px}
+  .facts span{display:block;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+  .facts b{display:block;margin-top:4px;font-size:.98rem;letter-spacing:-.02em}
+  .facts article:nth-child(1){background:#e7f8ef}
+  .facts article:nth-child(2){background:#e7f1ff}
+  .facts article:nth-child(3){background:#fff1e4}
+  .facts article:nth-child(4){background:#f3eefe}
+  .facts article:nth-child(5){background:#e8fbf3}
+  .facts article:nth-child(6){background:#fff6d8}
+  .ficha-card h3{margin:0 0 12px;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:#1fae76}
+  .timeline{display:flex;gap:8px;list-style:none;margin:0 0 22px;padding:0}
+  .timeline li{
+    flex:1;border-radius:14px;padding:14px 8px 12px;text-align:center;
+    font-size:.75rem;font-weight:750;color:#3d5248;background:#f4f7f5;
   }
-  .timeline li i{
-    position:absolute;top:-4px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;
-    background:#fff;border:2px solid #c9d5ce;
-  }
-  .timeline li.on{color:#08361f}
-  .timeline li.on i{background:#2ecf8f;border-color:#2ecf8f;box-shadow:0 0 0 4px rgba(46,207,143,.25)}
-  .timeline li.done i{background:#1fae76;border-color:#1fae76}
-  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;list-style:none;margin:0;padding:0}
-  .tiers li{border:1px solid #e3e9e6;border-radius:14px;padding:10px 12px}
-  .tiers b{display:block;font-size:.84rem}
-  .tiers span{display:block;margin-top:4px;color:#5f6e68;font-size:.72rem;line-height:1.35}
-  .tiers li.on{background:#10211b;color:#fff;border-color:#10211b}
-  .tiers li.on span{color:#b7d0c4}
-  #fichaNote{margin:14px 0 0;font-size:.88rem;line-height:1.45}
+  .timeline li i{display:block;width:100%;height:8px;border-radius:999px;margin-bottom:8px;background:#d5e4db}
+  .timeline li:nth-child(1) i{background:#b7ebc9}
+  .timeline li:nth-child(2) i{background:#a9d4ff}
+  .timeline li:nth-child(3) i{background:#ffd0a8}
+  .timeline li:nth-child(4) i{background:#d7c6f5}
+  .timeline li:nth-child(5) i{background:#ffb7c0}
+  .timeline li.on{background:#e7f8ef;color:#08361f;outline:2px solid #2ecf8f}
+  .timeline li.on i{background:#2ecf8f}
+  .tierbar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;list-style:none;margin:0;padding:0}
+  .tierbar li{border-radius:16px;padding:14px 14px 12px;background:#f6f7f6;color:#3d5248}
+  .tierbar b{display:block;font-size:1rem}
+  .tierbar span{display:block;margin-top:4px;font-size:.75rem;line-height:1.35}
+  .tierbar li.t0{background:#f3f4f3}
+  .tierbar li.t1{background:#e7f8ef}
+  .tierbar li.t3{background:#fff1e4}
+  .tierbar li.on{outline:2px solid #2ecf8f;background:#2ecf8f;color:#062117}
+  #fichaNote{margin:16px 0 0;padding:12px 14px;border-radius:14px;background:#f6fbf8;font-size:.92rem;line-height:1.45}
   #fichaClose{
     background:#fff;color:#14211b;border:1px solid #d5ddd8;
-    border-radius:999px;padding:6px 12px;font-weight:700;cursor:pointer;
+    border-radius:999px;padding:8px 14px;font-weight:750;cursor:pointer;
   }
   .foot button{background:none;border:0;padding:0;color:#d7e6de;font:inherit;cursor:pointer;text-align:left}
   .foot{
@@ -803,16 +817,19 @@
         </div>
         <button id="fichaClose" type="button">Cerrar</button>
       </div>
-      <div class="ficha-meta">
-        <span>Plan Pro</span>
-        <span id="fichaOwner">Sin caso abierto</span>
-        <span id="fichaTopic">Aún no ha preguntado</span>
+      <div class="facts">
+        <article><span>Tipo de cliente</span><b>B2B · estudio</b></article>
+        <article><span>Cliente desde</span><b>18 oct 2024</b></article>
+        <article><span>Renovación</span><b>18 oct 2026</b></article>
+        <article><span>Plan</span><b>Pro</b></article>
+        <article><span>CSM</span><b>Ana Ferreras</b></article>
+        <article><span>Salud</span><b id="fichaHealth">Estable</b></article>
       </div>
       <h3>Fase del ciclo</h3>
       <ol id="fichaPhases" class="timeline"></ol>
-      <h3>Tier de soporte</h3>
-      <ol id="fichaTiers" class="tiers"></ol>
-      <p id="fichaNote">Abre un caso con las teclas 1 a 4. La ficha marca la fase y el tier con lo que decida la regla, no con un porcentaje.</p>
+      <h3>Tier de valor</h3>
+      <ol id="fichaTiers" class="tierbar"></ol>
+      <p id="fichaNote"></p>
     </div>
   </div>
 </div>
@@ -1566,66 +1583,57 @@ const PHASES = [
   ["riesgo", "Riesgo"],
 ];
 const TIERS = [
-  ["1", "Primera línea", "Hay una fuente. Se contesta y se cita."],
-  ["2", "Responsable", "Hay conflicto, hueco o fuente vieja. Lo ve una persona."],
-  ["3", "Fuente nueva", "La persona decide. El siguiente caso ya no escala."],
+  ["0", "t0", "Tier 0", "No aplica. Fuera del modelo de valor."],
+  ["1", "t1", "Tier 1", "Pagan más. Lumen está aquí."],
+  ["3", "t3", "Tier 3", "Pagan menos."],
 ];
 
 function fichaSnapshot(){
   const topic = brain.lastTopic;
-  const last = brain.log.length ? brain.log[brain.log.length - 1].type : "";
-  let phase = null;
+  let phase = "adopcion";
   if (topic === "onboarding") phase = "onboarding";
   else if (topic === "descuento") phase = "expansion";
   else if (topic === "cancelacion") phase = brain.resolved.cancelacion ? "renovacion" : "riesgo";
-  else if (topic === "envios" || topic === "horario") phase = "adopcion";
-  let tier = 0;
-  if (last === "resolved" || last === "reaffirmed") tier = 3;
-  else if (last === "escalated" || last === "conflict" || last === "gap" || last === "stale") tier = 2;
-  else if (last === "answered") tier = 1;
-  return { topic, phase, tier, last };
+  else if (topic === "envios" || topic === "horario" || !topic) phase = "adopcion";
+  return { topic, phase };
 }
 
 function renderFicha(){
   const root = document.getElementById("ficha");
   if (!root || root.hidden) return;
   const snap = fichaSnapshot();
-  const names = { envios:"Envíos", cancelacion:"Cancelación", horario:"Horario", onboarding:"Onboarding", descuento:"Descuento" };
-  document.getElementById("fichaOwner").textContent = snap.topic ? brain.responsibleFor(snap.topic) : "Sin caso abierto";
-  document.getElementById("fichaTopic").textContent = snap.topic ? (names[snap.topic] || snap.topic) : "Aún no ha preguntado";
+  const health = { onboarding:"En alta", adopcion:"Estable", expansion:"Oportunidad", renovacion:"Renovación cerca", riesgo:"Atención" };
+  document.getElementById("fichaHealth").textContent = health[snap.phase] || "Estable";
   const phaseList = document.getElementById("fichaPhases");
   phaseList.innerHTML = "";
   const phaseIndex = PHASES.findIndex(p => p[0] === snap.phase);
   PHASES.forEach((p, i) => {
     const li = document.createElement("li");
     if (i === phaseIndex) li.className = "on";
-    else if (phaseIndex > -1 && i < phaseIndex && snap.phase !== "riesgo") li.className = "done";
     const dot = document.createElement("i");
     li.append(dot, document.createTextNode(p[1]));
     phaseList.appendChild(li);
   });
   const tierList = document.getElementById("fichaTiers");
   tierList.innerHTML = "";
-  TIERS.forEach((t, i) => {
+  TIERS.forEach(t => {
     const li = document.createElement("li");
-    if (i + 1 === snap.tier) li.className = "on";
+    li.className = t[1] + (t[0] === "1" ? " on" : "");
     const b = document.createElement("b");
-    b.textContent = "Tier " + t[0] + " · " + t[1];
+    b.textContent = t[2];
     const span = document.createElement("span");
-    span.textContent = t[2];
+    span.textContent = t[3];
     li.append(b, span);
     tierList.appendChild(li);
   });
   const notes = {
-    0: "Abre un caso con las teclas 1 a 4. La fase y el tier salen de la regla, no de un porcentaje.",
-    1: "Tier 1. Una sola fuente vigente. Customer Success no tiene que entrar.",
-    2: "Tier 2. El cliente no se queda sin respuesta inventada: el caso pasa a quien manda en ese tema.",
-    3: "Tier 3. La decisión ya es la fuente. La próxima pregunta de este tema vuelve a primera línea.",
+    adopcion: "Está en adopción. La renovación es el 18 oct 2026. Tier 1 no se mueve con el ticket: es el valor de la cuenta.",
+    onboarding: "Sigue en el alta. El playbook dice de 3 a 5 días y una llamada de Customer Success.",
+    expansion: "Pregunta por precio. Fase de expansión: no hay política de descuento escrita, así que no se inventa una.",
+    riesgo: "Fase de riesgo, a tres semanas de renovar. Hay dos políticas de baja. No se elige una en silencio.",
+    renovacion: "Ana ya dejó una sola política. La cuenta vuelve a una renovación legible.",
   };
-  let note = notes[snap.tier] || notes[0];
-  if (snap.phase === "riesgo") note = "Fase de riesgo. Hay dos políticas de baja y no se elige una en silencio. Hasta que Ana la zanje, no hay renovación clara.";
-  if (snap.phase === "renovacion") note = "La baja ya tiene una sola política. El ciclo pasa a renovación: el siguiente cliente oye esa versión.";
-  document.getElementById("fichaNote").textContent = note;
+  document.getElementById("fichaNote").textContent = notes[snap.phase] || notes.adopcion;
 }
 
 function openFicha(){
