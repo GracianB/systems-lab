@@ -829,13 +829,18 @@
       </section>
     </div>
 
-    <section class="card below">
-      <div class="card-title"><h2>Qué decide</h2><span class="hint">la regla, no un porcentaje</span></div>
+    <section class="card rule-card" id="ruleCard">
+      <div class="card-title"><h2>Regla</h2><span class="hint">el fragmento que usa, aparte del historial</span></div>
       <div id="trace" class="trace" hidden>
         <b id="traceRule">—</b>
         <p id="traceChunk"></p>
         <span id="traceMs"></span>
       </div>
+      <div class="empty-log" id="ruleEmpty">Todavía no hay pregunta.</div>
+    </section>
+
+    <section class="card below">
+      <div class="card-title"><h2>Qué decide</h2><span class="hint">la regla, no un porcentaje</span></div>
       <div id="log"><div class="empty-log">Todavía no hay pregunta.</div></div>
     </section>
 
@@ -1280,6 +1285,8 @@ function showTrace(rule, chunk, ms){
   const shown = ms < 1 ? "<1" : String(Math.round(ms));
   document.getElementById("traceMs").textContent = shown + " ms · la regla corre en esta máquina. El modelo no decide.";
   box.hidden = false;
+  const empty = document.getElementById("ruleEmpty");
+  if (empty) empty.hidden = true;
 }
 
 function addMsg(text, who, meta){
@@ -1860,6 +1867,8 @@ function clearChat(){
   brain.log = [];
   const trace = document.getElementById("trace");
   if (trace) trace.hidden = true;
+  const ruleEmpty = document.getElementById("ruleEmpty");
+  if (ruleEmpty) ruleEmpty.hidden = false;
   refreshLog();
   addMsg("Chat limpio. La base sigue como la dejaste.", "bot");
 }
@@ -1895,8 +1904,10 @@ SCENARIOS.forEach(p => {
 
 document.getElementById("traceBtn").onclick = () => {
   const box = document.getElementById("trace");
+  const empty = document.getElementById("ruleEmpty");
   box.hidden = !box.hidden;
-  if (!box.hidden) box.scrollIntoView({ behavior: "smooth", block: "center" });
+  if (empty) empty.hidden = !box.hidden;
+  document.getElementById("ruleCard").scrollIntoView({ behavior: "smooth", block: "center" });
 };
 
 const GATE_HASH = "e901538717695a9deb57c07d1e61399dbb0e74f0196870eefacb9bc507655c80";
