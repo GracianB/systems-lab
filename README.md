@@ -1,670 +1,189 @@
 <div align="center">
 
 <a href="https://gracianb.github.io/systems-lab/">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=240&color=0:06070A,40:0B1820,100:7AF3FF&text=SYSTEMS%20LAB&fontColor=F4F3EE&fontSize=58&fontAlignY=36&desc=PLAY%20%C2%B7%20T%C3%89CNICA%20%C2%B7%20LO%20QUE%20SE%20ABRE&descAlignY=58&descSize=16&animation=twinkling" width="100%" alt="Systems Lab. Play, técnica, lo que se abre."/>
+</a>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:06070A,45:0B1820,100:7AF3FF&text=SYSTEMS%20LAB&fontColor=F4F3EE&fontSize=62&fontAlignY=38&desc=PLAY%20%C2%B7%20T%C3%89CNICA%20%C2%B7%20AI%20%C2%B7%20AUTOMATION%20%C2%B7%20SYSTEMS&descAlignY=61&descSize=17&animation=fadeIn" width="100%"/>
-
+<a href="https://gracianb.github.io/systems-lab/">
+  <img src="https://readme-typing-svg.demolab.com?font=Fraunces&weight=500&size=26&duration=2600&pause=700&color=7AF3FF&center=true&vCenter=true&width=860&height=56&lines=No+te+lo+explico.+P%C3%BAlsalo.;Ohana+%C2%B7+10+salas+%C2%B7+10+personajes;V%C3%B3rtice+%C2%B7+WebGL;Bodytone+%C2%B7+producci%C3%B3n;Graci%C3%A1n+Baena+%C2%B7+2026" alt="No te lo explico. Púlsalo. Ohana, Vórtice, Bodytone."/>
 </a>
 
 <br/>
 
-[![Typing](https://readme-typing-svg.demolab.com?font=Fraunces\&weight=500\&size=28\&duration=2800\&pause=700\&color=7AF3FF\&center=true\&vCenter=true\&width=920\&height=55\&lines=No+te+lo+explico.+P%C3%BAlsalo.;AI+%C2%B7+Automation+%C2%B7+Development;Ohana+%C2%B7+V%C3%B3rtice+%C2%B7+Customer+Systems;Live+%3D+se+abre+ahora;BUILD+%C2%B7+TEST+%C2%B7+BREAK+%C2%B7+FIX+%C2%B7+SHIP;Graci%C3%A1n+Baena+%C2%B7+2026)](https://gracianb.github.io/systems-lab/)
-
-# **GRACIÁN BAENA**
-
-### `PLAY · técnica`
-
-**The technical world of the GracianB ecosystem.**
-
-`AI` · `AUTOMATION` · `DATA` · `DEVELOPMENT` · `SYSTEMS` · `EXPERIMENTS`
-
-<br/>
-
-[![🚀 LIVE · SYSTEMS LAB](https://img.shields.io/badge/%F0%9F%9A%80_LIVE-SYSTEMS_LAB-7AF3FF?style=for-the-badge\&labelColor=06070A)](https://gracianb.github.io/systems-lab/)
-[![00 · HUB](https://img.shields.io/badge/00-HUB-F3D437?style=for-the-badge\&labelColor=06070A)](https://gracianb.github.io/GracianB/)
-[![01 · EXPERIENCE](https://img.shields.io/badge/01-EXPERIENCE-F4F3EE?style=for-the-badge\&labelColor=06070A)](https://gracianb.github.io/professional-deck/)
-[![03 · YOGA](https://img.shields.io/badge/03-YOGA-7DCAA5?style=for-the-badge\&labelColor=06070A)](https://gracianb.github.io/yoga-instructor/)
+<a href="https://gracianb.github.io/systems-lab/"><img src="https://img.shields.io/badge/ABRIR_EL_LAB-7AF3FF?style=for-the-badge&labelColor=06070A" alt="Abrir Systems Lab"/></a>
+<a href="https://gracianb.github.io/project-ohana/"><img src="https://img.shields.io/badge/OHANA-7AF3FF?style=for-the-badge&labelColor=06070A" alt="Jugar Ohana"/></a>
+<a href="https://vortex-gilt-xi.vercel.app/"><img src="https://img.shields.io/badge/V%C3%93RTICE-F4F3EE?style=for-the-badge&labelColor=06070A" alt="Abrir Vórtice"/></a>
+<a href="https://bodytonehelp.zendesk.com/hc/es"><img src="https://img.shields.io/badge/BODYTONE-LIVE-7AF3FF?style=for-the-badge&labelColor=06070A" alt="Help Center de Bodytone"/></a>
 
 <br/><br/>
 
-<img src="https://img.shields.io/badge/STATUS-LIVE-7AF3FF?style=flat-square&labelColor=06070A"/>
-<img src="https://img.shields.io/badge/EXPERIENCES-2-7AF3FF?style=flat-square&labelColor=06070A"/>
-<img src="https://img.shields.io/badge/PRODUCTION-1-F4F3EE?style=flat-square&labelColor=06070A"/>
-<img src="https://img.shields.io/badge/DEMO-1-F4F3EE?style=flat-square&labelColor=06070A"/>
-<img src="https://img.shields.io/badge/i18n-ES%20%2F%20EN-0A66C2?style=flat-square&labelColor=06070A"/>
-
-</div>
-
----
-
-<div align="center">
-
-## `NO TE LO EXPLICO. PÚLSALO.`
-
-**Prototypes are useful.
-Working systems are better.
-Live systems are evidence.**
-
-### [🚀 OPEN SYSTEMS LAB](https://gracianb.github.io/systems-lab/)
-
-</div>
-
----
-
-# 01 · WHAT IS THIS?
-
-**Systems Lab** es el laboratorio técnico de [GracianB](https://gracianb.github.io/GracianB/).
-
-Aquí las ideas dejan de ser únicamente ideas.
-
-Se convierten en:
-
-**interfaces · sistemas · agentes · automatizaciones · juegos · visualizaciones · experimentos**
-
-El principio es sencillo:
-
-```text
-IDEA
-  ↓
-PROTOTYPE
-  ↓
-TEST
-  ↓
-BREAK
-  ↓
-FIX
-  ↓
-SHIP
-```
-
-No es una colección de proyectos para demostrar cuántos frameworks puedo nombrar.
-
-Es un espacio para **construir cosas que hacen algo**.
-
----
-
-# 02 · THE LAB
-
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                       SYSTEMS LAB                           │
-│                                                             │
-│  AI          AUTOMATION       DATA        DEVELOPMENT       │
-│   │              │             │              │             │
-│   └──────────────┴─────────────┴──────────────┘             │
-│                         │                                   │
-│                         ▼                                   │
-│                      SYSTEMS                                │
-│                         │                                   │
-│              ┌──────────┼──────────┐                        │
-│              ▼          ▼          ▼                        │
-│           AGENTS     GAMES      CUSTOMER                    │
-│                                  SYSTEMS                    │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Core principle
-
-> **Technology is the medium.
-> The system is the product.**
-
----
-
-# 03 · WHAT I BUILD
-
-| Area                    | What happens here                               |
-| :---------------------- | :---------------------------------------------- |
-| 🤖 **AI**               | Agents · GenAI · prompt systems · HITL          |
-| ⚙️ **Automation**       | Workflows · rules · triggers · APIs             |
-| 📊 **Data**             | Signals · metrics · pricing · operational logic |
-| 💻 **Development**      | HTML · CSS · JavaScript · Python                |
-| 🎮 **Experiments**      | Canvas · interaction · games                    |
-| 🌀 **Visual Systems**   | WebGL · rendering · data fields                 |
-| 🎧 **Customer Systems** | Support · Success · routing · knowledge         |
-| 🧠 **Product Thinking** | Problem → system → adoption → outcome           |
-
----
-
-# 04 · LIVE PROJECTS
-
-<div align="center">
-
-## 🎮 PROJECT OHANA
-
-### `CANVAS · INTERACTION · GAME SYSTEM`
-
-[![OPEN OHANA](https://img.shields.io/badge/OPEN-OHANA-7AF3FF?style=for-the-badge\&labelColor=06070A)](https://gracianb.github.io/project-ohana/)
-
-**A browser-based experimental game.**
-
-Characters.
-Movement.
-States.
-Interaction.
-Visual evolution.
-
-`STATUS: LIVE`
-
----
-
-## 🌀 VÓRTICE
-
-### `WEBGL · VISUALIZATION · EXPERIMENT`
-
-[![OPEN VÓRTICE](https://img.shields.io/badge/OPEN-V%C3%93RTICE-7AF3FF?style=for-the-badge\&labelColor=06070A)](https://vortex-gilt-xi.vercel.app/)
-
-**An experimental WebGL environment.**
-
-Rendering.
-Motion.
-Data.
-Interaction.
-Visual systems.
-
-`STATUS: LIVE`
-
-</div>
-
----
-
-# 05 · PRODUCTION SYSTEM
-
-## 🎧 BODYTONE SUPPORT OS
-
-### `CUSTOMER SUCCESS · ZENDESK · PRODUCTION`
-
-[![OPEN BODYTONE HELP CENTER](https://img.shields.io/badge/OPEN-BODYTONE_HELP_CENTER-7AF3FF?style=for-the-badge\&labelColor=06070A)](https://bodytonehelp.zendesk.com/hc/es)
-
-Este es el punto donde el laboratorio técnico conecta con un sistema profesional real.
-
-```text
-CUSTOMER
-    ↓
-CANAL
-    ↓
-CONTEXTO
-    ↓
-CRITERIO
-    ↓
-ACCIÓN
-    ↓
-CIERRE
-```
-
-El objetivo:
-
-**entender → enrutar → resolver → cerrar**
-
-sin hacer que el cliente vuelva a contar la misma historia.
-
-`STATUS: PRODUCTION`
-
----
-
-# 06 · AGENT DEMO
-
-## 🤖 EMBEDDED AGENT
-
-[![OPEN AGENT](https://img.shields.io/badge/OPEN-AGENT_DEMO-F4F3EE?style=for-the-badge\&labelColor=06070A)](https://gracianb.github.io/systems-lab/#agente)
-
-Una experiencia conversacional integrada dentro del laboratorio.
-
-```text
-USER
- ↓
-INTERFACE
- ↓
-AGENT
- ↓
-RESPONSE
- ↓
-UI
-```
-
-Incluye:
-
-* conversación
-* estados de interfaz
-* prompt-driven behavior
-* experiencia de agente
-* integración frontend
-* arquitectura sin API keys expuestas
-
-`STATUS: DEMO`
-
-> Demo técnica. No sistema de producción.
-
----
-
-# 07 · SYSTEMS MAP
-
-```text
-                         ┌──────────────────────┐
-                         │       GRACIANB       │
-                         │         HUB          │
-                         │ PEOPLE × DATA ×      │
-                         │       SYSTEMS        │
-                         └──────────┬───────────┘
-                                    │
-          ┌─────────────────────────┼─────────────────────────┐
-          │                         │                         │
-          ▼                         ▼                         ▼
-   01 EXPERIENCE               02 PLAY                  03 YOGA
-   professional-deck           systems-lab              yoga-instructor
-   CS × Data × AI              AI × Systems             Presence
-          │                         │                         │
-          │                    ┌────┼────┐                    │
-          │                    ▼    ▼    ▼                    │
-          │                  OHANA VORTEX AGENT                │
-          │                    │    │    │                    │
-          └────────────────────┴────┴────┴────────────────────┘
-                                    │
-                                    ▼
-                         BODYTONE SUPPORT OS
-                                    │
-                                    ▼
-                              BUSINESS VALUE
-```
-
----
-
-# 08 · FROM PROBLEM TO SYSTEM
-
-Mi forma de construir:
-
-```text
-PROBLEM
-   ↓
-CONTEXT
-   ↓
-SIGNAL
-   ↓
-CRITERIA
-   ↓
-LOGIC
-   ↓
-SYSTEM
-   ↓
-INTERFACE
-   ↓
-ADOPTION
-   ↓
-OUTCOME
-```
-
-Y cuando el sistema funciona:
-
-```text
-CUSTOMER
-   ↓
-DATA
-   ↓
-AUTOMATION
-   ↓
-AI
-   ↓
-SYSTEM
-   ↓
-BUSINESS VALUE
-```
-
----
-
-# 09 · CUSTOMER SYSTEMS
-
-La parte técnica no empieza en el código.
-
-Empieza en el problema.
-
-### SUPPORT
-
-```text
-QUESTION
-   ↓
-CLASSIFY
-   ↓
-ROUTE
-   ↓
-RESOLVE
-```
-
-### SUCCESS
-
-```text
-CUSTOMER SIGNAL
-   ↓
-CONTEXT
-   ↓
-ACTION
-   ↓
-OUTCOME
-```
-
-### OPERATIONS
-
-```text
-DATA
-   ↓
-RULE
-   ↓
-AUTOMATION
-   ↓
-DECISION
-```
-
-### AI
-
-```text
-INPUT
-   ↓
-MODEL
-   ↓
-CRITERIA
-   ↓
-HUMAN CHECK
-   ↓
-ACTION
-```
-
-La tecnología importa.
-
-Pero **la utilidad importa más**.
-
----
-
-# 10 · ARCHITECTURE
-
-```text
-┌──────────────────────────────────────────────┐
-│                  EXPERIENCE                  │
-│              UI · Interaction               │
-├──────────────────────────────────────────────┤
-│                    LOGIC                     │
-│       State · Rules · Routing · Data         │
-├──────────────────────────────────────────────┤
-│                     AI                       │
-│        Agents · GenAI · Prompting            │
-├──────────────────────────────────────────────┤
-│                 AUTOMATION                   │
-│         Workflows · Triggers · APIs          │
-├──────────────────────────────────────────────┤
-│                   SYSTEM                     │
-│       Customer · Operations · Value          │
-└──────────────────────────────────────────────┘
-```
-
-La interfaz es lo que se ve.
-
-La arquitectura es lo que hace que funcione.
-
----
-
-# 11 · BUILD LOOP
-
-```text
-┌──────────┐
-│   IDEA   │
-└────┬─────┘
-     ↓
-┌──────────┐
-│ PROTOTYPE│
-└────┬─────┘
-     ↓
-┌──────────┐
-│   TEST   │
-└────┬─────┘
-     ↓
-┌──────────┐
-│   FAIL   │
-└────┬─────┘
-     ↓
-┌──────────┐
-│  DEBUG   │
-└────┬─────┘
-     ↓
-┌──────────┐
-│ ITERATE  │
-└────┬─────┘
-     ↓
-┌──────────┐
-│   SHIP   │
-└────┬─────┘
-     │
-     └──────────────→ LEARN → BUILD AGAIN
-```
-
-La iteración no es un fallo del proceso.
-
-**Es el proceso.**
-
----
-
-# 12 · TECH STACK
-
-| Layer                | Stack                                  |
-| :------------------- | :------------------------------------- |
-| **Frontend**         | HTML · CSS · Vanilla JS                |
-| **Backend**          | Python · APIs                          |
-| **AI**               | GenAI · Agents · Prompt systems        |
-| **Data**             | Analysis · Pricing · Operational logic |
-| **Games**            | Canvas · JavaScript                    |
-| **Visual**           | WebGL                                  |
-| **Customer Systems** | Zendesk                                |
-| **Hosting**          | GitHub Pages · Vercel                  |
-| **Versioning**       | Git · GitHub                           |
-| **Fonts**            | Fraunces · Inter · JetBrains Mono      |
-
----
-
-# 13 · PROJECT STATUS
-
-| Project                 | Type                |     Status    |
-| :---------------------- | :------------------ | :-----------: |
-| **Systems Lab**         | Technical portfolio |    🟢 LIVE    |
-| **Project Ohana**       | Canvas experiment   |    🟢 LIVE    |
-| **Vórtice**             | WebGL experiment    |    🟢 LIVE    |
-| **Bodytone Support OS** | Customer system     | 🟢 PRODUCTION |
-| **Agent Demo**          | AI prototype        |    🟡 DEMO    |
-
-### Status vocabulary
-
-```text
-🟢 LIVE
-Working and accessible.
-
-🟢 PRODUCTION
-Used as a real system.
-
-🟡 DEMO
-Functional technical demonstration.
-
-🟠 EXPERIMENT
-Testing an idea.
-
-⚫ ARCHIVED
-Built → learned → retired.
-```
-
----
-
-# 14 · FAMILY CHROME
-
-Systems Lab pertenece al mismo universo visual que GracianB.
-
-No es una marca independiente.
-
-Es el **technical track**.
-
-| Token       | Value              |
-| :---------- | :----------------- |
-| Display     | **Fraunces**       |
-| UI          | **Inter**          |
-| Mono        | **JetBrains Mono** |
-| Brand       | **GB**             |
-| PLAY accent | `#7AF3FF`          |
-| Hub accent  | `#F3D437`          |
-| Yoga accent | `#7DCAA5`          |
-| Theme       | Dark / Light       |
-| i18n        | ES / EN            |
-
-```text
-GRACIANB
-│
-├── 01 EXPERIENCE
-│   └── professional-deck
-│
-├── 02 PLAY
-│   └── systems-lab
-│
-└── 03 YOGA
-    └── yoga-instructor
-```
-
-**Same ecosystem. Different frequency.**
-
----
-
-# 15 · WHY THIS LAB EXISTS
-
-Hay una diferencia entre:
-
-> **“Sé utilizar esta tecnología.”**
-
-y:
-
-> **“Sé convertir un problema en un sistema que utiliza esta tecnología.”**
-
-Me interesa la segunda.
-
-Por eso este laboratorio mezcla:
-
-**Customer Success + Data + AI + Automation + Development + Systems**
-
-No para coleccionar tecnologías.
-
-Para construir cosas que funcionen.
-
----
-
-# 16 · THE PROFESSIONAL CONNECTION
-
-Mi evolución profesional puede resumirse así:
-
-```text
-CUSTOMER-FACING
-      ↓
-CUSTOMER SUCCESS
-      ↓
-OPERATIONS
-      ↓
-DATA
-      ↓
-PRICING
-      ↓
-AUTOMATION
-      ↓
-AI
-      ↓
-SYSTEMS
-```
-
-Y el laboratorio hace visible esa evolución.
-
-**People → Data → Systems**
-
----
-
-# 17 · ECOSYSTEM
-
-| World               | Purpose                       | Live                                                               |
-| :------------------ | :---------------------------- | :----------------------------------------------------------------- |
-| **00 · Hub**        | Personal ecosystem            | [GracianB](https://gracianb.github.io/GracianB/)                   |
-| **01 · Experience** | Customer Success · Data · AI  | [Professional Deck](https://gracianb.github.io/professional-deck/) |
-| **02 · Play**       | AI · Automation · Development | [Systems Lab](https://gracianb.github.io/systems-lab/)             |
-| **03 · Yoga**       | Presence · Breath · Movement  | [Yoga Instructor](https://gracianb.github.io/yoga-instructor/)     |
-
-### Technical experiments
-
-* [Project Ohana](https://gracianb.github.io/project-ohana/)
-* [Vórtice](https://vortex-gilt-xi.vercel.app/)
-* [Bodytone Help Center](https://bodytonehelp.zendesk.com/hc/es)
-
----
-
-# 18 · NAVIGATION
-
-<div align="center">
-
-### `00` HUB
-
-**People × Data × Systems**
-
-[**OPEN GRACIANB →**](https://gracianb.github.io/GracianB/)
-
----
-
-### `01` EXPERIENCE
-
-**Customer Success × Data × AI**
-
-[**OPEN PROFESSIONAL DECK →**](https://gracianb.github.io/professional-deck/)
-
----
-
-### `02` PLAY
-
-**AI × Automation × Development × Experiments**
-
-[**OPEN SYSTEMS LAB →**](https://gracianb.github.io/systems-lab/)
-
----
-
-### `03` YOGA
-
-**Presence × Breath × Movement**
-
-[**OPEN YOGA →**](https://gracianb.github.io/yoga-instructor/)
-
-</div>
-
----
-
-# 19 · CONTACT
-
-<div align="center">
-
-[![Agenda](https://img.shields.io/badge/AGENDA-30_MIN-F4F3EE?style=for-the-badge\&labelColor=06070A)](https://calendar.app.google/n99psBFktwYyoAWi9)
-
-[![Email](https://img.shields.io/badge/EMAIL-GMAIL-EA4335?style=for-the-badge\&labelColor=06070A\&logo=gmail\&logoColor=white)](mailto:gracianbaenagonzalez@gmail.com)
-
-[![LinkedIn](https://img.shields.io/badge/LINKEDIN-GRACIANBAENA-0A66C2?style=for-the-badge\&labelColor=06070A\&logo=linkedin\&logoColor=white)](https://www.linkedin.com/in/gracianbaena)
-
-[![GitHub](https://img.shields.io/badge/GITHUB-GRACIANB-F4F3EE?style=for-the-badge\&labelColor=06070A\&logo=github)](https://github.com/GracianB)
-
-[![HUB](https://img.shields.io/badge/HUB-GRACIANB-F3D437?style=for-the-badge\&labelColor=06070A)](https://gracianb.github.io/GracianB/)
+<a href="https://gracianb.github.io/GracianB/"><img src="https://img.shields.io/badge/00_HUB-F3D437?style=flat-square&labelColor=06070A" alt="Hub"/></a>
+<a href="https://gracianb.github.io/professional-deck/"><img src="https://img.shields.io/badge/01_EXPERIENCE-F4F3EE?style=flat-square&labelColor=06070A" alt="Deck"/></a>
+<a href="https://gracianb.github.io/yoga-instructor/"><img src="https://img.shields.io/badge/03_YOGA-7DCAA5?style=flat-square&labelColor=06070A" alt="Yoga"/></a>
+<img src="https://img.shields.io/badge/ES_%2F_EN-7AF3FF?style=flat-square&labelColor=06070A" alt="Español e inglés"/>
+<img src="https://img.shields.io/badge/DARK_%2F_LIGHT-F4F3EE?style=flat-square&labelColor=06070A" alt="Claro y oscuro"/>
 
 <br/><br/>
 
-`BUILD · TEST · BREAK · FIX · SHIP`
+**No te lo explico. Púlsalo.**
+
+Si no se abre en el navegador, no está.
 
 <br/>
 
-**PEOPLE × DATA × SYSTEMS**
-
-<sub>Murcia · Spain · 2026 · Gracián Baena · systems-lab</sub>
+[Español](#español) · [English](#english)
 
 </div>
 
 ---
 
+## Lo que se abre
+
+| | Qué es | Estado |
+| --- | --- | --- |
+| [Ohana](https://gracianb.github.io/project-ohana/) | Canvas 2D. Isla Hoku. 10 salas, 10 personajes, de bebé a GOD. | Live |
+| [Vórtice](https://vortex-gilt-xi.vercel.app/) | WebGL. Mueves el cursor. Los puntos te siguen. | Live |
+| [Bodytone](https://bodytonehelp.zendesk.com/hc/es) | Help Center público. El cliente elige, el caso llega con contexto. | Producción |
+| [Agente](https://gracianb.github.io/systems-lab/#agente) | Cómo se siente un canal con agente. Sin claves. | Ejemplo |
+
+```mermaid
+%%{init: {'theme':'dark'}}%%
+flowchart TB
+  lab[Systems Lab]
+  lab --> ohana[Ohana · Canvas]
+  lab --> vortex[Vórtice · WebGL]
+  lab --> agent[Agente · ejemplo]
+  lab --> zd[Bodytone · producción]
+```
+
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=120&section=footer&color=0:7AF3FF,50:0B1820,100:06070A" width="100%"/>
+### [Abrir Systems Lab](https://gracianb.github.io/systems-lab/)
 
-### `PLAY × TÉCNICA`
+</div>
 
-<sub>
-A system nobody uses is just engineering with an inflated sense of self-importance.
-</sub>
+---
+
+<a id="español"></a>
+
+## Español
+
+Systems Lab es la puerta técnica de [GracianB](https://gracianb.github.io/GracianB/). No es una lista de frameworks. Es el sitio donde una idea se construye, se rompe y, si aguanta, se publica.
+
+Idea, prototipo, prueba, rotura, arreglo, publicación. La iteración no es un fallo del proceso. Es el proceso.
+
+La tecnología es el medio. El sistema es el producto. Me interesa menos «sé usar esto» que «sé convertir un problema en un sistema que usa esto».
+
+### Ohana
+
+Un platformer de Canvas, en el navegador, sin instalar nada. Isla Hoku. Diez personajes originales, cada uno con su golpe y sus tres poderes. Cinco formas, de bebé a GOD. Diez salas. Al final, la Reina del Nido.
+
+La H pega. J, K y L son el poder. La partida recuerda la sala y la forma.
+
+[Jugar Ohana](https://gracianb.github.io/project-ohana/)
+
+### Vórtice
+
+Un campo WebGL. No es una captura: el cursor mueve el sistema.
+
+[Abrir Vórtice](https://vortex-gilt-xi.vercel.app/)
+
+### Bodytone
+
+Aquí el laboratorio toca un sistema de verdad. El Help Center está en producción, sobre Zendesk.
+
+El cliente entra, dice qué necesita, el sistema enruta, el caso aterriza con contexto. Nadie le pide que cuente la historia dos veces.
+
+Canal, criterio, acción, cierre.
+
+[Entrar al Help Center](https://bodytonehelp.zendesk.com/hc/es)
+
+El relato profesional está en el [deck](https://gracianb.github.io/professional-deck/), no aquí.
+
+### El agente
+
+Abajo en el lab hay un agente de ejemplo: envío, factura, ticket, un archivo. Enseña la interfaz y el estado. No lleva claves. No es el sistema de Bodytone. El de verdad es el Help Center.
+
+[Ver el ejemplo](https://gracianb.github.io/systems-lab/#agente)
+
+### Cómo está hecho el lab
+
+HTML, CSS y JavaScript, sin framework. Español e inglés. Claro y oscuro. Fraunces, Inter, JetBrains Mono. El acento de Play es `#7AF3FF`. Publicado en GitHub Pages.
+
+Ohana es Canvas. Vórtice es WebGL, en Vercel. Bodytone es Zendesk.
+
+| Capa | |
+| --- | --- |
+| Lo que se ve | HTML, CSS, la interfaz |
+| Lo que decide | Estado, reglas, enrutado |
+| Cuando hay modelo | GenAI, con una persona que cierra |
+| Cuando es un juego | Canvas o WebGL |
+| Cuando es soporte | Zendesk |
+
+```mermaid
+%%{init: {'theme':'dark'}}%%
+flowchart LR
+  P[Problema] --> C[Contexto]
+  C --> S[Señal]
+  S --> K[Criterio]
+  K --> L[Lógica]
+  L --> Y[Sistema]
+  Y --> U[Uso]
+  U --> R[Resultado]
+```
+
+Un sistema que nadie usa es ingeniería con autoestima.
+
+### Las otras puertas
+
+| | |
+| --- | --- |
+| 00 | [Hub](https://gracianb.github.io/GracianB/) · personas, datos, sistemas |
+| 01 | [Deck](https://gracianb.github.io/professional-deck/) · Customer Success, datos, el caso Bodytone |
+| 03 | [Yoga](https://gracianb.github.io/yoga-instructor/) · presencia, respiración, práctica |
+
+Mismo ecosistema. Otra frecuencia. La línea profesional —cliente, datos, pricing, automatización, IA, sistemas— se cuenta en el deck. Este repo solo enseña lo que se puede pulsar.
+
+---
+
+<a id="english"></a>
+
+## English
+
+Systems Lab is the technical door of [GracianB](https://gracianb.github.io/GracianB/). Not a list of frameworks. The place where an idea is built, broken, and shipped if it holds.
+
+Technology is the medium. The system is the product.
+
+| | What it is | Status |
+| --- | --- | --- |
+| [Ohana](https://gracianb.github.io/project-ohana/) | Canvas 2D. Isla Hoku. 10 rooms, 10 characters, from baby to GOD. H hits. J, K and L are the powers. | Live |
+| [Vórtice](https://vortex-gilt-xi.vercel.app/) | WebGL. Move the cursor. The points follow. | Live |
+| [Bodytone](https://bodytonehelp.zendesk.com/hc/es) | Public Help Center. The customer chooses. The case lands with context. | Production |
+| [Agent](https://gracianb.github.io/systems-lab/#agente) | How a channel feels with an agent. No keys. Not Bodytone. | Example |
+
+The lab itself is HTML, CSS and JavaScript, Spanish and English, light and dark. Ohana is Canvas. Vórtice is WebGL on Vercel. Bodytone is Zendesk. The professional write-up lives in the [deck](https://gracianb.github.io/professional-deck/). Yoga is the [third door](https://gracianb.github.io/yoga-instructor/). The three meet at the [hub](https://gracianb.github.io/GracianB/).
+
+A system nobody uses is engineering with an ego.
+
+---
+
+<div align="center">
+
+<a href="https://calendar.app.google/n99psBFktwYyoAWi9"><img src="https://img.shields.io/badge/30_min-F4F3EE?style=for-the-badge&labelColor=06070A" alt="Reservar 30 minutos"/></a>
+<a href="mailto:gracianbaenagonzalez@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white&labelColor=06070A" alt="Email"/></a>
+<a href="https://www.linkedin.com/in/gracianbaena"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=06070A" alt="LinkedIn"/></a>
+<a href="https://github.com/GracianB"><img src="https://img.shields.io/badge/GitHub-F4F3EE?style=for-the-badge&logo=github&labelColor=06070A" alt="GitHub"/></a>
+
+<br/><br/>
+
+[Lab](https://gracianb.github.io/systems-lab/) · [Ohana](https://gracianb.github.io/project-ohana/) · [Vórtice](https://vortex-gilt-xi.vercel.app/) · [Hub](https://gracianb.github.io/GracianB/)
+
+<br/>
+
+<a href="https://gracianb.github.io/systems-lab/">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=110&section=footer&reversal=true&color=0:7AF3FF,50:0B1820,100:06070A&text=PLAY%20%C3%97%20T%C3%89CNICA&fontColor=F4F3EE&fontSize=22&fontAlignY=64&animation=fadeIn" width="100%" alt="Play por técnica."/>
+</a>
+
+<sub>Murcia · 2026</sub>
 
 </div>
