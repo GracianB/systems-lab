@@ -376,6 +376,17 @@
     background:transparent;color:#d5e4dc;border:1px solid rgba(255,255,255,.16);
     border-radius:999px;padding:7px 12px;cursor:pointer;font-weight:650;font-size:.78rem;
   }
+  .tools{display:flex;align-items:center;gap:8px}
+  .tools button{
+    height:36px;padding:0 14px;border-radius:12px;font-size:.78rem;font-weight:750;
+    cursor:pointer;letter-spacing:-.01em;
+  }
+  #soundToggle{background:rgba(255,255,255,.08);color:#d7e6de;border:1px solid rgba(255,255,255,.14)}
+  #clearChat{background:#f4f7f5;color:#07140f;border:1px solid #f4f7f5}
+  #reset{background:transparent;color:#ffb4b6;border:1px solid rgba(229,72,77,.55)}
+  #soundToggle:hover{background:rgba(255,255,255,.14)}
+  #clearChat:hover{background:#fff}
+  #reset:hover{background:rgba(229,72,77,.16)}
   .workspace{flex:1;display:flex;flex-direction:column;gap:12px;padding:12px;min-height:0}
   .split{flex:1;display:grid;grid-template-columns:minmax(280px,.72fr) minmax(420px,1.45fr);gap:12px;min-height:calc(100vh - 88px)}
   .col{
@@ -611,9 +622,11 @@
       <div class="stat-chip resolved"><span class="num" id="statResolved">0</span><span class="lbl">aprendidas</span></div>
     </div>
     <div class="spacer"></div>
-    <button class="sound-toggle" id="soundToggle" type="button" title="Sonido" aria-label="Sonido">Sonido</button>
-    <button id="clearChat" type="button">Limpiar chat</button>
-    <button id="reset" type="button">Reiniciar base</button>
+    <div class="tools">
+      <button id="soundToggle" type="button">Sonido</button>
+      <button id="clearChat" type="button">Limpiar chat</button>
+      <button id="reset" type="button">Reiniciar base</button>
+    </div>
   </header>
 
   <div class="workspace">
