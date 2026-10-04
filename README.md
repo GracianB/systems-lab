@@ -41,7 +41,8 @@ Si no se abre en el navegador, no está.
 
 | | Qué es | Estado |
 | --- | --- | --- |
-| [Ohana](https://gracianb.github.io/project-ohana/) | Canvas 2D. Isla Hoku. 10 salas, 10 personajes, de bebé a GOD. | Live |
+| [RevOps Studio](https://gracianb.github.io/revops-studio/) | RevOps. Datos, scoring, decisiones y trazabilidad. | Live |
+| [Ohana](https://gracianb.github.io/project-ohana/) | Canvas 2D. Isla Hoku. 10 salas, 10 personajes, evolución y boss. | Live |
 | [Vórtice](https://vortex-gilt-xi.vercel.app/) | WebGL. Mueves el cursor. Los puntos te siguen. | Live |
 | [Bodytone](https://bodytonehelp.zendesk.com/hc/es) | Help Center público. El cliente elige, el caso llega con contexto. | Producción |
 | [Agente](https://gracianb.github.io/systems-lab/#agente) | Cómo se siente un canal con agente. Sin claves. | Ejemplo |
@@ -68,11 +69,17 @@ flowchart TB
 
 ## Español
 
-Systems Lab es la puerta técnica de [GracianB](https://gracianb.github.io/GracianB/). No es una lista de frameworks. Es el sitio donde una idea se construye, se rompe y, si aguanta, se publica.
+Systems Lab es la puerta técnica de [GracianB](https://gracianb.github.io/GracianB/). Aquí conviven software, simulación, automatización y sistemas de decisión. No es una lista de frameworks. Es el sitio donde una idea se construye, se rompe y, si aguanta, se publica.
 
 Idea, prototipo, prueba, rotura, arreglo, publicación. La iteración no es un fallo del proceso. Es el proceso.
 
 La tecnología es el medio. El sistema es el producto. Me interesa menos «sé usar esto» que «sé convertir un problema en un sistema que usa esto».
+
+### RevOps Studio
+
+Un sistema de decisión de Revenue Operations: validación de datos, scoring determinista, clasificación, forecasting, trazabilidad y aprobación humana. Es la pieza que conecta la parte profesional de RevOps con la parte técnica del laboratorio.
+
+[Abrir RevOps Studio](https://gracianb.github.io/revops-studio/)
 
 ### Ohana
 
