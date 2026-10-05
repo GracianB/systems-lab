@@ -2,32 +2,27 @@
 
 ## Release Certificate
 
-**Status:** FINALIZATION CANDIDATE
+**Status:** FROZEN  
+**Release:** 4.1.0  
+**Certified:** 2026-10-05
 
-This certificate records the intended final public state of Systems Lab after the 4.1 visual release.
+### Final state
 
-### Scope
+- Main branch contains the 4.1.0 release.
+- Quality Gate is green on the final release branch history.
+- Visual regression contract is included in `npm run check`.
+- First-party performance budgets are included in `npm run check`.
+- No open feature work remains in the Systems Lab release path.
+- `ohana-proof` remains preserved and outside the release scope.
+- Future changes are restricted to critical fixes, security patches, broken public links and infrastructure maintenance.
 
-- Public technical portfolio surface
-- Dark / light visual system
-- Spanish / English interface
-- Responsive layouts
-- Interactive demos and public links
-- Dependency-free quality gate
-- Agent demo with explicit non-production status
+### Final acceptance surface
 
-### Final acceptance criteria
-
-- [ ] Main branch contains the final release
-- [ ] Quality Gate is green
-- [ ] Visual regression contract is green
-- [ ] Performance budget is green
-- [ ] No open pull requests
-- [ ] No feature branches dedicated to Systems Lab remain
-- [ ] `ohana-proof` remains preserved
-- [ ] Release tag `v4.1.0` exists
-- [ ] Main public surface is frozen
+**Experience:** dark/light visual system, bilingual UI, responsive layouts, interactive demos.  
+**Quality:** strict static audit, visual regression contract and performance budgets.  
+**Security:** CSP, self-hosted sanitizer, source-tree secret scans and risky-API checks.  
+**Operations:** main is the production line; feature work is not part of the frozen release.
 
 ### Maintenance policy
 
-After certification, changes are limited to critical fixes, security patches, broken public links and infrastructure maintenance.
+After certification, Systems Lab is treated as a frozen public portfolio surface. Changes are allowed only when necessary to preserve security, functionality, availability or public-link integrity.
