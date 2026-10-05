@@ -67,6 +67,7 @@ const css = read("styles.css");
 const sitemap = read("sitemap.xml");
 const robots = read("robots.txt");
 const pkgText = read("package.json");
+const workflow = read(".github/workflows/quality.yml");
 
 let pkg = {};
 try {
@@ -144,8 +145,13 @@ check("seo:sitemap-canonical", sitemap.includes("<loc>https://gracianb.github.io
 check("seo:sitemap-lastmod", /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sitemap));
 
 check("pkg:name", pkg.name === "systems-lab");
+check("pkg:version", pkg.version === "4.0.0");
 check("pkg:check-script", pkg.scripts?.check === "npm run audit:strict");
 check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("20"));
+check("ci:read-only", /permissions:\s*\n\s+contents:\s*read/.test(workflow));
+check("ci:no-feature-push-duplication", !/push:\s*\n(?:.|\n)*branches:\s*\n(?:.|\n)*feat\//.test(workflow));
+check("ci:node-24", /node-version:\s*24/.test(workflow));
+check("ci:runs-check", /run:\s*npm run check/.test(workflow));
 
 const sourceExtensions = new Set([".html", ".htm", ".js", ".mjs", ".cjs", ".css", ".json", ".jsonc", ".md", ".txt", ".xml", ".yml", ".yaml", ".svg", ".sh", ".ps1", ".py"]);
 
