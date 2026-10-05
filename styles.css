@@ -891,8 +891,8 @@ html.intro-on[data-theme="light"] .lab-intro {
   transition: transform .22s var(--ease);
 }
 .nav a:hover::after,
-.nav a[aria-current="page"]::after { transform: scaleX(1); }
-.nav a[aria-current="page"] { color: var(--ice); }
+.nav a[aria-current="location"]::after { transform: scaleX(1); }
+.nav a[aria-current="location"] { color: var(--ice); }
 
 .hero-frame {
   isolation: isolate;
