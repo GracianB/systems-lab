@@ -82,6 +82,8 @@ check("html:referrer", /name="referrer"[^>]+strict-origin-when-cross-origin/i.te
 check("html:skip-link", /href="#main"/i.test(html));
 check("html:main-landmark", /<main[^>]+id="main"/i.test(html));
 check("html:menu-controls", /aria-controls="drawer"/i.test(html));
+check("html:drawer-dialog", /id="drawer"[^>]*role="dialog"/i.test(html) && /aria-modal="true"/i.test(html) && /aria-hidden="true"/i.test(html));
+check("html:iframe-title", /<iframe\b[^>]*title="[^"]+"[^>]*>/i.test(html));
 check("html:inline-handlers", count(html, /son[a-z]+s*=/gi) === 0);
 
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
@@ -112,6 +114,8 @@ check("js:menu-focus-return", /menuReturnFocus/.test(main) && /target\?\.focus\(
 check("js:menu-focus-trap", /e\.key === "Tab"/.test(main) && /focusable = \[\.\.\.drawer\.querySelectorAll/.test(main));
 check("js:canvas-visibility", /document\.addEventListener\("visibilitychange"/.test(main) && /!running \|\| document\.hidden/.test(main));
 check("js:canvas-cancel", /cancelAnimationFrame \|\| clearTimeout/.test(main));
+check("js:no-exposed-integrations", !/LAB_(?:GAS|ZENDESK)|script\.google\.com\/macros/i.test(main));
+check("js:no-retired-demo-selectors", !/q-name|out-find|q-seg|out-mail|q-machine|q-kind|out-mant|data-run=/i.test(main));
 
 const important = count(css, /!important/g);
 const cssBytes = fs.statSync(file("styles.css")).size;
@@ -129,9 +133,24 @@ check("pkg:name", pkg.name === "systems-lab");
 check("pkg:check-script", pkg.scripts?.check === "npm run audit:strict");
 check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("20"));
 
-const forbiddenInHtml = ["AKfycb", "BEGIN PRIVATE KEY", "sk-", "ghp_"];
-for (const token of forbiddenInHtml) {
-  check("security:no-" + token, !html.includes(token));
+const sourceFiles = [
+  "index.html",
+  "main.js",
+  "i18n.js",
+  "styles.css",
+  "404.html",
+  "package.json",
+  ".github/workflows/quality.yml"
+];
+const forbiddenPatterns = [
+  ["google-apps-script-id", /AKfycb[A-Za-z0-9_-]+/],
+  ["private-key", /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/],
+  ["github-token", /(?:ghp_|github_pat_)[A-Za-z0-9_]+/],
+  ["openai-style-key", /(?:sk|rk)-[A-Za-z0-9_-]{20,}/]
+];
+for (const [label, pattern] of forbiddenPatterns) {
+  const hits = sourceFiles.filter((name) => pattern.test(read(name)));
+  check("security:no-" + label, hits.length === 0, hits.join(", ") || "clean");
 }
 
 console.log("");
