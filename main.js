@@ -144,7 +144,6 @@
   });
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const lowPower = Number.isFinite(navigator.hardwareConcurrency) && navigator.hardwareConcurrency <= 4;
 
   /* —— contextual navigation —— */
   (function activeSection() {
@@ -214,6 +213,7 @@
   "use strict";
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const lowPower = Number.isFinite(navigator.hardwareConcurrency) && navigator.hardwareConcurrency <= 4;
   const root = document.documentElement;
   const rAF = window.requestAnimationFrame || ((f) => setTimeout(f, 16));
 
