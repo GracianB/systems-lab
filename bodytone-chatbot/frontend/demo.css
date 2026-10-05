@@ -349,3 +349,16 @@ body.demo-on {
     transform: none;
   }
 }
+
+.chat-widget__fatal-error {
+  position: relative;
+  z-index: 999999;
+  margin: 12px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 110, 110, .32);
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(80,20,25,.94), rgba(35,12,17,.96));
+  color: #ffe7e7;
+  box-shadow: 0 14px 40px rgba(0,0,0,.28);
+  font: 700 13px/1.5 Inter, ui-sans-serif, system-ui, sans-serif;
+}
