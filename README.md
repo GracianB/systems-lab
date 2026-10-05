@@ -175,11 +175,15 @@ The lab itself is HTML, CSS and JavaScript, Spanish and English, light and dark.
 
 The repository keeps a dependency-free quality gate for the public lab.
 
-`npm run check` · release 3.2.0
+`npm run check` · release 4.0.0
 
-It validates the required surface, HTML metadata and landmarks, bilingual key coverage, JavaScript syntax and risky APIs, exposed-secret patterns, retired-code selectors, external-link safety, mobile navigation semantics, reduced-motion support, sitemap/robots alignment, and CSS budget.
+It validates the required surface, HTML metadata and landmarks, bilingual key coverage, JavaScript syntax and risky APIs across the source tree, exposed-secret patterns, retired-code selectors, external-link safety, mobile navigation semantics, reduced-motion support, CSP and boot contracts, agent-demo security, sitemap/robots alignment, and CSS budget.
 
 A system nobody uses is engineering with an ego.
+
+### 4.0.0 baseline
+
+The public lab now ships with a hardened interaction layer, a self-hosted sanitizer for the agent demo, a full-tree static security gate, adaptive decorative effects, and a stricter browser-side security policy.
 
 ---
 

@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- *  Main Frontend Script for CS Chat Widget - v6.0.6 (The Final Menu)
+ *  Main Frontend Script for CS Chat Widget - v7.0.0 (The Final Menu)
  * ============================================================================
  *
  *  Key Improvements in v6.0.6:
@@ -34,7 +34,7 @@ import { initializeSettings, openSettingsModal, closeSettingsModal } from './set
 
 // --- DOMContentLoaded Listener ---
 document.addEventListener('DOMContentLoaded', () => {
-    const SCRIPT_LOG_PREFIX = "[script.js v6.0.6]"; // Version updated
+    const SCRIPT_LOG_PREFIX = "[script.js v7.0.0]"; // Version updated
     console.log(`${SCRIPT_LOG_PREFIX} DOM Ready. Initializing Chat Widget...`);
 
     // --- Constants ---
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
             processedLine = processedLine.replace(/\*(.*?)\*/g, '<em>$1</em>');
     
             // 2. Convertir [Texto](URL) en botones/tarjetas de información
-            const cardLinkRegex = /\[([^\]]+?)\]\((https?:\/\/[^\s)]+)\)/g;
+            const cardLinkRegex = /\[([^\]]+?)\]\((https?:\/\/[^\s)"']+)\)/g;
             processedLine = processedLine.replace(cardLinkRegex, (match, linkText, url) => {
                 const isPdf = url.toLowerCase().endsWith('.pdf');
                 const cardType = isPdf ? 'pdf' : 'web';
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const sanitizedLinkText = sanitizeHtml(linkText);
                 return `
-                    <a href="${url}" target="_blank" rel="noopener noreferrer" class="${CSS.INFO_CARD_LINK_CLASS}" data-card-type="${cardType}">
+                    <a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="${CSS.INFO_CARD_LINK_CLASS}" data-card-type="${cardType}">
                         <span class="info-card__icon" aria-hidden="true">${iconSvg}</span>
                         <span class="info-card__text">${sanitizedLinkText}</span>
                     </a>
@@ -248,16 +248,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     
             // 3. Convertir URLs de texto plano restantes en enlaces simples
-            const urlRegex = /(?<!<a href=")(?<!\(|=")(https?:\/\/[^\s<]+)/g;
+            const urlRegex = /(?<!<a href=")(?<!\(|=")(https?:\/\/[^\s<>"']+)/g;
             processedLine = processedLine.replace(urlRegex, (url) => {
-                return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="${CSS.INLINE_LINK_CLASS}">${url}</a>`;
+                const safeUrl = url.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="${CSS.INLINE_LINK_CLASS}">${safeUrl}</a>`;
             });
     
             return processedLine;
         });
     
         // Unir las líneas procesadas con <br> para mantener la estructura de párrafos
-        return processedLines.join('<br>');
+        return sanitizeHtml(processedLines.join('<br>'), { ALLOW_DATA_ATTR: true });
     };
 
     const sanitizeHtml = (unsafeHtml) => {
@@ -366,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
             article.setAttribute('aria-labelledby', `${senderNameId} ${textElementId}`);
             let avatarHtml = '';
             if (sender === 'bot' && showAvatar) { avatarHtml = `<div class="message__avatar"><img src="./images/avatar.png" alt="" aria-hidden="true" loading="lazy"></div>`; }
-            const quickActionsHtml = (sender === 'bot' && !isError && Array.isArray(quickActions) && quickActions.length > 0) ? `<div class="message__quick-actions" role="group" aria-label="Acciones rápidas sugeridas">${quickActions.map(qa => { const escapeAttr = (str) => (typeof str === 'string' ? str.replace(/"/g, '"') : ''); const buttonText = qa?.text || 'Acción'; const sanitizedButtonText = sanitizeHtml(buttonText); const messageForPayload = qa?.payload?.message ?? qa?.query ?? buttonText; const optionForPayload = qa?.payload?.initial_option ?? qa?.option; let dataAttrs = `data-query="${escapeAttr(messageForPayload)}"`; if (optionForPayload !== null && optionForPayload !== undefined) { dataAttrs += ` data-option="${escapeAttr(optionForPayload)}"`; } if (qa?.tracking) { dataAttrs += ` data-tracking="${escapeAttr(qa.tracking)}"`; } return `<button type="button" class="message__quick-action-btn bt-button" ${dataAttrs}>${sanitizedButtonText}</button>`; }).join('')}</div>` : '';
+            const quickActionsHtml = (sender === 'bot' && !isError && Array.isArray(quickActions) && quickActions.length > 0) ? `<div class="message__quick-actions" role="group" aria-label="Acciones rápidas sugeridas">${quickActions.map(qa => { const escapeAttr = (str) => (typeof str === 'string' ? str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : ''); const buttonText = qa?.text || 'Acción'; const sanitizedButtonText = sanitizeHtml(buttonText); const messageForPayload = qa?.payload?.message ?? qa?.query ?? buttonText; const optionForPayload = qa?.payload?.initial_option ?? qa?.option; let dataAttrs = `data-query="${escapeAttr(messageForPayload)}"`; if (optionForPayload !== null && optionForPayload !== undefined) { dataAttrs += ` data-option="${escapeAttr(optionForPayload)}"`; } if (qa?.tracking) { dataAttrs += ` data-tracking="${escapeAttr(qa.tracking)}"`; } return `<button type="button" class="message__quick-action-btn bt-button" ${dataAttrs}>${sanitizedButtonText}</button>`; }).join('')}</div>` : '';
             const bubbleInnerHtml = `<div class="message__text" id="${textElementId}">${sanitizedBubbleContent}</div>`;
             const playTTSButtonHtml = (sender === 'bot' && !isError) ? `<button type="button" class="message__action-btn bt-button ${CSS.PLAY_TTS_BUTTON_CLASS}" aria-label="Reproducir mensaje con voz" data-action="play-tts" data-message-id="${msgId}" title="Reproducir mensaje"><svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" focusable="false" aria-hidden="true"><path d="M8 5v14l11-7L8 5z"/></svg><svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" focusable="false" aria-hidden="true" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span class="spinner-icon" style="display:none;"></span></button>` : '';
             const messageActionsHtml = `<div class="message__actions" role="group" aria-label="Acciones del mensaje ${msgId}">${playTTSButtonHtml}<button type="button" class="message__action-btn bt-button" aria-label="Copiar mensaje" data-action="copy" data-message-id="${msgId}" title="Copiar mensaje"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" focusable="false" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button><button type="button" class="message__action-btn bt-button" aria-label="Reportar problema" data-action="report" data-message-id="${msgId}" title="Reportar mensaje"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" focusable="false" aria-hidden="true"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6h-5.6z"/></svg></button></div>`;
@@ -671,7 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (state.isChatOpen) scrollToBottom(true);
             const widgetVersion = widgetElements.chatWidget?.dataset.widgetVersion || 'N/A';
-            console.log(`${SCRIPT_LOG_PREFIX} Chat Widget Initialized (v6.0.6). Widget HTML Version: ${widgetVersion}`);
+            console.log(`${SCRIPT_LOG_PREFIX} Chat Widget Initialized (v7.0.0). Widget HTML Version: ${widgetVersion}`);
             announceToSr("Agente CS listo.", "assertive");
         } catch (error) {
              console.error(`${SCRIPT_LOG_PREFIX} FATAL ERROR during main initialization sequence:`, error);

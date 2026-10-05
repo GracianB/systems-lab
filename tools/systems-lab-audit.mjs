@@ -18,7 +18,12 @@ const required = [
   "sitemap.xml",
   "favicon.svg",
   "package.json",
-  ".gitignore"
+  ".gitignore",
+  ".editorconfig",
+  "SECURITY.md",
+  "boot.js",
+  "vendor/dompurify/purify.min.js",
+  "vendor/dompurify/LICENSE"
 ];
 
 function file(name) {
@@ -62,6 +67,7 @@ const css = read("styles.css");
 const sitemap = read("sitemap.xml");
 const robots = read("robots.txt");
 const pkgText = read("package.json");
+const workflow = read(".github/workflows/quality.yml");
 
 let pkg = {};
 try {
@@ -78,6 +84,9 @@ check("html:description", /name="description"/i.test(html));
 check("html:canonical", html.includes('rel="canonical" href="https://gracianb.github.io/systems-lab/"'));
 check("html:og-type", /property="og:type"[^>]+content="website"/i.test(html));
 check("html:twitter-card", /name="twitter:card"/i.test(html));
+check("html:csp", /Content-Security-Policy/i.test(html) && /script-src 'self'/i.test(html) && /style-src-attr 'unsafe-inline'/i.test(html));
+check("html:prepaint-boot", /<script src="\.\/boot\.js\?v=lab-v4"><\/script>/i.test(html));
+check("html:json-ld", /<script type="application\/ld\+json">/i.test(html));
 check("html:referrer", /name="referrer"[^>]+strict-origin-when-cross-origin/i.test(html));
 check("html:skip-link", /href="#main"/i.test(html));
 check("html:main-landmark", /<main[^>]+id="main"/i.test(html));
@@ -97,7 +106,8 @@ check("html:external-links", unsafeBlank.length === 0, unsafeBlank.length ? unsa
 check("html:no-javascript-hrefs", !/href\s*=\s*["']javascript:/i.test(html));
 check("html:intro-single-owner", !/setTimeout\(function \(\) \{ document\.documentElement\.classList\.add\("intro-done"\)/.test(html));
 
-const i18nKeys = [...i18n.matchAll(/^\s{4}([A-Za-z0-9_]+):/gm)].map((m) => m[1]);
+const i18nKeyMatches = [...i18n.matchAll(/^\s{4}([A-Za-z0-9_]+):/gm)].map((m) => m[1]);
+const i18nKeys = [...new Set(i18nKeyMatches)];
 const htmlKeys = [...html.matchAll(/data-i18n(?:-html)?="([^"]+)"/g)].map((m) => m[1]);
 const missingKeys = [...new Set(htmlKeys.filter((key) => !i18nKeys.includes(key)))];
 check("i18n:key-coverage", missingKeys.length === 0, missingKeys.join(", ") || "complete");
@@ -112,6 +122,7 @@ check("js:no-eval", count(main, /\beval\s*\(/g) === 0);
 check("js:no-new-function", count(main, /\bnew Function\b/g) === 0);
 check("js:no-document-write", count(main, /document\.write/g) === 0);
 check("js:menu-state", count(main, /let menuOpen = false;/g) === 1 && count(main, /setMenu\(!menuOpen\)/g) === 1);
+check("js:active-location", /aria-current\", \"location\"/.test(main));
 check("js:menu-escape", count(main, /e\.key === "Escape"/g) === 1);
 check("js:menu-focus-return", /menuReturnFocus/.test(main) && /target\?\.focus\(\)/.test(main));
 check("js:menu-focus-trap", /e\.key === "Tab"/.test(main) && /focusable = \[\.\.\.drawer\.querySelectorAll/.test(main));
@@ -128,13 +139,19 @@ check("css:focus-visible", /:focus-visible/.test(css));
 check("css:reduced-motion", /prefers-reduced-motion:\s*reduce/.test(css));
 check("css:hidden-contract", /\.drawer\[hidden\]\s*\{\s*display:\s*none;/.test(css));
 
+
 check("seo:robots-sitemap", robots.includes("Sitemap: https://gracianb.github.io/systems-lab/sitemap.xml"));
 check("seo:sitemap-canonical", sitemap.includes("<loc>https://gracianb.github.io/systems-lab/</loc>"));
 check("seo:sitemap-lastmod", /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sitemap));
 
 check("pkg:name", pkg.name === "systems-lab");
+check("pkg:version", pkg.version === "4.0.0");
 check("pkg:check-script", pkg.scripts?.check === "npm run audit:strict");
 check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("20"));
+check("ci:read-only", /permissions:\s*\n\s+contents:\s*read/.test(workflow));
+check("ci:no-feature-push-duplication", !/push:\s*\n(?:.|\n)*branches:\s*\n(?:.|\n)*feat\//.test(workflow));
+check("ci:node-24", /node-version:\s*24/.test(workflow));
+check("ci:runs-check", /run:\s*npm run check/.test(workflow));
 
 const sourceExtensions = new Set([".html", ".htm", ".js", ".mjs", ".cjs", ".css", ".json", ".jsonc", ".md", ".txt", ".xml", ".yml", ".yaml", ".svg", ".sh", ".ps1", ".py"]);
 
@@ -158,13 +175,29 @@ for (const name of sourceFiles) {
   catch { /* Ignore unreadable edge cases. */ }
 }
 
-const dynamicInnerHtml = [...sourceText.entries()]
+const codeText = [...sourceText.entries()].filter(([name]) => !name.startsWith("vendor/"));
+const agentHtml = sourceText.get("bodytone-chatbot/frontend/index.html") ?? "";
+const demoJs = sourceText.get("bodytone-chatbot/frontend/demo.js") ?? "";
+const agentDemoCss = sourceText.get("bodytone-chatbot/frontend/demo.css") ?? "";
+check("agent:exists", Boolean(agentHtml && demoJs && agentDemoCss));
+check("agent:no-cdn-sanitizer", !/cdnjs\.cloudflare\.com\/ajax\/libs\/dompurify/i.test(agentHtml));
+check("agent:local-sanitizer", agentHtml.includes("../../vendor/dompurify/purify.min.js"));
+check("agent:noindex", /name="robots"\s+content="noindex, nofollow"/i.test(agentHtml));
+check("agent:referrer", /name="referrer"\s+content="strict-origin-when-cross-origin"/i.test(agentHtml));
+check("agent:demo-file-limits", /MAX_FILES\s*=\s*5/.test(demoJs) && /MAX_FILE_BYTES\s*=\s*10 \* 1024 \* 1024/.test(demoJs));
+check("agent:local-api", /u\.origin === location\.origin/.test(demoJs));
+check("agent:reduced-motion", /prefers-reduced-motion:\s*reduce/.test(agentDemoCss));
+check("security:no-eval-tree", codeText.every(([name, text]) => !/\beval\s*\(/.test(text)));
+check("security:no-new-function-tree", codeText.every(([name, text]) => !/\bnew Function\b/.test(text)));
+check("security:no-document-write-tree", codeText.every(([name, text]) => !/document\.write/.test(text)));
+
+const dynamicInnerHtml = [...codeText]
   .filter(([name]) => /\.(?:js|mjs|cjs)$/i.test(name))
   .flatMap(([name, text]) => text.split("\n").map((line, index) => ({ name, index: index + 1, line })))
   .filter(({ line }) => /innerHTML\s*=/.test(line) && (/\+/.test(line) || /\$\{/.test(line)));
 check("security:no-dynamic-innerhtml", dynamicInnerHtml.length === 0, dynamicInnerHtml.map((hit) => hit.name + ":" + hit.index).join(", ") || "clean");
 
-const jsFiles = sourceFiles.filter((name) => /\.(?:js|mjs|cjs)$/i.test(name));
+const jsFiles = sourceFiles.filter((name) => !name.startsWith("vendor/") && /\.(?:js|mjs|cjs)$/i.test(name));
 const syntaxFailures = jsFiles.filter((name) => spawnSync(process.execPath, ["--check", path.join(ROOT, name)], { encoding: "utf8" }).status !== 0);
 check("js:syntax-tree", syntaxFailures.length === 0, syntaxFailures.join(", ") || jsFiles.length + " files");
 const forbiddenPatterns = [

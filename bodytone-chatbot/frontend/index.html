@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05080d">
+    <meta name="color-scheme" content="dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="robots" content="noindex, nofollow">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>Agente CS</title>
@@ -13,14 +17,14 @@
     <link rel="stylesheet" href="widget-base.css"> 
     <link rel="stylesheet" href="widget-components.css">
     <link rel="stylesheet" href="widget-popup.css">
-    <link rel="stylesheet" href="./demo.css?v=2">
-    <script src="./demo.js?v=2"></script>
+    <link rel="stylesheet" href="./demo.css?v=4">
+    <script src="./demo.js?v=3" defer></script>
 
     <!-- Favicon -->
     <link rel="icon" href="./images/favicon.svg" type="image/svg+xml">
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.11/purify.min.js" integrity="sha512-ce0fmuEgWrpnIXWKQrSgJ5FsBsr/hnOsxdWvk5lu1GThckasLwc+TAFERLNIwWnWqBoWV4GPDJiz2PSPntinVA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="../../vendor/dompurify/purify.min.js" defer></script>
     <script type="module" src="script.js" defer></script>
 </head>
 <body>
@@ -28,7 +32,7 @@
     <div class="sr-only" aria-live="polite" aria-atomic="true" id="chat-widget-announcer"></div>
 
     <!-- <<-- CORRECCIÓN: Inicia con la clase 'chat-widget--closed' para que empiece cerrado -->
-    <main id="bodytone-chat-widget" class="chat-widget chat-widget--closed" role="region" aria-label="Agente CS">
+    <main id="bodytone-chat-widget" class="chat-widget chat-widget--closed" role="region" aria-label="Agente CS" data-widget-version="7.0.0">
 
         <!-- TOGGLE BUTTON -->
         <button id="chat-toggle-btn" class="chat-widget__toggle bt-button" aria-expanded="false" aria-controls="chat-container" aria-label="Abrir chat" data-tooltip="Abrir Chat">
@@ -42,7 +46,7 @@
         </button>
 
         <!-- CHAT WINDOW -->
-        <section id="chat-container" class="chat-widget__container" aria-hidden="true" role="dialog" aria-modal="false" inert>
+        <section id="chat-container" class="chat-widget__container" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="chat-widget-title" inert>
 
         <!-- ======================================================= -->
         <!-- == HEADER CORREGIDO - SIN ESTILOS EN LÍNEA           == -->
@@ -116,7 +120,7 @@
 
             <!-- FOOTER WITH INPUT FORM -->
             <footer class="chat-widget__footer">
-                <div id="suggestions-panel" class="chat-widget__suggestions" role="listbox" hidden></div>
+                <div id="suggestions-panel" class="chat-widget__suggestions" role="region" aria-label="Sugerencias rápidas" hidden></div>
                 <div id="voice-feedback-area" class="chat-widget__voice-feedback" hidden>
                     <div id="voice-status-display" class="voice-feedback__status">Escuchando...</div>
                     <div id="voice-timer-display" class="voice-feedback__timer">0:00</div>
@@ -145,7 +149,7 @@
     </main>
     
     <!-- AUDIO ELEMENTS -->
-    <audio id="chat-notification-sound" src="./audio/notification.mp3" preload="auto"></audio>
+    <audio id="chat-notification-sound" src="./audio/notification.mp3" preload="none"></audio>
     <audio id="piper-tts-audio-player" preload="auto"></audio>
 
     <!-- SETTINGS MODAL (Controlled by JS) -->

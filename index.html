@@ -21,25 +21,17 @@
   <meta property="og:description" content="Ohana, Vórtice y el Help Center de Bodytone. Abajo, un ejemplo de agente.">
   <meta property="og:url" content="https://gracianb.github.io/systems-lab/">
   <meta name="twitter:card" content="summary">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
+  <link rel="dns-prefetch" href="//gracianb.github.io">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=lab-max-2">
-  <script>
-    /* PLAY boot — decide before first paint, with failsafe */
-    (function () {
-      try {
-        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        var seen = false;
-        try { seen = sessionStorage.getItem("lab-intro-seen") === "1"; } catch (e) {}
-        if (!reduce && !seen) {
-          document.documentElement.classList.add("intro-on");
-        }
-      } catch (e) {}
-    })();
-  </script>
-  <script src="./i18n.js?v=lab-max-2"></script>
-  <script src="./main.js?v=lab-max-2" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=lab-v4">
+  <link rel="preload" href="./boot.js?v=lab-v4" as="script">
+  <script src="./boot.js?v=lab-v4"></script>
+  <script src="./i18n.js?v=lab-v4"></script>
+  <script src="./main.js?v=lab-v4" defer></script>
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"><i></i></div>
@@ -94,10 +86,10 @@
         <button type="button" class="seg-btn" data-set-lang="en" aria-pressed="false">EN</button>
       </div>
       <div class="seg" role="group" aria-label="Theme selection">
-        <button type="button" class="seg-btn seg-icon" data-set-theme="dark" aria-pressed="true" title="Dark">
+        <button type="button" class="seg-btn seg-icon" data-set-theme="dark" aria-pressed="true" title="Dark" aria-label="Tema oscuro">
           <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M6.1 1.2a6.8 6.8 0 0 0 8.7 8.7A7 7 0 1 1 6.1 1.2z"/></svg>
         </button>
-        <button type="button" class="seg-btn seg-icon" data-set-theme="light" aria-pressed="false" title="Light">
+        <button type="button" class="seg-btn seg-icon" data-set-theme="light" aria-pressed="false" title="Light" aria-label="Tema claro">
           <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 1.2v1.5M8 13.3v1.5M1.2 8h1.5M13.3 8h1.5M3.2 3.2l1.1 1.1M11.7 11.7l1.1 1.1M3.2 12.8l1.1-1.1M11.7 4.3l1.1-1.1"/></g></svg>
         </button>
       </div>
@@ -125,6 +117,11 @@
           <span class="pill live"><i></i> <span data-i18n="pill1">2 juegos live</span></span>
           <span class="pill live"><i></i> <span data-i18n="pill2">1 Help Center en producción</span></span>
           <span class="pill" data-i18n="pill3">1 ejemplo de agente</span>
+        </div>
+        <div class="hero-signal" role="status" aria-label="Estado del laboratorio">
+          <div class="signal-main"><span class="signal-live" aria-hidden="true"></span><span data-i18n="signalTitle">LAB ONLINE</span></div>
+          <div class="signal-detail" data-i18n="signalDesc">Interfaz pública · demos sin claves · quality gate activo</div>
+          <span class="signal-clock" aria-hidden="true"></span>
         </div>
       </div>
       <aside class="hero-rail">
@@ -246,7 +243,7 @@
           <span></span><span></span><span></span>
           <b>agent · demo</b>
         </div>
-        <iframe src="./bodytone-chatbot/frontend/?embed=1&v=2" title="Ejemplo de agente CS" loading="lazy"></iframe>
+        <iframe src="./bodytone-chatbot/frontend/?embed=1&v=4" title="Ejemplo de agente CS" loading="lazy"></iframe>
       </div>
       <p class="hint"><a href="./bodytone-chatbot/frontend/" data-i18n="botCta">Pantalla completa →</a></p>
     </article>
@@ -286,8 +283,12 @@
     </div>
   </footer>
 
-  <div class="drawer" id="drawer" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navegación móvil">
-    <div class="drawer-panel">
+  <div class="drawer" id="drawer" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="drawer-panel" role="navigation" aria-label="Navegación móvil">
+      <div class="drawer-head">
+        <span class="drawer-kicker" id="drawer-title" data-i18n="drawerTitle">LAB / NAV</span>
+        <button type="button" class="drawer-close" data-drawer-close aria-label="Cerrar menú" data-i18n="drawerClose">Cerrar</button>
+      </div>
       <a href="#juegos" data-i18n="navGames">Juegos</a>
       <a href="#cs" data-i18n="navCs">CS</a>
       <a href="#agente" data-i18n="navAgent">Agente</a>
@@ -299,5 +300,21 @@
       <a href="https://bodytonehelp.zendesk.com/hc/es">Zendesk</a>
     </div>
   </div>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Gracián Baena · Systems Lab",
+    "url": "https://gracianb.github.io/systems-lab/",
+    "description": "Portafolio técnico interactivo con juegos, Customer Success y demos de sistemas.",
+    "inLanguage": ["es", "en"],
+    "author": {
+      "@type": "Person",
+      "name": "Gracián Baena",
+      "url": "https://gracianb.github.io/GracianB/"
+    }
+  }
+  </script>
 </body>
 </html>

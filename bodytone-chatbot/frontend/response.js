@@ -336,19 +336,23 @@ function _displayUserMessageAndClearInput(userMessageText, messageExchangeId) {
 }
 
 function _constructUserErrorMessage(error, messageExchangeId) {
-    let displayError = "Lo siento, un error inesperado ha ocurrido. Por favor, inténtalo de nuevo más tarde.";
-    const logCtx = `${LOG_PREFIX}[Exchange:${messageExchangeId}]`;
-    if (error instanceof Error) {
-        console.error(`${logCtx} Constructing user error from:`, error);
-        if (error.name === 'NetworkError' || error.name === 'TimeoutError' || error.message.includes('Failed to fetch')) {
-            displayError = "Error de conexión. Por favor, verifica tu conexión a internet.";
-        } else if (error.status === 429) {
-            displayError = "Demasiadas solicitudes. Por favor, espera un momento antes de reintentar.";
-        } else if (error.message) {
-            displayError = `Ha ocurrido un problema: ${error.message.substring(0, 150)}`;
-        }
+    const reference = messageExchangeId.split('-').pop();
+    const logCtx = LOG_PREFIX + '[Exchange:' + messageExchangeId + ']';
+    console.error(logCtx + ' User-facing error:', error);
+
+    if (error?.status === 429) {
+        return 'Demasiadas solicitudes en este momento. Espera un momento y vuelve a intentarlo. (Ref: ' + reference + ')';
     }
-    return `${displayError} (Ref: ${messageExchangeId.split('-').pop()})`;
+    if (error?.name === 'AbortError' || error?.name === 'TimeoutError') {
+        return 'La respuesta está tardando demasiado. Comprueba la conexión y vuelve a intentarlo. (Ref: ' + reference + ')';
+    }
+    if (error?.name === 'NetworkError' || error?.message?.includes('Failed to fetch')) {
+        return 'No se ha podido conectar con el servicio. Comprueba tu conexión y vuelve a intentarlo. (Ref: ' + reference + ')';
+    }
+    if (error?.provider === 'openai') {
+        return 'El proveedor de IA no está disponible en este momento. Inténtalo de nuevo más tarde. (Ref: ' + reference + ')';
+    }
+    return 'No se ha podido completar la solicitud. Puedes reintentarlo en unos segundos. (Ref: ' + reference + ')';
 }
 
 function _restoreUiAfterSend(keepInputDisabled = false) {

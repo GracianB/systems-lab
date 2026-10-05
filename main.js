@@ -79,6 +79,7 @@
 
   const drawer = document.getElementById("drawer");
   const menuBtn = document.querySelector("[data-menu-toggle]");
+  const drawerClose = document.querySelector("[data-drawer-close]");
   let menuOpen = false;
   let menuReturnFocus = menuBtn;
 
@@ -89,6 +90,7 @@
     drawer.hidden = !menuOpen;
     drawer.classList.toggle("is-open", menuOpen);
     menuBtn.classList.toggle("is-open", menuOpen);
+    drawer.dataset.state = menuOpen ? "open" : "closed";
     menuBtn.setAttribute("aria-expanded", String(menuOpen));
     drawer.setAttribute("aria-hidden", String(!menuOpen));
     document.body.classList.toggle("menu-on", menuOpen);
@@ -111,6 +113,7 @@
   });
 
   menuBtn?.addEventListener("click", () => setMenu(!menuOpen));
+  drawerClose?.addEventListener("click", () => setMenu(false));
   drawer?.addEventListener("click", (e) => {
     if (e.target === drawer || e.target.closest("a")) setMenu(false);
   });
@@ -141,6 +144,27 @@
   });
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* —— contextual navigation —— */
+  (function activeSection() {
+    const links = [...document.querySelectorAll('.nav a[href^="#"]')];
+    if (!links.length || !("IntersectionObserver" in window)) return;
+    const sections = links
+      .map((link) => ({ link, section: document.querySelector(link.getAttribute("href")) }))
+      .filter(({ section }) => section);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting);
+      if (!visible.length) return;
+      const current = visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0].target;
+      sections.forEach(({ link, section }) => {
+        const active = section === current;
+        if (active) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    }, { rootMargin: "-22% 0px -58% 0px", threshold: 0 });
+    sections.forEach(({ section }) => observer.observe(section));
+  })();
+
   if (!reduce && "IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
@@ -159,7 +183,7 @@
   if (!reduce) {
     const fx = document.querySelector(".fx");
     window.addEventListener("pointermove", (e) => {
-      if (!fx) return;
+      if (!fx || document.hidden) return;
       const x = (e.clientX / window.innerWidth - 0.5) * 28;
       const y = (e.clientY / window.innerHeight - 0.5) * 18;
       fx.style.setProperty("--mx", x.toFixed(1) + "px");
@@ -189,6 +213,7 @@
   "use strict";
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const lowPower = Number.isFinite(navigator.hardwareConcurrency) && navigator.hardwareConcurrency <= 4;
   const root = document.documentElement;
   const rAF = window.requestAnimationFrame || ((f) => setTimeout(f, 16));
 
@@ -263,7 +288,8 @@
     if (!ctx) return;
     const PAL = [[122,243,255],[122,243,255],[243,212,55],[125,202,165],[246,244,238]];
     let w = 0, h = 0, dpr = 1, parts = [];
-    let frameId = 0, running = false;
+    let frameId = 0, running = false, lastFrameAt = 0;
+    const frameBudgetMs = lowPower ? 50 : 33;
     const cancelFrame = window.cancelAnimationFrame || clearTimeout;
     const mouse = { x: -9999, y: -9999, active: false };
     function resize() {
@@ -272,7 +298,8 @@
       canvas.width = w * dpr; canvas.height = h * dpr;
       canvas.style.width = w + "px"; canvas.style.height = h + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.max(28, Math.min(90, Math.round(w * h / 22000)));
+      const maxParticles = lowPower ? 54 : 90;
+      const count = Math.max(22, Math.min(maxParticles, Math.round(w * h / 26000)));
       parts = [];
       for (let i = 0; i < count; i++) parts.push({
         x: Math.random() * w, y: Math.random() * h,
@@ -281,11 +308,16 @@
       });
     }
     const LINK = 126, MLINK = 168;
-    function frame() {
+    function frame(now = performance.now()) {
       if (!running || document.hidden) {
         frameId = 0;
         return;
       }
+      if (now - lastFrameAt < frameBudgetMs) {
+        frameId = rAF(frame);
+        return;
+      }
+      lastFrameAt = now;
       ctx.clearRect(0, 0, w, h);
       for (const p of parts) {
         p.x += p.vx; p.y += p.vy;
@@ -323,6 +355,7 @@
     function start() {
       if (running || document.hidden) return;
       running = true;
+      lastFrameAt = 0;
       resize();
       frameId = rAF(frame);
     }

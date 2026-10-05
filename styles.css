@@ -852,3 +852,227 @@ html.intro-on[data-theme="light"] .lab-intro {
   .spotlight { display: none; }
   .li-frame, .li-ring, .li-scanline, .li-gb, .li-title, .li-words .lw, .li-bar i { animation: none; opacity: 1; stroke-dashoffset: 0; }
 }
+
+
+/* ================================================================
+   SYSTEMS LAB v4 · VISUAL SYSTEM / SIGNAL LAYER
+   ================================================================ */
+:root {
+  --border-soft: color-mix(in srgb, var(--ink) 11%, transparent);
+  --border-hover: color-mix(in srgb, var(--ice) 42%, transparent);
+  --surface-float: color-mix(in srgb, var(--surface) 88%, transparent);
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--ice) 24%, transparent);
+}
+
+.topbar {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  border-bottom: 1px solid var(--border-soft);
+  box-shadow: 0 10px 40px color-mix(in srgb, var(--bg) 34%, transparent);
+}
+
+.brand,
+.nav a,
+.seg,
+.menu-toggle {
+  position: relative;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: center;
+  background: var(--ice);
+  box-shadow: 0 0 10px var(--ice-glow);
+  transition: transform .22s var(--ease);
+}
+.nav a:hover::after,
+.nav a[aria-current="location"]::after { transform: scaleX(1); }
+.nav a[aria-current="location"] { color: var(--ice); }
+
+.hero-frame {
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 90% 90% at 0% 0%, color-mix(in srgb, var(--ice) 8%, transparent), transparent 54%),
+    linear-gradient(145deg, color-mix(in srgb, var(--surface3) 88%, transparent), var(--surface));
+}
+.hero-frame::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(circle at 88% 16%, color-mix(in srgb, var(--yellow) 10%, transparent), transparent 30%);
+  pointer-events: none;
+}
+
+.hero-signal {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 11px 13px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg) 48%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ink) 5%, transparent);
+}
+.signal-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 800 10px var(--mono);
+  letter-spacing: .14em;
+  color: var(--ice);
+  white-space: nowrap;
+}
+.signal-live {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sage);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--sage) 12%, transparent), 0 0 16px var(--sage-glow);
+  animation: signal-pulse 2.2s ease-in-out infinite;
+}
+@keyframes signal-pulse { 0%,100% { transform: scale(1); opacity: .9; } 50% { transform: scale(1.35); opacity: 1; } }
+.signal-detail {
+  min-width: 0;
+  color: var(--muted);
+  font: 500 11px/1.4 var(--mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.signal-clock {
+  width: 26px;
+  height: 8px;
+  border-top: 1px solid var(--ice);
+  border-bottom: 1px solid color-mix(in srgb, var(--yellow) 60%, transparent);
+  opacity: .8;
+}
+
+.feat,
+.cs-hero,
+.pillars article,
+.box,
+.rail-card,
+.agent-block {
+  border-color: var(--border-soft);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.feat:focus-visible,
+.cs-hero:focus-within,
+.rail-card:focus-visible,
+.btn:focus-visible,
+.drawer-close:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring), var(--shadow-ice);
+}
+
+.feat-facts {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+}
+.feat-facts li {
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: var(--muted);
+  font: 700 9px var(--mono);
+  letter-spacing: .07em;
+  background: color-mix(in srgb, var(--bg) 35%, transparent);
+}
+
+.rail-card {
+  position: relative;
+  overflow: hidden;
+}
+.rail-card::after {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  right: -42px;
+  top: -42px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--ice) 16%, transparent), transparent 70%);
+  transition: transform .35s var(--ease), opacity .25s ease;
+  opacity: .6;
+}
+.rail-card:hover::after { transform: scale(1.6); opacity: 1; }
+
+.drawer {
+  padding: 0;
+  background: color-mix(in srgb, #000 62%, transparent);
+}
+.drawer-panel {
+  gap: 5px;
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--ice) 9%, transparent), transparent 40%),
+    var(--surface);
+}
+.drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 2px 10px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.drawer-kicker { font: 800 10px var(--mono); letter-spacing: .18em; color: var(--ice); }
+.drawer-close {
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  color: var(--muted);
+  font: 800 10px var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.drawer-close:hover { color: var(--ink); border-color: var(--border-hover); background: var(--surface2); }
+
+.foot { border-top-color: var(--border-soft); }
+
+@media (max-width: 640px) {
+  .hero-signal { grid-template-columns: 1fr auto; }
+  .signal-detail { grid-column: 1 / -1; white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal-live { animation: none; }
+  .nav a::after { transition: none; }
+}
+
+
+/* ================================================================
+   v4 · PERFORMANCE BUDGET
+   ================================================================ */
+@media (min-width: 641px) {
+  .play,
+  .cs,
+  .agent-block,
+  .split {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+  }
+}
+@media (max-width: 640px) {
+  .feat,
+  .cs-hero,
+  .agent-block {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
