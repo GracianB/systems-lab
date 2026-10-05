@@ -108,7 +108,7 @@ check("js:no-new-function", count(main, /\bnew Function\b/g) === 0);
 check("js:no-document-write", count(main, /document\.write/g) === 0);
 check("js:menu-state", count(main, /let menuOpen = false;/g) === 1 && count(main, /setMenu\(!menuOpen\)/g) === 1);
 check("js:menu-escape", count(main, /e\.key === "Escape"/g) === 1);
-check("js:menu-focus-return", count(main, /menuBtn\.focus\(\)/g) === 1);
+check("js:menu-focus-return", /menuReturnFocus/.test(main) && /target\?\.focus\(\)/.test(main));
 check("js:menu-focus-trap", /e\.key === "Tab"/.test(main) && /focusable = \[\.\.\.drawer\.querySelectorAll/.test(main));
 check("js:canvas-visibility", /document\.addEventListener\("visibilitychange"/.test(main) && /!running \|\| document\.hidden/.test(main));
 check("js:canvas-cancel", /cancelAnimationFrame \|\| clearTimeout/.test(main));
