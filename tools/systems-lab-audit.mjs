@@ -75,7 +75,7 @@ check("html:doctype", /^<!doctype html>/i.test(html));
 check("html:lang", /<html[^>]+lang="(?:es|en)"/i.test(html));
 check("html:viewport", /name="viewport"/i.test(html));
 check("html:description", /name="description"/i.test(html));
-check("html:canonical", /rel="canonical"[^>]+https://gracianb.github.io/systems-lab//i.test(html));
+check("html:canonical", html.includes('rel="canonical" href="https://gracianb.github.io/systems-lab/"'));
 check("html:og-type", /property="og:type"[^>]+content="website"/i.test(html));
 check("html:twitter-card", /name="twitter:card"/i.test(html));
 check("html:referrer", /name="referrer"[^>]+strict-origin-when-cross-origin/i.test(html));
