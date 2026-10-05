@@ -101,6 +101,9 @@ const i18nKeys = [...i18n.matchAll(/^\s{4}([A-Za-z0-9_]+):/gm)].map((m) => m[1])
 const htmlKeys = [...html.matchAll(/data-i18n(?:-html)?="([^"]+)"/g)].map((m) => m[1]);
 const missingKeys = [...new Set(htmlKeys.filter((key) => !i18nKeys.includes(key)))];
 check("i18n:key-coverage", missingKeys.length === 0, missingKeys.join(", ") || "complete");
+const programmaticKeys = new Set(["htmlLang", "title"]);
+const unusedKeys = i18nKeys.filter((key) => !htmlKeys.includes(key) && !programmaticKeys.has(key));
+check("i18n:no-retired-keys", unusedKeys.length === 0, unusedKeys.join(", ") || "clean");
 
 const syntax = spawnSync(process.execPath, ["--check", file("main.js")], { encoding: "utf8" });
 check("js:syntax", syntax.status === 0, (syntax.stderr || "").trim() || "node --check");
