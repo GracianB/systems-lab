@@ -1,6 +1,6 @@
 {
   "name": "systems-lab",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "private": true,
   "description": "Systems Lab — interactive technical portfolio and systems ecosystem.",
   "type": "module",
@@ -11,6 +11,8 @@
     "audit": "node tools/systems-lab-audit.mjs",
     "audit:strict": "node tools/systems-lab-audit.mjs --strict",
     "syntax": "node --check main.js",
-    "check": "npm run audit:strict"
+    "check": "npm run audit:strict && npm run audit:visual && npm run audit:performance",
+    "audit:visual": "node tools/visual-regression-audit.mjs",
+    "audit:performance": "node tools/performance-budget.mjs"
   }
 }
