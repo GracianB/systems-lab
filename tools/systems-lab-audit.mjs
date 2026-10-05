@@ -85,7 +85,7 @@ check("html:canonical", html.includes('rel="canonical" href="https://gracianb.gi
 check("html:og-type", /property="og:type"[^>]+content="website"/i.test(html));
 check("html:twitter-card", /name="twitter:card"/i.test(html));
 check("html:csp", /Content-Security-Policy/i.test(html) && /script-src 'self'/i.test(html) && /style-src-attr 'unsafe-inline'/i.test(html));
-check("html:prepaint-boot", /<script src="\.\/boot\.js\?v=lab-v4"><\/script>/i.test(html));
+check("html:prepaint-boot", /<script src="\.\/boot\.js\?v=lab-v4\.1"><\/script>/i.test(html));
 check("html:json-ld", /<script type="application\/ld\+json">/i.test(html));
 check("html:referrer", /name="referrer"[^>]+strict-origin-when-cross-origin/i.test(html));
 check("html:skip-link", /href="#main"/i.test(html));
@@ -146,8 +146,8 @@ check("seo:sitemap-canonical", sitemap.includes("<loc>https://gracianb.github.io
 check("seo:sitemap-lastmod", /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sitemap));
 
 check("pkg:name", pkg.name === "systems-lab");
-check("pkg:version", pkg.version === "4.0.0");
-check("pkg:check-script", pkg.scripts?.check === "npm run audit:strict");
+check("pkg:version", pkg.version === "4.1.0");
+check("pkg:check-script", pkg.scripts?.check === "npm run audit:strict && npm run audit:visual && npm run audit:performance");
 check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("20"));
 check("ci:read-only", /permissions:\s*\n\s+contents:\s*read/.test(workflow));
 check("ci:no-feature-push-duplication", !/push:\s*\n(?:.|\n)*branches:\s*\n(?:.|\n)*feat\//.test(workflow));
