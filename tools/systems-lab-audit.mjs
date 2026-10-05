@@ -136,15 +136,27 @@ check("pkg:name", pkg.name === "systems-lab");
 check("pkg:check-script", pkg.scripts?.check === "npm run audit:strict");
 check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("20"));
 
-const sourceFiles = [
-  "index.html",
-  "main.js",
-  "i18n.js",
-  "styles.css",
-  "404.html",
-  "package.json",
-  ".github/workflows/quality.yml"
-];
+const sourceExtensions = new Set([".html", ".htm", ".js", ".mjs", ".cjs", ".css", ".json", ".jsonc", ".md", ".txt", ".xml", ".yml", ".yaml", ".svg", ".sh", ".ps1", ".py"]);
+
+function walkTextFiles(dir, relative = "") {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const result = [];
+  for (const entry of entries) {
+    if ([".git", "node_modules"].includes(entry.name)) continue;
+    const rel = path.join(relative, entry.name);
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) result.push(...walkTextFiles(full, rel));
+    else if (sourceExtensions.has(path.extname(entry.name).toLowerCase())) result.push(rel);
+  }
+  return result;
+}
+
+const sourceFiles = walkTextFiles(ROOT);
+const sourceText = new Map();
+for (const name of sourceFiles) {
+  try { sourceText.set(name, fs.readFileSync(path.join(ROOT, name), "utf8")); }
+  catch { /* Ignore unreadable edge cases. */ }
+}
 const forbiddenPatterns = [
   ["google-apps-script-id", /AKfycb[A-Za-z0-9_-]+/],
   ["private-key", /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/],
