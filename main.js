@@ -144,16 +144,23 @@
 
   const drawer = document.getElementById("drawer");
   const menuBtn = document.querySelector("[data-menu-toggle]");
+  let menuOpen = false;
+
   function setMenu(open) {
     if (!drawer || !menuBtn) return;
-    drawer.hidden = !open;
-    drawer.classList.toggle("is-open", open);
-    menuBtn.classList.toggle("is-open", open);
-    menuBtn.setAttribute("aria-expanded", String(open));
-    document.body.classList.toggle("menu-on", open);
-    if (open) {
+
+    menuOpen = Boolean(open);
+    drawer.hidden = !menuOpen;
+    drawer.classList.toggle("is-open", menuOpen);
+    menuBtn.classList.toggle("is-open", menuOpen);
+    menuBtn.setAttribute("aria-expanded", String(menuOpen));
+    document.body.classList.toggle("menu-on", menuOpen);
+
+    if (menuOpen) {
       const first = drawer.querySelector("a");
       requestAnimationFrame(() => first?.focus());
+    } else {
+      requestAnimationFrame(() => menuBtn.focus());
     }
   }
 
@@ -167,7 +174,7 @@
     if (e.target.closest("[data-run='mant']")) maint();
   });
 
-  menuBtn?.addEventListener("click", () => setMenu(drawer.hidden));
+  menuBtn?.addEventListener("click", () => setMenu(!menuOpen));
   drawer?.addEventListener("click", (e) => {
     if (e.target.closest("a")) setMenu(false);
   });
