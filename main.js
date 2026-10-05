@@ -61,69 +61,6 @@
     applyTheme();
   }
 
-  const MATCHES = {
-    es: [
-      { n: "Ana Ruiz · CS Lead · Murcia", s: "88  HITL" },
-      { n: "Ana M. Ruiz · Ops · Valencia", s: "71" },
-      { n: "A. Ruiz · otro sector", s: "54" }
-    ],
-    en: [
-      { n: "Ana Ruiz · CS Lead · Murcia", s: "88  HITL" },
-      { n: "Ana M. Ruiz · Ops · Valencia", s: "71" },
-      { n: "A. Ruiz · other sector", s: "54" }
-    ]
-  };
-
-  function finder() {
-    const name = ($("#q-name") && $("#q-name").value.trim()) || "Ana Ruiz";
-    const rows = MATCHES[currentLang] || MATCHES.es;
-    const out = $("#out-find");
-    if (!out) return;
-    out.textContent = name + "\n\n" + rows.map((r) => r.s.padEnd(10) + r.n).join("\n") + "\n\nHITL: persona decide. Fuentes internas no publicadas.";
-  }
-
-  function outreach() {
-    const sel = $("#q-seg");
-    if (!sel || !$("#out-mail")) return;
-    const seg = sel.value;
-    const drafts = {
-      es: {
-        saas: "Hola {nombre},\nVi que el equipo de CS escala el mismo tipo de ticket cada pico de demanda.\nSi os encaja, os enseño un agente que consulta Zendesk y solo escala con contexto.\n¿10 min esta semana?",
-        gym: "Hola {nombre},\nEn gimnasios el cuello no es el catálogo: es presupuesto + mantenimiento + incidencia.\nMonté un help center y un motor de reglas para eso. Si quieres verlo en 10 min, dime."
-      },
-      en: {
-        saas: "Hi {name},\nI keep seeing CS teams hit the same ticket type at every peak.\nHappy to show an agent that reads Zendesk and only escalates with context.\n10 minutes this week?",
-        gym: "Hi {name},\nFor gyms the bottleneck is not the catalogue — it's quote + maintenance + incident.\nI shipped a help center and a rules engine for that. 10 min walkthrough if useful."
-      }
-    };
-    const d = (drafts[currentLang] || drafts.es)[seg] || drafts.es.saas;
-    $("#out-mail").textContent = "SEGMENT " + seg + "\nSTATUS draft · waiting human\n\n" + d + "\n\n[ Revisar ]  [ Editar ]  [ Descartar ]\nNada se envía desde esta demo.";
-  }
-
-  const MANT = {
-    cinta: { es: "Cinta de correr", en: "Treadmill", prev: 3.5, corr: 5 },
-    bici: { es: "Bici indoor", en: "Indoor bike", prev: 2, corr: 3.5 },
-    fuerza: { es: "Máquina de fuerza", en: "Strength unit", prev: 1.5, corr: 4 }
-  };
-
-  function maint() {
-    if (!$("#q-machine") || !$("#out-mant")) return;
-    const m = MANT[$("#q-machine").value] || MANT.cinta;
-    const kind = $("#q-kind").value;
-    const hours = kind === "preventivo" ? m.prev : m.corr;
-    const L = currentLang === "en";
-    const name = L ? m.en : m.es;
-    const k = L ? (kind === "preventivo" ? "preventive" : "corrective") : kind;
-    $("#out-mant").textContent = [
-      (L ? "EQUIPMENT  " : "EQUIPO     ") + name,
-      (L ? "VISIT      " : "VISITA     ") + k,
-      (L ? "SAMPLE HRS " : "HORAS DEMO ") + hours + " h",
-      "",
-      L ? "Checklist: safety · wear · firmware · next slot" : "Checklist: seguridad · desgaste · firmware · próxima ventana",
-      L ? "Sample hours — not Bodytone rates." : "Horas de ejemplo — no son tarifas Bodytone."
-    ].join("\n");
-  }
-
   try {
     const s = localStorage.getItem(LANG_KEY);
     if (s === "en" || s === "es") currentLang = s;
@@ -171,9 +108,6 @@
     if (langBtn) { e.preventDefault(); applyLang(langBtn.getAttribute("data-set-lang")); return; }
     const th = e.target.closest("[data-set-theme]");
     if (th) { e.preventDefault(); setTheme(th.getAttribute("data-set-theme")); return; }
-    if (e.target.closest("[data-run='find']")) finder();
-    if (e.target.closest("[data-run='mail']")) outreach();
-    if (e.target.closest("[data-run='mant']")) maint();
   });
 
   menuBtn?.addEventListener("click", () => setMenu(!menuOpen));
