@@ -28,7 +28,7 @@
     <div class="sr-only" aria-live="polite" aria-atomic="true" id="chat-widget-announcer"></div>
 
     <!-- <<-- CORRECCIÓN: Inicia con la clase 'chat-widget--closed' para que empiece cerrado -->
-    <main id="bodytone-chat-widget" class="chat-widget chat-widget--closed" role="region" aria-label="Agente CS">
+    <main id="bodytone-chat-widget" class="chat-widget chat-widget--closed" role="region" aria-label="Agente CS" data-widget-version="7.0.0">
 
         <!-- TOGGLE BUTTON -->
         <button id="chat-toggle-btn" class="chat-widget__toggle bt-button" aria-expanded="false" aria-controls="chat-container" aria-label="Abrir chat" data-tooltip="Abrir Chat">
@@ -42,7 +42,7 @@
         </button>
 
         <!-- CHAT WINDOW -->
-        <section id="chat-container" class="chat-widget__container" aria-hidden="true" role="dialog" aria-modal="false" inert>
+        <section id="chat-container" class="chat-widget__container" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="chat-widget-title" inert>
 
         <!-- ======================================================= -->
         <!-- == HEADER CORREGIDO - SIN ESTILOS EN LÍNEA           == -->
@@ -116,7 +116,7 @@
 
             <!-- FOOTER WITH INPUT FORM -->
             <footer class="chat-widget__footer">
-                <div id="suggestions-panel" class="chat-widget__suggestions" role="listbox" hidden></div>
+                <div id="suggestions-panel" class="chat-widget__suggestions" role="region" aria-label="Sugerencias rápidas" hidden></div>
                 <div id="voice-feedback-area" class="chat-widget__voice-feedback" hidden>
                     <div id="voice-status-display" class="voice-feedback__status">Escuchando...</div>
                     <div id="voice-timer-display" class="voice-feedback__timer">0:00</div>
@@ -145,7 +145,7 @@
     </main>
     
     <!-- AUDIO ELEMENTS -->
-    <audio id="chat-notification-sound" src="./audio/notification.mp3" preload="auto"></audio>
+    <audio id="chat-notification-sound" src="./audio/notification.mp3" preload="none"></audio>
     <audio id="piper-tts-audio-player" preload="auto"></audio>
 
     <!-- SETTINGS MODAL (Controlled by JS) -->
