@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.1.0 · 2026-10-05
+
+### Visual
+- Finalized the dark and light design systems with distinct palettes, surface hierarchy and responsive treatment.
+- Added a smoother theme transition path with reduced-motion fallback.
+- Tightened visual hierarchy for navigation, hero, cards, controls and technical stages.
+
+### Evidence
+- Added dependency-free visual regression and performance budget checks.
+- Documented first-party performance budgets and final release acceptance criteria.
+- Updated public asset cache versions for the 4.1 release.
+
+### Release
+- Systems Lab is now prepared for frozen portfolio status.
+- `ohana-proof` remains outside the release scope.
+
 ## 4.0.0 · 2026-10-05
 
 ### Experience
