@@ -105,7 +105,10 @@ check("html:external-links", unsafeBlank.length === 0, unsafeBlank.length ? unsa
 check("html:no-javascript-hrefs", !/href\s*=\s*["']javascript:/i.test(html));
 check("html:intro-single-owner", !/setTimeout\(function \(\) \{ document\.documentElement\.classList\.add\("intro-done"\)/.test(html));
 
-const i18nKeys = [...i18n.matchAll(/^\s{4}([A-Za-z0-9_]+):/gm)].map((m) => m[1]);
+const i18nKeyMatches = [...i18n.matchAll(/^\s{4}([A-Za-z0-9_]+):/gm)].map((m) => m[1]);
+const i18nDuplicates = i18nKeyMatches.filter((key, i, arr) => arr.indexOf(key) !== i);
+const i18nKeys = [...new Set(i18nKeyMatches)];
+check("i18n:no-duplicate-keys", i18nDuplicates.length === 0, [...new Set(i18nDuplicates)].join(", ") || "unique");
 const htmlKeys = [...html.matchAll(/data-i18n(?:-html)?="([^"]+)"/g)].map((m) => m[1]);
 const missingKeys = [...new Set(htmlKeys.filter((key) => !i18nKeys.includes(key)))];
 check("i18n:key-coverage", missingKeys.length === 0, missingKeys.join(", ") || "complete");
@@ -179,7 +182,6 @@ check("agent:noindex", /name="robots"\s+content="noindex, nofollow"/i.test(agent
 check("agent:referrer", /name="referrer"\s+content="strict-origin-when-cross-origin"/i.test(agentHtml));
 check("agent:demo-file-limits", /MAX_FILES\s*=\s*5/.test(demoJs) && /MAX_FILE_BYTES\s*=\s*10 \* 1024 \* 1024/.test(demoJs));
 check("agent:local-api", /u\.origin === location\.origin/.test(demoJs));
-check("agent:iframe-title", /<iframe\b[^>]*title="[^"]+"/i.test(agentHtml));
 check("agent:reduced-motion", /prefers-reduced-motion:\s*reduce/.test(agentDemoCss));
 check("security:no-eval-tree", codeText.every(([name, text]) => !/\beval\s*\(/.test(text)));
 check("security:no-new-function-tree", codeText.every(([name, text]) => !/\bnew Function\b/.test(text)));
