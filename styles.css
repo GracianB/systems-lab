@@ -1078,13 +1078,11 @@ html.intro-on[data-theme="light"] .lab-intro {
 }
 
 
-/* ================================================================
-   SYSTEMS LAB v4.1 · DESIGN MAX / DARK + LIGHT
-   ================================================================ */
-html { color-scheme: dark; background: var(--bg); }
+/* v4.1 visual direction: premium dark/light surfaces */
+html { color-scheme: dark; }
 html[data-theme="light"] { color-scheme: light; }
 body {
-  background: radial-gradient(ellipse 78% 42% at 50% -8%, color-mix(in srgb, var(--ice) 8%, transparent), transparent 68%), linear-gradient(180deg, var(--bg), var(--bg2) 58%, var(--bg));
+  background: linear-gradient(180deg, var(--bg), var(--bg2) 58%, var(--bg));
 }
 .topbar {
   min-height: clamp(68px, 5vw, 76px);
