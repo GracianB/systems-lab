@@ -1054,3 +1054,25 @@ html.intro-on[data-theme="light"] .lab-intro {
   .signal-live { animation: none; }
   .nav a::after { transition: none; }
 }
+
+
+/* ================================================================
+   v4 · PERFORMANCE BUDGET
+   ================================================================ */
+@media (min-width: 641px) {
+  .play,
+  .cs,
+  .agent-block,
+  .split {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+  }
+}
+@media (max-width: 640px) {
+  .feat,
+  .cs-hero,
+  .agent-block {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
