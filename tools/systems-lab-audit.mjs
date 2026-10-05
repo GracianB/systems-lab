@@ -83,7 +83,8 @@ check("html:description", /name="description"/i.test(html));
 check("html:canonical", html.includes('rel="canonical" href="https://gracianb.github.io/systems-lab/"'));
 check("html:og-type", /property="og:type"[^>]+content="website"/i.test(html));
 check("html:twitter-card", /name="twitter:card"/i.test(html));
-check("html:csp", /Content-Security-Policy/i.test(html) && /script-src 'self'/i.test(html));
+check("html:csp", /Content-Security-Policy/i.test(html) && /script-src 'self'/i.test(html) && /style-src-attr 'unsafe-inline'/i.test(html));
+check("html:prepaint-boot", /<script src="\.\/boot\.js\?v=lab-v4"><\/script>/i.test(html));
 check("html:json-ld", /<script type="application\/ld\+json">/i.test(html));
 check("html:referrer", /name="referrer"[^>]+strict-origin-when-cross-origin/i.test(html));
 check("html:skip-link", /href="#main"/i.test(html));
@@ -178,6 +179,7 @@ check("agent:noindex", /name="robots"\s+content="noindex, nofollow"/i.test(agent
 check("agent:referrer", /name="referrer"\s+content="strict-origin-when-cross-origin"/i.test(agentHtml));
 check("agent:demo-file-limits", /MAX_FILES\s*=\s*5/.test(demoJs) && /MAX_FILE_BYTES\s*=\s*10 \* 1024 \* 1024/.test(demoJs));
 check("agent:local-api", /u\.origin === location\.origin/.test(demoJs));
+check("agent:iframe-title", /<iframe\b[^>]*title="[^"]+"/i.test(agentHtml));
 check("agent:reduced-motion", /prefers-reduced-motion:\s*reduce/.test(agentDemoCss));
 check("security:no-eval-tree", codeText.every(([name, text]) => !/\beval\s*\(/.test(text)));
 check("security:no-new-function-tree", codeText.every(([name, text]) => !/\bnew Function\b/.test(text)));
