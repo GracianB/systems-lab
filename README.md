@@ -163,12 +163,21 @@ Technology is the medium. The system is the product.
 
 | | What it is | Status |
 | --- | --- | --- |
+| [RevOps Studio](https://gracianb.github.io/revops-studio/) | RevOps. Data, scoring, decisions and traceability. | Live |
 | [Ohana](https://gracianb.github.io/project-ohana/) | Canvas 2D. Isla Hoku. 10 rooms, 10 characters, from baby to GOD. H hits. J, K and L are the powers. | Live |
 | [Vórtice](https://vortex-gilt-xi.vercel.app/) | WebGL. Move the cursor. The points follow. | Live |
 | [Bodytone](https://bodytonehelp.zendesk.com/hc/es) | Public Help Center. The customer chooses. The case lands with context. | Production |
 | [Agent](https://gracianb.github.io/systems-lab/#agente) | How a channel feels with an agent. No keys. Not Bodytone. | Example |
 
 The lab itself is HTML, CSS and JavaScript, Spanish and English, light and dark. Ohana is Canvas. Vórtice is WebGL on Vercel. Bodytone is Zendesk. The professional write-up lives in the [deck](https://gracianb.github.io/professional-deck/). Yoga is the [third door](https://gracianb.github.io/yoga-instructor/). The three meet at the [hub](https://gracianb.github.io/GracianB/).
+
+### Quality gate
+
+The repository keeps a dependency-free quality gate for the public lab.
+
+`npm run check`
+
+It validates the required surface, HTML metadata and landmarks, bilingual key coverage, JavaScript syntax and risky APIs, external-link safety, reduced-motion support, sitemap/robots alignment, and CSS budget.
 
 A system nobody uses is engineering with an ego.
 
