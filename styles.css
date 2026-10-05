@@ -1110,22 +1110,7 @@ body {
 .btn-play:hover { box-shadow: 0 16px 42px var(--ice-glow), inset 0 1px 0 rgba(255,255,255,.65); }
 .btn-ghost { background: color-mix(in srgb, var(--surface) 55%, transparent); }
 .btn-ghost:hover { border-color: color-mix(in srgb, var(--ice) 36%, var(--line-strong)); }
-.feat,
-.cs-hero,
-.pillars article,
-.agent-block,
-.box,
-.rail-card { box-shadow: 0 18px 44px color-mix(in srgb, var(--bg) 22%, transparent); }
-.feat { border-radius: 16px; }
-.feat:hover,
-.rail-card:hover,
-.pillars article:hover { box-shadow: 0 22px 52px color-mix(in srgb, var(--ice) 12%, transparent); }
 .section-head h2 { text-wrap: balance; }
-.section-head::after {
-  content: ""; display: block; width: 64px; height: 2px; margin-top: 16px;
-  background: linear-gradient(90deg, var(--ice), var(--yellow), transparent);
-}
-.method li { background: color-mix(in srgb, var(--surface2) 72%, transparent); }
 [data-theme="light"] body {
   background: radial-gradient(ellipse 80% 42% at 50% -8%, rgba(0,127,142,.09), transparent 68%), linear-gradient(180deg, var(--bg), var(--bg2) 58%, var(--bg));
 }
@@ -1150,9 +1135,3 @@ body {
 [data-theme="light"] .feat-stage,
 [data-theme="light"] .agent-stage { background: linear-gradient(180deg, #edf3f6, #dce7ec); border-color: rgba(16,24,32,.12); }
 [data-theme="light"] .stage-vortex { background: radial-gradient(circle at 50% 50%, rgba(0,127,142,.18), transparent 48%), #e5edf1; }
-[data-theme="light"] .stage-ring { border-color: rgba(0,127,142,.38); }
-[data-theme="light"] .foot { background: #e7edf1; }
-@media (max-width: 640px) {
-  .hero-frame { border-radius: 14px; }
-  .hero-signal { border-color: color-mix(in srgb, var(--ice) 24%, var(--line)); }
-}
