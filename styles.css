@@ -1092,11 +1092,7 @@ body {
   border-bottom-color: color-mix(in srgb, var(--ink) 13%, transparent);
   box-shadow: 0 18px 44px color-mix(in srgb, var(--bg) 42%, transparent);
 }
-.seg {
-  padding: 4px;
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ink) 7%, transparent);
-}
+.seg { padding: 4px; background: color-mix(in srgb, var(--surface) 92%, transparent); }
 .seg-btn { min-width: 42px; min-height: 36px; }
 .seg-btn.is-active,
 .seg-btn[aria-pressed="true"] {
@@ -1119,39 +1115,25 @@ body {
 .pillars article,
 .agent-block,
 .box,
-.rail-card {
-  box-shadow: 0 18px 44px color-mix(in srgb, var(--bg) 22%, transparent), inset 0 1px 0 color-mix(in srgb, var(--ink) 4%, transparent);
-}
+.rail-card { box-shadow: 0 18px 44px color-mix(in srgb, var(--bg) 22%, transparent); }
 .feat { border-radius: 16px; }
 .feat:hover,
 .rail-card:hover,
-.pillars article:hover {
-  box-shadow: 0 22px 52px color-mix(in srgb, var(--ice) 12%, transparent), inset 0 1px 0 color-mix(in srgb, var(--ice) 9%, transparent);
-}
+.pillars article:hover { box-shadow: 0 22px 52px color-mix(in srgb, var(--ice) 12%, transparent); }
 .section-head h2 { text-wrap: balance; }
 .section-head::after {
-  content: "";
-  display: block;
-  width: 64px;
-  height: 2px;
-  margin-top: 16px;
+  content: ""; display: block; width: 64px; height: 2px; margin-top: 16px;
   background: linear-gradient(90deg, var(--ice), var(--yellow), transparent);
 }
-.method li {
-  background: color-mix(in srgb, var(--surface2) 72%, transparent);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ink) 4%, transparent);
-}
+.method li { background: color-mix(in srgb, var(--surface2) 72%, transparent); }
 [data-theme="light"] body {
   background: radial-gradient(ellipse 80% 42% at 50% -8%, rgba(0,127,142,.09), transparent 68%), linear-gradient(180deg, var(--bg), var(--bg2) 58%, var(--bg));
 }
-[data-theme="light"] .topbar {
-  background: color-mix(in srgb, var(--surface) 82%, transparent);
-  box-shadow: 0 12px 34px rgba(16,24,32,.08);
-}
+[data-theme="light"] .topbar { background: color-mix(in srgb, var(--surface) 82%, transparent); box-shadow: 0 12px 34px rgba(16,24,32,.08); }
 [data-theme="light"] .hero-frame {
   background: radial-gradient(ellipse 90% 78% at 0% 0%, rgba(0,127,142,.10), transparent 58%), linear-gradient(145deg, #fff, var(--surface2));
   border-color: rgba(0,127,142,.22);
-  box-shadow: 0 28px 70px rgba(16,24,32,.12), 0 0 0 1px rgba(0,127,142,.07);
+  box-shadow: 0 28px 70px rgba(16,24,32,.12);
 }
 [data-theme="light"] .feat,
 [data-theme="light"] .cs-hero,
@@ -1162,14 +1144,11 @@ body {
   background: linear-gradient(180deg, #fff, rgba(243,246,248,.96));
   box-shadow: 0 18px 42px rgba(16,24,32,.08);
 }
-[data-theme="light"] .method li { background: rgba(243,246,248,.9); }
+[data-theme="light"] .method li,
 [data-theme="light"] .hero-signal,
 [data-theme="light"] .pill { background: rgba(255,255,255,.76); }
 [data-theme="light"] .feat-stage,
-[data-theme="light"] .agent-stage {
-  background: linear-gradient(180deg, #edf3f6, #dce7ec);
-  border-color: rgba(16,24,32,.12);
-}
+[data-theme="light"] .agent-stage { background: linear-gradient(180deg, #edf3f6, #dce7ec); border-color: rgba(16,24,32,.12); }
 [data-theme="light"] .stage-vortex { background: radial-gradient(circle at 50% 50%, rgba(0,127,142,.18), transparent 48%), #e5edf1; }
 [data-theme="light"] .stage-ring { border-color: rgba(0,127,142,.38); }
 [data-theme="light"] .foot { background: #e7edf1; }
