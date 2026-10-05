@@ -79,6 +79,7 @@
 
   const drawer = document.getElementById("drawer");
   const menuBtn = document.querySelector("[data-menu-toggle]");
+  const drawerClose = document.querySelector("[data-drawer-close]");
   let menuOpen = false;
   let menuReturnFocus = menuBtn;
 
@@ -89,6 +90,7 @@
     drawer.hidden = !menuOpen;
     drawer.classList.toggle("is-open", menuOpen);
     menuBtn.classList.toggle("is-open", menuOpen);
+    drawer.dataset.state = menuOpen ? "open" : "closed";
     menuBtn.setAttribute("aria-expanded", String(menuOpen));
     drawer.setAttribute("aria-hidden", String(!menuOpen));
     document.body.classList.toggle("menu-on", menuOpen);
@@ -111,6 +113,7 @@
   });
 
   menuBtn?.addEventListener("click", () => setMenu(!menuOpen));
+  drawerClose?.addEventListener("click", () => setMenu(false));
   drawer?.addEventListener("click", (e) => {
     if (e.target === drawer || e.target.closest("a")) setMenu(false);
   });
@@ -141,6 +144,28 @@
   });
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const lowPower = Number.isFinite(navigator.hardwareConcurrency) && navigator.hardwareConcurrency <= 4;
+
+  /* —— contextual navigation —— */
+  (function activeSection() {
+    const links = [...document.querySelectorAll('.nav a[href^="#"]')];
+    if (!links.length || !("IntersectionObserver" in window)) return;
+    const sections = links
+      .map((link) => ({ link, section: document.querySelector(link.getAttribute("href")) }))
+      .filter(({ section }) => section);
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting);
+      if (!visible.length) return;
+      const current = visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0].target;
+      sections.forEach(({ link, section }) => {
+        const active = section === current;
+        if (active) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      });
+    }, { rootMargin: "-22% 0px -58% 0px", threshold: 0 });
+    sections.forEach(({ section }) => observer.observe(section));
+  })();
+
   if (!reduce && "IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
@@ -159,7 +184,7 @@
   if (!reduce) {
     const fx = document.querySelector(".fx");
     window.addEventListener("pointermove", (e) => {
-      if (!fx) return;
+      if (!fx || document.hidden) return;
       const x = (e.clientX / window.innerWidth - 0.5) * 28;
       const y = (e.clientY / window.innerHeight - 0.5) * 18;
       fx.style.setProperty("--mx", x.toFixed(1) + "px");
@@ -272,7 +297,8 @@
       canvas.width = w * dpr; canvas.height = h * dpr;
       canvas.style.width = w + "px"; canvas.style.height = h + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.max(28, Math.min(90, Math.round(w * h / 22000)));
+      const maxParticles = lowPower ? 54 : 90;
+      const count = Math.max(22, Math.min(maxParticles, Math.round(w * h / 26000)));
       parts = [];
       for (let i = 0; i < count; i++) parts.push({
         x: Math.random() * w, y: Math.random() * h,
