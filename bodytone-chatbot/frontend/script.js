@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- *  Main Frontend Script for CS Chat Widget - v6.0.6 (The Final Menu)
+ *  Main Frontend Script for CS Chat Widget - v7.0.0 (The Final Menu)
  * ============================================================================
  *
  *  Key Improvements in v6.0.6:
@@ -34,7 +34,7 @@ import { initializeSettings, openSettingsModal, closeSettingsModal } from './set
 
 // --- DOMContentLoaded Listener ---
 document.addEventListener('DOMContentLoaded', () => {
-    const SCRIPT_LOG_PREFIX = "[script.js v6.0.6]"; // Version updated
+    const SCRIPT_LOG_PREFIX = "[script.js v7.0.0]"; // Version updated
     console.log(`${SCRIPT_LOG_PREFIX} DOM Ready. Initializing Chat Widget...`);
 
     // --- Constants ---
@@ -672,7 +672,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (state.isChatOpen) scrollToBottom(true);
             const widgetVersion = widgetElements.chatWidget?.dataset.widgetVersion || 'N/A';
-            console.log(`${SCRIPT_LOG_PREFIX} Chat Widget Initialized (v6.0.6). Widget HTML Version: ${widgetVersion}`);
+            console.log(`${SCRIPT_LOG_PREFIX} Chat Widget Initialized (v7.0.0). Widget HTML Version: ${widgetVersion}`);
             announceToSr("Agente CS listo.", "assertive");
         } catch (error) {
              console.error(`${SCRIPT_LOG_PREFIX} FATAL ERROR during main initialization sequence:`, error);
