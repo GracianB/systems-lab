@@ -120,6 +120,16 @@ check("js:canvas-cancel", /cancelAnimationFrame \|\| clearTimeout/.test(main));
 check("js:no-exposed-integrations", !/LAB_(?:GAS|ZENDESK)|script\.google\.com\/macros/i.test(main));
 check("js:no-retired-demo-selectors", !/q-name|out-find|q-seg|out-mail|q-machine|q-kind|out-mant|data-run=/i.test(main));
 
+const dynamicInnerHtml = [...sourceText.entries()]
+  .filter(([name]) => /\\.(?:js|mjs|cjs)$/i.test(name))
+  .flatMap(([name, text]) => text.split("\\n").map((line, index) => ({ name, index: index + 1, line })))
+  .filter(({ line }) => /innerHTML\\s*=/.test(line) && (/\\+/.test(line) || /\\$\\{/.test(line)));
+check("security:no-dynamic-innerhtml", dynamicInnerHtml.length === 0, dynamicInnerHtml.map((hit) => hit.name + ":" + hit.index).join(", ") || "clean");
+
+const jsFiles = sourceFiles.filter((name) => /\\.(?:js|mjs|cjs)$/i.test(name));
+const syntaxFailures = jsFiles.filter((name) => spawnSync(process.execPath, ["--check", path.join(ROOT, name)], { encoding: "utf8" }).status !== 0);
+check("js:syntax-tree", syntaxFailures.length === 0, syntaxFailures.join(", ") || jsFiles.length + " files");
+
 const important = count(css, /!important/g);
 const cssBytes = fs.statSync(file("styles.css")).size;
 check("css:no-important", important === 0, String(important));
