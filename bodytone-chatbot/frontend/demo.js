@@ -87,10 +87,19 @@
     }
     const files = window.__BT_FILES || [];
     bar.hidden = files.length === 0;
-    bar.innerHTML = files.map(function (f, i) {
-      return '<span class="bt-chip">' + f.name +
-        ' <button type="button" data-rm="' + i + '" aria-label="Quitar">×</button></span>';
-    }).join("");
+    bar.replaceChildren();
+    files.forEach(function (f, i) {
+      const chip = document.createElement("span");
+      chip.className = "bt-chip";
+      const name = document.createTextNode(f.name);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.dataset.rm = String(i);
+      button.setAttribute("aria-label", "Quitar");
+      button.textContent = "×";
+      chip.append(name, document.createTextNode(" "), button);
+      bar.appendChild(chip);
+    });
   }
 
   function suggestions() {
