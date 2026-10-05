@@ -146,7 +146,7 @@ check("seo:sitemap-canonical", sitemap.includes("<loc>https://gracianb.github.io
 check("seo:sitemap-lastmod", /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sitemap));
 
 check("pkg:name", pkg.name === "systems-lab");
-check("pkg:version", pkg.version === "4.0.0");
+check("pkg:version", pkg.version === "4.1.0");
 check("pkg:check-script", pkg.scripts?.check === "npm run audit:strict");
 check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("20"));
 check("ci:read-only", /permissions:\s*\n\s+contents:\s*read/.test(workflow));
