@@ -1083,18 +1083,14 @@ html.intro-on[data-theme="light"] .lab-intro {
    ================================================================ */
 html { color-scheme: dark; background: var(--bg); }
 html[data-theme="light"] { color-scheme: light; }
-
 body {
-  background:
-    radial-gradient(ellipse 78% 42% at 50% -8%, color-mix(in srgb, var(--ice) 8%, transparent), transparent 68%),
-    linear-gradient(180deg, var(--bg), var(--bg2) 58%, var(--bg));
+  background: radial-gradient(ellipse 78% 42% at 50% -8%, color-mix(in srgb, var(--ice) 8%, transparent), transparent 68%), linear-gradient(180deg, var(--bg), var(--bg2) 58%, var(--bg));
 }
-
 .topbar {
   min-height: clamp(68px, 5vw, 76px);
   background: color-mix(in srgb, var(--bg) 84%, transparent);
   border-bottom-color: color-mix(in srgb, var(--ink) 13%, transparent);
-  box-shadow: 0 18px 44px color-mix(in srgb, var(--bg) 42%, transparent), inset 0 -1px 0 color-mix(in srgb, var(--ink) 4%, transparent);
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--bg) 42%, transparent);
 }
 .seg {
   padding: 4px;
@@ -1105,13 +1101,9 @@ body {
 .seg-btn.is-active,
 .seg-btn[aria-pressed="true"] {
   background: linear-gradient(145deg, var(--ink), color-mix(in srgb, var(--ink) 88%, var(--ice)));
-  box-shadow: 0 8px 18px color-mix(in srgb, var(--bg) 32%, transparent);
 }
-
 .hero-frame {
-  background:
-    radial-gradient(ellipse 90% 78% at 0% 0%, color-mix(in srgb, var(--ice) 8%, transparent), transparent 58%),
-    linear-gradient(145deg, color-mix(in srgb, var(--surface3) 92%, transparent), var(--surface));
+  background: radial-gradient(ellipse 90% 78% at 0% 0%, color-mix(in srgb, var(--ice) 8%, transparent), transparent 58%), linear-gradient(145deg, color-mix(in srgb, var(--surface3) 92%, transparent), var(--surface));
   box-shadow: 0 30px 90px color-mix(in srgb, var(--ice) 10%, transparent), 0 0 0 1px color-mix(in srgb, var(--ice) 14%, transparent), inset 0 1px 0 color-mix(in srgb, var(--ink) 9%, transparent);
 }
 .hero h1 { max-width: 11ch; }
@@ -1122,7 +1114,6 @@ body {
 .btn-play:hover { box-shadow: 0 16px 42px var(--ice-glow), inset 0 1px 0 rgba(255,255,255,.65); }
 .btn-ghost { background: color-mix(in srgb, var(--surface) 55%, transparent); }
 .btn-ghost:hover { border-color: color-mix(in srgb, var(--ice) 36%, var(--line-strong)); }
-
 .feat,
 .cs-hero,
 .pillars article,
@@ -1145,26 +1136,22 @@ body {
   height: 2px;
   margin-top: 16px;
   background: linear-gradient(90deg, var(--ice), var(--yellow), transparent);
-  opacity: .85;
 }
 .method li {
   background: color-mix(in srgb, var(--surface2) 72%, transparent);
   box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ink) 4%, transparent);
 }
-
 [data-theme="light"] body {
-  background:
-    radial-gradient(ellipse 80% 42% at 50% -8%, rgba(0,127,142,.09), transparent 68%),
-    linear-gradient(180deg, var(--bg), var(--bg2) 58%, var(--bg));
+  background: radial-gradient(ellipse 80% 42% at 50% -8%, rgba(0,127,142,.09), transparent 68%), linear-gradient(180deg, var(--bg), var(--bg2) 58%, var(--bg));
 }
 [data-theme="light"] .topbar {
   background: color-mix(in srgb, var(--surface) 82%, transparent);
-  box-shadow: 0 12px 34px rgba(16,24,32,.08), inset 0 -1px 0 rgba(255,255,255,.85);
+  box-shadow: 0 12px 34px rgba(16,24,32,.08);
 }
 [data-theme="light"] .hero-frame {
   background: radial-gradient(ellipse 90% 78% at 0% 0%, rgba(0,127,142,.10), transparent 58%), linear-gradient(145deg, #fff, var(--surface2));
   border-color: rgba(0,127,142,.22);
-  box-shadow: 0 28px 70px rgba(16,24,32,.12), 0 0 0 1px rgba(0,127,142,.07), inset 0 1px 0 #fff;
+  box-shadow: 0 28px 70px rgba(16,24,32,.12), 0 0 0 1px rgba(0,127,142,.07);
 }
 [data-theme="light"] .feat,
 [data-theme="light"] .cs-hero,
@@ -1172,11 +1159,11 @@ body {
 [data-theme="light"] .agent-block,
 [data-theme="light"] .box,
 [data-theme="light"] .rail-card {
-  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(243,246,248,.96));
-  box-shadow: 0 18px 42px rgba(16,24,32,.08), inset 0 1px 0 #fff;
+  background: linear-gradient(180deg, #fff, rgba(243,246,248,.96));
+  box-shadow: 0 18px 42px rgba(16,24,32,.08);
 }
 [data-theme="light"] .method li { background: rgba(243,246,248,.9); }
-[data-theme="light"] .hero-signal { background: rgba(255,255,255,.72); border-color: rgba(0,127,142,.18); }
+[data-theme="light"] .hero-signal,
 [data-theme="light"] .pill { background: rgba(255,255,255,.76); }
 [data-theme="light"] .feat-stage,
 [data-theme="light"] .agent-stage {
@@ -1186,34 +1173,7 @@ body {
 [data-theme="light"] .stage-vortex { background: radial-gradient(circle at 50% 50%, rgba(0,127,142,.18), transparent 48%), #e5edf1; }
 [data-theme="light"] .stage-ring { border-color: rgba(0,127,142,.38); }
 [data-theme="light"] .foot { background: #e7edf1; }
-
-html.theme-switching,
-html.theme-switching body,
-html.theme-switching .topbar,
-html.theme-switching .hero-frame,
-html.theme-switching .feat,
-html.theme-switching .cs-hero,
-html.theme-switching .pillars article,
-html.theme-switching .agent-block,
-html.theme-switching .box,
-html.theme-switching .rail-card,
-html.theme-switching .method li,
-html.theme-switching .hero-signal,
-html.theme-switching .foot {
-  transition: background .34s var(--ease), color .24s var(--ease), border-color .24s var(--ease), box-shadow .34s var(--ease);
-}
-@media (prefers-reduced-motion: reduce) {
-  html.theme-switching,
-  html.theme-switching body,
-  html.theme-switching .topbar,
-  html.theme-switching .hero-frame,
-  html.theme-switching .feat,
-  html.theme-switching .cs-hero,
-  html.theme-switching .pillars article,
-  html.theme-switching .agent-block,
-  html.theme-switching .box,
-  html.theme-switching .rail-card,
-  html.theme-switching .method li,
-  html.theme-switching .hero-signal,
-  html.theme-switching .foot { transition: none; }
+@media (max-width: 640px) {
+  .hero-frame { border-radius: 14px; }
+  .hero-signal { border-color: color-mix(in srgb, var(--ice) 24%, var(--line)); }
 }
