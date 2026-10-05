@@ -1,0 +1,54 @@
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Local archives / backups
+*.zip
+*.7z
+*.rar
+*.bak
+*.backup
+*_backup_*/
+backup*/
+backups*/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Temporary
+*.tmp
+*.temp
+*.log
+
+# Local projects beside Systems Lab
+/Aigoritmo-legacy/
+/aigoritmo/
+/aigoritmo_backup_3108/
+/calculadora-mantenimiento/
+/gurusup-brain-demo/
+/profile-finder/
+/vortex/
+
+# Systems Lab local forensic / audit material
+/.systems-lab-*/
+/.systems-lab-*.txt
+/coverage/
