@@ -147,7 +147,7 @@ check("seo:sitemap-lastmod", /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sitema
 
 check("pkg:name", pkg.name === "systems-lab");
 check("pkg:version", pkg.version === "4.1.0");
-check("pkg:check-script", pkg.scripts?.check === "npm run audit:strict");
+check("pkg:check-script", pkg.scripts?.check === "npm run audit:strict && npm run audit:visual && npm run audit:performance");
 check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("20"));
 check("ci:read-only", /permissions:\s*\n\s+contents:\s*read/.test(workflow));
 check("ci:no-feature-push-duplication", !/push:\s*\n(?:.|\n)*branches:\s*\n(?:.|\n)*feat\//.test(workflow));
