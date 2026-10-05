@@ -288,7 +288,8 @@
     if (!ctx) return;
     const PAL = [[122,243,255],[122,243,255],[243,212,55],[125,202,165],[246,244,238]];
     let w = 0, h = 0, dpr = 1, parts = [];
-    let frameId = 0, running = false;
+    let frameId = 0, running = false, lastFrameAt = 0;
+    const frameBudgetMs = lowPower ? 50 : 33;
     const cancelFrame = window.cancelAnimationFrame || clearTimeout;
     const mouse = { x: -9999, y: -9999, active: false };
     function resize() {
@@ -307,11 +308,16 @@
       });
     }
     const LINK = 126, MLINK = 168;
-    function frame() {
+    function frame(now = performance.now()) {
       if (!running || document.hidden) {
         frameId = 0;
         return;
       }
+      if (now - lastFrameAt < frameBudgetMs) {
+        frameId = rAF(frame);
+        return;
+      }
+      lastFrameAt = now;
       ctx.clearRect(0, 0, w, h);
       for (const p of parts) {
         p.x += p.vx; p.y += p.vy;
@@ -349,6 +355,7 @@
     function start() {
       if (running || document.hidden) return;
       running = true;
+      lastFrameAt = 0;
       resize();
       frameId = rAF(frame);
     }
