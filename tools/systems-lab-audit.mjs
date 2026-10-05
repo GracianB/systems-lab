@@ -136,21 +136,6 @@ check("css:focus-visible", /:focus-visible/.test(css));
 check("css:reduced-motion", /prefers-reduced-motion:\s*reduce/.test(css));
 check("css:hidden-contract", /\.drawer\[hidden\]\s*\{\s*display:\s*none;/.test(css));
 
-const agentHtml = sourceText.get("bodytone-chatbot/frontend/index.html") ?? "";
-const demoJs = sourceText.get("bodytone-chatbot/frontend/demo.js") ?? "";
-const agentDemoCss = sourceText.get("bodytone-chatbot/frontend/demo.css") ?? "";
-check("agent:exists", Boolean(agentHtml && demoJs && agentDemoCss));
-check("agent:no-cdn-sanitizer", !/cdnjs\.cloudflare\.com\/ajax\/libs\/dompurify/i.test(agentHtml));
-check("agent:local-sanitizer", agentHtml.includes("../../vendor/dompurify/purify.min.js"));
-check("agent:noindex", /name="robots"\s+content="noindex, nofollow"/i.test(agentHtml));
-check("agent:referrer", /name="referrer"\s+content="strict-origin-when-cross-origin"/i.test(agentHtml));
-check("agent:demo-file-limits", /MAX_FILES\s*=\s*5/.test(demoJs) && /MAX_FILE_BYTES\s*=\s*10 \* 1024 \* 1024/.test(demoJs));
-check("agent:local-api", /u\.origin === location\.origin/.test(demoJs));
-check("agent:reduced-motion", /prefers-reduced-motion:\s*reduce/.test(agentDemoCss));
-check("security:no-eval-tree", codeText.every(([name, text]) => !/\\beval\\s*\\(/.test(text)));
-check("security:no-new-function-tree", codeText.every(([name, text]) => !/\\bnew Function\\b/.test(text)));
-check("security:no-document-write-tree", codeText.every(([name, text]) => !/document\\.write/.test(text)));
-
 
 check("seo:robots-sitemap", robots.includes("Sitemap: https://gracianb.github.io/systems-lab/sitemap.xml"));
 check("seo:sitemap-canonical", sitemap.includes("<loc>https://gracianb.github.io/systems-lab/</loc>"));
@@ -183,6 +168,20 @@ for (const name of sourceFiles) {
 }
 
 const codeText = [...sourceText.entries()].filter(([name]) => !name.startsWith("vendor/"));
+const agentHtml = sourceText.get("bodytone-chatbot/frontend/index.html") ?? "";
+const demoJs = sourceText.get("bodytone-chatbot/frontend/demo.js") ?? "";
+const agentDemoCss = sourceText.get("bodytone-chatbot/frontend/demo.css") ?? "";
+check("agent:exists", Boolean(agentHtml && demoJs && agentDemoCss));
+check("agent:no-cdn-sanitizer", !/cdnjs\.cloudflare\.com\/ajax\/libs\/dompurify/i.test(agentHtml));
+check("agent:local-sanitizer", agentHtml.includes("../../vendor/dompurify/purify.min.js"));
+check("agent:noindex", /name="robots"\s+content="noindex, nofollow"/i.test(agentHtml));
+check("agent:referrer", /name="referrer"\s+content="strict-origin-when-cross-origin"/i.test(agentHtml));
+check("agent:demo-file-limits", /MAX_FILES\s*=\s*5/.test(demoJs) && /MAX_FILE_BYTES\s*=\s*10 \* 1024 \* 1024/.test(demoJs));
+check("agent:local-api", /u\.origin === location\.origin/.test(demoJs));
+check("agent:reduced-motion", /prefers-reduced-motion:\s*reduce/.test(agentDemoCss));
+check("security:no-eval-tree", codeText.every(([name, text]) => !/\beval\s*\(/.test(text)));
+check("security:no-new-function-tree", codeText.every(([name, text]) => !/\bnew Function\b/.test(text)));
+check("security:no-document-write-tree", codeText.every(([name, text]) => !/document\.write/.test(text)));
 
 const dynamicInnerHtml = [...codeText]
   .filter(([name]) => /\.(?:js|mjs|cjs)$/i.test(name))
