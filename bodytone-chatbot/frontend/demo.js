@@ -5,6 +5,25 @@
 (function () {
   const orig = window.fetch.bind(window);
   const EMBED = /(?:\?|&)embed=1(?:&|$)/.test(location.search);
+  const MAX_FILES = 5;
+  const MAX_FILE_BYTES = 10 * 1024 * 1024;
+  const ACCEPTED_TYPES = new Set([
+    "application/pdf",
+    "image/png",
+    "image/jpeg",
+    "image/webp",
+    "text/plain",
+    "text/csv",
+    "application/json"
+  ]);
+  const isLocalApi = (rawUrl, pathname) => {
+    try {
+      const u = new URL(rawUrl, location.href);
+      return u.origin === location.origin && u.pathname === pathname;
+    } catch {
+      return false;
+    }
+  };
   if (EMBED) document.documentElement.classList.add("demo-embed");
 
   function replyFor(message, files) {
@@ -54,7 +73,7 @@
 
   window.fetch = function (input, init) {
     const url = typeof input === "string" ? input : input && input.url;
-    if (url && url.indexOf("/api/chat") !== -1) {
+    if (isLocalApi(url, "/api/chat")) {
       let payload = {};
       try { payload = JSON.parse((init && init.body) || "{}"); } catch (e) {}
       const text = replyFor(payload.message, window.__BT_FILES);
@@ -70,7 +89,7 @@
         }, 420);
       });
     }
-    if (url && url.indexOf("/api/tts") !== -1) {
+    if (isLocalApi(url, "/api/tts")) {
       return Promise.resolve(new Response("{}", { status: 501 }));
     }
     return orig(input, init);
@@ -170,8 +189,19 @@
     dropRoot.addEventListener("drop", function (e) {
       const list = e.dataTransfer && e.dataTransfer.files;
       if (!list || !list.length) return;
-      window.__BT_FILES = Array.prototype.slice.call(list);
+      const candidates = Array.prototype.slice.call(list);
+      const accepted = candidates.filter(function (file) {
+        return file.size <= MAX_FILE_BYTES && (!file.type || ACCEPTED_TYPES.has(file.type));
+      }).slice(0, MAX_FILES);
+      const rejected = candidates.length - accepted.length;
+      window.__BT_FILES = accepted;
       chips();
+      const status = document.getElementById("chat-widget-announcer");
+      if (status && rejected > 0) {
+        status.textContent = rejected === 1
+          ? "Un archivo no se puede adjuntar en esta demo."
+          : rejected + " archivos no se pueden adjuntar en esta demo.";
+      }
       const input = document.getElementById("message-input");
       if (input && !input.value.trim()) {
         input.value = "Adjunto: " + window.__BT_FILES.map(function (f) { return f.name; }).join(", ");
