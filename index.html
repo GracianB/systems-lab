@@ -22,26 +22,16 @@
   <meta property="og:url" content="https://gracianb.github.io/systems-lab/">
   <meta name="twitter:card" content="summary">
   <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
   <link rel="dns-prefetch" href="//gracianb.github.io">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=lab-max-2">
-  <script>
-    /* PLAY boot — decide before first paint, with failsafe */
-    (function () {
-      try {
-        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        var seen = false;
-        try { seen = sessionStorage.getItem("lab-intro-seen") === "1"; } catch (e) {}
-        if (!reduce && !seen) {
-          document.documentElement.classList.add("intro-on");
-        }
-      } catch (e) {}
-    })();
-  </script>
-  <script src="./i18n.js?v=lab-max-2"></script>
-  <script src="./main.js?v=lab-max-2" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=lab-v4">
+  <link rel="preload" href="./boot.js?v=lab-v4" as="script">
+  <script src="./boot.js?v=lab-v4"></script>
+  <script src="./i18n.js?v=lab-v4"></script>
+  <script src="./main.js?v=lab-v4" defer></script>
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"><i></i></div>
@@ -253,7 +243,7 @@
           <span></span><span></span><span></span>
           <b>agent · demo</b>
         </div>
-        <iframe src="./bodytone-chatbot/frontend/?embed=1&v=2" title="Ejemplo de agente CS" loading="lazy"></iframe>
+        <iframe src="./bodytone-chatbot/frontend/?embed=1&v=4" title="Ejemplo de agente CS" loading="lazy"></iframe>
       </div>
       <p class="hint"><a href="./bodytone-chatbot/frontend/" data-i18n="botCta">Pantalla completa →</a></p>
     </article>
