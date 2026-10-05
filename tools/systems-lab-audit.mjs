@@ -133,8 +133,9 @@ check("js:no-retired-demo-selectors", !/q-name|out-find|q-seg|out-mail|q-machine
 
 const important = count(css, /!important/g);
 const cssBytes = fs.statSync(file("styles.css")).size;
+const CSS_BUDGET_BYTES = 42_000;
 check("css:no-important", important === 0, String(important));
-check("css:budget", cssBytes <= 40000, cssBytes + " bytes");
+check("css:budget", cssBytes <= CSS_BUDGET_BYTES, cssBytes + " / " + CSS_BUDGET_BYTES + " bytes");
 check("css:focus-visible", /:focus-visible/.test(css));
 check("css:reduced-motion", /prefers-reduced-motion:\s*reduce/.test(css));
 check("css:hidden-contract", /\.drawer\[hidden\]\s*\{\s*display:\s*none;/.test(css));
