@@ -42,7 +42,7 @@
   function applyTheme() {
     document.documentElement.setAttribute("data-theme", theme);
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", theme === "light" ? "#f3f0e7" : "#06070a");
+    if (meta) meta.setAttribute("content", theme === "light" ? "#f5f7fa" : "#06080d");
     $$("[data-set-theme]").forEach((btn) => {
       const on = btn.getAttribute("data-set-theme") === theme;
       btn.classList.toggle("is-active", on);
@@ -58,7 +58,9 @@
       url.searchParams.set("theme", theme);
       history.replaceState(null, "", url);
     }
-    applyTheme();
+    const transition = document.startViewTransition;
+    if (transition && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) transition(() => applyTheme());
+    else applyTheme();
   }
 
   try {
