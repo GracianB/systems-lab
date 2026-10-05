@@ -283,8 +283,12 @@
     </div>
   </footer>
 
-  <div class="drawer" id="drawer" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navegación móvil">
-    <div class="drawer-panel">
+  <div class="drawer" id="drawer" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="drawer-panel" role="navigation" aria-label="Navegación móvil">
+      <div class="drawer-head">
+        <span class="drawer-kicker" id="drawer-title" data-i18n="drawerTitle">LAB / NAV</span>
+        <button type="button" class="drawer-close" data-drawer-close aria-label="Cerrar menú" data-i18n="drawerClose">Cerrar</button>
+      </div>
       <a href="#juegos" data-i18n="navGames">Juegos</a>
       <a href="#cs" data-i18n="navCs">CS</a>
       <a href="#agente" data-i18n="navAgent">Agente</a>
