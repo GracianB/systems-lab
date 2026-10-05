@@ -145,6 +145,7 @@
   const drawer = document.getElementById("drawer");
   const menuBtn = document.querySelector("[data-menu-toggle]");
   let menuOpen = false;
+  let menuReturnFocus = menuBtn;
 
   function setMenu(open) {
     if (!drawer || !menuBtn) return;
@@ -157,10 +158,12 @@
     document.body.classList.toggle("menu-on", menuOpen);
 
     if (menuOpen) {
+      menuReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : menuBtn;
       const first = drawer.querySelector("a");
       requestAnimationFrame(() => first?.focus());
     } else {
-      requestAnimationFrame(() => menuBtn.focus());
+      const target = menuReturnFocus instanceof HTMLElement && menuReturnFocus.isConnected ? menuReturnFocus : menuBtn;
+      requestAnimationFrame(() => target?.focus());
     }
   }
 
@@ -176,10 +179,32 @@
 
   menuBtn?.addEventListener("click", () => setMenu(!menuOpen));
   drawer?.addEventListener("click", (e) => {
-    if (e.target.closest("a")) setMenu(false);
+    if (e.target === drawer || e.target.closest("a")) setMenu(false);
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") setMenu(false);
+    if (!menuOpen) return;
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      setMenu(false);
+      return;
+    }
+
+    if (e.key === "Tab") {
+      const focusable = [...drawer.querySelectorAll("a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])")];
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -241,11 +266,25 @@
     if (!root.classList.contains("intro-on")) return;
     try { sessionStorage.setItem("lab-intro-seen", "1"); } catch (_) {}
     let done = false;
-    const finish = () => { if (done) return; done = true; root.classList.add("intro-done"); };
-    const timer = setTimeout(finish, 2100);
-    const skip = () => { clearTimeout(timer); finish(); };
-    ["pointerdown", "keydown", "wheel", "touchstart"].forEach((ev) =>
-      window.addEventListener(ev, skip, { once: true, passive: true }));
+    let timer = 0;
+    const events = ["pointerdown", "keydown", "wheel", "touchstart"];
+
+    const finish = () => {
+      if (done) return;
+      done = true;
+      if (timer) clearTimeout(timer);
+      events.forEach((ev) => window.removeEventListener(ev, skip));
+      root.classList.add("intro-done");
+    };
+
+    const skip = () => finish();
+
+    events.forEach((ev) => {
+      const options = ev === "keydown" ? { once: true } : { once: true, passive: true };
+      window.addEventListener(ev, skip, options);
+    });
+
+    timer = setTimeout(finish, 2100);
   })();
 
   /* —— 2 · scroll rail —— */
@@ -293,6 +332,8 @@
     if (!ctx) return;
     const PAL = [[122,243,255],[122,243,255],[243,212,55],[125,202,165],[246,244,238]];
     let w = 0, h = 0, dpr = 1, parts = [];
+    let frameId = 0, running = false;
+    const cancelFrame = window.cancelAnimationFrame || clearTimeout;
     const mouse = { x: -9999, y: -9999, active: false };
     function resize() {
       w = window.innerWidth; h = window.innerHeight;
@@ -310,7 +351,10 @@
     }
     const LINK = 126, MLINK = 168;
     function frame() {
-      if (document.hidden) { rAF(frame); return; }
+      if (!running || document.hidden) {
+        frameId = 0;
+        return;
+      }
       ctx.clearRect(0, 0, w, h);
       for (const p of parts) {
         p.x += p.vx; p.y += p.vy;
@@ -342,12 +386,32 @@
             ctx.lineWidth = 0.7; ctx.stroke();
           }
         }
-      rAF(frame);
+      frameId = rAF(frame);
     }
+
+    function start() {
+      if (running || document.hidden) return;
+      running = true;
+      resize();
+      frameId = rAF(frame);
+    }
+
+    function stop() {
+      running = false;
+      if (frameId) cancelFrame(frameId);
+      frameId = 0;
+    }
+
     window.addEventListener("pointermove", (e) => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true; }, { passive: true });
     window.addEventListener("pointerleave", () => { mouse.active = false; });
     let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(resize, 180); }, { passive: true });
-    resize();
-    rAF(frame);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stop();
+      } else {
+        start();
+      }
+    });
+    start();
   })();
 })();
