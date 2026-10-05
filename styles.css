@@ -1104,7 +1104,6 @@ body {
   background: linear-gradient(135deg, var(--ice), color-mix(in srgb, var(--ice) 72%, white));
   box-shadow: 0 12px 34px var(--ice-glow), inset 0 1px 0 rgba(255,255,255,.55);
 }
-.btn-play:hover { box-shadow: 0 16px 42px var(--ice-glow), inset 0 1px 0 rgba(255,255,255,.65); }
 .btn-ghost { background: color-mix(in srgb, var(--surface) 55%, transparent); }
 .btn-ghost:hover { border-color: color-mix(in srgb, var(--ice) 36%, var(--line-strong)); }
 .section-head h2 { text-wrap: balance; }
