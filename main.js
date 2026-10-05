@@ -1,6 +1,4 @@
 (function () {
-  const GAS = "https://script.google.com/macros/s/AKfycbxcStxaVuy72iZNs6isCJ49ixX4I51Gal4N8QidqY3etF-z7ksos5hrvtcIMnzf0mc/exec";
-  const ZENDESK = "https://bodytonehelp.zendesk.com/hc/es";
   const LANG_KEY = "lab-lang";
   const THEME_KEY = "lab-theme";
 
@@ -155,6 +153,7 @@
     drawer.classList.toggle("is-open", menuOpen);
     menuBtn.classList.toggle("is-open", menuOpen);
     menuBtn.setAttribute("aria-expanded", String(menuOpen));
+    drawer.setAttribute("aria-hidden", String(!menuOpen));
     document.body.classList.toggle("menu-on", menuOpen);
 
     if (menuOpen) {
@@ -247,8 +246,6 @@
     }
   }
 
-  window.LAB_GAS = GAS;
-  window.LAB_ZENDESK = ZENDESK;
 })();
 
 /* ══════════════════════════════════════════════════════════════
