@@ -1,6 +1,6 @@
 {
   "name": "systems-lab",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "private": true,
   "description": "Systems Lab — interactive technical portfolio and systems ecosystem.",
   "type": "module",
