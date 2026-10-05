@@ -158,7 +158,7 @@
       const current = visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0].target;
       sections.forEach(({ link, section }) => {
         const active = section === current;
-        if (active) link.setAttribute("aria-current", "page");
+        if (active) link.setAttribute("aria-current", "location");
         else link.removeAttribute("aria-current");
       });
     }, { rootMargin: "-22% 0px -58% 0px", threshold: 0 });
