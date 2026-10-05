@@ -1,6 +1,4 @@
 (function () {
-  const GAS = "https://script.google.com/macros/s/AKfycbxcStxaVuy72iZNs6isCJ49ixX4I51Gal4N8QidqY3etF-z7ksos5hrvtcIMnzf0mc/exec";
-  const ZENDESK = "https://bodytonehelp.zendesk.com/hc/es";
   const LANG_KEY = "lab-lang";
   const THEME_KEY = "lab-theme";
 
@@ -63,69 +61,6 @@
     applyTheme();
   }
 
-  const MATCHES = {
-    es: [
-      { n: "Ana Ruiz · CS Lead · Murcia", s: "88  HITL" },
-      { n: "Ana M. Ruiz · Ops · Valencia", s: "71" },
-      { n: "A. Ruiz · otro sector", s: "54" }
-    ],
-    en: [
-      { n: "Ana Ruiz · CS Lead · Murcia", s: "88  HITL" },
-      { n: "Ana M. Ruiz · Ops · Valencia", s: "71" },
-      { n: "A. Ruiz · other sector", s: "54" }
-    ]
-  };
-
-  function finder() {
-    const name = ($("#q-name") && $("#q-name").value.trim()) || "Ana Ruiz";
-    const rows = MATCHES[currentLang] || MATCHES.es;
-    const out = $("#out-find");
-    if (!out) return;
-    out.textContent = name + "\n\n" + rows.map((r) => r.s.padEnd(10) + r.n).join("\n") + "\n\nHITL: persona decide. Fuentes internas no publicadas.";
-  }
-
-  function outreach() {
-    const sel = $("#q-seg");
-    if (!sel || !$("#out-mail")) return;
-    const seg = sel.value;
-    const drafts = {
-      es: {
-        saas: "Hola {nombre},\nVi que el equipo de CS escala el mismo tipo de ticket cada pico de demanda.\nSi os encaja, os enseño un agente que consulta Zendesk y solo escala con contexto.\n¿10 min esta semana?",
-        gym: "Hola {nombre},\nEn gimnasios el cuello no es el catálogo: es presupuesto + mantenimiento + incidencia.\nMonté un help center y un motor de reglas para eso. Si quieres verlo en 10 min, dime."
-      },
-      en: {
-        saas: "Hi {name},\nI keep seeing CS teams hit the same ticket type at every peak.\nHappy to show an agent that reads Zendesk and only escalates with context.\n10 minutes this week?",
-        gym: "Hi {name},\nFor gyms the bottleneck is not the catalogue — it's quote + maintenance + incident.\nI shipped a help center and a rules engine for that. 10 min walkthrough if useful."
-      }
-    };
-    const d = (drafts[currentLang] || drafts.es)[seg] || drafts.es.saas;
-    $("#out-mail").textContent = "SEGMENT " + seg + "\nSTATUS draft · waiting human\n\n" + d + "\n\n[ Revisar ]  [ Editar ]  [ Descartar ]\nNada se envía desde esta demo.";
-  }
-
-  const MANT = {
-    cinta: { es: "Cinta de correr", en: "Treadmill", prev: 3.5, corr: 5 },
-    bici: { es: "Bici indoor", en: "Indoor bike", prev: 2, corr: 3.5 },
-    fuerza: { es: "Máquina de fuerza", en: "Strength unit", prev: 1.5, corr: 4 }
-  };
-
-  function maint() {
-    if (!$("#q-machine") || !$("#out-mant")) return;
-    const m = MANT[$("#q-machine").value] || MANT.cinta;
-    const kind = $("#q-kind").value;
-    const hours = kind === "preventivo" ? m.prev : m.corr;
-    const L = currentLang === "en";
-    const name = L ? m.en : m.es;
-    const k = L ? (kind === "preventivo" ? "preventive" : "corrective") : kind;
-    $("#out-mant").textContent = [
-      (L ? "EQUIPMENT  " : "EQUIPO     ") + name,
-      (L ? "VISIT      " : "VISITA     ") + k,
-      (L ? "SAMPLE HRS " : "HORAS DEMO ") + hours + " h",
-      "",
-      L ? "Checklist: safety · wear · firmware · next slot" : "Checklist: seguridad · desgaste · firmware · próxima ventana",
-      L ? "Sample hours — not Bodytone rates." : "Horas de ejemplo — no son tarifas Bodytone."
-    ].join("\n");
-  }
-
   try {
     const s = localStorage.getItem(LANG_KEY);
     if (s === "en" || s === "es") currentLang = s;
@@ -144,16 +79,27 @@
 
   const drawer = document.getElementById("drawer");
   const menuBtn = document.querySelector("[data-menu-toggle]");
+  let menuOpen = false;
+  let menuReturnFocus = menuBtn;
+
   function setMenu(open) {
     if (!drawer || !menuBtn) return;
-    drawer.hidden = !open;
-    drawer.classList.toggle("is-open", open);
-    menuBtn.classList.toggle("is-open", open);
-    menuBtn.setAttribute("aria-expanded", String(open));
-    document.body.classList.toggle("menu-on", open);
-    if (open) {
+
+    menuOpen = Boolean(open);
+    drawer.hidden = !menuOpen;
+    drawer.classList.toggle("is-open", menuOpen);
+    menuBtn.classList.toggle("is-open", menuOpen);
+    menuBtn.setAttribute("aria-expanded", String(menuOpen));
+    drawer.setAttribute("aria-hidden", String(!menuOpen));
+    document.body.classList.toggle("menu-on", menuOpen);
+
+    if (menuOpen) {
+      menuReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : menuBtn;
       const first = drawer.querySelector("a");
       requestAnimationFrame(() => first?.focus());
+    } else {
+      const target = menuReturnFocus instanceof HTMLElement && menuReturnFocus.isConnected ? menuReturnFocus : menuBtn;
+      requestAnimationFrame(() => target?.focus());
     }
   }
 
@@ -162,17 +108,36 @@
     if (langBtn) { e.preventDefault(); applyLang(langBtn.getAttribute("data-set-lang")); return; }
     const th = e.target.closest("[data-set-theme]");
     if (th) { e.preventDefault(); setTheme(th.getAttribute("data-set-theme")); return; }
-    if (e.target.closest("[data-run='find']")) finder();
-    if (e.target.closest("[data-run='mail']")) outreach();
-    if (e.target.closest("[data-run='mant']")) maint();
   });
 
-  menuBtn?.addEventListener("click", () => setMenu(drawer.hidden));
+  menuBtn?.addEventListener("click", () => setMenu(!menuOpen));
   drawer?.addEventListener("click", (e) => {
-    if (e.target.closest("a")) setMenu(false);
+    if (e.target === drawer || e.target.closest("a")) setMenu(false);
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") setMenu(false);
+    if (!menuOpen) return;
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      setMenu(false);
+      return;
+    }
+
+    if (e.key === "Tab") {
+      const focusable = [...drawer.querySelectorAll("a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])")];
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -215,8 +180,6 @@
     }
   }
 
-  window.LAB_GAS = GAS;
-  window.LAB_ZENDESK = ZENDESK;
 })();
 
 /* ══════════════════════════════════════════════════════════════
@@ -234,11 +197,25 @@
     if (!root.classList.contains("intro-on")) return;
     try { sessionStorage.setItem("lab-intro-seen", "1"); } catch (_) {}
     let done = false;
-    const finish = () => { if (done) return; done = true; root.classList.add("intro-done"); };
-    const timer = setTimeout(finish, 2100);
-    const skip = () => { clearTimeout(timer); finish(); };
-    ["pointerdown", "keydown", "wheel", "touchstart"].forEach((ev) =>
-      window.addEventListener(ev, skip, { once: true, passive: true }));
+    let timer = 0;
+    const events = ["pointerdown", "keydown", "wheel", "touchstart"];
+
+    const finish = () => {
+      if (done) return;
+      done = true;
+      if (timer) clearTimeout(timer);
+      events.forEach((ev) => window.removeEventListener(ev, skip));
+      root.classList.add("intro-done");
+    };
+
+    const skip = () => finish();
+
+    events.forEach((ev) => {
+      const options = ev === "keydown" ? { once: true } : { once: true, passive: true };
+      window.addEventListener(ev, skip, options);
+    });
+
+    timer = setTimeout(finish, 2100);
   })();
 
   /* —— 2 · scroll rail —— */
@@ -286,6 +263,8 @@
     if (!ctx) return;
     const PAL = [[122,243,255],[122,243,255],[243,212,55],[125,202,165],[246,244,238]];
     let w = 0, h = 0, dpr = 1, parts = [];
+    let frameId = 0, running = false;
+    const cancelFrame = window.cancelAnimationFrame || clearTimeout;
     const mouse = { x: -9999, y: -9999, active: false };
     function resize() {
       w = window.innerWidth; h = window.innerHeight;
@@ -303,7 +282,10 @@
     }
     const LINK = 126, MLINK = 168;
     function frame() {
-      if (document.hidden) { rAF(frame); return; }
+      if (!running || document.hidden) {
+        frameId = 0;
+        return;
+      }
       ctx.clearRect(0, 0, w, h);
       for (const p of parts) {
         p.x += p.vx; p.y += p.vy;
@@ -335,12 +317,32 @@
             ctx.lineWidth = 0.7; ctx.stroke();
           }
         }
-      rAF(frame);
+      frameId = rAF(frame);
     }
+
+    function start() {
+      if (running || document.hidden) return;
+      running = true;
+      resize();
+      frameId = rAF(frame);
+    }
+
+    function stop() {
+      running = false;
+      if (frameId) cancelFrame(frameId);
+      frameId = 0;
+    }
+
     window.addEventListener("pointermove", (e) => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true; }, { passive: true });
     window.addEventListener("pointerleave", () => { mouse.active = false; });
     let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(resize, 180); }, { passive: true });
-    resize();
-    rAF(frame);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stop();
+      } else {
+        start();
+      }
+    });
+    start();
   })();
 })();

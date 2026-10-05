@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#06070a">
+  <meta name="color-scheme" content="dark light">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="author" content="Gracián Baena">
   <meta name="description" content="Habilidad técnica de Gracián Baena: juegos y Customer Success en producción.">
   <title>Gracián Baena — PLAY · técnica</title>
@@ -12,9 +14,13 @@
   <link rel="alternate" hreflang="en" href="https://gracianb.github.io/systems-lab/?lang=en">
   <link rel="alternate" hreflang="x-default" href="https://gracianb.github.io/systems-lab/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Gracián Baena · Systems Lab">
+  <meta property="og:locale" content="es_ES">
   <meta property="og:title" content="Gracián Baena — PLAY · técnica">
   <meta property="og:description" content="Ohana, Vórtice y el Help Center de Bodytone. Abajo, un ejemplo de agente.">
   <meta property="og:url" content="https://gracianb.github.io/systems-lab/">
+  <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -28,7 +34,6 @@
         try { seen = sessionStorage.getItem("lab-intro-seen") === "1"; } catch (e) {}
         if (!reduce && !seen) {
           document.documentElement.classList.add("intro-on");
-          setTimeout(function () { document.documentElement.classList.add("intro-done"); }, 3000);
         }
       } catch (e) {}
     })();
@@ -77,18 +82,18 @@
         <small data-i18n="brandSub">PLAY · técnica</small>
       </div>
     </a>
-    <nav class="nav" aria-label="Primary">
+    <nav class="nav" aria-label="Navegación principal">
       <a href="#juegos" data-i18n="navGames">Juegos</a>
       <a href="#cs" data-i18n="navCs">CS</a>
       <a href="#agente" data-i18n="navAgent">Agente</a>
       <a href="https://gracianb.github.io/GracianB/" data-i18n="navHub">Hub</a>
     </nav>
     <div class="topbar-actions">
-      <div class="seg" role="group" aria-label="Language">
+      <div class="seg" role="group" aria-label="Language selection">
         <button type="button" class="seg-btn" data-set-lang="es" aria-pressed="true">ES</button>
         <button type="button" class="seg-btn" data-set-lang="en" aria-pressed="false">EN</button>
       </div>
-      <div class="seg" role="group" aria-label="Theme">
+      <div class="seg" role="group" aria-label="Theme selection">
         <button type="button" class="seg-btn seg-icon" data-set-theme="dark" aria-pressed="true" title="Dark">
           <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M6.1 1.2a6.8 6.8 0 0 0 8.7 8.7A7 7 0 1 1 6.1 1.2z"/></svg>
         </button>
@@ -137,6 +142,11 @@
           <span class="rail-code">CS</span>
           <b>BODYTONE</b>
           <small>zendesk · prod</small>
+        </a>
+        <a class="rail-card" href="https://gracianb.github.io/revops-studio/">
+          <span class="rail-code">03</span>
+          <b>REVOPS</b>
+          <small>data · decisions · live</small>
         </a>
       </aside>
     </section>
@@ -276,7 +286,7 @@
     </div>
   </footer>
 
-  <div class="drawer" id="drawer" hidden>
+  <div class="drawer" id="drawer" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navegación móvil">
     <div class="drawer-panel">
       <a href="#juegos" data-i18n="navGames">Juegos</a>
       <a href="#cs" data-i18n="navCs">CS</a>
