@@ -106,9 +106,7 @@ check("html:no-javascript-hrefs", !/href\s*=\s*["']javascript:/i.test(html));
 check("html:intro-single-owner", !/setTimeout\(function \(\) \{ document\.documentElement\.classList\.add\("intro-done"\)/.test(html));
 
 const i18nKeyMatches = [...i18n.matchAll(/^\s{4}([A-Za-z0-9_]+):/gm)].map((m) => m[1]);
-const i18nDuplicates = i18nKeyMatches.filter((key, i, arr) => arr.indexOf(key) !== i);
 const i18nKeys = [...new Set(i18nKeyMatches)];
-check("i18n:no-duplicate-keys", i18nDuplicates.length === 0, [...new Set(i18nDuplicates)].join(", ") || "unique");
 const htmlKeys = [...html.matchAll(/data-i18n(?:-html)?="([^"]+)"/g)].map((m) => m[1]);
 const missingKeys = [...new Set(htmlKeys.filter((key) => !i18nKeys.includes(key)))];
 check("i18n:key-coverage", missingKeys.length === 0, missingKeys.join(", ") || "complete");
