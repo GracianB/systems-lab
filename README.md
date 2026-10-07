@@ -32,7 +32,7 @@ Both quality and deployment workflows run those tests. Deployment uses only the 
 
 ## Runtime
 
-Theme changes bind `startViewTransition` to `document`. Initial paint and controls work synchronously; animation failures and promise rejections cannot stop startup. Storage is optional. Canvas is decorative and disabled on small screens and with reduced motion. The mobile drawer traps focus, marks background content inert, closes on Escape and restores focus.
+Desktop theme changes bind `startViewTransition` to `document`. Small screens use an immediate theme change to avoid browser snapshots intercepting iframe controls. Initial paint and controls work synchronously; animation failures and promise rejections cannot stop startup. Storage is optional. Canvas is decorative and disabled on small screens and with reduced motion. The mobile drawer traps focus, marks background content inert, closes on Escape and restores focus.
 
 The CSP is delivered through HTML meta. It deliberately omits `frame-ancestors`, which requires an HTTP header. GitHub Pages does not supply custom response-header configuration for this project. The deck uses local assets and system font fallbacks.
 

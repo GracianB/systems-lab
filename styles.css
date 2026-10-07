@@ -744,3 +744,7 @@ body.menu-on { overflow: hidden; }
   *, *::before, *::after { animation-duration: .01ms; animation-iteration-count: 1; transition-duration: .01ms; scroll-behavior: auto; }
   .fx { display: none; }
 }
+/* Snapshot overlays are decorative and must never intercept controls. */
+::view-transition { pointer-events: none; }
+::view-transition-old(root) { display: none; }
+::view-transition-new(root) { animation: none; }

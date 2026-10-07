@@ -39,6 +39,7 @@ for (const width of [320, 390, 768, 1440]) {
     await expect(frame.locator('#messages')).toContainText('DEMO-4821');
     await page.locator('[data-set-theme="light"]').click();
     await expect(frame.locator('html')).toHaveAttribute('data-theme', 'light');
+    await page.locator('.agent-stage').evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
     await frame.locator('#reset').click();
     await expect(frame.locator('.message')).toHaveCount(1);
     await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

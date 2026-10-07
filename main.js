@@ -77,7 +77,7 @@ function persistURL(key, value) {
       persistURL("theme", theme);
     }
     // Apply synchronously: startup and rapid toggles cannot depend on an animation.
-    if (persist !== false && typeof document.startViewTransition === "function" && !mediaMatches("(prefers-reduced-motion: reduce)")) {
+    if (persist !== false && window.innerWidth >= 900 && typeof document.startViewTransition === "function" && !mediaMatches("(prefers-reduced-motion: reduce)")) {
       try {
         const transition = document.startViewTransition(() => applyTheme());
         transition.updateCallbackDone?.catch(() => applyTheme());
