@@ -61,9 +61,7 @@ test("reduced motion disables decorative motion and startup remains clean", asyn
 
 test("has no serious or critical axe violations", async ({ page }) => {
   await page.goto("/");
-  const results = await new AxeBuilder({ page })
-    .disableRules(["color-contrast"])
-    .analyze();
+  const results = await new AxeBuilder({ page }).analyze();
   const severe = results.violations.filter((v) => v.impact === "serious" || v.impact === "critical");
   expect(severe, severe.map((v) => v.id + ": " + v.help).join("\n")).toEqual([]);
 });
