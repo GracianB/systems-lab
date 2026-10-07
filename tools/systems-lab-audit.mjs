@@ -21,9 +21,7 @@ const required = [
   ".gitignore",
   ".editorconfig",
   "SECURITY.md",
-  "boot.js",
-  "vendor/dompurify/purify.min.js",
-  "vendor/dompurify/LICENSE"
+  "boot.js"
 ];
 
 function file(name) {

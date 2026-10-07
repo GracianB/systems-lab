@@ -35,6 +35,9 @@ for (const width of [320, 390, 768, 1440]) {
     await expect(frame.locator('#disclaimer')).toContainText('fictional');
     await frame.locator('[data-intent="shipping"]').click();
     await expect(frame.locator('#messages')).toContainText('DEMO-4821');
+    await page.locator('[data-set-theme="dark"]').click();
+    await expect(frame.locator('#messages')).toContainText('DEMO-4821');
+    await page.locator('[data-set-theme="light"]').click();
     await expect(frame.locator('html')).toHaveAttribute('data-theme', 'light');
     await frame.locator('#reset').click();
     await expect(frame.locator('.message')).toHaveCount(1);

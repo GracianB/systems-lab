@@ -14,11 +14,15 @@
   let attached = [];
   function add(text, sender) { const p = document.createElement('p'); p.className = 'message ' + sender; p.textContent = text; list.append(p); list.scrollTop = list.scrollHeight; }
   function reset() { list.replaceChildren(); add(texts[lang].welcome, 'agent'); attached = []; document.getElementById('files').value = ''; document.getElementById('file-status').textContent = ''; }
+  let initialized = false;
   function settings(nextLang, theme) {
+    const previousLang = lang;
     lang = nextLang === 'en' ? 'en' : 'es'; root.lang = lang; root.dataset.theme = theme === 'light' ? 'light' : 'dark';
     const t = texts[lang]; for (const [id,key] of [['disclaimer','disclaimer'],['reset','reset'],['input-label','label'],['send','send'],['files-label','files']]) document.getElementById(id).textContent = t[key];
     input.placeholder = t.placeholder; list.setAttribute('aria-label', lang === 'en' ? 'Conversation' : 'Conversación');
-    document.querySelectorAll('[data-intent]').forEach((b) => b.textContent = t[b.dataset.intent]); reset();
+    document.querySelectorAll('[data-intent]').forEach((b) => b.textContent = t[b.dataset.intent]);
+    if (!initialized || previousLang !== lang) reset();
+    initialized = true;
   }
   function send(value, intent) {
     if (!value.trim()) return;
