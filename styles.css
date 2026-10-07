@@ -731,6 +731,7 @@ body.menu-on { overflow: hidden; }
   .hero h1 { font-size: clamp(42px, 11vw, 68px); }
   .hero-frame { padding: 28px 22px; }
   .hero-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rail-building:last-child { grid-column: 1 / -1; }
   .rail-card { padding: 20px 14px; }
   .rail-card::after { top: 14px; right: 14px; }
   .rail-card small { font-size: 10px; letter-spacing: 0; }
