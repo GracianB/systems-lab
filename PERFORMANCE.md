@@ -1,20 +1,7 @@
-# Systems Lab Performance Budget
+# Performance budgets
 
-## Final release target
+Run `npm run audit:performance` for uncompressed file-byte limits. The deck uses local assets and system fonts; the public build excludes old integrations, audio and large widget images.
 
-The public lab keeps a small dependency-free budget for its first-party surface.
+Canvas caps device pixel ratio and particle count, throttles frames, pauses when the document is hidden and is skipped below 900 px or under reduced motion. The interface remains usable when canvas or animation APIs are unavailable.
 
-| Asset | Budget |
-| --- | ---: |
-| `index.html` | 18 KB |
-| `styles.css` | 42 KB |
-| `main.js` | 18 KB |
-| `i18n.js` | 9 KB |
-| `boot.js` | 1 KB |
-| Agent `demo.js` | 10 KB |
-| Agent `demo.css` | 10 KB |
-| Aggregate | 108 KB |
-
-The budget is checked by `npm run audit:performance`.
-
-The page also avoids unnecessary runtime work through deferred JavaScript, capped decorative rendering, reduced-motion handling and offscreen content containment.
+These budgets measure source transfer size; they are not measured LCP, INP or CLS scores. Browser smoke tests check viewport overflow and functional behavior. Capture real-device field data separately before making Core Web Vitals claims.

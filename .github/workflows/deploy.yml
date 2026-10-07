@@ -1,18 +1,16 @@
-name: Systems Lab Quality
+name: Systems Lab Deploy
 on:
   push:
-    branches: [main]
-  pull_request:
     branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: systems-lab-quality-${{ github.ref }}
+  group: systems-lab-pages
   cancel-in-progress: true
 jobs:
-  quality:
-    name: Quality Gate
+  verify:
+    name: Verify release
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -26,11 +24,19 @@ jobs:
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:browser
       - run: npm run build
-      - uses: actions/upload-artifact@v4
-        if: always()
+      - uses: actions/upload-pages-artifact@v4
         with:
-          name: browser-results
-          path: |
-            playwright-report/
-            test-results/
-          retention-days: 7
+          path: dist
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - uses: actions/deploy-pages@v4
+        id: deployment

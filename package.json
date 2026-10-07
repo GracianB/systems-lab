@@ -1,18 +1,27 @@
 {
   "name": "systems-lab",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "private": true,
   "description": "Systems Lab — interactive technical portfolio and systems ecosystem.",
   "type": "module",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "scripts": {
     "audit": "node tools/systems-lab-audit.mjs",
     "audit:strict": "node tools/systems-lab-audit.mjs --strict",
     "syntax": "node --check main.js",
-    "check": "npm run audit:strict && npm run audit:visual && npm run audit:performance",
+    "check": "npm run syntax && npm test && npm run audit:strict && npm run audit:visual && npm run audit:performance",
     "audit:visual": "node tools/visual-regression-audit.mjs",
-    "audit:performance": "node tools/performance-budget.mjs"
+    "audit:performance": "node tools/performance-budget.mjs",
+    "start": "node tools/serve.mjs",
+    "start:open": "node tools/serve.mjs",
+    "test": "node --test tests/runtime.test.mjs",
+    "test:browser": "playwright test",
+    "build": "node tools/build.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "@playwright/test": "1.55.1"
   }
 }

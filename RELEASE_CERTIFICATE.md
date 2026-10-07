@@ -1,28 +1,7 @@
-# Systems Lab 4.1.0
+# Systems Lab 5.0.0 validation record
 
-## Release Certificate
+Status: implementation awaiting pull-request CI and deployment. This file is not a claim that production has been updated.
 
-**Status:** FROZEN  
-**Release:** 4.1.0  
-**Certified:** 2026-10-05
+Local checks: startup regression tests, source/syntax contracts and static performance budgets. Browser test results and any environment limits are recorded in the PR. GitHub Actions must pass the three-engine suite before publication.
 
-### Final state
-
-- Main branch contains the 4.1.0 release.
-- Quality Gate is green on the final release branch history.
-- Visual regression contract is included in `npm run check`.
-- First-party performance budgets are included in `npm run check`.
-- No open feature work remains in the Systems Lab release path.
-- `ohana-proof` remains preserved and outside the release scope.
-- Future changes are restricted to critical fixes, security patches, broken public links and infrastructure maintenance.
-
-### Final acceptance surface
-
-**Experience:** dark/light visual system, bilingual UI, responsive layouts, interactive demos.  
-**Quality:** strict static audit, visual regression contract and performance budgets.  
-**Security:** CSP, self-hosted sanitizer, source-tree secret scans and risky-API checks.  
-**Operations:** main is the production line; feature work is not part of the frozen release.
-
-### Maintenance policy
-
-After certification, Systems Lab is treated as a frozen public portfolio surface. Changes are allowed only when necessary to preserve security, functionality, availability or public-link integrity.
+A release is complete only when the protected merge succeeds, the Pages job passes, and the published site is checked. Do not infer a successful release from the version number or source regex audits.

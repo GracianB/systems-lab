@@ -1,3 +1,14 @@
+/* Optional browser features never own startup. */
+const mediaMatches = (query) => {
+  try { return typeof window.matchMedia === "function" && window.matchMedia(query).matches; }
+  catch { return false; }
+};
+const scheduleFrame = (callback) => typeof window.requestAnimationFrame === "function"
+  ? window.requestAnimationFrame(callback) : window.setTimeout(callback, 16);
+function persistURL(key, value) {
+  try { const url = new URL(location.href); url.searchParams.set(key, value); history.replaceState(null, "", url); }
+  catch { /* Sandboxed embeds retain working controls. */ }
+}
 (function () {
   const LANG_KEY = "lab-lang";
   const THEME_KEY = "lab-theme";
@@ -12,9 +23,19 @@
     return (window.LAB_I18N && (window.LAB_I18N[currentLang] || window.LAB_I18N.es)) || {};
   }
 
+  function syncAgent() {
+    const frame = document.querySelector(".agent-stage iframe");
+    if (frame) frame.contentWindow?.postMessage({ type: "lab-settings", lang: currentLang, theme }, location.origin);
+  }
+  document.querySelector(".agent-stage iframe")?.addEventListener("load", syncAgent);
+
   function applyLang(code, persist) {
     currentLang = code === "en" ? "en" : "es";
     const t = pack();
+    syncAgent();
+    const labels = currentLang === "en" ? ["Main navigation", "Selected projects", "Dark theme", "Light theme", "Close menu", "Customer support agent demo"] : ["Navegación principal", "Proyectos seleccionados", "Tema oscuro", "Tema claro", "Cerrar menú", "Demo de agente de soporte"];
+    [".nav", ".hero-rail", '[data-set-theme="dark"]', '[data-set-theme="light"]', "[data-drawer-close]"].forEach((selector, i) => $(selector)?.setAttribute("aria-label", labels[i]));
+    $(".agent-stage iframe")?.setAttribute("title", labels[5]);
     document.documentElement.lang = t.htmlLang || currentLang;
     document.documentElement.setAttribute("data-lang", currentLang);
     if (t.title) document.title = t.title;
@@ -33,13 +54,12 @@
     });
     if (persist !== false) {
       try { localStorage.setItem(LANG_KEY, currentLang); } catch (e) {}
-      const url = new URL(location.href);
-      url.searchParams.set("lang", currentLang);
-      history.replaceState(null, "", url);
+      persistURL("lang", currentLang);
     }
   }
 
   function applyTheme() {
+    syncAgent();
     document.documentElement.setAttribute("data-theme", theme);
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute("content", theme === "light" ? "#f5f7fa" : "#06080d");
@@ -54,13 +74,17 @@
     theme = next === "light" ? "light" : "dark";
     if (persist !== false) {
       try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
-      const url = new URL(location.href);
-      url.searchParams.set("theme", theme);
-      history.replaceState(null, "", url);
+      persistURL("theme", theme);
     }
-    const transition = document.startViewTransition;
-    if (transition && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) transition(() => applyTheme());
-    else applyTheme();
+    // Apply synchronously: startup and rapid toggles cannot depend on an animation.
+    if (persist !== false && window.innerWidth >= 900 && typeof document.startViewTransition === "function" && !mediaMatches("(prefers-reduced-motion: reduce)")) {
+      try {
+        const transition = document.startViewTransition(() => applyTheme());
+        transition.updateCallbackDone?.catch(() => applyTheme());
+        transition.finished?.catch(() => {});
+      } catch { applyTheme(); }
+    }
+    applyTheme();
   }
 
   try {
@@ -88,6 +112,7 @@
   function setMenu(open) {
     if (!drawer || !menuBtn) return;
 
+    if (open) menuReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : menuBtn;
     menuOpen = Boolean(open);
     drawer.hidden = !menuOpen;
     drawer.classList.toggle("is-open", menuOpen);
@@ -96,18 +121,19 @@
     menuBtn.setAttribute("aria-expanded", String(menuOpen));
     drawer.setAttribute("aria-hidden", String(!menuOpen));
     document.body.classList.toggle("menu-on", menuOpen);
+    document.querySelectorAll(".topbar, main, .foot").forEach((el) => { el.inert = menuOpen; });
 
     if (menuOpen) {
-      menuReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : menuBtn;
       const first = drawer.querySelector("a");
-      requestAnimationFrame(() => first?.focus());
+      scheduleFrame(() => first?.focus());
     } else {
       const target = menuReturnFocus instanceof HTMLElement && menuReturnFocus.isConnected ? menuReturnFocus : menuBtn;
-      requestAnimationFrame(() => target?.focus());
+      scheduleFrame(() => target?.focus());
     }
   }
 
   document.addEventListener("click", (e) => {
+    if (!(e.target instanceof Element)) return;
     const langBtn = e.target.closest("[data-set-lang]");
     if (langBtn) { e.preventDefault(); applyLang(langBtn.getAttribute("data-set-lang")); return; }
     const th = e.target.closest("[data-set-theme]");
@@ -145,7 +171,7 @@
     }
   });
 
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduce = mediaMatches("(prefers-reduced-motion: reduce)");
 
   /* —— contextual navigation —— */
   (function activeSection() {
@@ -192,7 +218,7 @@
       fx.style.setProperty("--my", y.toFixed(1) + "px");
     }, { passive: true });
 
-    const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const fine = mediaMatches("(hover: hover) and (pointer: fine)");
     if (fine) {
       document.querySelectorAll(".feat").forEach((card) => {
         card.addEventListener("pointermove", (e) => {
@@ -213,37 +239,11 @@
    ══════════════════════════════════════════════════════════════ */
 (() => {
   "use strict";
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const reduce = mediaMatches("(prefers-reduced-motion: reduce)");
+  const fine = mediaMatches("(hover: hover) and (pointer: fine)");
   const lowPower = Number.isFinite(navigator.hardwareConcurrency) && navigator.hardwareConcurrency <= 4;
   const root = document.documentElement;
-  const rAF = window.requestAnimationFrame || ((f) => setTimeout(f, 16));
-
-  /* —— 1 · boot —— */
-  (function intro() {
-    if (!root.classList.contains("intro-on")) return;
-    try { sessionStorage.setItem("lab-intro-seen", "1"); } catch (_) {}
-    let done = false;
-    let timer = 0;
-    const events = ["pointerdown", "keydown", "wheel", "touchstart"];
-
-    const finish = () => {
-      if (done) return;
-      done = true;
-      if (timer) clearTimeout(timer);
-      events.forEach((ev) => window.removeEventListener(ev, skip));
-      root.classList.add("intro-done");
-    };
-
-    const skip = () => finish();
-
-    events.forEach((ev) => {
-      const options = ev === "keydown" ? { once: true } : { once: true, passive: true };
-      window.addEventListener(ev, skip, options);
-    });
-
-    timer = setTimeout(finish, 2100);
-  })();
+  const rAF = scheduleFrame;
 
   /* —— 2 · scroll rail —— */
   (function rail() {
@@ -258,41 +258,18 @@
     update();
   })();
 
-  /* —— 3 · spotlight —— */
-  (function spotlight() {
-    if (reduce || !fine) return;
-    let shown = false;
-    window.addEventListener("pointermove", (e) => {
-      root.style.setProperty("--sx", (e.clientX / window.innerWidth * 100).toFixed(1) + "%");
-      root.style.setProperty("--sy", (e.clientY / window.innerHeight * 100).toFixed(1) + "%");
-      if (!shown) { shown = true; document.body.classList.add("has-spot"); }
-    }, { passive: true });
-  })();
-
-  /* —— 4 · magnetic hero CTAs —— */
-  (function magnetic() {
-    if (reduce || !fine) return;
-    document.querySelectorAll(".hero .actions .btn").forEach((btn) => {
-      btn.addEventListener("pointermove", (e) => {
-        const r = btn.getBoundingClientRect();
-        btn.style.translate = ((e.clientX - (r.left + r.width / 2)) * 0.25).toFixed(1) + "px " +
-          ((e.clientY - (r.top + r.height / 2)) * 0.32).toFixed(1) + "px";
-      });
-      btn.addEventListener("pointerleave", () => { btn.style.translate = "0px 0px"; });
-    });
-  })();
-
   /* —— 5 · ice particle network —— */
   (function net() {
     const canvas = document.querySelector(".fx-net");
-    if (!canvas || reduce) return;
-    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!canvas || reduce || window.innerWidth < 900) return;
+    let ctx;
+    try { ctx = canvas.getContext("2d", { alpha: true }); } catch { return; }
     if (!ctx) return;
     const PAL = [[122,243,255],[122,243,255],[243,212,55],[125,202,165],[246,244,238]];
     let w = 0, h = 0, dpr = 1, parts = [];
     let frameId = 0, running = false, lastFrameAt = 0;
     const frameBudgetMs = lowPower ? 50 : 33;
-    const cancelFrame = window.cancelAnimationFrame || clearTimeout;
+    const cancelFrame = (id) => typeof window.cancelAnimationFrame === "function" ? window.cancelAnimationFrame(id) : clearTimeout(id);
     const mouse = { x: -9999, y: -9999, active: false };
     function resize() {
       w = window.innerWidth; h = window.innerHeight;

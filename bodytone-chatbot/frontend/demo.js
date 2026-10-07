@@ -1,238 +1,46 @@
-/**
- * Portfolio demo layer. No Flask, no keys.
- * Intercepts /api/chat, drag-and-drop, suggested intents.
- */
-(function () {
-  const orig = window.fetch.bind(window);
-  const EMBED = /(?:\?|&)embed=1(?:&|$)/.test(location.search);
+/* Standalone portfolio simulation. No API, credentials, uploads or voice permissions. */
+(() => {
   const MAX_FILES = 5;
   const MAX_FILE_BYTES = 10 * 1024 * 1024;
-  const ACCEPTED_TYPES = new Set([
-    "application/pdf",
-    "image/png",
-    "image/jpeg",
-    "image/webp",
-    "text/plain",
-    "text/csv",
-    "application/json"
-  ]);
-  const isLocalApi = (rawUrl, pathname) => {
-    try {
-      const u = new URL(rawUrl, location.href);
-      return u.origin === location.origin && u.pathname === pathname;
-    } catch {
-      return false;
-    }
+  const texts = {
+    es: { disclaimer:'Simulación local · datos ficticios', reset:'Reiniciar', label:'Tu consulta', placeholder:'¿Dónde está mi pedido?', send:'Enviar ↗', files:'Adjuntar archivos', welcome:'Hola. Prueba una consulta de envío, factura o ticket. Los datos son ficticios y los archivos permanecen en tu dispositivo.', shipping:'Envío', invoice:'Factura', ticket:'Ticket', replies:['Pedido DEMO-4821\nEstado: en tránsito. Entrega estimada: 24–48 horas.\n\nSimulación: no se ha consultado ningún transportista.', 'Factura DEMO-1904\nEstado: pagada.\n\nSimulación: no se ha generado ni enviado una factura.', 'Borrador de ticket\nPrioridad: media. Contexto: esta conversación.\n\nSimulación: no se ha creado ningún ticket real.'], fallback:'Prueba una consulta de envío, factura o ticket. Esta demo muestra el flujo; no accede a sistemas reales.', filesStatus:' archivos seleccionados. Permanecen en tu dispositivo.', rejected:'Archivo rechazado: máximo 5 archivos de 10 MB; PDF, imágenes, texto, CSV o JSON.' },
+    en: { disclaimer:'Local simulation · fictional data', reset:'Reset', label:'Your question', placeholder:'Where is my order?', send:'Send ↗', files:'Attach files', welcome:'Hello. Try a shipping, invoice or ticket question. All data is fictional and files stay on your device.', shipping:'Shipping', invoice:'Invoice', ticket:'Ticket', replies:['Order DEMO-4821\nStatus: in transit. Estimated delivery: 24–48 hours.\n\nSimulation: no carrier has been contacted.', 'Invoice DEMO-1904\nStatus: paid.\n\nSimulation: no invoice has been generated or sent.', 'Ticket draft\nPriority: medium. Context: this conversation.\n\nSimulation: no real ticket has been created.'], fallback:'Try a shipping, invoice or ticket question. This demo shows the flow without accessing live systems.', filesStatus:' files selected. They stay on your device.', rejected:'File rejected: up to 5 files of 10 MB; PDF, images, text, CSV or JSON.' }
   };
-  if (EMBED) document.documentElement.classList.add("demo-embed");
-
-  function replyFor(message, files) {
-    const t = (message || "").toLowerCase();
-    const names = (files || []).map(function (f) { return f.name; });
-    const attach = names.length
-      ? "\n\n📎 " + names.join(", ") + " — leído. En el motor real iría al ticket."
-      : "";
-
-    if (/enví|envio|pedido|tracking|seguimiento|paquete/.test(t)) {
-      return (
-        "**Envío GB-4821** · en tránsito.\n\n" +
-        "Última lectura: Valencia, 08:14.\n" +
-        "ETA: 24–48 h.\n\n" +
-        "_Demo. El agente real consultaría la API del carrier._" +
-        attach
-      );
-    }
-    if (/manual|factura|invoice|billing|cobro|pago/.test(t)) {
-      return (
-        "**Factura INV-1904** · emitida.\n\n" +
-        "Estado: pagada el 12/08.\n" +
-        "PDF listo para reenviar.\n\n" +
-        "_Demo. El agente real consultaría facturación._" +
-        attach
-      );
-    }
-    if (/ticket|zendesk|reclam|incidencia|queja/.test(t)) {
-      return (
-        "**Borrador de ticket**\n\n" +
-        "Asunto: No puedo acceder a mi cuenta\n" +
-        "Prioridad: media\n" +
-        "Contexto: este hilo, listo para un humano.\n\n" +
-        "Nadie pide que lo cuentes otra vez." +
-        attach
-      );
-    }
-    if (/hola|buenas|hey|hi\b/.test(t)) {
-      return "Hola. Pregunta por un **envío**, una **factura** o un **ticket**. O suelta un archivo abajo." + attach;
-    }
-    return (
-      "Te leo. En producción consultaría sistemas y, si hace falta, escalaría con este contexto.\n\n" +
-      "Prueba: «dónde está mi pedido», «mi factura», «abrir un ticket»." +
-      attach
-    );
+  const params = new URLSearchParams(location.search);
+  let lang = params.get('lang') === 'en' ? 'en' : 'es';
+  const root = document.documentElement;
+  const list = document.getElementById('messages');
+  const input = document.getElementById('message');
+  let attached = [];
+  function add(text, sender) { const p = document.createElement('p'); p.className = 'message ' + sender; p.textContent = text; list.append(p); list.scrollTop = list.scrollHeight; }
+  function reset() { list.replaceChildren(); add(texts[lang].welcome, 'agent'); attached = []; document.getElementById('files').value = ''; document.getElementById('file-status').textContent = ''; }
+  let initialized = false;
+  function settings(nextLang, theme) {
+    const previousLang = lang;
+    lang = nextLang === 'en' ? 'en' : 'es'; root.lang = lang; root.dataset.theme = theme === 'light' ? 'light' : 'dark';
+    const t = texts[lang]; for (const [id,key] of [['disclaimer','disclaimer'],['reset','reset'],['input-label','label'],['send','send'],['files-label','files']]) document.getElementById(id).textContent = t[key];
+    input.placeholder = t.placeholder; list.setAttribute('aria-label', lang === 'en' ? 'Conversation' : 'Conversación');
+    document.querySelectorAll('[data-intent]').forEach((b) => b.textContent = t[b.dataset.intent]);
+    if (!initialized || previousLang !== lang) reset();
+    initialized = true;
   }
-
-  window.fetch = function (input, init) {
-    const url = typeof input === "string" ? input : input && input.url;
-    if (isLocalApi(url, "/api/chat")) {
-      let payload = {};
-      try { payload = JSON.parse((init && init.body) || "{}"); } catch (e) {}
-      const text = replyFor(payload.message, window.__BT_FILES);
-      window.__BT_FILES = [];
-      const bar = document.getElementById("bt-drop-chips");
-      if (bar) { bar.innerHTML = ""; bar.hidden = true; }
-      return new Promise(function (resolve) {
-        window.setTimeout(function () {
-          resolve(new Response(JSON.stringify({ reply: text, provider: "demo" }), {
-            status: 200,
-            headers: { "Content-Type": "application/json" },
-          }));
-        }, 420);
-      });
-    }
-    if (isLocalApi(url, "/api/tts")) {
-      return Promise.resolve(new Response("{}", { status: 501 }));
-    }
-    return orig(input, init);
-  };
-
-  function chips() {
-    let bar = document.getElementById("bt-drop-chips");
-    if (!bar) {
-      bar = document.createElement("div");
-      bar.id = "bt-drop-chips";
-      bar.className = "bt-drop-chips";
-      const form = document.getElementById("message-form");
-      if (form) form.parentNode.insertBefore(bar, form);
-    }
-    const files = window.__BT_FILES || [];
-    bar.hidden = files.length === 0;
-    bar.replaceChildren();
-    files.forEach(function (f, i) {
-      const chip = document.createElement("span");
-      chip.className = "bt-chip";
-      const name = document.createTextNode(f.name);
-      const button = document.createElement("button");
-      button.type = "button";
-      button.dataset.rm = String(i);
-      button.setAttribute("aria-label", "Quitar");
-      button.textContent = "×";
-      chip.append(name, document.createTextNode(" "), button);
-      bar.appendChild(chip);
-    });
+  function send(value, intent) {
+    if (!value.trim()) return;
+    add(value.slice(0, 1000), 'user'); const t = texts[lang];
+    const index = intent ? ['shipping','invoice','ticket'].indexOf(intent) : /env[ií]|pedido|order|shipping|tracking/i.test(value) ? 0 : /factura|invoice|billing/i.test(value) ? 1 : /ticket|incidencia|issue/i.test(value) ? 2 : -1;
+    add(index >= 0 ? t.replies[index] : t.fallback, 'agent'); input.value = ''; input.focus();
   }
-
-  function suggestions() {
-    if (document.getElementById("bt-suggest")) return;
-    const list = document.getElementById("chat-messages");
-    if (!list) return;
-    const wrap = document.createElement("div");
-    wrap.id = "bt-suggest";
-    wrap.className = "bt-suggest";
-    [["Envío", "¿Dónde está mi pedido GB-4821?"],
-     ["Factura", "Necesito mi última factura"],
-     ["Ticket", "Abre un ticket: no puedo acceder"]].forEach(function (row) {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "bt-suggest__btn";
-      b.textContent = row[0];
-      b.addEventListener("click", function () {
-        const input = document.getElementById("message-input");
-        const form = document.getElementById("message-form");
-        if (!input || !form) return;
-        input.value = row[1];
-        input.dispatchEvent(new Event("input", { bubbles: true }));
-        form.requestSubmit();
-      });
-      wrap.appendChild(b);
-    });
-    list.appendChild(wrap);
-  }
-
-  window.addEventListener("DOMContentLoaded", function () {
-    document.body.classList.add("demo-on");
-    if (EMBED) document.body.classList.add("demo-embed");
-
-    const ribbon = document.createElement("p");
-    ribbon.className = "demo-ribbon";
-    ribbon.textContent = "DEMO · sin claves · arrastra un archivo";
-    document.body.appendChild(ribbon);
-
-    const overlay = document.createElement("div");
-    overlay.className = "bt-drop-overlay";
-    overlay.innerHTML = "<b>Suelta el archivo</b><span>Va al hilo. Un humano cierra.</span>";
-    document.body.appendChild(overlay);
-
-    const form = document.getElementById("message-form");
-    const area = document.querySelector(".chat-widget__footer") || form;
-    const dropRoot = EMBED ? document.body : area;
-    if (!dropRoot) return;
-
-    let dragN = 0;
-    ["dragenter", "dragover"].forEach(function (ev) {
-      dropRoot.addEventListener(ev, function (e) {
-        e.preventDefault();
-        dragN++;
-        document.body.classList.add("is-dropping");
-        if (area) area.classList.add("is-drop");
-      });
-    });
-    ["dragleave", "drop"].forEach(function (ev) {
-      dropRoot.addEventListener(ev, function (e) {
-        e.preventDefault();
-        dragN = Math.max(0, dragN - 1);
-        if (ev === "drop" || dragN === 0) {
-          document.body.classList.remove("is-dropping");
-          if (area) area.classList.remove("is-drop");
-        }
-      });
-    });
-    dropRoot.addEventListener("drop", function (e) {
-      const list = e.dataTransfer && e.dataTransfer.files;
-      if (!list || !list.length) return;
-      const candidates = Array.prototype.slice.call(list);
-      const accepted = candidates.filter(function (file) {
-        return file.size <= MAX_FILE_BYTES && (!file.type || ACCEPTED_TYPES.has(file.type));
-      }).slice(0, MAX_FILES);
-      const rejected = candidates.length - accepted.length;
-      window.__BT_FILES = accepted;
-      chips();
-      const status = document.getElementById("chat-widget-announcer");
-      if (status && rejected > 0) {
-        status.textContent = rejected === 1
-          ? "Un archivo no se puede adjuntar en esta demo."
-          : rejected + " archivos no se pueden adjuntar en esta demo.";
-      }
-      const input = document.getElementById("message-input");
-      if (input && !input.value.trim()) {
-        input.value = "Adjunto: " + window.__BT_FILES.map(function (f) { return f.name; }).join(", ");
-        input.dispatchEvent(new Event("input", { bubbles: true }));
-      }
-    });
-
-    document.addEventListener("click", function (e) {
-      const rm = e.target.closest && e.target.closest("[data-rm]");
-      if (!rm) return;
-      const i = Number(rm.getAttribute("data-rm"));
-      window.__BT_FILES.splice(i, 1);
-      chips();
-    });
-
-    window.setTimeout(function () {
-      const widget = document.getElementById("bodytone-chat-widget");
-      const btn = document.getElementById("chat-toggle-btn");
-      if (EMBED && widget) {
-        widget.classList.remove("chat-widget--closed", "chat-widget--maximized");
-        widget.classList.add("chat-widget--open");
-        const box = document.getElementById("chat-container");
-        if (box) {
-          box.removeAttribute("inert");
-          box.setAttribute("aria-hidden", "false");
-        }
-        if (btn) btn.setAttribute("aria-expanded", "true");
-      } else if (btn) {
-        btn.click();
-      }
-      suggestions();
-    }, 200);
+  document.getElementById('form').addEventListener('submit', (e) => { e.preventDefault(); send(input.value); });
+  document.querySelectorAll('[data-intent]').forEach((b) => b.addEventListener('click', () => send(texts[lang][b.dataset.intent], b.dataset.intent)));
+  document.getElementById('reset').addEventListener('click', reset);
+  document.getElementById('files').addEventListener('change', (e) => {
+    const files = [...e.target.files]; attached = files.filter((f) => f.size <= MAX_FILE_BYTES && /\.(pdf|png|jpe?g|webp|txt|csv|json)$/i.test(f.name)).slice(0, MAX_FILES);
+    document.getElementById('file-status').textContent = files.length !== attached.length ? texts[lang].rejected : attached.length + texts[lang].filesStatus;
   });
+  window.addEventListener('message', (e) => {
+    const u = new URL(location.href);
+    if (e.origin !== u.origin || e.source !== window.parent || e.data?.type !== 'lab-settings') return;
+    settings(e.data.lang, e.data.theme);
+  });
+  settings(lang, params.get('theme'));
 })();
