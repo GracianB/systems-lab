@@ -13,6 +13,8 @@
     "syntax": "node --check main.js",
     "check": "npm run audit:strict && npm run audit:visual && npm run audit:performance",
     "audit:visual": "node tools/visual-regression-audit.mjs",
-    "audit:performance": "node tools/performance-budget.mjs"
+    "audit:performance": "node tools/performance-budget.mjs",
+    "start": "node tools/serve.mjs",
+    "start:open": "node tools/serve.mjs"
   }
 }
