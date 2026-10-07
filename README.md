@@ -1,21 +1,79 @@
+<div align="center">
+
 # Systems Lab
 
-Interactive portfolio of Gracián Baena: games, customer operations and a local agent simulation.
+### Ideas that work. Systems that hold up.
 
-Public site: https://gracianb.github.io/systems-lab/
+**Gracián Baena · Product engineering · Customer Success · Data · Applied AI**
 
-## Local development
+[Explore the lab ↗](https://gracianb.github.io/systems-lab/) · [Quality Gate](https://github.com/GracianB/systems-lab/actions/workflows/quality.yml) · [Deployment](https://github.com/GracianB/systems-lab/actions/workflows/deploy.yml)
 
-Node 24 or newer.
+**V5.0.0 · Final scope · 7 October 2026**
+
+</div>
+
+---
+
+Systems Lab connects people, data and action through systems you can explore. Games, customer operations and a local agent simulation share one small, bilingual interface. Two roadmap slots prepare the next systems without presenting unfinished work as a working product.
+
+The point is to make the work visible: what it does, how it behaves, and where the evidence ends.
+
+## The systems
+
+| System | Focus | Status / evidence |
+| --- | --- | --- |
+| [OHANA](https://gracianb.github.io/project-ohana/) | Game and product engineering: rooms, characters and transformations | Public playable project; maintained in its own repository |
+| [VÓRTICE](https://vortex-gilt-xi.vercel.app/) | Creative interactive development and WebGL | Public interactive prototype |
+| [BODYTONE](https://bodytonehelp.zendesk.com/hc/es) | Customer Success and Support Ops | Public Zendesk Help Center; the portfolio describes the work, it does not audit private workflows |
+| AGENT | Applied AI interaction for shipping, invoices and tickets | Local simulation with fictional responses; no backend |
+| REVOPS | Signals, metrics and context → decisions → operational action | **BUILDING**; roadmap card with no project link |
+| CONTENT ENGINE | YouTube → Shorts → Publish | **BUILDING**; planned moment selection, vertical clips, copy/metadata and automated distribution |
+
+**The project should state what it proves, not quietly upgrade evidence into marketing.**
+
+The BUILDING cards are intentional. They reserve space for future work, without a dead link or a launch claim. When a system is ready, replace its placeholder treatment with a real preview, add its URL and change its status to LIVE. Its implementation belongs in its own repository.
+
+## A small surface, held to a real standard
+
+V5 brings together responsive composition, ES/EN content, persistent themes, keyboard navigation and an embedded agent demo. Decorative effects stay optional. Controls must still work when storage, canvas, animation or browser transition APIs are unavailable.
+
+```text
+Systems Lab · static public site
+│
+├── index.html + styles.css       Layout, projects and roadmap slots
+├── boot.js + main.js + i18n.js   Startup, interaction, themes and ES/EN
+├── bodytone-chatbot/frontend/   Standalone local agent simulation
+│
+└── checks → browser tests → explicit dist/ build → GitHub Pages
+```
+
+There is no application backend or build framework. The public build copies an explicit asset list into `dist/`; older widget sources are excluded.
+
+### Decisions that matter
+
+- Desktop theme changes bind `startViewTransition` to `document`. Small screens change themes immediately so browser snapshots do not intercept iframe controls. The receiver-sensitive Firefox failure is covered by a regression test.
+- Initial paint and controls start synchronously. Animation failures and rejected promises cannot stop startup. Storage is optional; decorative canvas is disabled on small screens and with reduced motion.
+- The mobile drawer traps focus, marks the background inert, closes on Escape and restores focus. Parent-to-demo settings messages check origin and source.
+- Assets are local, with system font fallbacks. The HTML meta CSP omits `frame-ancestors`, which requires an HTTP header; this GitHub Pages deployment does not configure custom response headers.
+
+### Agent demo and privacy
+
+`bodytone-chatbot/frontend/` simulates shipping, invoice and ticket responses. Files remain on the user's device. It makes no uploads, API calls, real tickets, credential requests or microphone requests. Messages use `textContent`. Language and theme follow the parent page through checked messages.
+
+The demo shows an interaction pattern. It is not evidence of a deployed AI integration.
+
+## Run locally
+
+Node **24 or newer**. No backend or API keys are needed.
 
 ```sh
 npm ci
 npm start
 ```
 
-Open http://127.0.0.1:4173/. No backend or API keys are needed.
+Open [127.0.0.1:4173](http://127.0.0.1:4173/).
 
-## Quality and release
+## Validate a release
 
 ```sh
 npm run check
@@ -24,24 +82,30 @@ npm run test:browser
 npm run build
 ```
 
-`npm run check` runs executable startup regression tests, syntax checks, source contracts and byte budgets. The source layout audit does not claim pixel-level visual coverage.
+`npm run check` runs startup regression tests, syntax checks, source contracts and byte budgets. Playwright exercises the real site in Chromium, Firefox and WebKit at 320, 390, 768 and 1440 px: ES/EN, theme persistence, focus, Escape, keyboard access, reduced motion, the agent, overflow, console warnings/errors and failed local resources. It also injects unavailable APIs and a receiver-sensitive transition method.
 
-Playwright loads the real site in Chromium, Firefox and WebKit at 320, 390, 768 and 1440 px. It checks ES/EN, theme persistence, modal focus, Escape, keyboard access, reduced motion, the embedded agent, overflow, console warnings/errors and failed local resources. It also injects unavailable storage/media/canvas/animation APIs and a receiver-sensitive transition method. WebKit coverage does not replace validation on actual Safari devices.
+Both quality and deployment workflows run the gates. Deployment publishes only `dist/` after they pass. GitHub Pages must use **GitHub Actions** as its source. A PR is not a deployed release.
 
-Both quality and deployment workflows run those tests. Deployment uses only the explicit public asset build in `dist/`, after all gates pass. Set GitHub Pages source to **GitHub Actions**. A PR is not a deployed release.
+The source layout audit is not pixel-level visual coverage. Byte budgets are not Core Web Vitals. WebKit tests do not replace actual Safari device checks. External projects have independent availability and release cycles.
 
-## Runtime
+## V5 release contract
 
-Desktop theme changes bind `startViewTransition` to `document`. Small screens use an immediate theme change to avoid browser snapshots intercepting iframe controls. Initial paint and controls work synchronously; animation failures and promise rejections cannot stop startup. Storage is optional. Canvas is decorative and disabled on small screens and with reduced motion. The mobile drawer traps focus, marks background content inert, closes on Escape and restores focus.
+V5 is the final portfolio scope: the existing public projects, the local agent demo, and the two BUILDING slots. No more sections or speculative features are queued for this version.
 
-The CSP is delivered through HTML meta. It deliberately omits `frame-ancestors`, which requires an HTTP header. GitHub Pages does not supply custom response-header configuration for this project. The deck uses local assets and system font fallbacks.
+Close the release when the final commit is on local and remote `main`, the Quality Gate is green, production deployment succeeds and the public site serves the final cards. The existing `v5.0.0` tag records the original V5 release; this closure follows it without rewriting that tag.
 
-## Agent demo
+After closure, Systems Lab stays frozen until a concrete reason justifies a change. RevOps and Content Engine evolve separately. Promoting a card to LIVE is a small, deliberate update, with real evidence and a working link.
 
-`bodytone-chatbot/frontend/` is a standalone simulation with fictional shipping, invoice and ticket responses. Files stay on the user's device; no uploads, API calls, tickets, credentials or microphone requests occur. Messages are rendered with `textContent`. Language and theme are synchronized with an origin- and source-checked message from the parent page.
+## The V5 marathon ❤️
 
-The older widget sources remain in Git history; they are excluded from the public build.
+**7 October 2026.** Systems Lab V5 was not built to be closed because we were tired. It was built to be closed when it was finished.
 
-## Limits
+The final stretch took days of iteration across design, runtime, accessibility, security, CI and deployment. V4.1 had already been certified when a real Firefox failure exposed a bad `startViewTransition` receiver. The failure became a regression test.
 
-Static byte budgets measure actual file sizes, not Core Web Vitals. Browser assertions verify layout overflow and interactions; manual screenshots are still needed to assess visual composition. External project availability must be checked separately because another host can change independently of a release.
+There were broken runs, protection rules, a local checkout that lost its `.git` directory, another clean clone, more tests and another verification. The finish line was never just a merge button. It was the code, the checks and the public result agreeing with each other.
+
+> Effort, work, and not giving up.<br>
+> Do not close because you are tired. Close when it is finished.<br>
+> Fail, understand why, fix it, and turn the failure into protection for the future.
+
+**That is the part of V5 worth remembering. ❤️**

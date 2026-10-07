@@ -169,7 +169,7 @@ function walkTextFiles(dir, relative = "") {
   const result = [];
   for (const entry of entries) {
     if ([".git", "node_modules", "dist", "playwright-report", "test-results"].includes(entry.name)) continue;
-    const rel = path.join(relative, entry.name);
+    const rel = path.posix.join(relative, entry.name);
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) result.push(...walkTextFiles(full, rel));
     else if (sourceExtensions.has(path.extname(entry.name).toLowerCase())) result.push(rel);

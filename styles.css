@@ -688,6 +688,11 @@ body { background: var(--bg); }
 .rail-card small { font-size: 11px; line-height: 1.5; }
 .rail-card:hover { border-color: var(--ice); background: var(--surface2); }
 .rail-code { opacity: .9; }
+.rail-building { border-style: dashed; background: var(--surface); }
+.rail-building::after { content: none; }
+.rail-building:hover { border-color: var(--line); background: var(--surface); }
+.rail-status { justify-self: start; padding: 4px 7px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); font: 600 10px/1.4 var(--mono); letter-spacing: .05em; }
+.rail-building p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
 .hero-signal { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; border-top: 1px solid var(--line); margin-top: 30px; padding-top: 20px; font: 11px/1.5 var(--mono); color: var(--muted); }
 .signal-main { color: var(--ice); }
 .signal-clock { display: none; }
@@ -726,6 +731,7 @@ body.menu-on { overflow: hidden; }
   .hero h1 { font-size: clamp(42px, 11vw, 68px); }
   .hero-frame { padding: 28px 22px; }
   .hero-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rail-building:last-child { grid-column: 1 / -1; }
   .rail-card { padding: 20px 14px; }
   .rail-card::after { top: 14px; right: 14px; }
   .rail-card small { font-size: 10px; letter-spacing: 0; }
