@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { gzipSync } from "node:zlib";
 
 const ROOT = process.cwd();
 const BUDGETS = {
@@ -8,16 +9,19 @@ const BUDGETS = {
   "main.js": 18000,
   "i18n.js": 9000,
   "boot.js": 1000,
+  "bodytone-chatbot/frontend/index.html": 3000,
   "bodytone-chatbot/frontend/demo.js": 10000,
   "bodytone-chatbot/frontend/demo.css": 10000
 };
 
 let total = 0;
+let compressed = 0;
 let failures = 0;
 console.log("SYSTEMS LAB — PERFORMANCE BUDGET");
 for (const [name, budget] of Object.entries(BUDGETS)) {
   const bytes = fs.statSync(path.join(ROOT, name)).size;
   total += bytes;
+  compressed += gzipSync(fs.readFileSync(path.join(ROOT, name))).length;
   const ok = bytes <= budget;
   console.log((ok ? "PASS " : "FAIL ") + name + " — " + bytes + " / " + budget + " bytes");
   if (!ok) failures++;
@@ -28,3 +32,6 @@ if (total > aggregateBudget) failures++;
 console.log("RESULT");
 console.log("FAIL:", failures);
 if (failures) process.exit(1);
+
+console.log("Gzip surface:", compressed, "/ 35000 bytes");
+if (compressed > 35000) process.exit(1);

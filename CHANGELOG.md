@@ -1,3 +1,12 @@
+# 5.0.0 — runtime and portfolio renewal
+
+- Correct Document receiver for optional view transitions; synchronous startup and guarded promises.
+- Remove invalid meta CSP directive, external font requests and blocking intro.
+- Simplify CSS composition and redesign the hero/project index.
+- Replace legacy agent with a local, bilingual simulation; no APIs or microphone requests.
+- Add keyboard/mobile focus handling, fallback regression tests and three-engine browser smoke tests.
+- Gate Pages publication behind checks and browser tests; upload public build assets only.
+
 # Changelog
 
 ## 4.1.0 · 2026-10-05

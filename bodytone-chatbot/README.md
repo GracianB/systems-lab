@@ -1,5 +1,5 @@
-# Agente CS — widget (privado)
+# Local agent demonstration
 
-Live (demo, sin claves): https://gracianb.github.io/systems-lab/bodytone-chatbot/frontend/
+`frontend/` contains a standalone portfolio simulation. No live support systems are queried and no files are uploaded. The production Help Center is linked from the main portfolio.
 
-Widget de soporte. No es la marca Bodytone. La prueba pública de CS es el Help Center Zendesk.
+The retired integration widget can be recovered from Git history; it is not shipped in the public build.

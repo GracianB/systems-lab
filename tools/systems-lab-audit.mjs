@@ -85,7 +85,8 @@ check("html:canonical", html.includes('rel="canonical" href="https://gracianb.gi
 check("html:og-type", /property="og:type"[^>]+content="website"/i.test(html));
 check("html:twitter-card", /name="twitter:card"/i.test(html));
 check("html:csp", /Content-Security-Policy/i.test(html) && /script-src 'self'/i.test(html) && /style-src-attr 'unsafe-inline'/i.test(html));
-check("html:prepaint-boot", /<script src="\.\/boot\.js\?v=lab-v4\.1"><\/script>/i.test(html));
+check("html:csp-no-ignored-directive", !/frame-ancestors/.test(html));
+check("html:prepaint-boot", /<script src="\.\/boot\.js\?v=lab-v5"><\/script>/i.test(html));
 check("html:json-ld", /<script type="application\/ld\+json">/i.test(html));
 check("html:referrer", /name="referrer"[^>]+strict-origin-when-cross-origin/i.test(html));
 check("html:skip-link", /href="#main"/i.test(html));
@@ -127,7 +128,7 @@ check("js:menu-escape", count(main, /e\.key === "Escape"/g) === 1);
 check("js:menu-focus-return", /menuReturnFocus/.test(main) && /target\?\.focus\(\)/.test(main));
 check("js:menu-focus-trap", /e\.key === "Tab"/.test(main) && /focusable = \[\.\.\.drawer\.querySelectorAll/.test(main));
 check("js:canvas-visibility", /document\.addEventListener\("visibilitychange"/.test(main) && /!running \|\| document\.hidden/.test(main));
-check("js:canvas-cancel", /cancelAnimationFrame \|\| clearTimeout/.test(main));
+check("js:canvas-cancel", /window\.cancelAnimationFrame\(id\)/.test(main));
 check("js:no-exposed-integrations", !/LAB_(?:GAS|ZENDESK)|script\.google\.com\/macros/i.test(main));
 check("js:no-retired-demo-selectors", !/q-name|out-find|q-seg|out-mail|q-machine|q-kind|out-mant|data-run=/i.test(main));
 
@@ -146,9 +147,9 @@ check("seo:sitemap-canonical", sitemap.includes("<loc>https://gracianb.github.io
 check("seo:sitemap-lastmod", /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sitemap));
 
 check("pkg:name", pkg.name === "systems-lab");
-check("pkg:version", pkg.version === "4.1.0");
-check("pkg:check-script", pkg.scripts?.check === "npm run audit:strict && npm run audit:visual && npm run audit:performance");
-check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("20"));
+check("pkg:version", pkg.version === "5.0.0");
+check("pkg:check-script", pkg.scripts?.check?.includes("npm test") && pkg.scripts?.["test:browser"] === "playwright test");
+check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("24"));
 check("ci:read-only", /permissions:\s*\n\s+contents:\s*read/.test(workflow));
 check("ci:no-feature-push-duplication", !/push:\s*\n(?:.|\n)*branches:\s*\n(?:.|\n)*feat\//.test(workflow));
 check("ci:node-24", /node-version:\s*24/.test(workflow));
@@ -160,7 +161,7 @@ function walkTextFiles(dir, relative = "") {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   const result = [];
   for (const entry of entries) {
-    if ([".git", "node_modules"].includes(entry.name)) continue;
+    if ([".git", "node_modules", "dist", "playwright-report", "test-results"].includes(entry.name)) continue;
     const rel = path.join(relative, entry.name);
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) result.push(...walkTextFiles(full, rel));
@@ -182,11 +183,11 @@ const demoJs = sourceText.get("bodytone-chatbot/frontend/demo.js") ?? "";
 const agentDemoCss = sourceText.get("bodytone-chatbot/frontend/demo.css") ?? "";
 check("agent:exists", Boolean(agentHtml && demoJs && agentDemoCss));
 check("agent:no-cdn-sanitizer", !/cdnjs\.cloudflare\.com\/ajax\/libs\/dompurify/i.test(agentHtml));
-check("agent:local-sanitizer", agentHtml.includes("../../vendor/dompurify/purify.min.js"));
+check("agent:text-only-messages", /p\.textContent = text/.test(demoJs));
 check("agent:noindex", /name="robots"\s+content="noindex, nofollow"/i.test(agentHtml));
 check("agent:referrer", /name="referrer"\s+content="strict-origin-when-cross-origin"/i.test(agentHtml));
 check("agent:demo-file-limits", /MAX_FILES\s*=\s*5/.test(demoJs) && /MAX_FILE_BYTES\s*=\s*10 \* 1024 \* 1024/.test(demoJs));
-check("agent:local-api", /u\.origin === location\.origin/.test(demoJs));
+check("agent:local-only", !/fetch\(/.test(demoJs) && /e\.origin !== u\.origin/.test(demoJs));
 check("agent:reduced-motion", /prefers-reduced-motion:\s*reduce/.test(agentDemoCss));
 check("security:no-eval-tree", codeText.every(([name, text]) => !/\beval\s*\(/.test(text)));
 check("security:no-new-function-tree", codeText.every(([name, text]) => !/\bnew Function\b/.test(text)));

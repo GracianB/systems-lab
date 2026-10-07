@@ -1,11 +1,10 @@
-/* Systems Lab boot: set visual state before first paint. */
-(function () {
-  try {
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var seen = false;
-    try { seen = sessionStorage.getItem("lab-intro-seen") === "1"; } catch (e) {}
-    if (!reduce && !seen) {
-      document.documentElement.classList.add("intro-on");
-    }
-  } catch (e) {}
+/* Apply preferences before paint; storage is optional. */
+(() => {
+  const root = document.documentElement;
+  const params = new URLSearchParams(location.search);
+  for (const [key, allowed] of [["theme", ["dark", "light"]], ["lang", ["es", "en"]]]) {
+    let value = params.get(key);
+    if (!allowed.includes(value)) { try { value = localStorage.getItem("lab-" + key); } catch {} }
+    if (allowed.includes(value)) root.setAttribute("data-" + key, value);
+  }
 })();

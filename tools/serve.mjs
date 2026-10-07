@@ -1,9 +1,9 @@
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
-import { extname, join, normalize, sep } from "node:path";
+import { extname, join, normalize, sep, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const root = fileURLToPath(new URL("../", import.meta.url));
+const root = resolve(fileURLToPath(new URL("../", import.meta.url)), process.env.SITE_ROOT || ".");
 const port = Number(process.env.PORT || 4173);
 const host = process.env.HOST || "127.0.0.1";
 
@@ -29,6 +29,9 @@ const server = createServer(async (req, res) => {
   try {
     const url = new URL(req.url || "/", `http://${host}:${port}`);
     let pathname = decodeURIComponent(url.pathname);
+    if (pathname.split("/").some((part) => part.startsWith(".")) || /\\/.test(pathname)) {
+      res.writeHead(403); res.end("Forbidden"); return;
+    }
     if (pathname === "/") pathname = "/index.html";
 
     const target = normalize(join(root, pathname));

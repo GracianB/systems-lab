@@ -22,16 +22,12 @@
   <meta property="og:url" content="https://gracianb.github.io/systems-lab/">
   <meta name="twitter:card" content="summary">
   <meta name="format-detection" content="telephone=no">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
-  <link rel="dns-prefetch" href="//gracianb.github.io">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=lab-v4.1">
-  <link rel="preload" href="./boot.js?v=lab-v4.1" as="script">
-  <script src="./boot.js?v=lab-v4.1"></script>
-  <script src="./i18n.js?v=lab-v4.1"></script>
-  <script src="./main.js?v=lab-v4.1" defer></script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="stylesheet" href="./styles.css?v=lab-v5">
+  <link rel="preload" href="./boot.js?v=lab-v5" as="script">
+  <script src="./boot.js?v=lab-v5"></script>
+  <script src="./i18n.js?v=lab-v5"></script>
+  <script src="./main.js?v=lab-v5" defer></script>
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"><i></i></div>
@@ -44,24 +40,6 @@
     <div class="fx-scan"></div>
     <div class="fx-orb fx-orb-a"></div>
     <div class="fx-orb fx-orb-b"></div>
-  </div>
-
-  <div class="lab-intro" id="lab-intro" aria-hidden="true">
-    <div class="li-core">
-      <svg class="li-mark" viewBox="0 0 120 120" width="120" height="120" fill="none">
-        <rect class="li-frame" x="18" y="18" width="84" height="84" rx="10" stroke-width="1.4"/>
-        <circle class="li-ring" cx="60" cy="60" r="34" stroke-width="1.4"/>
-      </svg>
-      <span class="li-gb">GB</span>
-      <span class="li-scanline" aria-hidden="true"></span>
-    </div>
-    <p class="li-title">SYSTEMS&nbsp;LAB</p>
-    <div class="li-words">
-      <span class="lw lw-1">OHANA</span>
-      <span class="lw lw-2">VÓRTICE</span>
-      <span class="lw lw-3">CS&nbsp;LIVE</span>
-    </div>
-    <div class="li-bar"><i></i></div>
   </div>
 
   <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
@@ -105,12 +83,12 @@
       <div class="hero-frame">
         <div class="hero-meta-row">
           <span class="pulse-dot" aria-hidden="true"></span>
-          <p class="eyebrow" data-i18n="eyebrow">02 · PLAY · TÉCNICA</p>
+          <p class="eyebrow" data-i18n="eyebrow">SYSTEMS LAB / GRACIÁN BAENA</p>
         </div>
-        <h1 data-i18n-html="h1">No te lo explico.<br><em>Púlsalo.</em></h1>
-        <p class="lead" data-i18n="lead">Juegos. El Customer Success público de Bodytone. Y, abajo, un ejemplo de agente. Si no se abre en el navegador, no está.</p>
+        <h1 data-i18n-html="h1">Ideas que<br><em>funcionan.</em></h1>
+        <p class="lead" data-i18n="lead">Construyo sistemas que conectan personas, datos y acción. Explora juegos, operaciones de cliente y experiencias de IA en el navegador.</p>
         <div class="actions">
-          <a class="btn btn-play" href="#juegos" data-i18n="ctaPlay">Jugar ahora →</a>
+          <a class="btn btn-play" href="#juegos" data-i18n="ctaPlay">Explorar proyectos ↗</a>
           <a class="btn btn-ghost" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="ctaLive">Help Center live →</a>
         </div>
         <div class="pills">
@@ -119,12 +97,12 @@
           <span class="pill" data-i18n="pill3">1 ejemplo de agente</span>
         </div>
         <div class="hero-signal" role="status" aria-label="Estado del laboratorio">
-          <div class="signal-main"><span class="signal-live" aria-hidden="true"></span><span data-i18n="signalTitle">LAB ONLINE</span></div>
-          <div class="signal-detail" data-i18n="signalDesc">Interfaz pública · demos sin claves · quality gate activo</div>
+          <div class="signal-main"><span class="signal-live" aria-hidden="true"></span><span data-i18n="signalTitle">SYSTEMS LAB</span></div>
+          <div class="signal-detail" data-i18n="signalDesc">Personas × datos × sistemas</div>
           <span class="signal-clock" aria-hidden="true"></span>
         </div>
       </div>
-      <aside class="hero-rail">
+      <aside class="hero-rail" aria-label="Proyectos seleccionados">
         <a class="rail-card" href="https://gracianb.github.io/project-ohana/" rel="noopener">
           <span class="rail-code">01</span>
           <b>OHANA</b>
@@ -151,8 +129,8 @@
     <section class="play" id="juegos">
       <div class="section-head">
         <p class="eyebrow" data-i18n="playEyebrow">01 · JUEGOS</p>
-        <h2 data-i18n="playH">Pierde dos minutos. Luego hablamos.</h2>
-        <p class="lead" data-i18n="playLead">Si un prototipo no se deja tocar, es un PDF con pretensiones. Estos dos están encendidos.</p>
+        <h2 data-i18n="playH">Diseñado para explorar.</h2>
+        <p class="lead" data-i18n="playLead">Dos experiencias interactivas. Abre un proyecto y descubre cómo se siente el sistema en movimiento.</p>
       </div>
       <div class="featured">
         <a class="feat feat-ohana" href="https://gracianb.github.io/project-ohana/" rel="noopener">
@@ -189,7 +167,7 @@
     <section class="cs" id="cs">
       <div class="section-head">
         <p class="eyebrow" data-i18n="csEyebrow">02 · CUSTOMER SUCCESS</p>
-        <h2 data-i18n="csH">El departamento. No el discurso.</h2>
+        <h2 data-i18n="csH">De la intención a la resolución.</h2>
         <p class="lead cs-lead" data-i18n="csLead">Monté el Support OS de Bodytone y lo dejé en el aire. El cliente entra, dice qué necesita, el sistema enruta, el caso aterriza en Zendesk. Canal público. Prueba verificable.</p>
       </div>
 
@@ -236,7 +214,7 @@
         <span class="code" data-i18n="agCode">EJEMPLO</span>
         <span class="badge" data-i18n="agBadge">DEMO · SIN CLAVES</span>
       </header>
-      <h3 data-i18n="agTitle">Un agente, de ejemplo</h3>
+      <h2 data-i18n="agTitle">Un agente, de ejemplo</h2>
       <p data-i18n="agDesc">Así se siente el canal cuando hay un agente: envío, factura, ticket, un archivo. No es el sistema en producción. El de verdad es el Help Center de arriba.</p>
       <div class="agent-stage">
         <div class="agent-chrome" aria-hidden="true">

@@ -52,3 +52,7 @@ env/
 /.systems-lab-*/
 /.systems-lab-*.txt
 /coverage/
+
+/dist/
+/test-results/
+/playwright-report/
