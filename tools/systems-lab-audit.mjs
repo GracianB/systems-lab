@@ -129,6 +129,11 @@ check("js:canvas-visibility", /document\.addEventListener\("visibilitychange"/.t
 check("js:canvas-cancel", /window\.cancelAnimationFrame\(id\)/.test(main));
 check("js:no-exposed-integrations", !/LAB_(?:GAS|ZENDESK)|script\.google\.com\/macros/i.test(main));
 check("js:no-retired-demo-selectors", !/q-name|out-find|q-seg|out-mail|q-machine|q-kind|out-mant|data-run=/i.test(main));
+check("js:view-transition-bound", /document\.startViewTransition\(\(\) => applyTheme\(\)\)/.test(main));
+check("js:view-transition-progressive", /typeof document\.startViewTransition === "function"/.test(main) && /catch \{ applyTheme\(\); \}/.test(main));
+check("js:storage-fallback", /try \{ localStorage\.setItem/.test(main) && /try \{\s*const s = localStorage\.getItem/.test(main));
+check("js:match-media-fallback", /typeof window\.matchMedia === "function"/.test(main));
+check("js:raf-fallback", /typeof window\.requestAnimationFrame === "function"/.test(main));
 
 const important = count(css, /!important/g);
 const cssBytes = fs.statSync(file("styles.css")).size;
@@ -152,6 +157,10 @@ check("ci:read-only", /permissions:\s*\n\s+contents:\s*read/.test(workflow));
 check("ci:no-feature-push-duplication", !/push:\s*\n(?:.|\n)*branches:\s*\n(?:.|\n)*feat\//.test(workflow));
 check("ci:node-24", /node-version:\s*24/.test(workflow));
 check("ci:runs-check", /run:\s*npm run check/.test(workflow));
+check("ci:browser-matrix", /playwright install --with-deps chromium firefox webkit/.test(workflow) && /run:\s*npm run test:browser/.test(workflow));
+check("test:runtime-contract", exists("tests/runtime.test.mjs") && /retains Document receiver/.test(read("tests/runtime.test.mjs")));
+check("test:browser-contract", exists("tests/browser/systems-lab.spec.mjs") && /pageerror/.test(read("tests/browser/systems-lab.spec.mjs")) && /console/.test(read("tests/browser/systems-lab.spec.mjs")));
+check("test:playwright-matrix", exists("playwright.config.mjs") && /Desktop Firefox/.test(read("playwright.config.mjs")) && /Desktop Safari/.test(read("playwright.config.mjs")) && /Pixel 7/.test(read("playwright.config.mjs")));
 
 const sourceExtensions = new Set([".html", ".htm", ".js", ".mjs", ".cjs", ".css", ".json", ".jsonc", ".md", ".txt", ".xml", ".yml", ".yaml", ".svg", ".sh", ".ps1", ".py"]);
 
