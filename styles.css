@@ -800,3 +800,6 @@ body.menu-on { overflow: hidden; }
 @media(max-width:1100px){.hero{grid-template-columns:1fr}.hero-frame{min-height:600px}.hero-rail{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.hero-frame{min-height:0;display:flex;flex-direction:column;align-items:stretch;gap:0;padding:clamp(20px,5vw,32px)}.hero-content{width:100%}.lab-cover-art{position:relative;right:auto;top:auto;transform:none;width:min(78%,340px);height:280px;margin:auto;opacity:1}.lab-cover-art img{max-height:280px}.hero-rail{grid-template-columns:1fr}.hero-content h1{font-size:clamp(2.65rem,10vw,4.5rem)}}
 @media(prefers-reduced-motion:reduce){.lab-cover-art img{animation:none}}
+
+/* V45: human signature stays in the global header, universe claim in the hero. */
+.hero-content .eyebrow{font-size:clamp(.71rem,.8vw,.86rem);letter-spacing:.13em}
