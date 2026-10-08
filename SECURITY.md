@@ -7,7 +7,6 @@ Systems Lab is a public portfolio and demonstration repository.
 Security-sensitive areas include:
 
 - browser-executed JavaScript and HTML;
-- embedded demos under `bodytone-chatbot/`;
 - external scripts, fonts, frames and links;
 - client-side storage and browser permissions;
 - CI configuration and published GitHub Pages assets.

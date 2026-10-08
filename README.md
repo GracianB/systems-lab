@@ -42,7 +42,6 @@ Systems Lab · static public site
 │
 ├── index.html + styles.css       Layout, projects and roadmap slots
 ├── boot.js + main.js + i18n.js   Startup, interaction, themes and ES/EN
-├── bodytone-chatbot/frontend/   Standalone local agent simulation
 │
 └── checks → browser tests → explicit dist/ build → GitHub Pages
 ```
@@ -58,7 +57,6 @@ There is no application backend or build framework. The public build copies an e
 
 ### Agent demo and privacy
 
-`bodytone-chatbot/frontend/` simulates shipping, invoice and ticket responses. Files remain on the user's device. It makes no uploads, API calls, real tickets, credential requests or microphone requests. Messages use `textContent`. Language and theme follow the parent page through checked messages.
 
 The demo shows an interaction pattern. It is not evidence of a deployed AI integration.
 
