@@ -112,7 +112,7 @@ function persistURL(key, value) {
   function setMenu(open) {
     if (!drawer || !menuBtn) return;
 
-    if (open) menuReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : menuBtn;
+    if (open) menuReturnFocus = menuBtn; // Pointer activation in WebKit may not focus the toggle.
     menuOpen = Boolean(open);
     drawer.hidden = !menuOpen;
     drawer.classList.toggle("is-open", menuOpen);
