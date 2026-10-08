@@ -155,6 +155,10 @@ function persistURL(key, value) {
     }
 
     if (e.key === "Tab") {
+      const drawerLinks = [...drawer.querySelectorAll("a[href]")].filter(link => link.getClientRects().length);
+      const lastDrawerLink = drawerLinks.at(-1);
+      if (!e.shiftKey && document.activeElement === lastDrawerLink && drawerClose) { e.preventDefault(); drawerClose.focus(); return; }
+      if (e.shiftKey && document.activeElement === drawerClose && lastDrawerLink) { e.preventDefault(); lastDrawerLink.focus(); return; }
       const focusable = [...drawer.querySelectorAll("a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])")];
       if (!focusable.length) return;
 
