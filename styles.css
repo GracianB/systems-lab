@@ -811,3 +811,5 @@ body.menu-on { overflow: hidden; }
 @media(max-width:750px){.universe-gateway{grid-template-columns:1fr;gap:0;padding:clamp(1.5rem,5vw,2.5rem);min-height:0}.universe-gateway h2{font-size:clamp(2.2rem,9vw,4rem)}.universe-gateway-art{grid-row:1}.universe-gateway-art svg,.universe-gateway-art img{max-height:190px}.universe-gateway-note{font-size:.68rem}}@media(prefers-reduced-motion:reduce){.universe-gateway-cta,.universe-gateway-art{transition:none}}
 
  .universe-gateway{--gate:#56d7fa}
+/* Original lab cover is secondary; the wand no longer overpowers the story. */
+@media(min-width:681px){.hero-frame .lab-cover-art{width:36%;opacity:.77}.hero-frame .hero-content{width:64%}}
