@@ -783,3 +783,20 @@ body.menu-on { overflow: hidden; }
 .hero-rail .rail-card{box-shadow:inset 0 1px 0 rgba(158,217,235,.04)}
 @media(max-width:680px){.lab-cover-art{opacity:.85}.hero-frame{overflow:hidden}}
 @media(prefers-reduced-motion:reduce){.lab-cover-art img{animation:none}}
+
+
+/* V44 · Three-universe cover contract: Identity → Promise → Symbol → Evidence → Action. */
+.hero{grid-template-columns:minmax(0,1.5fr) minmax(280px,.72fr);align-items:stretch;gap:clamp(1rem,2vw,1.7rem);max-width:100%}
+.hero-frame{min-height:clamp(540px,70svh,770px);border-radius:26px;display:flex;align-items:center;overflow:hidden;background:radial-gradient(ellipse at 76% 44%,rgba(50,181,227,.16),transparent 49%),linear-gradient(145deg,#111e2c,#080d16)}
+.hero-content{width:min(57%,560px);max-width:100%;position:relative;z-index:3}
+.hero-content .eyebrow{color:#a5dfe9;letter-spacing:.15em}
+.hero-content h1{font-size:clamp(3rem,5.5vw,6rem);line-height:1.02;text-wrap:balance;max-width:12ch}
+.hero-content .lead{font-size:clamp(.98rem,1.2vw,1.14rem);line-height:1.7}
+.lab-cover-art{position:absolute;top:50%;right:0;width:48%;height:95%;transform:translateY(-50%);opacity:1;z-index:2;display:grid;place-items:center;pointer-events:none}
+.lab-cover-art img{display:block;width:100%;height:100%;max-height:none;object-fit:contain;filter:brightness(1.35) drop-shadow(0 0 12px rgba(193,247,255,.8)) drop-shadow(0 0 38px rgba(51,187,239,.43))}
+.hero-rail{grid-template-columns:1fr;align-content:stretch}
+.hero-rail .rail-card{min-width:0;min-height:94px;overflow:hidden}
+.hero .actions .btn{min-height:48px}
+@media(max-width:1100px){.hero{grid-template-columns:1fr}.hero-frame{min-height:600px}.hero-rail{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.hero-frame{min-height:0;display:flex;flex-direction:column;align-items:stretch;gap:0;padding:clamp(20px,5vw,32px)}.hero-content{width:100%}.lab-cover-art{position:relative;right:auto;top:auto;transform:none;width:min(78%,340px);height:280px;margin:auto;opacity:1}.lab-cover-art img{max-height:280px}.hero-rail{grid-template-columns:1fr}.hero-content h1{font-size:clamp(2.65rem,10vw,4.5rem)}}
+@media(prefers-reduced-motion:reduce){.lab-cover-art img{animation:none}}
