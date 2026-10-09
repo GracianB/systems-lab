@@ -125,10 +125,17 @@ function persistURL(key, value) {
 
     if (menuOpen) {
       const first = drawer.querySelector("a");
-      scheduleFrame(() => first?.focus());
+      // Keep user-initiated focus inside the drawer if it moved before RAF.
+      // WebKit can execute this frame after the user has already focused a link.
+      scheduleFrame(() => {
+        if (!menuOpen || drawer.contains(document.activeElement)) return;
+        first?.focus();
+      });
     } else {
       const target = menuReturnFocus instanceof HTMLElement && menuReturnFocus.isConnected ? menuReturnFocus : menuBtn;
-      scheduleFrame(() => target?.focus());
+      scheduleFrame(() => {
+        if (!menuOpen) target?.focus();
+      });
     }
   }
 
