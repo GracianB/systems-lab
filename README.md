@@ -8,7 +8,7 @@
 
 [Explore the lab ↗](https://gracianb.github.io/systems-lab/) · [Quality Gate](https://github.com/GracianB/systems-lab/actions/workflows/quality.yml) · [Deployment](https://github.com/GracianB/systems-lab/actions/workflows/deploy.yml)
 
-**V5.0.0 · Final scope · 7 October 2026**
+**Public technical portfolio · maintained release**
 
 </div>
 
@@ -35,7 +35,7 @@ The BUILDING cards are intentional. They reserve space for future work, without 
 
 ## A small surface, held to a real standard
 
-V5 brings together responsive composition, ES/EN content, persistent themes, keyboard navigation and an embedded agent demo. Decorative effects stay optional. Controls must still work when storage, canvas, animation or browser transition APIs are unavailable.
+The current site brings together responsive composition, ES/EN content, persistent themes, keyboard navigation and an embedded agent demo. Decorative effects stay optional. Controls must still work when storage, canvas, animation or browser transition APIs are unavailable.
 
 ```text
 Systems Lab · static public site
@@ -88,15 +88,19 @@ Both quality and deployment workflows run the gates. Deployment publishes only `
 
 The source layout audit is not pixel-level visual coverage. Byte budgets are not Core Web Vitals. WebKit tests do not replace actual Safari device checks. External projects have independent availability and release cycles.
 
-## V5 release contract
+## Narrative and design contract
 
-V5 is the final portfolio scope: the existing public projects, the local agent demo, and the two BUILDING slots. No more sections or speculative features are queued for this version.
+The site tells a deliberate story: **ideas → playable systems → a real operations case → an honest local simulation → what is coming later**. Every section must answer a different question rather than repeat the cover.
+
+The homepage opens directly on its actual hero, “Ideas that work”. The cyan wand is an understated supporting symbol, not a separate gateway. Dark and light modes retain the independent technical palette, away from the graphite-and-beige Deck and botanical-green Yoga.
+
+The final portfolio scope is the existing public projects, local agent simulation and two explicitly marked BUILDING slots. No unfinished roadmap item becomes a public product just because it appears in the portfolio.
 
 Close the release when the final commit is on local and remote `main`, the Quality Gate is green, production deployment succeeds and the public site serves the final cards. The existing `v5.0.0` tag records the original V5 release; this closure follows it without rewriting that tag.
 
-After closure, Systems Lab stays frozen until a concrete reason justifies a change. RevOps and Content Engine evolve separately. Promoting a card to LIVE is a small, deliberate update, with real evidence and a working link.
+After closure, changes require a concrete product, accessibility or maintenance reason. RevOps and Content Engine evolve separately. Promoting a card to LIVE is a small, deliberate update, with real evidence and a working link.
 
-## The V5 marathon ❤️
+## The engineering journey
 
 **7 October 2026.** Systems Lab V5 was not built to be closed because we were tired. It was built to be closed when it was finished.
 
