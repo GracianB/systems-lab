@@ -16,7 +16,7 @@
     "audit:performance": "node tools/performance-budget.mjs",
     "start": "node tools/serve.mjs",
     "start:open": "node tools/serve.mjs",
-    "test": "node --test tests/runtime.test.mjs",
+    "test": "node --test tests/runtime.test.mjs tests/share-card.test.mjs",
     "test:browser": "playwright test",
     "build": "node tools/build.mjs"
   },
