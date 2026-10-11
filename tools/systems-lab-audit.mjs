@@ -103,6 +103,11 @@ const unsafeBlank = targetBlankTags.filter((tag) => !/rel="[^"]*noopener[^"]*"/i
 check("html:external-links", unsafeBlank.length === 0, unsafeBlank.length ? unsafeBlank.join("\n") : "noopener present");
 
 check("html:no-javascript-hrefs", !/href\s*=\s*["']javascript:/i.test(html));
+
+check("ecosystem:revops-not-public", !/href=["'](?:https:\/\/gracianb\.github\.io\/revops-studio\/|https:\/\/github\.com\/GracianB\/revops-studio)/i.test(html));
+check("ecosystem:private-sources-not-linked", !/href=["']https:\/\/github\.com\/GracianB\/(?:aigoritmo|cutter-studio)/i.test(html));
+check("ecosystem:cutter-roadmap-not-public-launch", html.includes("CUTTER / CONTENT ENGINE") && /<article class="rail-card rail-building">[\s\S]*?CUTTER \/ CONTENT ENGINE/.test(html));
+
 check("html:intro-single-owner", !/setTimeout\(function \(\) \{ document\.documentElement\.classList\.add\("intro-done"\)/.test(html));
 
 const i18nKeyMatches = [...i18n.matchAll(/^\s{4}([A-Za-z0-9_]+):/gm)].map((m) => m[1]);
