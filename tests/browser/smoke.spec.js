@@ -16,7 +16,8 @@ for (const width of [320, 390, 768, 1440]) {
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.locator('h1')).toContainText('Ideas that');
     await expect(page.locator('.rail-status').first()).toHaveText('BUILDING');
-    await expect(page.locator('.rail-building').last()).toContainText('YouTube → Shorts → Publish');
+    await expect(page.locator('.rail-building').last()).toContainText('Video → clips → local export');
+    await expect(page.locator('.rail-building').last()).toContainText('Automatic publishing is not available.');
     await page.locator('[data-set-theme="light"]').click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
     await page.reload();
