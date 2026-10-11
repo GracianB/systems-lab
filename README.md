@@ -26,8 +26,8 @@ The point is to make the work visible: what it does, how it behaves, and where t
 | [VÓRTICE](https://vortex-gilt-xi.vercel.app/) | Creative interactive development and WebGL | Public interactive prototype |
 | [BODYTONE](https://bodytonehelp.zendesk.com/hc/es) | Customer Success and Support Ops | Public Zendesk Help Center; the portfolio describes the work, it does not audit private workflows |
 | AGENT | Applied AI interaction for shipping, invoices and tickets | Local simulation with fictional responses; no backend |
-| REVOPS | Signals, metrics and context → decisions → operational action | **BUILDING**; roadmap card with no project link |
-| CONTENT ENGINE | YouTube → Shorts → Publish | **BUILDING**; planned moment selection, vertical clips, copy/metadata and automated distribution |
+| REVOPS | Signals, metrics and context → decisions → operational action | **BUILDING**; no public demo or source link until approved |
+| CUTTER / CONTENT ENGINE | Video → clips → local export | **BUILDING**; local clip editor with export flow, not an automatic publishing service or public demo |
 
 **The project should state what it proves, not quietly upgrade evidence into marketing.**
 
