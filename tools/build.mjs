@@ -3,6 +3,8 @@ rmSync('dist', { recursive:true, force:true }); mkdirSync('dist');
 for (const file of ['index.html','404.html','main.js','boot.js','i18n.js','styles.css','favicon.svg','og-cover.svg','og-cover.png','robots.txt','sitemap.xml']) cpSync(file, `dist/${file}`);
 mkdirSync('dist/assets', { recursive:true });
 cpSync('assets/cover-wand.svg', 'dist/assets/cover-wand.svg');
+mkdirSync('dist/assets/aigoritmo', { recursive:true });
+for (const file of ['llama-poster.jpg','qwen-poster.jpg','arcana-poster.jpg','arcano-poster.jpg']) cpSync(`assets/aigoritmo/${file}`, `dist/assets/aigoritmo/${file}`);
 mkdirSync('dist/bodytone-chatbot/frontend', { recursive:true });
 for (const file of ['index.html','demo.js','demo.css']) cpSync(`bodytone-chatbot/frontend/${file}`, `dist/bodytone-chatbot/frontend/${file}`);
 writeFileSync('dist/.nojekyll','');

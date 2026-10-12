@@ -26,6 +26,7 @@ The point is to make the work visible: what it does, how it behaves, and where t
 | [VÓRTICE](https://vortex-gilt-xi.vercel.app/) | Creative interactive development and WebGL | Public interactive prototype |
 | [BODYTONE](https://bodytonehelp.zendesk.com/hc/es) | Customer Success and Support Ops | Public Zendesk Help Center; the portfolio describes the work, it does not audit private workflows |
 | AGENT | Applied AI interaction for shipping, invoices and tickets | Local simulation with fictional responses; no backend |
+| AIGORITMO | Four conversation peers: Llama, Qwen, Arcana and Arcano; voice and session continuity | Local application on `127.0.0.1:8001`; private source; the public site contains a bilingual visual showcase, not a hosted chat |
 | REVOPS | Signals, metrics and context → decisions → operational action | **BUILDING**; no public demo or source link until approved |
 | CUTTER / CONTENT ENGINE | Video → clips → local export | **BUILDING**; local clip editor with export flow, not an automatic publishing service or public demo |
 
@@ -61,6 +62,14 @@ There is no application backend or build framework. The public build copies an e
 `bodytone-chatbot/frontend/` simulates shipping, invoice and ticket responses. Files remain on the user's device. It makes no uploads, API calls, real tickets, credential requests or microphone requests. Messages use `textContent`. Language and theme follow the parent page through checked messages.
 
 The demo shows an interaction pattern. It is not evidence of a deployed AI integration.
+
+### Aigoritmo showcase
+
+The `#aigoritmo` section presents four equal peers with current, approved local posters: Llama (the mascot, `llama3.2:3b`), Qwen (`qwen2.5-coder:3b`), Arcana and Arcano. Piper voice and the Llama/Qwen models run locally. Arcana/Arcano response providers depend on the installation configuration; the site makes no claim that every response stays local.
+
+The local launch link opens the visitor's own `127.0.0.1:8001`, so Aigoritmo must already be running there. No backend requests or availability probes originate from this public showcase. Its source repository is private. The four lazy JPEGs are explicitly copied into the public build; videos, application sources, credentials and conversation data are excluded.
+
+The old ignored `systems-lab/aigoritmo/` directory is not the active installation or public deployment. The maintained app is in the separate Aigoritmo repository. Do not use nested legacy notes or historical `X:` paths as current setup instructions.
 
 ## Run locally
 
