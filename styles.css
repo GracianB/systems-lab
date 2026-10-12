@@ -806,3 +806,25 @@ body.menu-on { overflow: hidden; }
 
 /* V47 · Restore direct original cover, with a restrained wand. */
 @media(min-width:681px){.hero-frame .lab-cover-art{width:36%;opacity:.77}.hero-frame .hero-content{width:64%}}
+/* Aigoritmo: four peers in the existing family chrome, no autoplay or remote UI. */
+.ai-showcase { margin-top: clamp(70px, 9vw, 130px); scroll-margin-top: calc(var(--header) + 24px); }
+.ai-roster { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; margin-top: 30px; }
+.ai-persona { overflow: hidden; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--surface); min-width: 0; }
+.ai-persona img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 40%; }
+.ai-persona-copy { padding: 22px 20px 24px; }
+.ai-persona h3 { margin: 10px 0 8px; font: 500 clamp(28px,3vw,38px)/1.15 var(--display); color: var(--ink); }
+.ai-persona p { margin: 0 0 18px; color: var(--muted); font-size: 13px; line-height: 1.7; min-height: 7em; }
+.ai-persona code, .ai-character-tag { display: block; color: var(--ice); font: 500 10px/1.6 var(--mono); overflow-wrap: anywhere; }
+.ai-arcana .ai-character-tag { color: var(--nude); }
+.ai-arcano .ai-character-tag { color: var(--muted); }
+.ai-system { display: grid; grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); gap: 32px; padding: clamp(22px,3vw,36px); margin-top: 20px; border: 1px solid var(--line); border-radius: var(--r-lg); background: linear-gradient(115deg,var(--ice-dim),transparent 65%),var(--surface); }
+.ai-system h3 { font: 500 clamp(26px,3vw,38px)/1.2 var(--display); margin: 18px 0 14px; }
+.ai-system p { color: var(--muted); font-size: 14px; line-height: 1.8; margin: 0; }
+.ai-launch { align-self: center; }
+.ai-launch .btn { width: 100%; justify-content: center; }
+.ai-launch p { font-size: 12px; margin-top: 12px; }
+.ai-method { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; margin-top: 22px; color: var(--muted); font: 500 11px/1.6 var(--mono); }
+.ai-method [aria-hidden] { color: var(--ice); }
+@media(max-width:1000px) { .ai-roster { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px) { .ai-roster { gap: 12px; } .ai-persona-copy { padding: 16px 13px; } .ai-persona p { min-height: 10em; font-size: 12px; } .ai-persona .code { font-size: 9px; } .ai-persona code,.ai-character-tag { font-size: 9px; } .ai-system { grid-template-columns: minmax(0,1fr); gap: 22px; } .ai-method { font-size: 10px; gap: 8px; } }
+@media(max-width:360px) { .ai-roster { grid-template-columns: minmax(0,1fr); } .ai-persona { display: grid; grid-template-columns: 100px minmax(0,1fr); } .ai-persona img { height: 100%; aspect-ratio: auto; } .ai-persona p { min-height: 0; margin-bottom: 10px; } .ai-persona h3 { font-size: 27px; } }

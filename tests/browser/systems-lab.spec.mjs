@@ -12,6 +12,29 @@ function strictConsole(page) {
   return () => expect(failures, failures.join("\n")).toEqual([]);
 }
 
+test("Aigoritmo shows four peers, translated scope and an explicit local launch", async ({ page }) => {
+  const assertClean = strictConsole(page);
+  await page.goto("/?lang=es#aigoritmo");
+  const showcase = page.locator("#aigoritmo");
+  await showcase.scrollIntoViewIfNeeded();
+  await expect(showcase.locator(".ai-persona")).toHaveCount(4);
+  await expect(showcase.locator("h3")).toContainText(["Llama", "Qwen", "Arcana", "Arcano", "La experiencia vive en tu máquina."]);
+  await expect(showcase.locator(".ai-launch a")).toHaveAttribute("href", "http://127.0.0.1:8001/");
+  await expect(showcase).toContainText("llama3.2:3b");
+  await expect(showcase).toContainText("qwen2.5-coder:3b");
+  for (const image of await showcase.locator("img").all()) {
+    await expect.poll(() => image.evaluate(el => el.complete && el.naturalWidth > 0)).toBe(true);
+  }
+  await page.locator('[data-set-lang="en"]').click();
+  await expect(showcase.locator("h2")).toHaveText("Four presences. A space of your own.");
+  await expect(showcase).toContainText("LOCAL APP / PRIVATE SOURCE");
+  await expect(showcase.locator(".ai-launch p")).toContainText("does not host the chat");
+  await page.locator('[data-set-theme="light"]').click();
+  await showcase.scrollIntoViewIfNeeded();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+  assertClean();
+});
+
 test("boots cleanly and exposes the complete portfolio surface", async ({ page }) => {
   const assertClean = strictConsole(page);
   const response = await page.goto("/");
