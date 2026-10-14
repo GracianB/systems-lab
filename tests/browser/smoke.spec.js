@@ -75,6 +75,7 @@ test('optional APIs and storage cannot break startup', async ({ page }) => {
 });
 
 test('Document receiver and rejected transition promises', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
   const errors = []; page.on('pageerror', e => errors.push(e.message));
   await page.addInitScript(() => {
     document.startViewTransition = function (callback) {

@@ -23,6 +23,30 @@ function persistURL(key, value) {
     return (window.LAB_I18N && (window.LAB_I18N[currentLang] || window.LAB_I18N.es)) || {};
   }
 
+  const vortexWindow = $("#vortex-window");
+  const vortexStart = $("[data-vortex-start]");
+  const vortexStop = $("[data-vortex-stop]");
+  vortexStart?.addEventListener("click", () => {
+    if (!vortexWindow || vortexWindow.querySelector("iframe")) return;
+    const frame = document.createElement("iframe");
+    frame.src = "https://vortex-gilt-xi.vercel.app/";
+    frame.title = "Vórtice — live interactive particle field";
+    frame.allow = "fullscreen";
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    vortexWindow.append(frame);
+    vortexWindow.classList.add("is-running");
+    vortexStart.hidden = true;
+    vortexStop.hidden = false;
+    frame.focus();
+  });
+  vortexStop?.addEventListener("click", () => {
+    vortexWindow?.querySelector("iframe")?.remove();
+    vortexWindow?.classList.remove("is-running");
+    vortexStop.hidden = true;
+    vortexStart.hidden = false;
+    vortexStart.focus();
+  });
+
   function syncAgent() {
     const frame = document.querySelector(".agent-stage iframe");
     if (frame) frame.contentWindow?.postMessage({ type: "lab-settings", lang: currentLang, theme }, location.origin);
@@ -32,6 +56,7 @@ function persistURL(key, value) {
   function applyLang(code, persist) {
     currentLang = code === "en" ? "en" : "es";
     const t = pack();
+    $("[data-menu-toggle]")?.setAttribute("aria-label", t.menu || "Menu");
     syncAgent();
     const labels = currentLang === "en" ? ["Main navigation", "Selected projects", "Dark theme", "Light theme", "Close menu", "Customer support agent demo"] : ["Navegación principal", "Proyectos seleccionados", "Tema oscuro", "Tema claro", "Cerrar menú", "Demo de agente de soporte"];
     [".nav", ".hero-rail", '[data-set-theme="dark"]', '[data-set-theme="light"]', "[data-drawer-close]"].forEach((selector, i) => $(selector)?.setAttribute("aria-label", labels[i]));
