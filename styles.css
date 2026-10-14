@@ -683,56 +683,13 @@ body.menu-on { overflow: hidden; }
 ::view-transition-new(root) { animation: none; }
 
 
-/* V42 · Symbol-led cover, Yoga-family layout discipline, Systems Lab palette. */
-.hero{grid-template-columns:minmax(0,1.55fr) minmax(270px,.9fr);gap:clamp(16px,2vw,28px);align-items:start;padding-block:clamp(24px,4vw,56px)}
-.hero-frame{min-height:clamp(560px,72vh,760px);padding:clamp(28px,3.4vw,56px);display:flex;align-items:center;isolation:isolate;background:radial-gradient(ellipse at 76% 47%,rgba(38,164,209,.12),transparent 48%),linear-gradient(145deg,#11232e,#090f18 70%);border-color:rgba(78,211,241,.4);box-shadow:0 24px 70px rgba(0,5,12,.2)}
-.hero-content{position:relative;z-index:2;width:min(56%,460px);min-width:0}
-.hero h1{font-size:clamp(2.8rem,5.4vw,5.7rem);max-width:12ch;overflow-wrap:normal}
-.hero .lead{font-size:clamp(.94rem,1.1vw,1.1rem)}
-.lab-cover-art{position:absolute;right:0;top:50%;width:48%;height:90%;transform:translateY(-50%);display:grid;place-items:center;pointer-events:none;opacity:.95}
-.lab-cover-art img{width:100%;height:100%;max-height:600px;filter:drop-shadow(0 0 18px rgba(63,202,237,.17));animation:lab-wand-drift 9s ease-in-out infinite}
-@keyframes lab-wand-drift{50%{transform:translateY(-9px)}}
-.hero-rail{display:grid;grid-template-columns:1fr;gap:10px;align-content:start}
-.hero-rail .rail-card{min-height:96px;padding:clamp(14px,1.6vw,20px);border-radius:16px;transition:transform .2s ease,border-color .2s ease;background:linear-gradient(120deg,rgba(18,32,43,.96),rgba(10,16,25,.98))}
-.hero-rail a.rail-card:hover{transform:translateX(3px);border-color:var(--ice)}
-.hero-rail .rail-card b{font-size:clamp(.86rem,1vw,1.1rem)}
-.hero-rail .rail-card small{font-size:.7rem}
-@media(max-width:1100px){.hero{grid-template-columns:minmax(0,1fr)}.hero-rail{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-frame{min-height:570px}}
-@media(max-width:680px){.hero{padding-top:20px}.hero-frame{min-height:0;padding:26px 20px 20px;display:block}.hero-content{width:100%}.lab-cover-art{position:relative;top:auto;right:auto;transform:none;width:min(100%,340px);height:260px;margin:8px auto 0;opacity:.75}.lab-cover-art img{max-height:280px}.hero h1{font-size:clamp(2.7rem,11vw,4.4rem)}.hero-rail{grid-template-columns:1fr}.hero-rail .rail-card{min-height:85px}}
-@media(prefers-reduced-motion:reduce){.lab-cover-art img{animation:none}}
+/* Cover: a working atlas of the four experiences. */
+.hero{grid-template-columns:1fr;gap:18px;padding-block:32px 56px}.hero-frame{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:24px;min-height:610px;padding:clamp(28px,4vw,64px);border-radius:28px;overflow:hidden;background:radial-gradient(ellipse at 82% 40%,var(--ice-dim),transparent 60%),var(--surface);border-color:var(--line)}.hero-content{position:relative;z-index:2;width:100%;min-width:0}.hero-content h1{font-size:clamp(3.2rem,5.8vw,6rem);line-height:1.04;letter-spacing:-.04em;max-width:14ch;text-wrap:balance}.hero-content .lead{max-width:46ch;line-height:1.8}.hero .actions{margin-top:28px}.hero .pills{gap:8px}.hero-signal{margin-top:28px}.hero-rail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.hero-rail .rail-card{min-height:102px;border-radius:16px;padding:20px;background:var(--surface);min-width:0}.hero-rail a.rail-card:hover{border-color:var(--ice);transform:translateY(-3px)}
+.cover-atlas{position:relative;min-height:480px;scroll-margin-top:110px;isolation:isolate}.cover-orbit{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.cover-orbit img{width:60%;height:90%;object-fit:contain;filter:drop-shadow(0 0 25px var(--ice-dim))}.cover-orbit i{position:absolute;width:88%;aspect-ratio:1;border:1px solid var(--line);border-radius:50%;transform:rotate(-25deg) scaleY(.7)}.cover-orbit i+i{width:66%;transform:rotate(35deg) scaleY(.8)}.cover-node{position:absolute;z-index:2;width:46%;padding:19px 16px;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:0 12px 30px #0002;text-decoration:none;transition:transform .2s,border-color .2s}.cover-node:hover{transform:translateY(-5px);border-color:var(--ice)}.cover-node:focus-visible{outline:3px solid var(--ice);outline-offset:4px}.cover-node>span{font:500 9px var(--mono);letter-spacing:.1em;color:var(--muted)}.cover-node strong{display:block;margin:10px 0;font:500 clamp(24px,2.8vw,36px)/1 var(--display);color:var(--ink)}.cover-node small{display:block;color:var(--muted);font-size:11px;line-height:1.5}.cover-node b{position:absolute;right:14px;top:14px;color:var(--ice)}.node-play{left:0;top:5%}.node-field{right:0;top:25%}.node-ai{left:0;bottom:17%}.node-ops{right:0;bottom:0}.cover-coordinate{position:absolute;bottom:0;left:0;font:500 9px var(--mono);color:var(--muted);letter-spacing:.08em}
+@media(max-width:1000px){.hero-frame{grid-template-columns:1fr;gap:30px}.hero-content h1{max-width:18ch;font-size:clamp(3rem,7vw,5rem)}.cover-atlas{min-height:430px;max-width:620px;width:100%;margin:auto}.hero-rail{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.hero{padding-block:20px 40px}.hero-frame{padding:26px 20px;border-radius:20px}.hero-content h1{font-size:clamp(2.8rem,11vw,4rem)}.cover-atlas{min-height:380px}.cover-node{padding:15px 12px;width:47%}.cover-node strong{font-size:26px}.cover-node>span{font-size:8px}.cover-node small{font-size:10px}.hero-rail{grid-template-columns:1fr}.cover-coordinate{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.cover-node,.hero-rail .rail-card{transition:none}}
 
-
-/* V43 · Wand is the cover signature, not an incidental background decoration. */
-.hero-frame{background:radial-gradient(ellipse at 76% 43%,rgba(30,176,222,.15),transparent 42%),linear-gradient(145deg,#101d28,#080e16 80%)}
-.lab-cover-art{opacity:1;z-index:1}
-.lab-cover-art img{filter:drop-shadow(0 0 10px rgba(177,244,255,.55)) drop-shadow(0 0 35px rgba(35,185,236,.26))}
-.hero-content{z-index:2}
-.hero-rail .rail-card{box-shadow:inset 0 1px 0 rgba(158,217,235,.04)}
-@media(max-width:680px){.lab-cover-art{opacity:.85}.hero-frame{overflow:hidden}}
-@media(prefers-reduced-motion:reduce){.lab-cover-art img{animation:none}}
-
-
-/* V44 · Three-universe cover contract: Identity → Promise → Symbol → Evidence → Action. */
-.hero{grid-template-columns:minmax(0,1.5fr) minmax(280px,.72fr);align-items:stretch;gap:clamp(1rem,2vw,1.7rem);max-width:100%}
-.hero-frame{min-height:clamp(540px,70svh,770px);border-radius:26px;display:flex;align-items:center;overflow:hidden;background:radial-gradient(ellipse at 76% 44%,rgba(50,181,227,.16),transparent 49%),linear-gradient(145deg,#111e2c,#080d16)}
-.hero-content{width:min(57%,560px);max-width:100%;position:relative;z-index:3}
-.hero-content .eyebrow{color:#a5dfe9;letter-spacing:.15em}
-.hero-content h1{font-size:clamp(3rem,5.5vw,6rem);line-height:1.02;text-wrap:balance;max-width:12ch}
-.hero-content .lead{font-size:clamp(.98rem,1.2vw,1.14rem);line-height:1.7}
-.lab-cover-art{position:absolute;top:50%;right:0;width:48%;height:95%;transform:translateY(-50%);opacity:1;z-index:2;display:grid;place-items:center;pointer-events:none}
-.lab-cover-art img{display:block;width:100%;height:100%;max-height:none;object-fit:contain;filter:brightness(1.35) drop-shadow(0 0 12px rgba(193,247,255,.8)) drop-shadow(0 0 38px rgba(51,187,239,.43))}
-.hero-rail{grid-template-columns:1fr;align-content:stretch}
-.hero-rail .rail-card{min-width:0;min-height:94px;overflow:hidden}
-.hero .actions .btn{min-height:48px}
-@media(max-width:1100px){.hero{grid-template-columns:1fr}.hero-frame{min-height:600px}.hero-rail{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:680px){.hero-frame{min-height:0;display:flex;flex-direction:column;align-items:stretch;gap:0;padding:clamp(20px,5vw,32px)}.hero-content{width:100%}.lab-cover-art{position:relative;right:auto;top:auto;transform:none;width:min(78%,340px);height:280px;margin:auto;opacity:1}.lab-cover-art img{max-height:280px}.hero-rail{grid-template-columns:1fr}.hero-content h1{font-size:clamp(2.65rem,10vw,4.5rem)}}
-@media(prefers-reduced-motion:reduce){.lab-cover-art img{animation:none}}
-
-/* V45: human signature stays in the global header, universe claim in the hero. */
-.hero-content .eyebrow{font-size:clamp(.71rem,.8vw,.86rem);letter-spacing:.13em}
-
-/* V47 · Restore direct original cover, with a restrained wand. */
-@media(min-width:681px){.hero-frame .lab-cover-art{width:36%;opacity:.77}.hero-frame .hero-content{width:64%}}
 /* Aigoritmo: four peers in the existing family chrome, no autoplay or remote UI. */
 .ai-showcase { margin-top: clamp(70px, 9vw, 130px); scroll-margin-top: calc(var(--header) + 24px); }
 .ai-roster { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; margin-top: 30px; }
@@ -773,3 +730,7 @@ body.menu-on { overflow: hidden; }
 @media (max-width: 640px) { .vortex-window { aspect-ratio: auto; height: 540px; } }
 
 .feat-vortex .project-poster img,.vortex-window>img{object-fit:cover;object-position:center}.feat-vortex .feat-stage{aspect-ratio:1200/630;height:auto}
+
+.hero-frame .hero-content{order:-1}
+
+.hero .btn-ghost{color:var(--ink);border-color:var(--line);background:var(--surface)}
