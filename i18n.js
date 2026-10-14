@@ -1,14 +1,11 @@
 window.LAB_I18N = {
   es: {
+    fieldHint: "Mueve el cursor. Deja una señal.",
     coverOhana: "Juego · evolución · CI",
     coverPlay: "Juega.",
-    coverPlayNote: "Una isla por descubrir",
     coverField: "Siente.",
-    coverFieldNote: "El gesto se vuelve materia",
     coverAI: "Conversa.",
-    coverAINote: "Cuatro presencias, app local",
     coverOps: "Conecta.",
-    coverOpsNote: "Del cliente a la solución",
 
     projectArtwork: "ARTE DEL PROYECTO",
     projectCapture: "CAPTURA REAL",
@@ -48,7 +45,7 @@ window.LAB_I18N = {
     aiMethod2: "Conversa a tu ritmo",
     aiMethod3: "Escucha y guarda el hilo",
     eyebrow: "SYSTEMS LAB · BUILD / PLAY / PROVE",
-    h1: "Construir. Jugar.<br><em>Descubrir.</em>",
+    h1: "Las ideas,<br><em>en acción.</em>",
     lead: "Construyo sistemas que conectan personas, datos y acción. Explora juegos, operaciones de cliente y experiencias de IA en el navegador.",
     ctaPlay: "Elige tu universo ↗",
     ctaLive: "Help Center live →",
@@ -115,15 +112,12 @@ window.LAB_I18N = {
     foot: "Gracián Baena · Murcia · personas, datos, sistemas"
   },
   en: {
+    fieldHint: "Move your cursor. Leave a signal.",
     coverOhana: "Game · evolution · CI",
     coverPlay: "Play.",
-    coverPlayNote: "An island to discover",
     coverField: "Feel.",
-    coverFieldNote: "Gesture becomes matter",
     coverAI: "Talk.",
-    coverAINote: "Four presences, local app",
     coverOps: "Connect.",
-    coverOpsNote: "From customer to solution",
 
     projectArtwork: "PROJECT ARTWORK",
     projectCapture: "REAL CAPTURE",
@@ -163,7 +157,7 @@ window.LAB_I18N = {
     aiMethod2: "Talk at your own pace",
     aiMethod3: "Listen and keep the thread",
     eyebrow: "SYSTEMS LAB · BUILD / PLAY / PROVE",
-    h1: "Build. Play.<br><em>Discover.</em>",
+    h1: "Ideas,<br><em>in motion.</em>",
     lead: "I build systems connecting people, data and action. Explore games, customer operations and AI experiences in your browser.",
     ctaPlay: "Choose your universe ↗",
     ctaLive: "Live Help Center →",

@@ -9,6 +9,7 @@ const BUDGETS = {
   "main.js": 18000,
   "i18n.js": 13000,
   "boot.js": 1000,
+  "cover-canvas.js": 6000,
   "bodytone-chatbot/frontend/index.html": 3000,
   "bodytone-chatbot/frontend/demo.js": 10000,
   "bodytone-chatbot/frontend/demo.css": 10000
