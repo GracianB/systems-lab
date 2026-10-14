@@ -23,6 +23,30 @@ function persistURL(key, value) {
     return (window.LAB_I18N && (window.LAB_I18N[currentLang] || window.LAB_I18N.es)) || {};
   }
 
+  const vortexWindow = $("#vortex-window");
+  const vortexStart = $("[data-vortex-start]");
+  const vortexStop = $("[data-vortex-stop]");
+  vortexStart?.addEventListener("click", () => {
+    if (!vortexWindow || vortexWindow.querySelector("iframe")) return;
+    const frame = document.createElement("iframe");
+    frame.src = "https://vortex-gilt-xi.vercel.app/";
+    frame.title = "Vórtice — live interactive particle field";
+    frame.allow = "fullscreen";
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    vortexWindow.append(frame);
+    vortexWindow.classList.add("is-running");
+    vortexStart.hidden = true;
+    vortexStop.hidden = false;
+    frame.focus();
+  });
+  vortexStop?.addEventListener("click", () => {
+    vortexWindow?.querySelector("iframe")?.remove();
+    vortexWindow?.classList.remove("is-running");
+    vortexStop.hidden = true;
+    vortexStart.hidden = false;
+    vortexStart.focus();
+  });
+
   function syncAgent() {
     const frame = document.querySelector(".agent-stage iframe");
     if (frame) frame.contentWindow?.postMessage({ type: "lab-settings", lang: currentLang, theme }, location.origin);

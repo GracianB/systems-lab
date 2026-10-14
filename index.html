@@ -28,7 +28,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://gracianb.github.io/systems-lab/og-cover.png?v=1">
   <meta name="format-detection" content="telephone=no">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src 'self' https://vortex-gilt-xi.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self'">
   <link rel="stylesheet" href="./styles.css?v=lab-v48">
   <link rel="preload" href="./boot.js?v=lab-v5" as="script">
   <script src="./boot.js?v=lab-v5"></script>
@@ -157,12 +157,9 @@
       <div class="featured">
         <a class="feat feat-ohana" href="https://gracianb.github.io/project-ohana/" rel="noopener">
           <span class="feat-bar" aria-hidden="true"></span>
-          <div class="feat-stage stage-ohana" aria-hidden="true">
-            <span class="stage-live">LIVE</span>
-            <i class="oh-hero"></i>
-            <i class="oh-foe"></i>
-            <i class="oh-foe oh-foe-2"></i>
-            <span class="oh-ground"></span>
+          <div class="feat-stage project-poster">
+            <img src="./assets/projects/ohana.webp" alt="Isla Hoku y los personajes de OHANA" width="1280" height="800" loading="lazy" decoding="async">
+            <span class="stage-live" data-i18n="projectCapture">CAPTURA REAL</span>
           </div>
           <header><span class="code">01</span><span class="badge">OHANA</span></header>
           <h3 data-i18n="ohH">Ohana</h3>
@@ -175,15 +172,35 @@
           </ul>
           <span class="feat-cta" data-i18n="ohCta">Jugar →</span>
         </a>
-        <a class="feat feat-vortex" href="https://vortex-gilt-xi.vercel.app/" rel="noopener">
+        <a class="feat feat-vortex" href="#vortex-live" rel="noopener">
           <span class="feat-bar" aria-hidden="true"></span>
-          <div class="feat-stage stage-vortex" aria-hidden="true"><span class="stage-live">LIVE</span><b></b><b></b><b></b><b></b><b></b><b></b><span class="stage-ring"></span></div>
+          <div class="feat-stage project-poster">
+            <img src="./assets/projects/vortex.webp" alt="Campo de partículas de Vórtice" width="1280" height="800" loading="lazy" decoding="async">
+            <span class="stage-live" data-i18n="projectArtwork">ARTE DEL PROYECTO</span>
+          </div>
           <header><span class="code">02</span><span class="badge">VÓRTICE</span></header>
           <h3 data-i18n="vxH">Vórtice</h3>
           <p data-i18n="vxP">Mueve el cursor. Miles de puntos te siguen. Eso es el prototipo, no una captura.</p>
           <span class="feat-cta" data-i18n="vxCta">Abrir →</span>
         </a>
       </div>
+      <article class="vortex-live" id="vortex-live" aria-labelledby="vortex-live-title">
+        <div class="vortex-copy">
+          <p class="eyebrow">VÓRTICE / LIVE</p>
+          <h3 id="vortex-live-title" data-i18n="vxLiveTitle">Entra en el campo.</h3>
+          <p data-i18n="vxLiveDesc">Activa la experiencia y mueve el cursor dentro de la ventana. Explora sus modos, cambia el ritmo y descubre cómo responde el campo.</p>
+          <p class="vortex-note" data-i18n="vxLiveNote">La demo se carga al activarla. Puedes detenerla cuando quieras o abrirla en una pestaña propia.</p>
+          <div class="project-actions">
+            <button type="button" class="btn" data-vortex-start aria-controls="vortex-window" data-i18n="vxStart">Activar demo ↗</button>
+            <button type="button" class="btn" data-vortex-stop hidden aria-controls="vortex-window" data-i18n="vxStop">Detener demo</button>
+            <a class="btn" href="https://vortex-gilt-xi.vercel.app/" target="_blank" rel="noopener" data-i18n="vxExternal">Abrir en otra pestaña ↗</a>
+            <a href="https://github.com/GracianB/vortex" target="_blank" rel="noopener" data-i18n="vxSource">Ver código ↗</a>
+          </div>
+        </div>
+        <div class="vortex-window" id="vortex-window">
+          <img src="./assets/projects/vortex.webp" alt="Vista previa de Vórtice" width="1280" height="800" loading="lazy" decoding="async">
+        </div>
+      </article>
     </section>
 
     <section class="ai-showcase" id="aigoritmo" aria-labelledby="ai-title">

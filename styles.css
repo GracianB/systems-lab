@@ -366,80 +366,7 @@ iframe { border: 0; width: 100%; display: block; }
   0%, 100% { transform: scale(.92); opacity: .35; }
   50% { transform: scale(1.05); opacity: .7; }
 }
-.stage-ohana {
-  background:
-    radial-gradient(circle at 22% 42%, rgba(126, 231, 255, .22), transparent 36%),
-    linear-gradient(180deg, #071226 0%, #102a43 62%, #071226 62%, #071226 100%);
-}
-.stage-ohana .oh-ground {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 38%;
-  background:
-    linear-gradient(180deg, #1c4a38, #0e2a22 40%, #07140f);
-  border-top: 2px solid rgba(126, 231, 255, .35);
-}
-.stage-ohana .oh-hero,
-.stage-ohana .oh-foe {
-  position: absolute; bottom: 34%; border-radius: 40% 40% 12px 12px;
-  animation: floaty 3.2s ease-in-out infinite;
-}
-.stage-ohana .oh-hero {
-  left: 18%; width: 28px; height: 46px;
-  background: linear-gradient(180deg, #ffe9a8, #e23b3d);
-  box-shadow: 0 0 18px rgba(226, 59, 61, .45);
-}
-.stage-ohana .oh-hero::before {
-  content: ""; position: absolute; left: 8px; top: 8px;
-  width: 6px; height: 6px; border-radius: 50%; background: #071226;
-  box-shadow: 8px 0 0 #071226;
-}
-.stage-ohana .oh-foe {
-  right: 22%; width: 34px; height: 22px; bottom: 36%;
-  border-radius: 50%;
-  background: #c45a18;
-  animation-delay: .4s;
-}
-.stage-ohana .oh-foe::before,
-.stage-ohana .oh-foe::after {
-  content: ""; position: absolute; top: 4px; width: 5px; height: 5px; border-radius: 50%; background: #fff8ee;
-}
-.stage-ohana .oh-foe::before { left: 16px; }
-.stage-ohana .oh-foe::after { left: 24px; }
-.stage-ohana .oh-foe-2 {
-  right: 48%; width: 18px; height: 18px; bottom: 48%;
-  background: #ff6a4a; animation-delay: .8s;
-}
-.feat-facts {
-  display: flex; flex-wrap: wrap; gap: 6px;
-  margin: 0; padding: 0; list-style: none;
-}
-.feat-facts li {
-  font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase;
-  padding: 5px 8px; border-radius: 999px;
-  color: var(--ice); background: var(--ice-dim);
-  border: 1px solid rgba(126, 231, 255, .28);
-}
-.stage-vortex {
-  background: radial-gradient(circle at 50% 50%, rgba(122,243,255,.22), transparent 48%), #06080f;
-}
-.stage-vortex b {
-  position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; margin: -3.5px;
-  border-radius: 50%; background: var(--ice); box-shadow: 0 0 10px var(--ice);
-  animation: vortex 6s linear infinite;
-}
-.stage-vortex b:nth-child(2) { --r: 26px; }
-.stage-vortex b:nth-child(3) { --r: 42px; animation-duration: 7.5s; opacity: .85; }
-.stage-vortex b:nth-child(4) { --r: 58px; animation-duration: 9s; opacity: .65; }
-.stage-vortex b:nth-child(5) { --r: 74px; animation-duration: 11s; opacity: .45; }
-.stage-vortex b:nth-child(6) { --r: 90px; animation-duration: 13s; opacity: .3; }
-.stage-vortex b:nth-child(7) { --r: 106px; animation-duration: 15s; opacity: .2; }
-@keyframes floaty {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-@keyframes vortex {
-  from { transform: rotate(0deg) translateX(var(--r, 40px)) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(var(--r, 40px)) rotate(-360deg); }
-}
+
 .feat header { display: flex; justify-content: space-between; align-items: center; }
 .code { font: 700 11px var(--mono); letter-spacing: .16em; color: var(--muted); }
 .badge {
@@ -828,3 +755,19 @@ body.menu-on { overflow: hidden; }
 @media(max-width:1000px) { .ai-roster { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media(max-width:600px) { .ai-roster { gap: 12px; } .ai-persona-copy { padding: 16px 13px; } .ai-persona p { min-height: 10em; font-size: 12px; } .ai-persona .code { font-size: 9px; } .ai-persona code,.ai-character-tag { font-size: 9px; } .ai-system { grid-template-columns: minmax(0,1fr); gap: 22px; } .ai-method { font-size: 10px; gap: 8px; } }
 @media(max-width:360px) { .ai-roster { grid-template-columns: minmax(0,1fr); } .ai-persona { display: grid; grid-template-columns: 100px minmax(0,1fr); } .ai-persona img { height: 100%; aspect-ratio: auto; } .ai-persona p { min-height: 0; margin-bottom: 10px; } .ai-persona h3 { font-size: 27px; } }
+
+/* Real project captures; the external GPU experience starts only on demand. */
+.project-poster { height: auto; aspect-ratio: 16 / 10; }
+.project-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.vortex-live { margin-top: 24px; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; background: var(--surface); scroll-margin-top: 100px; }
+.vortex-copy { padding: clamp(20px, 4vw, 36px); }
+.vortex-copy h3 { font-size: clamp(26px, 4vw, 42px); margin: 10px 0; }
+.vortex-copy p { max-width: 70ch; }
+.vortex-note { font-size: 13px; color: var(--muted); margin-top: 12px; }
+.project-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 20px; }
+.project-actions [hidden] { display: none; }
+.vortex-window { position: relative; aspect-ratio: 16 / 10; background: #05070c; }
+.vortex-window > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.vortex-window iframe { position: absolute; inset: 0; width: 100%; height: 100%; background: #05070c; }
+.vortex-window.is-running > img { visibility: hidden; }
+@media (max-width: 640px) { .vortex-window { aspect-ratio: auto; height: 540px; } }

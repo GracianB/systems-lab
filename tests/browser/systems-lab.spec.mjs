@@ -88,3 +88,21 @@ test("has no serious or critical axe violations", async ({ page }) => {
   const severe = results.violations.filter((v) => v.impact === "serious" || v.impact === "critical");
   expect(severe, severe.map((v) => v.id + ": " + v.help).join("\n")).toEqual([]);
 });
+
+test("project previews load and Vortex starts only on demand, then releases its frame", async ({ page }) => {
+  await page.route("https://vortex-gilt-xi.vercel.app/", route => route.fulfill({ contentType: "text/html", body: "<h1>Vortex test field</h1>" }));
+  await page.goto("/?lang=es#juegos");
+  for (const image of await page.locator(".project-poster img").all()) {
+    await expect.poll(() => image.evaluate(el => el.complete && el.naturalWidth > 0)).toBe(true);
+  }
+  await expect(page.locator("#vortex-window iframe")).toHaveCount(0);
+  await page.locator("[data-vortex-start]").click();
+  await expect(page.locator("#vortex-window iframe")).toHaveAttribute("src", "https://vortex-gilt-xi.vercel.app/");
+  await expect(page.frameLocator("#vortex-window iframe").getByRole("heading")).toHaveText("Vortex test field");
+  await page.locator('[data-set-lang="en"]').click();
+  await expect(page.locator("[data-vortex-stop]")).toHaveText("Stop demo");
+  await page.locator("[data-vortex-stop]").click();
+  await expect(page.locator("#vortex-window iframe")).toHaveCount(0);
+  await expect(page.locator("[data-vortex-start]")).toBeFocused();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+});
