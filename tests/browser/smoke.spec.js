@@ -8,13 +8,13 @@ for (const width of [320, 390, 768, 1440]) {
     page.on('console', m => { if (['warning', 'error'].includes(m.type())) errors.push(m.text()); });
     page.on('response', r => { if (r.url().startsWith('http://127.0.0.1') && r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
     await page.goto('/');
-    await expect(page.locator('h1')).toContainText('Ideas que');
+    await expect(page.locator('h1')).toContainText('Construir. Jugar.');
     await expect(page.locator('.rail-building')).toHaveCount(2);
     await expect(page.locator('.rail-building a')).toHaveCount(0);
     await expect(page.locator('.rail-status').first()).toHaveText('EN CONSTRUCCIÓN');
     await page.locator('[data-set-lang="en"]').click();
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-    await expect(page.locator('h1')).toContainText('Ideas that');
+    await expect(page.locator('h1')).toContainText('Build. Play.');
     await expect(page.locator('.rail-status').first()).toHaveText('BUILDING');
     await expect(page.locator('.rail-building').last()).toContainText('Video → clips → local export');
     await expect(page.locator('.rail-building').last()).toContainText('Automatic publishing is not available.');
@@ -70,7 +70,7 @@ test('optional APIs and storage cannot break startup', async ({ page }) => {
   await page.locator('[data-set-theme="light"]').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   await page.locator('[data-set-lang="en"]').click();
-  await expect(page.locator('h1')).toContainText('Ideas that');
+  await expect(page.locator('h1')).toContainText('Build. Play.');
   expect(errors).toEqual([]);
 });
 

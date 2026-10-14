@@ -40,7 +40,7 @@ test("boots cleanly and exposes the complete portfolio surface", async ({ page }
   const response = await page.goto("/");
   expect(response?.ok()).toBeTruthy();
   await expect(page.locator("main#main")).toBeVisible();
-  await expect(page.locator("h1")).toContainText(/Ideas|funcionan/i);
+  await expect(page.locator("h1")).toContainText(/Construir|Descubrir/i);
   await expect(page.locator(".feat")).toHaveCount(2);
   await expect(page.locator(".agent-stage iframe")).toBeVisible();
   assertClean();
@@ -53,7 +53,7 @@ test("theme and language survive interaction without runtime errors", async ({ p
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await page.locator('[data-set-lang="en"]').click();
   await expect(page.locator("html")).toHaveAttribute("data-lang", "en");
-  await expect(page.locator("h1")).not.toContainText("Ideas que");
+  await expect(page.locator("h1")).toContainText("Build. Play.");
   assertClean();
 });
 
