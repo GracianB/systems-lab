@@ -5,16 +5,22 @@ for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
-    page.on('console', m => { if (['warning', 'error'].includes(m.type())) errors.push(m.text()); });
+    page.on('console', m => {
+      const text = m.text();
+      // Firefox's lazy-frame renderer emits this internal line-0 diagnostic;
+      // application warnings and all console/runtime errors remain failures.
+      const frameNotice = m.type() === 'warning' && text.includes('JavaScript Warning:') && text.includes('Layout was forced before the page was fully loaded.') && text.includes('line: 0');
+      if (['warning', 'error'].includes(m.type()) && !frameNotice) errors.push(text);
+    });
     page.on('response', r => { if (r.url().startsWith('http://127.0.0.1') && r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
     await page.goto('/');
-    await expect(page.locator('h1')).toContainText('Construir. Jugar.');
+    await expect(page.locator('h1')).toContainText('Las ideas,');
     await expect(page.locator('.rail-building')).toHaveCount(2);
     await expect(page.locator('.rail-building a')).toHaveCount(0);
     await expect(page.locator('.rail-status').first()).toHaveText('EN CONSTRUCCIÓN');
     await page.locator('[data-set-lang="en"]').click();
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-    await expect(page.locator('h1')).toContainText('Build. Play.');
+    await expect(page.locator('h1')).toContainText('Ideas,');
     await expect(page.locator('.rail-status').first()).toHaveText('BUILDING');
     await expect(page.locator('.rail-building').last()).toContainText('Video → clips → local export');
     await expect(page.locator('.rail-building').last()).toContainText('Automatic publishing is not available.');
@@ -70,7 +76,7 @@ test('optional APIs and storage cannot break startup', async ({ page }) => {
   await page.locator('[data-set-theme="light"]').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   await page.locator('[data-set-lang="en"]').click();
-  await expect(page.locator('h1')).toContainText('Build. Play.');
+  await expect(page.locator('h1')).toContainText('Ideas,');
   expect(errors).toEqual([]);
 });
 
@@ -95,7 +101,7 @@ test('reduced motion and keyboard access', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' }); await page.goto('/');
   await page.keyboard.press('Tab'); await expect(page.locator('.skip')).toBeFocused();
   await page.keyboard.press('Enter'); await expect(page).toHaveURL(/#main$/);
-  expect(await page.locator('.fx').evaluate(el => getComputedStyle(el).display)).toBe('none');
+  await expect(page.locator('#lab-field')).toHaveAttribute('data-motion', 'static');
 });
 
 test('WCAG AA checks in both themes', async ({ page }) => {
