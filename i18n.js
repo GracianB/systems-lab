@@ -1,5 +1,6 @@
 window.LAB_I18N = {
   es: {
+    coverOhana: "Juego · evolución · CI",
     coverPlay: "Juega.",
     coverPlayNote: "Una isla por descubrir",
     coverField: "Siente.",
@@ -114,6 +115,7 @@ window.LAB_I18N = {
     foot: "Gracián Baena · Murcia · personas, datos, sistemas"
   },
   en: {
+    coverOhana: "Game · evolution · CI",
     coverPlay: "Play.",
     coverPlayNote: "An island to discover",
     coverField: "Feel.",
