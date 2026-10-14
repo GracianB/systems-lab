@@ -12,7 +12,7 @@
   const list = document.getElementById('messages');
   const input = document.getElementById('message');
   let attached = [];
-  function add(text, sender) { const p = document.createElement('p'); p.className = 'message ' + sender; p.textContent = text; list.append(p); list.scrollTop = list.scrollHeight; }
+  function add(text, sender) { const p = document.createElement('p'); p.className = 'message ' + sender; p.textContent = text; list.append(p); const scroll = () => { list.scrollTop = list.scrollHeight; }; if (document.readyState === 'complete') scroll(); else window.addEventListener('load', scroll, { once: true }); }
   function reset() { list.replaceChildren(); add(texts[lang].welcome, 'agent'); attached = []; document.getElementById('files').value = ''; document.getElementById('file-status').textContent = ''; }
   let initialized = false;
   function settings(nextLang, theme) {
