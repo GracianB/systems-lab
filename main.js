@@ -56,6 +56,7 @@ function persistURL(key, value) {
   function applyLang(code, persist) {
     currentLang = code === "en" ? "en" : "es";
     const t = pack();
+    $("[data-menu-toggle]")?.setAttribute("aria-label", t.menu || "Menu");
     syncAgent();
     const labels = currentLang === "en" ? ["Main navigation", "Selected projects", "Dark theme", "Light theme", "Close menu", "Customer support agent demo"] : ["Navegación principal", "Proyectos seleccionados", "Tema oscuro", "Tema claro", "Cerrar menú", "Demo de agente de soporte"];
     [".nav", ".hero-rail", '[data-set-theme="dark"]', '[data-set-theme="light"]', "[data-drawer-close]"].forEach((selector, i) => $(selector)?.setAttribute("aria-label", labels[i]));
