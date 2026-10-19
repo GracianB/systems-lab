@@ -8,30 +8,6 @@
     { name: 'RevOps Studio', note: 'Analítica · revenue operations', en: 'Analytics · revenue operations', href: 'https://gracianb.github.io/revops-studio/demo.html', terms: 'dashboard data pipeline' },
     { name: 'GitHub', note: 'Código y documentación', en: 'Source and documentation', href: 'https://github.com/GracianB/systems-lab', terms: 'source repository' }
   ];
-  const css = `
-    .lab-command-launch{position:fixed;right:clamp(12px,3vw,30px);bottom:clamp(12px,3vw,28px);z-index:45;display:flex;align-items:center;gap:12px;padding:12px 16px;border:1px solid var(--line-strong);border-radius:100px;background:var(--surface);color:var(--ink);box-shadow:var(--shadow-sm);font:700 12px var(--mono);cursor:pointer;transition:transform .2s,border-color .2s}
-    .lab-command-launch:hover{transform:translateY(-3px);border-color:var(--ice)}
-    .lab-command-launch kbd{border:1px solid var(--line);border-radius:5px;padding:3px 6px;color:var(--muted)}
-    .lab-command-overlay{position:fixed;inset:0;z-index:150;display:grid;place-items:start center;padding:clamp(45px,11vh,125px) 16px 16px;background:rgba(0,6,13,.72);backdrop-filter:blur(10px)}
-    .lab-command-overlay[hidden]{display:none}
-    .lab-command-box{width:min(100%,590px);max-height:min(78vh,640px);display:flex;flex-direction:column;padding:12px;border:1px solid var(--line-strong);border-radius:18px;background:var(--surface);box-shadow:0 25px 100px rgba(0,0,0,.35);color:var(--ink)}
-    .lab-command-head{display:flex;align-items:center;gap:10px;padding:6px 9px 15px;border-bottom:1px solid var(--line)}
-    .lab-command-input{min-width:0;flex:1;border:0;outline:none;background:transparent;color:var(--ink);font:500 17px var(--sans)}
-    .lab-command-exit{border:1px solid var(--line);border-radius:6px;padding:6px 9px;font:700 11px var(--mono);cursor:pointer}
-    .lab-command-results{overflow:auto;overscroll-behavior:contain;padding:8px 0}
-    .lab-command-item{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;border-radius:10px;padding:13px 14px;cursor:pointer;color:var(--ink)}
-    .lab-command-item:hover,.lab-command-item[aria-selected=true]{background:var(--ice-dim)}
-    .lab-command-item strong{display:block;font:700 15px var(--sans)}
-    .lab-command-item small{display:block;color:var(--muted);margin-top:3px;font:12px var(--sans)}
-    .lab-command-item .lab-arrow{color:var(--ice);font-size:22px}
-    .lab-command-empty,.lab-command-foot{padding:14px;color:var(--muted);font:12px var(--sans)}
-    .lab-command-foot{border-top:1px solid var(--line)}
-    @media(max-width:520px){.lab-command-launch kbd{display:none}.lab-command-launch{padding:10px 13px}.lab-command-overlay{padding-top:16vh}}
-    @media(prefers-reduced-motion:reduce){.lab-command-launch{transition:none}.lab-command-overlay{backdrop-filter:none}}
-  `;
-  const style = document.createElement('style');
-  style.textContent = css;
-  document.head.append(style);
   const launch = document.createElement('button');
   launch.type = 'button';
   launch.className = 'lab-command-launch';
