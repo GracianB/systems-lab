@@ -45,10 +45,10 @@ for (const name of ['llama','qwen','arcana','arcano']) {
 console.log('Lazy Aigoritmo posters:', imageBytes, '/ 220000 bytes');
 if (imageBytes > 220000) process.exit(1);
 let projectBytes = 0;
-for (const name of ['ohana.webp','vortex-cover.svg']) {
+for (const name of ['ohana.webp','vortex-cover.svg','vortex-cover-light.svg']) {
   const bytes = fs.statSync(path.join(ROOT, `assets/projects/${name}`)).size;
   projectBytes += bytes;
   if (bytes > 75000) { console.error('FAIL project preview:', name, bytes); process.exit(1); }
 }
-console.log('Lazy project previews:', projectBytes, '/ 150000 bytes');
-if (projectBytes > 150000) process.exit(1);
+console.log('Lazy project previews:', projectBytes, '/ 175000 bytes');
+if (projectBytes > 175000) process.exit(1);
