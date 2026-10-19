@@ -44,7 +44,7 @@ Una colección de proyectos que puedes **abrir, experimentar y comprobar**. Meno
 **Descubre.** Cuatro identidades: Llama, Qwen, Arcana y Arcano. La app es **privada y local**; la web muestra una presentación visual, no una API ni un chat público.
 </td>
 <td width="50%" valign="top">
-<a href="https://gracianb.github.io/systems-lab/#cs"><img src="./assets/aigoritmo/qwen-poster.jpg" alt="Ilustración de Qwen, integrante del laboratorio" width="100%"></a>
+<a href="https://gracianb.github.io/systems-lab/#cs"><img src="./assets/projects/customer-ops.svg" alt="Customer Ops: canales de soporte conectados a un panel de servicio" width="100%"></a>
 
 ### [Customer Operations ↗](https://gracianb.github.io/systems-lab/#cs)
 **Resuelve.** Caso real de operaciones de soporte y una **simulación local con datos ficticios**. [Help Center de referencia](https://bodytonehelp.zendesk.com/hc/es).
