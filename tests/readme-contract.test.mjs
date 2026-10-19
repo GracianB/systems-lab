@@ -42,10 +42,10 @@ test('README uses dark showcase art for Vórtice and Customer Ops',()=>{
   assert.doesNotMatch(doc,/vortex-cover-light\.svg/,'The README must use the dark Vórtice edition');
   for(const name of ['vortex-readme-dark.svg','customer-ops.svg']){
     const art=fs.readFileSync(path.join(root,'assets/projects',name),'utf8');
-    assert.match(art,/<svg\\b/);
-    assert.match(art,/<title\\b[^>]*>/);
-    assert.match(art,/<desc\\b[^>]*>/);
+    assert.match(art,/<svg\b/);
+    assert.match(art,/<title\b[^>]*>/);
+    assert.match(art,/<desc\b[^>]*>/);
     assert.match(art,/#0[0-9a-f]{5}/i,'Dark ink should be present in both covers');
-    assert.doesNotMatch(art,/<script\\b|<foreignObject\\b|<image\\b/i,'README SVGs must be standalone, script-free vectors');
+    assert.doesNotMatch(art,/<script\b|<foreignObject\b|<image\b/i,'README SVGs must be standalone, script-free vectors');
   }
 });
