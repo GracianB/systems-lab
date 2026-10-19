@@ -164,6 +164,8 @@ check("pkg:name", pkg.name === "systems-lab");
 check("pkg:version", pkg.version === "5.0.0");
 check("pkg:check-script", pkg.scripts?.check?.includes("npm test") && pkg.scripts?.["test:browser"] === "playwright test --config=playwright.config.mjs");
 check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("24"));
+check("css:no-retired-experiences", !/\.(?:hero-rail|rail-card|rail-building|rail-status|pills|hero-signal|fx-scan|fx-grid|fx-orb|stage-ring|pillars|method|feat-vortex|split)\b/.test(css));
+check("ci:one-main-browser-matrix", !/\n\s*push:\s*\n\s*branches:\s*\[main\]/.test(workflow) && exists(".github/workflows/deploy.yml") && /npm run test:browser/.test(read(".github/workflows/deploy.yml")));
 check("ci:read-only", /permissions:\s*\n\s+contents:\s*read/.test(workflow));
 check("ci:no-feature-push-duplication", !/push:\s*\n(?:.|\n)*branches:\s*\n(?:.|\n)*feat\//.test(workflow));
 check("ci:node-24", /node-version:\s*24/.test(workflow));

@@ -1,7 +1,7 @@
 name: Systems Lab Quality
 on:
-  push:
-    branches: [main]
+  # Production validation is owned by the Deploy workflow on pushes to main.
+  # This workflow validates PRs without repeating the full browser matrix on main.
   pull_request:
     branches: [main]
   workflow_dispatch:
