@@ -140,3 +140,7 @@ Once P30 is published, a small maintenance pass removes stylesheet rules for ele
 ## P33 · Direct navigation and accurate discoverability
 
 Navigation mirrors the four experiences in the homepage explorer, with one Hub link rather than a list of repeated external destinations in the mobile drawer. Direct `#agente` deep links open the optional simulated-agent disclosure (ordinary visits still leave it closed). The public metadata no longer describes Systems Lab as a hosted Aigoritmo chatbot; ES/EN controls have localized accessible names. Cross-browser tests cover navigation, deep-linking, and metadata.
+
+## P34 · Simulación sin controles engañosos
+
+The optional sample agent no longer offers a file picker that never performed an action. It shows a clear fictional-data notice in ES/EN, contains only three demonstrable intents (shipping, invoices, tickets), preserves keyboard access and works without network/API permissions. A browser regression test verifies that the frontend never issues XHR/fetch requests when interacting with examples. The sitemap date now records the 19 October 2026 updates.

@@ -56,15 +56,27 @@ function persistURL(key, value) {
   // a closed <details>. Assign the real src only after the visitor expands it.
   const agentDisclosure = document.querySelector("#agente");
   const agentFrame = agentDisclosure?.querySelector("iframe[data-src]");
-  function openAgent() {
-    if (!agentDisclosure?.open || !agentFrame?.dataset.src) return;
+  function loadAgentFrame() {
+    if (!agentFrame?.dataset.src) return;
     agentFrame.src = agentFrame.dataset.src;
     agentFrame.removeAttribute("data-src");
   }
+  function openAgent() {
+    if (agentDisclosure?.open) loadAgentFrame();
+  }
+  // The click is the explicit user intent; load immediately instead of relying
+  // exclusively on a delayed toggle event in a busy Firefox/WebKit process.
+  agentDisclosure?.addEventListener("click", (event) => {
+    if (!agentDisclosure.open && event.target instanceof Element
+        && event.target.closest("summary")) loadAgentFrame();
+  });
   agentDisclosure?.addEventListener("toggle", openAgent);
   // A direct /#agente link is an intentional request to open this optional demo.
   function openLinkedAgent() {
-    if (location.hash === "#agente" && agentDisclosure) agentDisclosure.open = true;
+    if (location.hash === "#agente" && agentDisclosure) {
+      agentDisclosure.open = true;
+      openAgent();
+    }
   }
   window.addEventListener("hashchange", openLinkedAgent);
   openLinkedAgent();

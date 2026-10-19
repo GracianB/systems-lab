@@ -207,7 +207,7 @@ check("agent:no-cdn-sanitizer", !/cdnjs\.cloudflare\.com\/ajax\/libs\/dompurify/
 check("agent:text-only-messages", /p\.textContent = text/.test(demoJs));
 check("agent:noindex", /name="robots"\s+content="noindex, nofollow"/i.test(agentHtml));
 check("agent:referrer", /name="referrer"\s+content="strict-origin-when-cross-origin"/i.test(agentHtml));
-check("agent:demo-file-limits", /MAX_FILES\s*=\s*5/.test(demoJs) && /MAX_FILE_BYTES\s*=\s*10 \* 1024 \* 1024/.test(demoJs));
+check("agent:no-unused-attachments", !/type="file"/.test(agentHtml) && !/e\.target\.files|MAX_FILE|files-label|file-status/.test(demoJs));
 check("agent:local-only", !/fetch\(/.test(demoJs) && /e\.origin !== u\.origin/.test(demoJs));
 check("agent:reduced-motion", /prefers-reduced-motion:\s*reduce/.test(agentDemoCss));
 check("security:no-eval-tree", codeText.every(([name, text]) => !/\beval\s*\(/.test(text)));
