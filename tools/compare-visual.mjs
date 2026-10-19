@@ -22,6 +22,7 @@ try {
         const pages = [await context.newPage(), await context.newPage()];
         const urls = [base, head].map(root => root + "/?lang=" + lang + "&theme=" + theme);
         const images = [];
+        const agentImages = [];
         const measurements = [];
         for (let k = 0; k < pages.length; k++) {
           const page = pages[k];
@@ -58,9 +59,25 @@ try {
           const file = id + (k === 0 ? "-before.png" : "-after.png");
           const png = await page.screenshot({ path: "visual-results/" + file, fullPage: true, animations: "disabled" });
           images.push({ file, sha256: createHash("sha256").update(png).digest("hex") });
+          // The page-wide baseline keeps the optional agent closed. For the
+          // changed demo, also capture its actual expanded interface.
+          if ((width === 390 && lang === "es" && theme === "dark") ||
+              (width === 1440 && lang === "en" && theme === "light")) {
+            const disclosure = page.locator("#agente");
+            await disclosure.locator("summary").click();
+            await page.frameLocator("#agente iframe").locator("#disclaimer")
+              .waitFor({ state: "visible", timeout: 15_000 });
+            const agentFile = id + (k === 0 ? "-agent-before.png" : "-agent-after.png");
+            const agentPng = await disclosure.screenshot({
+              path: "visual-results/" + agentFile, animations: "disabled"
+            });
+            agentImages.push({ file: agentFile,
+              sha256: createHash("sha256").update(agentPng).digest("hex") });
+          }
         }
         outcomes.push({ id, width, lang, theme, before: images[0], after: images[1],
           pixelFilesDifferent: images[0].sha256 !== images[1].sha256,
+          agentPair: agentImages.length === 2 ? { before: agentImages[0], after: agentImages[1] } : null,
           measurements: { before: measurements[0], after: measurements[1] } });
         await context.close();
       }
@@ -78,9 +95,16 @@ const cards = outcomes.map(o => '<section class="pair"><h2>' + o.id +
   ' px</small></h2><div class="pair-grid"><figure><figcaption>Main before</figcaption><img src="' + o.before.file +
   '" alt="Before ' + o.id + '"></figure><figure><figcaption>PR after</figcaption><img src="' + o.after.file +
   '" alt="After ' + o.id + '"></figure></div></section>').join("\n");
+const expandedAgentCards = outcomes.filter(o => o.agentPair).map(o =>
+  '<section class="pair"><h2>Agent expanded · ' + o.id +
+  '</h2><div class="pair-grid"><figure><figcaption>Before</figcaption><img src="' +
+  o.agentPair.before.file + '" alt="Old optional agent"></figure>' +
+  '<figure><figcaption>After</figcaption><img src="' +
+  o.agentPair.after.file + '" alt="New optional agent"></figure></div></section>'
+).join("\n");
 const html = '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
  '<title>Systems Lab P30 before / after visual review</title><style>body{margin:0;background:#101720;color:#f0f4fa;font:15px/1.5 system-ui;padding:25px}h1{font-size:26px}p{max-width:75ch}h2{margin-top:38px;font-size:18px}small{font-size:12px;color:#b9c4ce}.pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}figure{margin:0}figcaption{padding:8px;background:#202b36}img{display:block;width:100%;height:auto;border:1px solid #43505e}@media(max-width:760px){.pair-grid{grid-template-columns:1fr}}</style>' +
- '<h1>Systems Lab · PR design comparison</h1><p>Actual browser captures at fixed viewports, ES/EN and both themes. Images may have different heights because the design intentionally removes sections. Compare side-by-side before approving the PR. Hash differences alone are not pixel-diff percentages.</p>' + cards + '</html>';
+ '<h1>Systems Lab · PR design comparison</h1><p>Actual browser captures at fixed viewports, ES/EN and both themes. Images may have different heights because the design intentionally removes sections. Compare side-by-side before approving the PR. Hash differences alone are not pixel-diff percentages.</p>' + cards + expandedAgentCards + '</html>';
 await writeFile("visual-results/index.html", html);
-console.log("Visual comparison screenshots:", outcomes.length * 2, "for", outcomes.length, "scenarios");
+console.log("Visual comparison screenshots:", outcomes.length * 2 + outcomes.filter(o => o.agentPair).length * 2, "including expanded agent views");
 if (failure) throw failure;
