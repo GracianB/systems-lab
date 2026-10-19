@@ -10,8 +10,28 @@ test('README is a concise front page with real entry points and accurate product
     assert.ok(fs.existsSync(path.join(root,pathName)), 'Missing README asset/link: '+pathName);
   }
   assert.match(doc,/privada y local/);
-  assert.doesNotMatch(doc,/<table>[\\s\\S]*?^### /m,'Markdown headings inside raw HTML tables are not reliably rendered on GitHub');
   assert.match(doc,/datos ficticios/);
   assert.doesNotMatch(doc,/127\.0\.0\.1:8001|https:\/\/github\.com\/GracianB\/aigoritmo/);
   assert.match(doc,/github\.io\/systems-lab/);
+});
+
+
+test('README gallery renders valid HTML and references existing artwork',()=>{
+  const tables=[...doc.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/gi)].map(match=>match[0]);
+  assert.equal(tables.length,2,'Expected two project gallery tables');
+  for(const table of tables){
+    assert.doesNotMatch(table,/^\s*#{1,6}\s/m,'Markdown headings will not render inside HTML tables');
+    assert.match(table,/<h3>\s*<a\b/i,'Use HTML heading links inside table cells');
+    assert.match(table,/<p>\s*<strong>/i,'Use HTML descriptions inside table cells');
+  }
+  const images=[...doc.matchAll(/<img\b[^>]*>/gi)].map(match=>match[0]);
+  assert.ok(images.length>=5,'Expected hero and all four project previews');
+  for(const tag of images){
+    const src=tag.match(/\bsrc="([^"]+)"/i)?.[1];
+    const alt=tag.match(/\balt="([^"]+)"/i)?.[1];
+    assert.ok(alt && alt.trim().length>=12,'Missing descriptive image alt: '+tag);
+    if(src && src.startsWith('./')){
+      assert.ok(fs.existsSync(path.join(root,src.slice(2))),'Missing local image: '+src);
+    }
+  }
 });
