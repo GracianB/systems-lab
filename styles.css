@@ -760,3 +760,18 @@ body.menu-on { overflow: hidden; }
 #lab-field{pointer-events:none}
 @media(max-width:850px){.hero-frame{gap:16px;padding:22px}.cover-atlas{min-height:310px}.cover-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.hero-frame{padding:18px 15px}.hero-content h1{font-size:42px}.cover-atlas{min-height:300px}.cover-links{inset:40px 9px 9px;gap:7px}.cover-node{min-height:110px;padding:13px 10px}.cover-node strong{font-size:22px}.cover-node small{font-size:10px}.field-caption{font-size:8px}}
+
+/* P30/2 · One authentic preview per experience; secondary projects after the main work. */
+.featured{display:block;max-width:720px}
+.feat-ohana{min-height:0}
+.feat-ohana .feat-stage{height:clamp(175px,26vw,290px)}
+.vortex-live{scroll-margin-top:calc(var(--header) + 18px)}
+.ai-showcase{margin-top:clamp(40px,6vw,72px)}
+.lab-more{border-top:1px solid var(--line);padding:clamp(32px,5vw,54px) 0;scroll-margin-top:calc(var(--header) + 18px)}
+.lab-more .section-head h2{margin:10px 0 16px}
+.lab-more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.lab-more-card{padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.lab-more-card>.code{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.lab-more-card p{margin:15px 0;color:var(--muted);font-size:14px;line-height:1.6}
+.lab-more-card .btn{min-height:44px}
+@media(max-width:640px){.lab-more-grid{grid-template-columns:1fr}.lab-more-card{padding:18px}}
