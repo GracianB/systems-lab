@@ -34,7 +34,7 @@ Llegar al proyecto antes. Mantener la identidad azul hielo, el contenido biling�
 ## Condición de publicación
 El PR permanece independiente de main hasta que Quality y comparación visual se completen y se inspeccionen las capturas. Tras fusionar: Deploy verde y smoke público confirmado. No fusionar con tests fallidos.
 
-## Cierre técnico adicional · P31
+## Cierre técnico adicional · P32
 
 - Retirar selectores CSS demostrablemente abandonados de la portada anterior. No introducir nuevas animaciones ni secciones.
 - Evitar que Quality y Deploy ejecuten exactamente la misma matriz sobre cada push a main; Quality sigue siendo obligatorio en las PR, Deploy vuelve a verificar antes de publicar.

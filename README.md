@@ -133,6 +133,6 @@ There were broken runs, protection rules, a local checkout that lost its `.git` 
 
 See [P30 design and release criteria](docs/P30_FIVE_PHASES.md). No PR is published until CI, screenshots and the merge/deploy gates are reviewed.
 
-## P31 · Structural CSS and CI simplification
+## P32 · Structural CSS and CI simplification
 
 Once P30 is published, a small maintenance pass removes stylesheet rules for elements that no longer exist (former rail, feature stats, retired particle overlays, old support pillars and the two-column Vórtice card). Live selectors are preserved, and cross-browser/reduced-motion tests guard the layout. GitHub Actions Quality runs on PRs; on main, the Deploy workflow owns the full Node/browser verification before publishing, avoiding two redundant full browser matrices per production change. Workflow dispatch remains available for manual Quality runs.
