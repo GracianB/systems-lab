@@ -85,7 +85,7 @@ function persistURL(key, value) {
       group.setAttribute("aria-label", labelsByLanguage[index]));
     $(".drawer-panel")?.setAttribute("aria-label", labelsByLanguage[2]);
     $(".foot-links")?.setAttribute("aria-label", labelsByLanguage[3]);
-    $(".topbar-actions [data-set-theme]").forEach((button) => {
+    $$(".topbar-actions [data-set-theme]").forEach((button) => {
       button.title = button.dataset.setTheme === "dark" ? labels[2] : labels[3];
     });
     document.documentElement.lang = t.htmlLang || currentLang;
