@@ -152,3 +152,7 @@ En el modo claro, el fondo general sigue siendo claro, pero las dos experiencias
 ## P36 · 404 y rutas públicas
 
 La página 404 usa ahora la misma identidad y paleta petróleo/azul hielo del laboratorio, con preferencia clara/oscura del sistema. Es autocontenida, no carga Google Fonts ni JavaScript, expone un mensaje corto en español e inglés y dirige al visitante mediante una URL absoluta a la raíz real del laboratorio, incluso desde rutas anidadas. Los tests nuevos comprueban enlaces internos, recursos locales, rutas 404 reales, ausencia de peticiones externas, diseño responsivo y accesibilidad AA.
+
+## P37 · V1 final: theme-native playable gallery and perceptible cover field
+
+The light theme no longer embeds a dark petrol gallery. OHANA has a larger, white exhibit card and renders at the native 1280×880 aspect ratio without cropping of its original screenshot without adding a frame. Vórtice has an independent, authored light SVG and keeps the original dark art for dark mode; the active interactive iframe retains Start/Stop controls. The cover field has visible space above the four destination links, more legible points/connections and keeps reduced-motion and mobile-safe rendering. Cross-browser tests verify light/dark poster switching, borders, layouts at 390/768/1024/1440, Vórtice lifecycle and motion preferences. Do not certify V1 without reviewing CI screenshots.

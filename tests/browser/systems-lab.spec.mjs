@@ -199,49 +199,74 @@ test("P33 intermediate widths have no colliding header navigation", async ({ pag
   }
 });
 
-test("P35 light mode uses a cohesive dark gallery for OHANA and Vórtice", async ({ page }) => {
-  await page.route("https://vortex-gilt-xi.vercel.app/", route => route.fulfill({ contentType: "text/html", body: "<h1>Vórtice test preview</h1>" }));
+test("P37 themes use native light and dark art, without artificial dark cards", async ({page}) => {
+  await page.route("https://vortex-gilt-xi.vercel.app/", route => route.fulfill({contentType:"text/html",body:"<h1>Vórtice preview</h1>"}));
   await page.goto("/?lang=es&theme=light#juegos");
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-  for (const selector of [".feat-ohana", ".vortex-live"]) {
-    const colors = await page.locator(selector).evaluate(el => {
-      const style = getComputedStyle(el);
-      const text = el.querySelector("h3");
-      const title = getComputedStyle(text).color;
-      return { background: style.backgroundImage, color: title, border: style.borderColor };
-    });
-    expect(colors.background).toContain("linear-gradient");
-    expect(colors.background).toContain("rgb(24, 50, 62)");
-    expect(colors.color).toBe("rgb(242, 248, 249)");
-    expect(colors.border).not.toBe("rgba(16, 24, 32, 0.12)");
+  for (const selector of [".feat-ohana",".vortex-live"]) {
+    await expect(page.locator(selector)).toHaveCSS("background-color","rgb(255, 255, 255)");
+    await expect(page.locator(selector+" h3")).toHaveCSS("color","rgb(20, 44, 56)");
   }
-  await expect(page.locator(".feat-ohana img")).toBeVisible();
-  await expect(page.locator(".vortex-window > img")).toBeVisible();
+  await expect(page.locator(".vortex-poster-light")).toBeVisible();
+  await expect(page.locator(".vortex-poster-dark")).toBeHidden();
+  const framing = await page.locator(".feat-ohana .project-poster img").evaluate(img => ({
+    fit:getComputedStyle(img).objectFit, scale:getComputedStyle(img).transform, width:img.getBoundingClientRect().width,
+    naturalWidth:img.naturalWidth, naturalHeight:img.naturalHeight
+  }));
+  expect(framing.fit).toBe("contain");
+  expect(framing.scale).toBe("none");
+  expect(framing.naturalWidth).toBe(1280);
+  expect(framing.naturalHeight).toBe(880);
+  const placement = await page.locator(".feat-ohana").evaluate(card => {
+    const stage = card.querySelector(".feat-stage").getBoundingClientRect();
+    const heading = card.querySelector("h3").getBoundingClientRect();
+    const image = card.querySelector(".feat-stage img").getBoundingClientRect();
+    return {stageRight:stage.right,headingLeft:heading.left,
+      aspect:stage.width/stage.height, imgHeight:image.height};
+  });
+  if (await page.evaluate(() => innerWidth > 850)) {
+    expect(placement.stageRight).toBeLessThan(placement.headingLeft);
+  }
+  expect(placement.aspect).toBeGreaterThan(1.44);
+  expect(placement.aspect).toBeLessThan(1.47);
+  expect(placement.imgHeight).toBeGreaterThan(155);
   await page.locator("[data-vortex-start]").click();
   await expect(page.locator("#vortex-window iframe")).toHaveCount(1);
   await page.locator("[data-vortex-stop]").click();
   await expect(page.locator("#vortex-window iframe")).toHaveCount(0);
   await page.locator('[data-set-theme="dark"]').click();
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-  await expect(page.locator(".vortex-copy h3")).not.toHaveCSS("color", "rgb(242, 248, 249)");
+  await expect(page.locator("html")).toHaveAttribute("data-theme","dark");
+  await expect(page.locator(".vortex-poster-dark")).toBeVisible();
+  await expect(page.locator(".vortex-poster-light")).toBeHidden();
 });
 
-test("P35 narrow light mode preserves stacked playable previews and contrast", async ({ page }) => {
-  await page.setViewportSize({width:390, height:844});
-  await page.goto("/?lang=en&theme=light#juegos");
-  const result = await page.evaluate(() => {
-    const ohana = document.querySelector(".feat-ohana").getBoundingClientRect();
-    const vortex = document.querySelector(".vortex-live").getBoundingClientRect();
-    const preview = document.querySelector(".vortex-window").getBoundingClientRect();
-    return { overflow: document.documentElement.scrollWidth > innerWidth + 1,
-      order: vortex.top > ohana.top, previewInside: preview.left >= vortex.left - 1 && preview.right <= vortex.right + 1,
-      ohanaBg: getComputedStyle(document.querySelector(".feat-ohana")).backgroundImage,
-      vortexBg: getComputedStyle(document.querySelector(".vortex-live")).backgroundImage };
-  });
-  expect(result.overflow).toBe(false);
-  expect(result.order).toBe(true);
-  expect(result.previewInside).toBe(true);
-  expect(result.ohanaBg).toBe(result.vortexBg);
+test("P37 mobile/tablet have no overflow and enough visible cover field", async ({page}) => {
+  for (const width of [390,768,1024,1440]) {
+    await page.setViewportSize({width,height:900});
+    await page.goto("/?lang=en&theme=light#juegos");
+    const state=await page.evaluate(() => {
+      const field=document.querySelector(".cover-atlas");
+      const nodes=document.querySelector(".cover-links");
+      const ohana=document.querySelector(".feat-ohana .feat-stage").getBoundingClientRect();
+      const windowRect=document.querySelector(".vortex-window").getBoundingClientRect();
+      return {overflow:document.documentElement.scrollWidth>innerWidth+1,
+        freeTop:nodes.getBoundingClientRect().top-field.getBoundingClientRect().top,
+        ohanaHeight:ohana.height,vortexWidth:windowRect.width};
+    });
+    expect(state.overflow,"overflow at "+width).toBe(false);
+    expect(state.freeTop,"visible field at "+width).toBeGreaterThan(145);
+    expect(state.ohanaHeight).toBeGreaterThan(width<851?170:310);
+    expect(state.vortexWidth).toBeGreaterThan(200);
+  }
+});
+
+test("P37 cover animation remains opt-out for motion reduction", async ({page}) => {
+  await page.setViewportSize({width:1440,height:900});
+  await page.goto("/?lang=en&theme=dark");
+  await expect(page.locator("#lab-field")).toHaveAttribute("data-motion","animated");
+  await page.emulateMedia({reducedMotion:"reduce"});
+  await expect(page.locator("#lab-field")).toHaveAttribute("data-motion","static");
+  await page.emulateMedia({reducedMotion:"no-preference"});
+  await expect(page.locator("#lab-field")).toHaveAttribute("data-motion","animated");
 });
 
 test("P35 agent disclosure loads its iframe on direct mouse and keyboard activation", async ({ page }) => {
