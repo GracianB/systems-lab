@@ -1,158 +1,80 @@
 <div align="center">
 
+<a href="https://gracianb.github.io/systems-lab/">
+  <img src="./assets/readme-cover.svg" width="100%" alt="Systems Lab: cuatro experiencias, un mismo laboratorio" />
+</a>
+
 # Systems Lab
 
-### Ideas that work. Systems that hold up.
+**Juegos · Arte generativo · IA aplicada · Customer Operations**
 
-**Gracián Baena · Product engineering · Customer Success · Data · Applied AI**
+Una colección de proyectos que puedes **abrir, experimentar y comprobar**. Menos promesas, más producto.
 
-[Explore the lab ↗](https://gracianb.github.io/systems-lab/) · [Quality Gate](https://github.com/GracianB/systems-lab/actions/workflows/quality.yml) · [Deployment](https://github.com/GracianB/systems-lab/actions/workflows/deploy.yml)
-
-**Public technical portfolio · maintained release**
+[**Explorar el laboratorio ↗**](https://gracianb.github.io/systems-lab/) · [Modo claro ↗](https://gracianb.github.io/systems-lab/?theme=light) · [Portafolio principal ↗](https://gracianb.github.io/GracianB/)
 
 </div>
 
 ---
 
-Systems Lab connects people, data and action through real projects. A four-destination explorer links straight to playable OHANA, the Vórtice interaction, a public Aigoritmo showcase, and a genuine customer operations case. RevOps offers a public sample-data demo, while Cutter remains a private local project.
+## Empieza por una experiencia
 
-The point is to make the work visible: what it does, how it behaves, and where the evidence ends.
+<table>
+<tr>
+<td width="50%" valign="top">
+<a href="https://gracianb.github.io/project-ohana/"><img src="./assets/projects/ohana.webp" alt="OHANA: isla y personajes jugables" width="100%"></a>
 
-## The systems
+### [OHANA ↗](https://gracianb.github.io/project-ohana/)
+**Juega.** Un mundo con diez personajes, evolución, salas y combate. [Código](https://github.com/GracianB/project-ohana).
+</td>
+<td width="50%" valign="top">
+<a href="https://vortex-gilt-xi.vercel.app/"><img src="./assets/projects/vortex-cover-light.svg" alt="Vórtice: campo de órbitas generativas en diseño claro" width="100%"></a>
 
-| System | Focus | Status / evidence |
-| --- | --- | --- |
-| [OHANA](https://gracianb.github.io/project-ohana/) | Game and product engineering: rooms, characters and transformations | Public playable project; maintained in its own repository |
-| [VÓRTICE](https://vortex-gilt-xi.vercel.app/) | Creative interactive development and WebGL | Public interactive prototype |
-| [BODYTONE](https://bodytonehelp.zendesk.com/hc/es) | Customer Success and Support Ops | Public Zendesk Help Center; the portfolio describes the work, it does not audit private workflows |
-| AGENT | Applied AI interaction for shipping, invoices and tickets | Local simulation with fictional responses; no backend |
-| AIGORITMO | Four conversation peers: Llama, Qwen, Arcana and Arcano; voice and session continuity | Local application on `127.0.0.1:8001`; private source; the public site contains a bilingual visual showcase, not a hosted chat |
-| [REVOPS](https://gracianb.github.io/revops-studio/demo.html) | Pipeline, data quality and operational analysis | **PUBLIC DEMO** with sample data; not a live customer integration. [Public source](https://github.com/GracianB/revops-studio) |
-| CUTTER STUDIO | Video → clips → local export | **PRIVATE LOCAL PROJECT**; not a public service or source link |
+### [Vórtice ↗](https://vortex-gilt-xi.vercel.app/)
+**Experimenta.** Campo WebGL con cuatro movimientos y estados visuales configurables. [Código](https://github.com/GracianB/vortex).
+</td>
+</tr>
+</table>
 
-**The project should state what it proves, not quietly upgrade evidence into marketing.**
+<table>
+<tr>
+<td width="50%" valign="top">
+<a href="https://gracianb.github.io/systems-lab/#aigoritmo"><img src="./assets/aigoritmo/arcana-poster.jpg" alt="Arcana: una de las cuatro identidades visuales de Aigoritmo" width="100%"></a>
 
-The secondary project section gives RevOps a genuine public demo link and leaves Cutter clearly private. Published interactive demos and real production services are labelled differently. No private repo, local loopback address, or unfinished system is presented as a publicly accessible product.
+### [Aigoritmo · Showcase ↗](https://gracianb.github.io/systems-lab/#aigoritmo)
+**Descubre.** Cuatro identidades: Llama, Qwen, Arcana y Arcano. La app es **privada y local**; la web muestra una presentación visual, no una API ni un chat público.
+</td>
+<td width="50%" valign="top">
+<a href="https://gracianb.github.io/systems-lab/#cs"><img src="./assets/aigoritmo/qwen-poster.jpg" alt="Ilustración de Qwen, integrante del laboratorio" width="100%"></a>
 
-## A small surface, held to a real standard
+### [Customer Operations ↗](https://gracianb.github.io/systems-lab/#cs)
+**Resuelve.** Caso real de operaciones de soporte y una **simulación local con datos ficticios**. [Help Center de referencia](https://bodytonehelp.zendesk.com/hc/es).
+</td>
+</tr>
+</table>
 
-The current site brings together one accessible four-way explorer, responsive composition, ES/EN content, persistent themes, keyboard navigation and an agent simulation opened only when requested. Decorative effects stay optional. Controls must still work when storage, canvas, animation or browser transition APIs are unavailable.
+**También:** [RevOps Studio · demo con datos de ejemplo ↗](https://gracianb.github.io/revops-studio/demo.html). Cutter Studio sigue siendo una herramienta privada, no una demo pública.
 
-```text
-Systems Lab · static public site
-│
-├── index.html + styles.css       Layout, projects and roadmap slots
-├── boot.js + main.js + i18n.js   Startup, interaction, themes and ES/EN
-├── bodytone-chatbot/frontend/   Standalone local agent simulation
-│
-└── checks → browser tests → explicit dist/ build → GitHub Pages
-```
+## Cómo está construido
 
-There is no application backend or build framework. The public build copies an explicit asset list into `dist/`; older widget sources are excluded.
+| Capa | Implementación |
+| --- | --- |
+| Sitio | HTML, CSS y JavaScript sin framework; ES/EN; temas claro/oscuro |
+| Experiencias | Enlaces directos y carga optativa del iframe de Vórtice y del agente |
+| Visual | Campo Canvas con reducción de movimiento y posters específicos por tema |
+| Calidad | Node 24, pruebas de contrato, Playwright (Chromium, Firefox, WebKit), comprobaciones de accesibilidad y presupuestos |
+| Publicación | GitHub Actions → `dist/` → GitHub Pages; sin publicar código privado |
 
-### Decisions that matter
-
-- Desktop theme changes bind `startViewTransition` to `document`. Small screens change themes immediately so browser snapshots do not intercept iframe controls. The receiver-sensitive Firefox failure is covered by a regression test.
-- Initial paint and controls start synchronously. Animation failures and rejected promises cannot stop startup. Storage is optional; the remaining cover canvas uses static drawing below 768 px and with reduced motion, and never starts a mobile animation loop.
-- The mobile drawer traps focus, marks the background inert, closes on Escape and restores focus. Parent-to-demo settings messages check origin and source.
-- Assets are local, with system font fallbacks. The HTML meta CSP omits `frame-ancestors`, which requires an HTTP header; this GitHub Pages deployment does not configure custom response headers.
-
-### Agent demo and privacy
-
-`bodytone-chatbot/frontend/` simulates shipping, invoice and ticket responses. Files remain on the user's device. It makes no uploads, API calls, real tickets, credential requests or microphone requests. Messages use `textContent`. Language and theme follow the parent page through checked messages.
-
-The demo shows an interaction pattern. It is not evidence of a deployed AI integration.
-
-### Aigoritmo showcase
-
-The `#aigoritmo` section presents four equal peers with current, approved local posters: Llama (the mascot, `llama3.2:3b`), Qwen (`qwen2.5-coder:3b`), Arcana and Arcano. Piper voice and the Llama/Qwen models run locally. Arcana/Arcano response providers depend on the installation configuration; the site makes no claim that every response stays local.
-
-The public showcase does not link to `127.0.0.1` because that would point to the visitor's own machine. No backend requests or availability probes originate from this public showcase. Its source repository is private. The four lazy JPEGs are explicitly copied into the public build; videos, application sources, credentials and conversation data are excluded.
-
-The old ignored `systems-lab/aigoritmo/` directory is not the active installation or public deployment. The maintained app is in the separate Aigoritmo repository. Do not use nested legacy notes or historical `X:` paths as current setup instructions.
-
-## Run locally
-
-Node **24 or newer**. No backend or API keys are needed.
-
-```sh
+```bash
 npm ci
-npm start
-```
-
-Open [127.0.0.1:4173](http://127.0.0.1:4173/).
-
-## Validate a release
-
-```sh
 npm run check
-npx playwright install --with-deps chromium firefox webkit
 npm run test:browser
 npm run build
 ```
 
-`npm run check` runs startup regression tests, syntax checks, source contracts and byte budgets. One `playwright.config.mjs` controls all browser checks in Chromium, Firefox and WebKit at 320, 390, 768 and 1440 px: ES/EN, theme persistence, focus, Escape, keyboard access, reduced motion, the agent, overflow, console warnings/errors and failed local resources. It also injects unavailable APIs and a receiver-sensitive transition method.
+Para ejecutar localmente: `npm start` (normalmente [127.0.0.1:4173](http://127.0.0.1:4173/)).
 
-Both quality and deployment workflows run the gates. Deployment publishes only `dist/` after they pass. GitHub Pages must use **GitHub Actions** as its source. A PR is not a deployed release.
+## Documentación, sin duplicar la portada
 
-The source layout audit is not pixel-level visual coverage. Byte budgets are not Core Web Vitals. WebKit tests do not replace actual Safari device checks. External projects have independent availability and release cycles.
+[**Arquitectura y estructura**](docs/ARCHITECTURE.md) · [**Calidad y límites de las demos**](docs/QUALITY_AND_BOUNDARIES.md) · [**Releases y decisiones**](docs/RELEASES.md) · [**Seguridad**](SECURITY.md) · [**Historial**](CHANGELOG.md) · [**Acciones CI**](https://github.com/GracianB/systems-lab/actions)
 
-## Narrative and design contract
-
-The site tells a deliberate story: **ideas → playable systems → a real operations case → an honest local simulation → what is coming later**. Every section must answer a different question rather than repeat the cover.
-
-The homepage opens directly on its actual hero, “Ideas that work”. The cyan wand is an understated supporting symbol, not a separate gateway. Dark and light modes retain the independent technical palette, away from the graphite-and-beige Deck and botanical-green Yoga.
-
-The final portfolio scope is playable public work, one opt-in local agent simulation, one accessible RevOps demo and one private Cutter placeholder. No unfinished roadmap item becomes a public product just because it appears in the portfolio.
-
-Close the release when the final commit is on local and remote `main`, the Quality Gate is green, production deployment succeeds and the public site serves the final cards. The existing `v5.0.0` tag records the original V5 release; this closure follows it without rewriting that tag.
-
-After closure, changes require a concrete product, accessibility or maintenance reason. RevOps and Content Engine evolve separately. Promoting a card to LIVE is a small, deliberate update, with real evidence and a working link.
-
-## The engineering journey
-
-**7 October 2026.** Systems Lab V5 was not built to be closed because we were tired. It was built to be closed when it was finished.
-
-The final stretch took days of iteration across design, runtime, accessibility, security, CI and deployment. V4.1 had already been certified when a real Firefox failure exposed a bad `startViewTransition` receiver. The failure became a regression test.
-
-There were broken runs, protection rules, a local checkout that lost its `.git` directory, another clean clone, more tests and another verification. The finish line was never just a merge button. It was the code, the checks and the public result agreeing with each other.
-
-> Effort, work, and not giving up.<br>
-> Do not close because you are tired. Close when it is finished.<br>
-> Fail, understand why, fix it, and turn the failure into protection for the future.
-
-**That is the part of V5 worth remembering. ❤️**
-
-## P30 · Five-phase reconstruction (released 19 October 2026)
-
-1. One compact explorer replaces the duplicated hero rail and KPI pills.
-2. OHANA and Vórtice have distinct entry points; the RevOps sample demo is public, Cutter remains private and Aigoritmo does not direct strangers to localhost.
-3. Customer Ops retains grounded Bodytone proof while the fictional agent loads only when its disclosure is opened.
-4. Retired network canvas code and unused translation keys are removed, and the cover field is static on mobile/reduced motion.
-5. One Playwright config tests the production build; an independent GitHub Actions comparison captures **before (PR base)** and **after (PR head)** screenshots at mobile/desktop widths, both languages and themes. Its HTML report is an artifact for human visual review, not an automated artistic approval or Core Web Vitals measurement.
-
-Released via [PR #30](https://github.com/GracianB/systems-lab/pull/30). [Post-merge Quality](https://github.com/GracianB/systems-lab/actions/runs/39187168311) and [GitHub Pages Deploy](https://github.com/GracianB/systems-lab/actions/runs/39187168328) both succeeded. See [P30 design criteria](docs/P30_FIVE_PHASES.md) and the [verified release record](RELEASE_CERTIFICATE.md). A separate external HTTP/browser smoke of the public URL was not performed from the review environment.
-
-## P32 · Structural CSS and CI simplification
-
-Once P30 is published, a small maintenance pass removes stylesheet rules for elements that no longer exist (former rail, feature stats, retired particle overlays, old support pillars and the two-column Vórtice card). Live selectors are preserved, and cross-browser/reduced-motion tests guard the layout. GitHub Actions Quality runs on PRs; on main, the Deploy workflow owns the full Node/browser verification before publishing, avoiding two redundant full browser matrices per production change. Workflow dispatch remains available for manual Quality runs.
-
-## P33 · Direct navigation and accurate discoverability
-
-Navigation mirrors the four experiences in the homepage explorer, with one Hub link rather than a list of repeated external destinations in the mobile drawer. Direct `#agente` deep links open the optional simulated-agent disclosure (ordinary visits still leave it closed). The public metadata no longer describes Systems Lab as a hosted Aigoritmo chatbot; ES/EN controls have localized accessible names. Cross-browser tests cover navigation, deep-linking, and metadata.
-
-## P34 · Simulación sin controles engañosos
-
-The optional sample agent no longer offers a file picker that never performed an action. It shows a clear fictional-data notice in ES/EN, contains only three demonstrable intents (shipping, invoices, tickets), preserves keyboard access and works without network/API permissions. A browser regression test verifies that the frontend never issues XHR/fetch requests when interacting with examples. The sitemap date now records the 19 October 2026 updates.
-
-## P35 · Tema claro, proyectos con identidad coherente
-
-En el modo claro, el fondo general sigue siendo claro, pero las dos experiencias OHANA y Vórtice comparten una galería contenida de tonos petróleo, tipografía marfil, acentos cian y bordes discretos. Esto integra sus imágenes originales, muy oscuras, sin alterarlas ni inventar una versión clara de los juegos. El modo oscuro permanece intacto. Playwright verifica ambas tarjetas, el flujo de activación/detención de Vórtice, el cambio de tema y el layout móvil. Las ocho comparativas generales de P30 siguen disponibles en la PR.
-
-## P36 · 404 y rutas públicas
-
-La página 404 usa ahora la misma identidad y paleta petróleo/azul hielo del laboratorio, con preferencia clara/oscura del sistema. Es autocontenida, no carga Google Fonts ni JavaScript, expone un mensaje corto en español e inglés y dirige al visitante mediante una URL absoluta a la raíz real del laboratorio, incluso desde rutas anidadas. Los tests nuevos comprueban enlaces internos, recursos locales, rutas 404 reales, ausencia de peticiones externas, diseño responsivo y accesibilidad AA.
-
-## P37 · V1 final: theme-native playable gallery and perceptible cover field
-
-The light theme no longer embeds a dark petrol gallery. OHANA has a larger, white exhibit card and renders at the native 1280×880 aspect ratio without cropping of its original screenshot without adding a frame. Vórtice has an independent, authored light SVG and keeps the original dark art for dark mode; the active interactive iframe retains Start/Stop controls. The cover field has visible space above the four destination links, more legible points/connections and keeps reduced-motion and mobile-safe rendering. Cross-browser tests verify light/dark poster switching, borders, layouts at 390/768/1024/1440, Vórtice lifecycle and motion preferences. Do not certify V1 without reviewing CI screenshots.
+<sub>El código público permite inspeccionar el escaparate. Aigoritmo y Cutter no se publican aquí, ni sus claves, modelos o datos locales. Los despliegues externos se mantienen de forma independiente.</sub>
