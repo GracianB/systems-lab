@@ -277,7 +277,7 @@ function persistURL(key, value) {
         }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    document.querySelectorAll(".hero-frame, .cover-node, .feat, .cs-hero, .lab-more-card, .agent-block").forEach((el) => {
+    document.querySelectorAll(".hero-frame, .cover-node, .feat, .cs-hero, .lab-more-card").forEach((el) => {
       el.classList.add("reveal");
       io.observe(el);
     });
