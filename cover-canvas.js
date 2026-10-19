@@ -6,9 +6,10 @@
   if (!context) return;
   let width = 1, height = 1, frame = 0, active = true, phase = 0, lastDraw = 0;
   let pointer = null, pulse = 0, reduced = false;
+  const isStatic = () => reduced || window.innerWidth < 768;
   let motionQuery;
   try { motionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)'); reduced = !!motionQuery?.matches; } catch { /* Static fallback remains available. */ }
-  canvas.dataset.motion = reduced ? 'static' : 'animated';
+  canvas.dataset.motion = isStatic() ? 'static' : 'animated';
   const particles = Array.from({length: 64}, (_, i) => ({
     angle: i * 2.399963, radius: 0.1 + (i % 19) / 23,
     speed: 0.15 + (i % 7) / 18,
@@ -42,16 +43,17 @@
     context.beginPath(); context.moveTo(cx, cy - 25); context.lineTo(cx + 9, cy - 9); context.lineTo(cx + 25, cy); context.lineTo(cx + 9, cy + 9); context.lineTo(cx, cy + 25); context.lineTo(cx - 9, cy + 9); context.lineTo(cx - 25, cy); context.lineTo(cx - 9, cy - 9); context.closePath(); context.stroke();
     pulse *= 0.95;
   }
-  function tick(time) { frame = 0; if (!active || document.hidden || reduced) return; if (time - lastDraw >= 33) { phase += 0.005; draw(); lastDraw = time; } frame = requestAnimationFrame(tick); }
-  function schedule() { if (!frame && active && !document.hidden && !reduced && typeof requestAnimationFrame === 'function') frame = requestAnimationFrame(tick); }
-  function resize() { const rect = canvas.getBoundingClientRect(); width = Math.max(1, rect.width); height = Math.max(1, rect.height); const ratio = Math.min(window.devicePixelRatio || 1, 1.5); canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio); context.setTransform(ratio, 0, 0, ratio, 0, 0); draw(); schedule(); }
-  canvas.addEventListener('pointermove', event => { const rect = canvas.getBoundingClientRect(); pointer = {x: event.clientX - rect.left, y: event.clientY - rect.top}; if (reduced) draw(); });
-  canvas.addEventListener('pointerleave', () => { pointer = null; if (reduced) draw(); });
-  canvas.addEventListener('pointerdown', () => { pulse = 1; draw(); });
+  function tick(time) { frame = 0; if (!active || document.hidden || isStatic()) return; if (time - lastDraw >= 33) { phase += 0.005; draw(); lastDraw = time; } frame = requestAnimationFrame(tick); }
+  function schedule() { if (!frame && active && !document.hidden && !isStatic() && typeof requestAnimationFrame === 'function') frame = requestAnimationFrame(tick); }
+  function resize() { const rect = canvas.getBoundingClientRect(); width = Math.max(1, rect.width); height = Math.max(1, rect.height); const ratio = Math.min(window.devicePixelRatio || 1, 1.5); canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio); context.setTransform(ratio, 0, 0, ratio, 0, 0); canvas.dataset.motion = isStatic() ? 'static' : 'animated'; if (isStatic() && frame) { cancelAnimationFrame(frame); frame = 0; } draw(); schedule(); }
+  const surface = canvas.closest('.cover-atlas') || canvas;
+  surface.addEventListener('pointermove', event => { if (isStatic()) return; const rect = canvas.getBoundingClientRect(); pointer = {x: event.clientX - rect.left, y: event.clientY - rect.top}; });
+  surface.addEventListener('pointerleave', () => { pointer = null; });
+  surface.addEventListener('pointerdown', () => { if (!isStatic()) { pulse = 1; draw(); } });
   document.addEventListener('visibilitychange', () => { if (document.hidden && frame) { cancelAnimationFrame(frame); frame = 0; } else schedule(); });
   if (typeof IntersectionObserver === 'function') new IntersectionObserver(entries => { active = entries[0].isIntersecting; if (!active && frame) { cancelAnimationFrame(frame); frame = 0; } else schedule(); }).observe(canvas);
   if (typeof ResizeObserver === 'function') new ResizeObserver(resize).observe(canvas); else window.addEventListener('resize', resize);
   if (typeof MutationObserver === 'function') new MutationObserver(draw).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
-  motionQuery?.addEventListener?.('change', event => { reduced = event.matches; canvas.dataset.motion = reduced ? 'static' : 'animated'; if (reduced && frame) { cancelAnimationFrame(frame); frame = 0; } draw(); schedule(); });
+  motionQuery?.addEventListener?.('change', event => { reduced = event.matches; canvas.dataset.motion = isStatic() ? 'static' : 'animated'; if (isStatic() && frame) { cancelAnimationFrame(frame); frame = 0; } draw(); schedule(); });
   resize();
 })();

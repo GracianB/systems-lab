@@ -645,9 +645,9 @@ body.menu-on { overflow: hidden; }
 .foot-links a { min-height: 44px; display: inline-flex; align-items: center; }
 .fx { opacity: .28; }
 .fx-scan, .fx-noise, .fx-orb, .spotlight { display: none; }
-.fx-net { width: 100%; height: 100%; }
-.scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 90; pointer-events: none; }
-.scroll-progress i { display: block; width: var(--sp, 0%); height: 100%; background: var(--ice); }
+
+
+
 @media (min-width: 900px) {
   .hero { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 24px; }
   .hero-rail { grid-template-columns: 1fr; }
@@ -741,3 +741,67 @@ body.menu-on { overflow: hidden; }
 
 .cs-hero{padding:28px;border-radius:18px}.cs-hero h3{font-size:32px;line-height:1.2}.method{gap:12px}.method li{background:var(--surface2);padding:18px}.pillars article{border-radius:16px;padding:24px}.agent-block{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:16px 28px;padding:28px;border-radius:18px;align-content:start}.agent-block>header,.agent-block>h2,.agent-block>p{grid-column:1;margin:0}.agent-block>h2{font:500 clamp(28px,3vw,40px)/1.15 var(--display)}.agent-block>p{font-size:14px;line-height:1.8}.agent-block>.agent-stage{grid-column:2;grid-row:1/span 4;min-width:0}.split{gap:20px}.split .box{border-radius:16px;padding:26px}.split h3{font-size:25px}.split li{font-size:14px;line-height:1.8}.foot{margin-top:48px;border-top:1px solid var(--line)}.foot-inner{padding-block:28px}.foot-links{flex-wrap:wrap;gap:18px}
 @media(max-width:850px){.agent-block{grid-template-columns:1fr;padding:22px}.agent-block>.agent-stage{grid-column:1;grid-row:auto}.cs-hero{padding:22px}}
+
+/* P30 · One explorer, no duplicate hero rail or metric walls. */
+.hero{display:block;padding:clamp(14px,3vw,36px) 0 30px}
+.hero-frame{display:grid;grid-template-columns:minmax(0,1fr);align-items:stretch;gap:24px;min-height:0;padding:clamp(22px,4vw,42px);background:var(--surface)}
+.hero-content{order:0;max-width:850px}
+.hero-content h1{max-width:none;font-size:clamp(40px,6vw,75px);line-height:1.05;margin:12px 0 12px}
+.hero-content .lead{font-size:clamp(14px,1.4vw,17px);line-height:1.55;max-width:62ch;margin:0}
+.cover-atlas{min-height:244px;border-radius:15px;background:var(--bg);overflow:hidden}
+.cover-links{position:absolute;z-index:2;inset:48px 14px 14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.cover-node{min-width:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px 15px;min-height:140px;background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);transition:background .2s,border-color .2s,transform .2s}
+.cover-node:hover,.cover-node:focus-visible{transform:translateY(-3px);border-color:var(--ice);background:var(--surface2)}
+.cover-node>span{font:600 10px/1.4 var(--mono);color:var(--muted)}
+.cover-node strong{font:500 clamp(23px,2.6vw,34px)/1.15 var(--display);margin-top:8px}
+.cover-node small{display:block;margin-top:8px;font:500 11px/1.4 var(--sans);color:var(--muted)}
+.cover-node b{right:15px;top:14px}
+.field-caption{z-index:1;top:14px}
+#lab-field{pointer-events:none}
+@media(max-width:850px){.hero-frame{gap:16px;padding:22px}.cover-atlas{min-height:310px}.cover-links{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.hero-frame{padding:18px 15px}.hero-content h1{font-size:42px}.cover-atlas{min-height:300px}.cover-links{inset:40px 9px 9px;gap:7px}.cover-node{min-height:110px;padding:13px 10px}.cover-node strong{font-size:22px}.cover-node small{font-size:10px}.field-caption{font-size:8px}}
+
+/* P30/2 · One authentic preview per experience; secondary projects after the main work. */
+.featured{display:block;width:100%}
+.feat-ohana{min-height:0}
+.feat-ohana .feat-stage{height:clamp(175px,26vw,290px)}
+.vortex-live{scroll-margin-top:calc(var(--header) + 18px)}
+.ai-showcase{margin-top:clamp(40px,6vw,72px)}
+.lab-more{border-top:1px solid var(--line);padding:clamp(32px,5vw,54px) 0;scroll-margin-top:calc(var(--header) + 18px)}
+.lab-more .section-head h2{margin:10px 0 16px}
+.lab-more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.lab-more-card{padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.lab-more-card>.code{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.lab-more-card p{margin:15px 0;color:var(--muted);font-size:14px;line-height:1.6}
+.lab-more-card .btn{min-height:44px}
+@media(max-width:640px){.lab-more-grid{grid-template-columns:1fr}.lab-more-card{padding:18px}}
+
+/* P30/3 · Professional proof first, optional simulation second. */
+.cs{padding-block:clamp(36px,5vw,58px)}
+.cs .section-head{max-width:780px}
+.cs-hero{padding:clamp(20px,3vw,32px);max-width:920px;margin-top:22px}
+.cs-hero p{max-width:65ch}
+.cs-hero .btn{display:inline-flex;margin-top:10px}
+.agent-block{display:block;padding:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;scroll-margin-top:calc(var(--header) + 22px)}
+.agent-summary{display:flex;align-items:center;gap:18px;padding:24px;cursor:pointer;list-style:none;background:var(--surface)}
+.agent-summary::-webkit-details-marker{display:none}
+.agent-summary .code{flex:none}
+.agent-summary-main{display:grid;flex:1;gap:6px;min-width:0}
+.agent-summary-main strong{font:500 clamp(22px,3vw,31px)/1.2 var(--display)}
+.agent-summary-main span{color:var(--muted);font-size:13px;line-height:1.5}
+.agent-open{color:var(--ice);font-size:12px;flex:none}
+.agent-block[open] .agent-open{opacity:.65}
+.agent-block>.agent-stage{display:block;max-width:940px;margin:0 auto 10px;grid-column:auto;grid-row:auto}
+.agent-block>.hint{padding:0 24px 16px;font-size:12px}
+.agent-summary:focus-visible{outline:3px solid var(--ice);outline-offset:-4px}
+@media(max-width:640px){.agent-summary{display:grid;gap:10px;padding:18px}.agent-summary .code{font-size:10px}.agent-open{justify-self:start}}
+
+/* P30 screenshot review · make OHANA genuinely full-width on desktop. */
+@media(min-width:851px){
+.feat-ohana{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);grid-template-rows:auto auto 1fr auto;column-gap:clamp(24px,4vw,52px);row-gap:10px;align-items:start;padding:clamp(20px,3vw,30px)}
+.feat-ohana .feat-stage{grid-column:1;grid-row:1/5;min-height:270px;height:100%;margin:0;align-self:stretch}
+.feat-ohana header{grid-column:2;grid-row:1}
+.feat-ohana h3{grid-column:2;grid-row:2}
+.feat-ohana p{grid-column:2;grid-row:3}
+.feat-ohana .feat-cta{grid-column:2;grid-row:4;align-self:end}
+}

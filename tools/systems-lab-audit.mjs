@@ -60,6 +60,7 @@ for (const name of required) {
 
 const html = read("index.html");
 const main = read("main.js");
+const cover = read("cover-canvas.js");
 const i18n = read("i18n.js");
 const css = read("styles.css");
 const sitemap = read("sitemap.xml");
@@ -104,10 +105,14 @@ check("html:external-links", unsafeBlank.length === 0, unsafeBlank.length ? unsa
 
 check("html:no-javascript-hrefs", !/href\s*=\s*["']javascript:/i.test(html));
 
-check("ecosystem:revops-not-public", !/href=["'](?:https:\/\/gracianb\.github\.io\/revops-studio\/|https:\/\/github\.com\/GracianB\/revops-studio)/i.test(html));
+check("ecosystem:revops-public-demo", html.includes("https://gracianb.github.io/revops-studio/demo.html") && html.includes('data-i18n="revopsStatus"'));
 check("ecosystem:private-sources-not-linked", !/href=["']https:\/\/github\.com\/GracianB\/(?:aigoritmo|cutter-studio)/i.test(html));
-check("ecosystem:cutter-roadmap-not-public-launch", html.includes("CUTTER / CONTENT ENGINE") && /<article class="rail-card rail-building">[\s\S]*?CUTTER \/ CONTENT ENGINE/.test(html));
+check("ecosystem:cutter-private", html.includes("CUTTER STUDIO") && !/href=["\']https:\/\/github\.com\/GracianB\/cutter-studio/i.test(html));
 
+check("html:single-explorer", (html.match(/class="cover-links"/g) || []).length === 1 && !html.includes("hero-rail") && !html.includes("class=\"pills\""));
+check("html:no-localhost-cta", !/href=["\']http:\/\/127\.0\.0\.1/.test(html));
+check("js:no-retired-canvas", !main.includes(".fx-net") && !main.includes("PLAY MAX PASS"));
+check("canvas:static-mobile", /window\.innerWidth < 768/.test(cover) && /isStatic\(\)/.test(cover));
 check("html:intro-single-owner", !/setTimeout\(function \(\) \{ document\.documentElement\.classList\.add\("intro-done"\)/.test(html));
 
 const i18nKeyMatches = [...i18n.matchAll(/^\s{4}([A-Za-z0-9_]+):/gm)].map((m) => m[1]);
@@ -115,6 +120,7 @@ const i18nKeys = [...new Set(i18nKeyMatches)];
 const htmlKeys = [...html.matchAll(/data-i18n(?:-html)?="([^"]+)"/g)].map((m) => m[1]);
 const missingKeys = [...new Set(htmlKeys.filter((key) => !i18nKeys.includes(key)))];
 check("i18n:key-coverage", missingKeys.length === 0, missingKeys.join(", ") || "complete");
+check("i18n:both-locales", /moreTitle:[^\n]+/.test(i18n) && (i18n.match(/moreTitle:/g) || []).length === 2);
 const programmaticKeys = new Set(["htmlLang", "title"]);
 const unusedKeys = i18nKeys.filter((key) => !htmlKeys.includes(key) && !programmaticKeys.has(key));
 check("i18n:no-retired-keys", unusedKeys.length === 0, unusedKeys.join(", ") || "clean");
@@ -130,8 +136,8 @@ check("js:active-location", /aria-current\", \"location\"/.test(main));
 check("js:menu-escape", count(main, /e\.key === "Escape"/g) === 1);
 check("js:menu-focus-return", /menuReturnFocus/.test(main) && /target\?\.focus\(\)/.test(main));
 check("js:menu-focus-trap", /e\.key === "Tab"/.test(main) && /focusable = \[\.\.\.drawer\.querySelectorAll/.test(main));
-check("js:canvas-visibility", /document\.addEventListener\("visibilitychange"/.test(main) && /!running \|\| document\.hidden/.test(main));
-check("js:canvas-cancel", /window\.cancelAnimationFrame\(id\)/.test(main));
+check("js:canvas-visibility", /document\.addEventListener\(\x27visibilitychange\x27/.test(cover) && /document\.hidden/.test(cover));
+check("js:canvas-cancel", /cancelAnimationFrame\(frame\)/.test(cover));
 check("js:no-exposed-integrations", !/LAB_(?:GAS|ZENDESK)|script\.google\.com\/macros/i.test(main));
 check("js:no-retired-demo-selectors", !/q-name|out-find|q-seg|out-mail|q-machine|q-kind|out-mant|data-run=/i.test(main));
 check("js:view-transition-bound", /document\.startViewTransition\(\(\) => applyTheme\(\)\)/.test(main));
@@ -156,7 +162,7 @@ check("seo:sitemap-lastmod", /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sitema
 
 check("pkg:name", pkg.name === "systems-lab");
 check("pkg:version", pkg.version === "5.0.0");
-check("pkg:check-script", pkg.scripts?.check?.includes("npm test") && pkg.scripts?.["test:browser"] === "playwright test");
+check("pkg:check-script", pkg.scripts?.check?.includes("npm test") && pkg.scripts?.["test:browser"] === "playwright test --config=playwright.config.mjs");
 check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("24"));
 check("ci:read-only", /permissions:\s*\n\s+contents:\s*read/.test(workflow));
 check("ci:no-feature-push-duplication", !/push:\s*\n(?:.|\n)*branches:\s*\n(?:.|\n)*feat\//.test(workflow));
@@ -165,6 +171,7 @@ check("ci:runs-check", /run:\s*npm run check/.test(workflow));
 check("ci:browser-matrix", /playwright install --with-deps chromium firefox webkit/.test(workflow) && /run:\s*npm run test:browser/.test(workflow));
 check("test:runtime-contract", exists("tests/runtime.test.mjs") && /retains Document receiver/.test(read("tests/runtime.test.mjs")));
 check("test:browser-contract", exists("tests/browser/systems-lab.spec.mjs") && /pageerror/.test(read("tests/browser/systems-lab.spec.mjs")) && /console/.test(read("tests/browser/systems-lab.spec.mjs")));
+check("test:single-playwright-config", exists("playwright.config.mjs") && !exists("playwright.config.js") && pkg.scripts["test:browser"].includes("--config=playwright.config.mjs"));
 check("test:playwright-matrix", exists("playwright.config.mjs") && /Desktop Firefox/.test(read("playwright.config.mjs")) && /Desktop Safari/.test(read("playwright.config.mjs")) && /Pixel 7/.test(read("playwright.config.mjs")));
 
 const sourceExtensions = new Set([".html", ".htm", ".js", ".mjs", ".cjs", ".css", ".json", ".jsonc", ".md", ".txt", ".xml", ".yml", ".yaml", ".svg", ".sh", ".ps1", ".py"]);

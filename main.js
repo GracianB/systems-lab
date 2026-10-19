@@ -52,14 +52,25 @@ function persistURL(key, value) {
     if (frame) frame.contentWindow?.postMessage({ type: "lab-settings", lang: currentLang, theme }, location.origin);
   }
   document.querySelector(".agent-stage iframe")?.addEventListener("load", syncAgent);
+  // Opt-in loading: WebKit may indefinitely defer a loading="lazy" iframe inside
+  // a closed <details>. Assign the real src only after the visitor expands it.
+  const agentDisclosure = document.querySelector("#agente");
+  const agentFrame = agentDisclosure?.querySelector("iframe[data-src]");
+  function openAgent() {
+    if (!agentDisclosure?.open || !agentFrame?.dataset.src) return;
+    agentFrame.src = agentFrame.dataset.src;
+    agentFrame.removeAttribute("data-src");
+  }
+  agentDisclosure?.addEventListener("toggle", openAgent);
+  openAgent();
 
   function applyLang(code, persist) {
     currentLang = code === "en" ? "en" : "es";
     const t = pack();
     $("[data-menu-toggle]")?.setAttribute("aria-label", t.menu || "Menu");
     syncAgent();
-    const labels = currentLang === "en" ? ["Main navigation", "Selected projects", "Dark theme", "Light theme", "Close menu", "Customer support agent demo"] : ["Navegación principal", "Proyectos seleccionados", "Tema oscuro", "Tema claro", "Cerrar menú", "Demo de agente de soporte"];
-    [".nav", ".hero-rail", '[data-set-theme="dark"]', '[data-set-theme="light"]', "[data-drawer-close]"].forEach((selector, i) => $(selector)?.setAttribute("aria-label", labels[i]));
+    const labels = currentLang === "en" ? ["Main navigation", "Experience explorer", "Dark theme", "Light theme", "Close menu", "Customer support agent demo"] : ["Navegación principal", "Explorador de experiencias", "Tema oscuro", "Tema claro", "Cerrar menú", "Demo de agente de soporte"];
+    [".nav", ".cover-atlas", '[data-set-theme="dark"]', '[data-set-theme="light"]', "[data-drawer-close]"].forEach((selector, i) => $(selector)?.setAttribute("aria-label", labels[i]));
     $(".agent-stage iframe")?.setAttribute("title", labels[5]);
     document.documentElement.lang = t.htmlLang || currentLang;
     document.documentElement.setAttribute("data-lang", currentLang);
@@ -238,159 +249,11 @@ function persistURL(key, value) {
         }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    document.querySelectorAll(".hero-frame, .rail-card, .feat, .cs-hero, .pillars article, .agent-block, .box").forEach((el) => {
+    document.querySelectorAll(".hero-frame, .cover-node, .feat, .cs-hero, .lab-more-card, .agent-block").forEach((el) => {
       el.classList.add("reveal");
       io.observe(el);
     });
   }
 
-  if (!reduce) {
-    const fx = document.querySelector(".fx");
-    window.addEventListener("pointermove", (e) => {
-      if (!fx || document.hidden) return;
-      const x = (e.clientX / window.innerWidth - 0.5) * 28;
-      const y = (e.clientY / window.innerHeight - 0.5) * 18;
-      fx.style.setProperty("--mx", x.toFixed(1) + "px");
-      fx.style.setProperty("--my", y.toFixed(1) + "px");
-    }, { passive: true });
 
-    const fine = mediaMatches("(hover: hover) and (pointer: fine)");
-    if (fine) {
-      document.querySelectorAll(".feat").forEach((card) => {
-        card.addEventListener("pointermove", (e) => {
-          const r = card.getBoundingClientRect();
-          const px = (e.clientX - r.left) / r.width - 0.5;
-          const py = (e.clientY - r.top) / r.height - 0.5;
-          card.style.transform = `translateY(-8px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 6).toFixed(2)}deg)`;
-        });
-        card.addEventListener("pointerleave", () => { card.style.transform = ""; });
-      });
-    }
-  }
-
-})();
-
-/* ══════════════════════════════════════════════════════════════
-   PLAY MAX PASS · v=lab-max-1 — additive, self-contained.
-   ══════════════════════════════════════════════════════════════ */
-(() => {
-  "use strict";
-  const reduce = mediaMatches("(prefers-reduced-motion: reduce)");
-  const fine = mediaMatches("(hover: hover) and (pointer: fine)");
-  const lowPower = Number.isFinite(navigator.hardwareConcurrency) && navigator.hardwareConcurrency <= 4;
-  const root = document.documentElement;
-  const rAF = scheduleFrame;
-
-  /* —— 2 · scroll rail —— */
-  (function rail() {
-    let ticking = false;
-    const update = () => {
-      const h = document.documentElement;
-      const max = h.scrollHeight - h.clientHeight;
-      root.style.setProperty("--sp", (max > 0 ? (h.scrollTop || 0) / max * 100 : 0).toFixed(2) + "%");
-      ticking = false;
-    };
-    window.addEventListener("scroll", () => { if (!ticking) { ticking = true; rAF(update); } }, { passive: true });
-    update();
-  })();
-
-  /* —— 5 · ice particle network —— */
-  (function net() {
-    const canvas = document.querySelector(".fx-net");
-    if (!canvas || reduce || window.innerWidth < 900) return;
-    let ctx;
-    try { ctx = canvas.getContext("2d", { alpha: true }); } catch { return; }
-    if (!ctx) return;
-    const PAL = [[122,243,255],[122,243,255],[243,212,55],[125,202,165],[246,244,238]];
-    let w = 0, h = 0, dpr = 1, parts = [];
-    let frameId = 0, running = false, lastFrameAt = 0;
-    const frameBudgetMs = lowPower ? 50 : 33;
-    const cancelFrame = (id) => typeof window.cancelAnimationFrame === "function" ? window.cancelAnimationFrame(id) : clearTimeout(id);
-    const mouse = { x: -9999, y: -9999, active: false };
-    function resize() {
-      w = window.innerWidth; h = window.innerHeight;
-      dpr = Math.min(2, window.devicePixelRatio || 1);
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      canvas.style.width = w + "px"; canvas.style.height = h + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const maxParticles = lowPower ? 54 : 90;
-      const count = Math.max(22, Math.min(maxParticles, Math.round(w * h / 26000)));
-      parts = [];
-      for (let i = 0; i < count; i++) parts.push({
-        x: Math.random() * w, y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.32, vy: (Math.random() - 0.5) * 0.32,
-        r: Math.random() * 1.5 + 0.7, c: PAL[(Math.random() * PAL.length) | 0]
-      });
-    }
-    const LINK = 126, MLINK = 168;
-    function frame(now = performance.now()) {
-      if (!running || document.hidden) {
-        frameId = 0;
-        return;
-      }
-      if (now - lastFrameAt < frameBudgetMs) {
-        frameId = rAF(frame);
-        return;
-      }
-      lastFrameAt = now;
-      ctx.clearRect(0, 0, w, h);
-      for (const p of parts) {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < -20) p.x = w + 20; else if (p.x > w + 20) p.x = -20;
-        if (p.y < -20) p.y = h + 20; else if (p.y > h + 20) p.y = -20;
-        if (mouse.active) {
-          const dx = mouse.x - p.x, dy = mouse.y - p.y, d = Math.hypot(dx, dy);
-          if (d < MLINK && d > 0.1) { p.vx += (dx / d) * 0.007; p.vy += (dy / d) * 0.007; }
-        }
-        p.vx = Math.max(-0.7, Math.min(0.7, p.vx));
-        p.vy = Math.max(-0.7, Math.min(0.7, p.vy));
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832);
-        ctx.fillStyle = `rgba(${p.c[0]},${p.c[1]},${p.c[2]},0.9)`; ctx.fill();
-        if (mouse.active) {
-          const dx = mouse.x - p.x, dy = mouse.y - p.y, d = Math.hypot(dx, dy);
-          if (d < MLINK) {
-            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(${p.c[0]},${p.c[1]},${p.c[2]},${(1 - d / MLINK) * 0.5})`;
-            ctx.lineWidth = 0.8; ctx.stroke();
-          }
-        }
-      }
-      for (let i = 0; i < parts.length; i++)
-        for (let j = i + 1; j < parts.length; j++) {
-          const a = parts[i], b = parts[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
-          if (d < LINK) {
-            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(${a.c[0]},${a.c[1]},${a.c[2]},${(1 - d / LINK) * 0.28})`;
-            ctx.lineWidth = 0.7; ctx.stroke();
-          }
-        }
-      frameId = rAF(frame);
-    }
-
-    function start() {
-      if (running || document.hidden) return;
-      running = true;
-      lastFrameAt = 0;
-      resize();
-      frameId = rAF(frame);
-    }
-
-    function stop() {
-      running = false;
-      if (frameId) cancelFrame(frameId);
-      frameId = 0;
-    }
-
-    window.addEventListener("pointermove", (e) => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true; }, { passive: true });
-    window.addEventListener("pointerleave", () => { mouse.active = false; });
-    let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(resize, 180); }, { passive: true });
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        stop();
-      } else {
-        start();
-      }
-    });
-    start();
-  })();
 })();

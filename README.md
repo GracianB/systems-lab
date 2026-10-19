@@ -14,7 +14,7 @@
 
 ---
 
-Systems Lab connects people, data and action through systems you can explore. Games, customer operations and a local agent simulation share one small, bilingual interface. Two roadmap slots prepare the next systems without presenting unfinished work as a working product.
+Systems Lab connects people, data and action through real projects. A four-destination explorer links straight to playable OHANA, the Vórtice interaction, a public Aigoritmo showcase, and a genuine customer operations case. RevOps offers a public sample-data demo, while Cutter remains a private local project.
 
 The point is to make the work visible: what it does, how it behaves, and where the evidence ends.
 
@@ -27,16 +27,16 @@ The point is to make the work visible: what it does, how it behaves, and where t
 | [BODYTONE](https://bodytonehelp.zendesk.com/hc/es) | Customer Success and Support Ops | Public Zendesk Help Center; the portfolio describes the work, it does not audit private workflows |
 | AGENT | Applied AI interaction for shipping, invoices and tickets | Local simulation with fictional responses; no backend |
 | AIGORITMO | Four conversation peers: Llama, Qwen, Arcana and Arcano; voice and session continuity | Local application on `127.0.0.1:8001`; private source; the public site contains a bilingual visual showcase, not a hosted chat |
-| REVOPS | Signals, metrics and context → decisions → operational action | **BUILDING**; no public demo or source link until approved |
-| CUTTER / CONTENT ENGINE | Video → clips → local export | **BUILDING**; local clip editor with export flow, not an automatic publishing service or public demo |
+| [REVOPS](https://gracianb.github.io/revops-studio/demo.html) | Pipeline, data quality and operational analysis | **PUBLIC DEMO** with sample data; not a live customer integration. [Public source](https://github.com/GracianB/revops-studio) |
+| CUTTER STUDIO | Video → clips → local export | **PRIVATE LOCAL PROJECT**; not a public service or source link |
 
 **The project should state what it proves, not quietly upgrade evidence into marketing.**
 
-The BUILDING cards are intentional. They reserve space for future work, without a dead link or a launch claim. When a system is ready, replace its placeholder treatment with a real preview, add its URL and change its status to LIVE. Its implementation belongs in its own repository.
+The secondary project section gives RevOps a genuine public demo link and leaves Cutter clearly private. Published interactive demos and real production services are labelled differently. No private repo, local loopback address, or unfinished system is presented as a publicly accessible product.
 
 ## A small surface, held to a real standard
 
-The current site brings together responsive composition, ES/EN content, persistent themes, keyboard navigation and an embedded agent demo. Decorative effects stay optional. Controls must still work when storage, canvas, animation or browser transition APIs are unavailable.
+The current site brings together one accessible four-way explorer, responsive composition, ES/EN content, persistent themes, keyboard navigation and an agent simulation opened only when requested. Decorative effects stay optional. Controls must still work when storage, canvas, animation or browser transition APIs are unavailable.
 
 ```text
 Systems Lab · static public site
@@ -53,7 +53,7 @@ There is no application backend or build framework. The public build copies an e
 ### Decisions that matter
 
 - Desktop theme changes bind `startViewTransition` to `document`. Small screens change themes immediately so browser snapshots do not intercept iframe controls. The receiver-sensitive Firefox failure is covered by a regression test.
-- Initial paint and controls start synchronously. Animation failures and rejected promises cannot stop startup. Storage is optional; decorative canvas is disabled on small screens and with reduced motion.
+- Initial paint and controls start synchronously. Animation failures and rejected promises cannot stop startup. Storage is optional; the remaining cover canvas uses static drawing below 768 px and with reduced motion, and never starts a mobile animation loop.
 - The mobile drawer traps focus, marks the background inert, closes on Escape and restores focus. Parent-to-demo settings messages check origin and source.
 - Assets are local, with system font fallbacks. The HTML meta CSP omits `frame-ancestors`, which requires an HTTP header; this GitHub Pages deployment does not configure custom response headers.
 
@@ -67,7 +67,7 @@ The demo shows an interaction pattern. It is not evidence of a deployed AI integ
 
 The `#aigoritmo` section presents four equal peers with current, approved local posters: Llama (the mascot, `llama3.2:3b`), Qwen (`qwen2.5-coder:3b`), Arcana and Arcano. Piper voice and the Llama/Qwen models run locally. Arcana/Arcano response providers depend on the installation configuration; the site makes no claim that every response stays local.
 
-The local launch link opens the visitor's own `127.0.0.1:8001`, so Aigoritmo must already be running there. No backend requests or availability probes originate from this public showcase. Its source repository is private. The four lazy JPEGs are explicitly copied into the public build; videos, application sources, credentials and conversation data are excluded.
+The public showcase does not link to `127.0.0.1` because that would point to the visitor's own machine. No backend requests or availability probes originate from this public showcase. Its source repository is private. The four lazy JPEGs are explicitly copied into the public build; videos, application sources, credentials and conversation data are excluded.
 
 The old ignored `systems-lab/aigoritmo/` directory is not the active installation or public deployment. The maintained app is in the separate Aigoritmo repository. Do not use nested legacy notes or historical `X:` paths as current setup instructions.
 
@@ -91,7 +91,7 @@ npm run test:browser
 npm run build
 ```
 
-`npm run check` runs startup regression tests, syntax checks, source contracts and byte budgets. Playwright exercises the real site in Chromium, Firefox and WebKit at 320, 390, 768 and 1440 px: ES/EN, theme persistence, focus, Escape, keyboard access, reduced motion, the agent, overflow, console warnings/errors and failed local resources. It also injects unavailable APIs and a receiver-sensitive transition method.
+`npm run check` runs startup regression tests, syntax checks, source contracts and byte budgets. One `playwright.config.mjs` controls all browser checks in Chromium, Firefox and WebKit at 320, 390, 768 and 1440 px: ES/EN, theme persistence, focus, Escape, keyboard access, reduced motion, the agent, overflow, console warnings/errors and failed local resources. It also injects unavailable APIs and a receiver-sensitive transition method.
 
 Both quality and deployment workflows run the gates. Deployment publishes only `dist/` after they pass. GitHub Pages must use **GitHub Actions** as its source. A PR is not a deployed release.
 
@@ -103,7 +103,7 @@ The site tells a deliberate story: **ideas → playable systems → a real opera
 
 The homepage opens directly on its actual hero, “Ideas that work”. The cyan wand is an understated supporting symbol, not a separate gateway. Dark and light modes retain the independent technical palette, away from the graphite-and-beige Deck and botanical-green Yoga.
 
-The final portfolio scope is the existing public projects, local agent simulation and two explicitly marked BUILDING slots. No unfinished roadmap item becomes a public product just because it appears in the portfolio.
+The final portfolio scope is playable public work, one opt-in local agent simulation, one accessible RevOps demo and one private Cutter placeholder. No unfinished roadmap item becomes a public product just because it appears in the portfolio.
 
 Close the release when the final commit is on local and remote `main`, the Quality Gate is green, production deployment succeeds and the public site serves the final cards. The existing `v5.0.0` tag records the original V5 release; this closure follows it without rewriting that tag.
 
@@ -122,3 +122,13 @@ There were broken runs, protection rules, a local checkout that lost its `.git` 
 > Fail, understand why, fix it, and turn the failure into protection for the future.
 
 **That is the part of V5 worth remembering. ❤️**
+
+## P30 · Five-phase reconstruction (review branch)
+
+1. One compact explorer replaces the duplicated hero rail and KPI pills.
+2. OHANA and Vórtice have distinct entry points; the RevOps sample demo is public, Cutter remains private and Aigoritmo does not direct strangers to localhost.
+3. Customer Ops retains grounded Bodytone proof while the fictional agent loads only when its disclosure is opened.
+4. Retired network canvas code and unused translation keys are removed, and the cover field is static on mobile/reduced motion.
+5. One Playwright config tests the production build; an independent GitHub Actions comparison captures **before (PR base)** and **after (PR head)** screenshots at mobile/desktop widths, both languages and themes. Its HTML report is an artifact for human visual review, not an automated artistic approval or Core Web Vitals measurement.
+
+See [P30 design and release criteria](docs/P30_FIVE_PHASES.md). No PR is published until CI, screenshots and the merge/deploy gates are reviewed.

@@ -29,15 +29,13 @@
   <meta name="twitter:image" content="https://gracianb.github.io/systems-lab/og-cover.png?v=1">
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src 'self' https://vortex-gilt-xi.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="stylesheet" href="./styles.css?v=lab-v48">
+  <link rel="stylesheet" href="./styles.css?v=lab-p30">
   <link rel="preload" href="./boot.js?v=lab-v5" as="script">
   <script src="./boot.js?v=lab-v5"></script>
   <script src="./i18n.js?v=lab-v48"></script>
   <script src="./main.js?v=lab-v5" defer></script>
 <script src="./cover-canvas.js?v=lab-canvas-1" defer></script></head>
 <body>
-  <div class="scroll-progress" aria-hidden="true"><i></i></div>
-  <div class="spotlight" aria-hidden="true"></div>
 
 
   <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
@@ -79,74 +77,24 @@
 
   <main id="main" class="shell">
 
-    <section class="hero" id="inicio">
+    <section class="hero" id="inicio" aria-labelledby="lab-title">
       <div class="hero-frame">
-        <div class="cover-atlas" id="cover-atlas">
-          <canvas id="lab-field" aria-hidden="true"></canvas>
-          <div class="field-caption"><span>GB / SYSTEMS LAB</span><span data-i18n="fieldHint">Mueve el cursor. Deja una señal.</span></div>
-          <div class="cover-links">
-            <a class="cover-node node-play" href="#juegos"><span>01 / OHANA</span><strong data-i18n="coverPlay">Juega.</strong><b aria-hidden="true">↗</b></a>
-            <a class="cover-node node-field" href="#vortex-live"><span>02 / VØRTICE</span><strong data-i18n="coverField">Siente.</strong><b aria-hidden="true">↗</b></a>
-            <a class="cover-node node-ai" href="#aigoritmo"><span>03 / AIGORITMO</span><strong data-i18n="coverAI">Conversa.</strong><b aria-hidden="true">↗</b></a>
-            <a class="cover-node node-ops" href="#cs"><span>04 / CUSTOMER OPS</span><strong data-i18n="coverOps">Conecta.</strong><b aria-hidden="true">↗</b></a>
-          </div>
-        </div>
         <div class="hero-content">
-        <div class="hero-meta-row">
-          <span class="pulse-dot" aria-hidden="true"></span>
           <p class="eyebrow" data-i18n="eyebrow">SYSTEMS LAB · BUILD / PLAY / PROVE</p>
+          <h1 id="lab-title" data-i18n-html="h1">Las ideas,<br><em>en acción.</em></h1>
+          <p class="lead" data-i18n="lead">Juegos, IA y herramientas que puedes explorar. Elige una experiencia y entra directamente.</p>
         </div>
-        <h1 data-i18n-html="h1">Las ideas,<br><em>en acción.</em></h1>
-        <p class="lead" data-i18n="lead">Construyo sistemas que conectan personas, datos y acción. Explora juegos, operaciones de cliente y experiencias de IA en el navegador.</p>
-        <div class="actions">
-          <a class="btn btn-play" href="#cover-atlas" data-i18n="ctaPlay">Elige tu universo ↗</a>
-          <a class="btn btn-ghost" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="ctaLive">Help Center live →</a>
-        </div>
-        <div class="pills">
-          <span class="pill live"><i></i> <span data-i18n="pill1">2 experiencias interactivas</span></span>
-          <span class="pill live"><i></i> <span data-i18n="pill2">1 Help Center en producción</span></span>
-          <span class="pill" data-i18n="pill3">1 ejemplo de agente</span>
-          <span class="pill" data-i18n="aiRail">4 presencias · app local</span>
-        </div>
-        <div class="hero-signal" role="status" aria-label="Estado del laboratorio">
-          <div class="signal-main"><span class="signal-live" aria-hidden="true"></span><span data-i18n="signalTitle">SYSTEMS LAB</span></div>
-          <div class="signal-detail" data-i18n="signalDesc">Personas × datos × sistemas</div>
-          <span class="signal-clock" aria-hidden="true"></span>
-        </div>
-        </div>
+        <nav class="cover-atlas" id="cover-atlas" aria-label="Explorador de experiencias">
+          <canvas id="lab-field" aria-hidden="true"></canvas>
+          <div class="field-caption" aria-hidden="true"><span>GB / SYSTEMS LAB</span><span data-i18n="fieldHint">Cuatro puertas. Una experiencia.</span></div>
+          <div class="cover-links">
+            <a class="cover-node node-play" href="#juegos"><span>01 / OHANA</span><strong data-i18n="coverPlay">Juega.</strong><small data-i18n="coverOhana">Un mundo para explorar</small><b aria-hidden="true">↗</b></a>
+            <a class="cover-node node-field" href="#vortex-live"><span>02 / VÓRTICE</span><strong data-i18n="coverField">Experimenta.</strong><small data-i18n="vxCoverShort">Un campo que responde</small><b aria-hidden="true">↗</b></a>
+            <a class="cover-node node-ai" href="#aigoritmo"><span>03 / AIGORITMO</span><strong data-i18n="coverAI">Conversa.</strong><small data-i18n="aiCoverShort">Cuatro identidades de IA</small><b aria-hidden="true">↗</b></a>
+            <a class="cover-node node-ops" href="#cs"><span>04 / CUSTOMER OPS</span><strong data-i18n="coverOps">Resuelve.</strong><small data-i18n="opsCoverShort">Sistemas para personas</small><b aria-hidden="true">↗</b></a>
+          </div>
+        </nav>
       </div>
-      <aside class="hero-rail" aria-label="Proyectos seleccionados">
-        <a class="rail-card" href="#aigoritmo"><span class="rail-code">AI</span><b>AIGORITMO</b><small data-i18n="aiRail">4 presencias · app local</small></a>
-        <a class="rail-card" href="https://gracianb.github.io/project-ohana/" rel="noopener">
-          <span class="rail-code">01</span>
-          <b>OHANA</b>
-          <small data-i18n="coverOhana">Juego · evolución · CI</small>
-        </a>
-        <a class="rail-card" href="https://vortex-gilt-xi.vercel.app/" target="_blank" rel="noopener">
-          <span class="rail-code">02</span>
-          <b>VÓRTICE</b>
-          <small>webgl · live</small>
-        </a>
-        <a class="rail-card rail-live" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener">
-          <span class="rail-code">CS</span>
-          <b>BODYTONE</b>
-          <small>zendesk · prod</small>
-        </a>
-        <article class="rail-card rail-building">
-          <span class="rail-code">03</span>
-          <b>REVOPS</b>
-          <span class="rail-status" data-i18n="building">EN CONSTRUCCIÓN</span>
-          <small data-i18n="revopsFlow">Datos → decisiones → acción</small>
-          <p data-i18n="revopsDesc">Proyecto en desarrollo. Esta ficha no ofrece todavía una demo pública.</p>
-        </article>
-        <article class="rail-card rail-building">
-          <span class="rail-code">04</span>
-          <b>CUTTER / CONTENT ENGINE</b>
-          <span class="rail-status" data-i18n="building">EN CONSTRUCCIÓN</span>
-          <small data-i18n="contentFlow">Vídeo → clips → exportación local</small>
-          <p data-i18n="contentDesc">Herramienta local en desarrollo para editar, subtitular y exportar clips. La publicación automática no está disponible.</p>
-        </article>
-      </aside>
     </section>
 
     <section class="play" id="juegos">
@@ -160,30 +108,15 @@
           <span class="feat-bar" aria-hidden="true"></span>
           <div class="feat-stage project-poster">
             <img src="./assets/projects/ohana.webp" alt="Isla Hoku y los personajes de OHANA" width="1280" height="800" loading="lazy" decoding="async">
-            <span class="stage-live" data-i18n="projectCapture">CAPTURA REAL</span>
+            <span class="stage-live" data-i18n="projectCapture">IMAGEN DEL JUEGO</span>
           </div>
           <header><span class="code">01</span><span class="badge">OHANA</span></header>
           <h3 data-i18n="ohH">Ohana</h3>
-          <p data-i18n="ohP">Canvas 2D en Isla Hoku. De bebé a GOD. La H pega. J, K y L son el poder.</p>
-          <ul class="feat-facts">
-            <li data-i18n="ohF1">salas jugables</li>
-            <li data-i18n="ohF2">personajes</li>
-            <li data-i18n="ohF3">evoluciones</li>
-            <li data-i18n="ohF4">combate final</li>
-          </ul>
+          <p data-i18n="ohP">Diez personajes, cinco formas y un mundo jugable. Entra en Isla Hoku y descubre sus evoluciones.</p>
+
           <span class="feat-cta" data-i18n="ohCta">Jugar →</span>
         </a>
-        <a class="feat feat-vortex" href="#vortex-live" rel="noopener">
-          <span class="feat-bar" aria-hidden="true"></span>
-          <div class="feat-stage project-poster">
-            <img src="./assets/projects/vortex-cover.svg" alt="Identidad de Vórtice: campo en espiral" width="1200" height="630" loading="lazy" decoding="async">
-            <span class="stage-live" data-i18n="projectArtwork">ARTE DEL PROYECTO</span>
-          </div>
-          <header><span class="code">02</span><span class="badge">VÓRTICE</span></header>
-          <h3 data-i18n="vxH">Vórtice</h3>
-          <p data-i18n="vxP">Mueve el cursor. Miles de puntos te siguen. Eso es el prototipo, no una captura.</p>
-          <span class="feat-cta" data-i18n="vxCta">Abrir →</span>
-        </a>
+
       </div>
       <article class="vortex-live" id="vortex-live" aria-labelledby="vortex-live-title">
         <div class="vortex-copy">
@@ -218,93 +151,56 @@
       </div>
       <div class="ai-system">
         <div><span class="badge" data-i18n="aiStatus">APP LOCAL / CÓDIGO PRIVADO</span><h3 data-i18n="aiSystemTitle">La experiencia vive en tu máquina.</h3><p data-i18n="aiSystemDesc">Respuestas progresivas y voz Piper local. El salón de Arcana y Arcano recupera conversaciones y exporta lecturas. Llama y Qwen usan modelos locales; los canales de Arcana y Arcano dependen de la configuración.</p></div>
-        <div class="ai-launch"><a class="btn btn-ghost" href="http://127.0.0.1:8001/" target="_blank" rel="noopener" data-i18n="aiOpen">Abrir mi app local ↗</a><p data-i18n="aiLocalNote">Requiere Aigoritmo en marcha en este equipo, puerto 8001. Esta página presenta el proyecto; no aloja el chat.</p></div>
+        <div class="ai-launch"><p data-i18n="aiLocalNote">Muestra pública de una aplicación local. El chat, la voz y el historial no se alojan en esta web.</p></div>
       </div>
       <div class="ai-method"><span data-i18n="aiMethod1">Elige una presencia</span><span aria-hidden="true">→</span><span data-i18n="aiMethod2">Conversa a tu ritmo</span><span aria-hidden="true">→</span><span data-i18n="aiMethod3">Escucha y guarda el hilo</span></div>
+    </section>
+
+    <section class="lab-more" id="proyectos" aria-labelledby="lab-more-title">
+      <div class="section-head">
+        <p class="eyebrow" data-i18n="moreEyebrow">OTROS SISTEMAS</p>
+        <h2 id="lab-more-title" data-i18n="moreTitle">También en el laboratorio.</h2>
+      </div>
+      <div class="lab-more-grid">
+        <article class="lab-more-card">
+          <span class="code">REVOPS STUDIO <span class="badge" data-i18n="revopsStatus">DEMO PÚBLICA</span></span>
+          <p data-i18n="revopsDesc">Análisis, calidad de datos y decisiones en una demo pública con datos de ejemplo; no es un sistema de clientes en producción.</p>
+          <a class="btn btn-ghost" href="https://gracianb.github.io/revops-studio/demo.html" target="_blank" rel="noopener" data-i18n="revopsCta">Explorar demo ↗</a>
+        </article>
+        <article class="lab-more-card">
+          <span class="code">CUTTER STUDIO <span class="badge" data-i18n="building">EN CONSTRUCCIÓN</span></span>
+          <p data-i18n="contentDesc">Editor de clips local, en desarrollo privado. Sin servicio público ni enlace a repositorio privado.</p>
+        </article>
+      </div>
     </section>
 
     <section class="cs" id="cs">
       <div class="section-head">
         <p class="eyebrow" data-i18n="csEyebrow">03 · CUSTOMER SUCCESS</p>
         <h2 data-i18n="csH">De la intención a la resolución.</h2>
-        <p class="lead cs-lead" data-i18n="csLead">Un caso real de Customer Operations: conocimiento, organización del soporte y herramientas alrededor de Zendesk. El Help Center es público; los flujos internos no lo son.</p>
+        <p class="lead cs-lead" data-i18n="csLead">Un ejemplo profesional real: diseñar una entrada clara al soporte y dar contexto al equipo que resuelve cada caso.</p>
       </div>
-
       <article class="cs-hero">
-        <div class="cs-glow" aria-hidden="true"></div>
-        <header>
-          <span class="code">LIVE</span>
-          <span class="badge live-b" data-i18n="s0badge">BODYTONE · ZENDESK</span>
-        </header>
+        <header><span class="code">BODYTONE</span><span class="badge live-b" data-i18n="s0badge">ZENDESK · EN PRODUCCIÓN</span></header>
         <h3 data-i18n="s0h">Bodytone Support OS</h3>
-        <p data-i18n="s0p">La web de ayuda la diseñé yo. Zendesk es el motor. El cliente no escribe al vacío: elige intención, deja rastro, y el equipo recibe contexto.</p>
-        <ol class="method">
-          <li><span>01</span><div><b data-i18n="m1">Canal</b><small data-i18n="m1s">El cliente elige. No adivina el buzón.</small></div></li>
-          <li><span>02</span><div><b data-i18n="m2">Criterio</b><small data-i18n="m2s">Qué es urgente. A quién va. En qué idioma.</small></div></li>
-          <li><span>03</span><div><b data-i18n="m3">Acción</b><small data-i18n="m3s">El sistema consulta. No recita un guion.</small></div></li>
-          <li><span>04</span><div><b data-i18n="m4">Cierre</b><small data-i18n="m4s">Ticket con contexto. Nadie pide que lo cuente otra vez.</small></div></li>
-        </ol>
-        <div class="actions">
-          <a class="btn btn-play" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="s0cta">Entrar al Help Center →</a>
-        </div>
+        <p data-i18n="s0p">Diseñé el Help Center que da acceso al soporte. El equipo de 3–4 agentes gestionaba aproximadamente 1.000 tickets mensuales.</p>
+        <a class="btn btn-play" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="s0cta">Ver Help Center ↗</a>
       </article>
-
-      <div class="pillars">
-        <article>
-          <span class="code">01</span>
-          <h3 data-i18n="p1h">Support</h3>
-          <p data-i18n="p1p">La puerta pública. Formularios, intenciones, seguimiento. El cliente sabe dónde está su caso.</p>
-        </article>
-        <article>
-          <span class="code">02</span>
-          <h3 data-i18n="p2h">Success</h3>
-          <p data-i18n="p2p">Menos tickets repetidos. Más adopción. El dato llega al equipo que puede actuar.</p>
-        </article>
-        <article>
-          <span class="code">03</span>
-          <h3 data-i18n="p3h">Ops</h3>
-          <p data-i18n="p3p">El agente consulta sistemas. No improvisa. Escala con contexto.</p>
-        </article>
-      </div>
     </section>
 
-    <article class="agent-block" id="agente">
-      <header>
-        <span class="code" data-i18n="agCode">EJEMPLO</span>
-        <span class="badge" data-i18n="agBadge">DEMO · SIN CLAVES</span>
-      </header>
-      <h2 data-i18n="agTitle">Un agente, de ejemplo</h2>
-      <p data-i18n="agDesc">Así se siente el canal cuando hay un agente: envío, factura, ticket, un archivo. No es el sistema en producción. El de verdad es el Help Center de arriba.</p>
+    <details class="agent-block" id="agente">
+      <summary class="agent-summary">
+        <span class="code" data-i18n="agBadge">DEMO · DATOS FICTICIOS</span>
+        <span class="agent-summary-main"><strong data-i18n="agTitle">Prueba el agente de ejemplo</strong><span data-i18n="agDesc">Envío, factura y ticket en una simulación local, sin backend ni operaciones reales.</span></span>
+        <span class="agent-open" data-i18n="agentCta">Abrir simulación ↓</span>
+      </summary>
       <div class="agent-stage">
-        <div class="agent-chrome" aria-hidden="true">
-          <span></span><span></span><span></span>
-          <b>agent · demo</b>
-        </div>
-        <iframe src="./bodytone-chatbot/frontend/?embed=1&v=4" title="Ejemplo de agente CS" loading="lazy"></iframe>
+        <div class="agent-chrome" aria-hidden="true"><span></span><span></span><span></span><b>agent · demo</b></div>
+        <iframe data-src="./bodytone-chatbot/frontend/?embed=1&v=4" title="Ejemplo de agente CS" loading="eager"></iframe>
       </div>
       <p class="hint"><a href="./bodytone-chatbot/frontend/" data-i18n="botCta">Pantalla completa →</a></p>
-    </article>
+    </details>
 
-    <section class="split" aria-label="Responder vs resolver">
-      <div class="box">
-        <h3 data-i18n="botH">Lo que aburre</h3>
-        <ul>
-          <li data-i18n="bot1">Un bot que pide perdón y pasa el marrón.</li>
-          <li data-i18n="bot2">El cliente cuenta la historia dos veces.</li>
-          <li data-i18n="bot3">El trabajo no se fue. Solo llegó más tarde.</li>
-        </ul>
-      </div>
-      <div class="box good">
-        <h3 data-i18n="agH">Lo que yo monto</h3>
-        <ul>
-          <li data-i18n="ag1">Lee, consulta, actúa. Escala solo con contexto.</li>
-          <li data-i18n="ag2">El cliente no se repite. El agente no adivina.</li>
-          <li data-i18n="ag3">Eso ya está en producción. El Help Center lo prueba.</li>
-        </ul>
-      </div>
-    </section>
-
-    <p class="note" data-i18n="note">Live = se abre ahora. El agente de abajo es un ejemplo, sin backend.</p>
   </main>
 
   <footer class="foot">

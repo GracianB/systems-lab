@@ -16,7 +16,7 @@ export default defineConfig({
     video: "retain-on-failure"
   },
   webServer: {
-    command: "npm start",
+    command: "npm run build && node tools/serve-dist.mjs",
     url: "http://127.0.0.1:4173",
     reuseExistingServer: !process.env.CI,
     timeout: 15_000

@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 for (const width of [320, 390, 768, 1440]) {
-  test(`navigation, themes, language and demo at ${width}px`, async ({ page }) => {
+  test(`navigation, themes, language and demo at ${width}px`, async ({ page, isMobile }) => {
+    test.skip(isMobile && width > 390, "Large desktop widths are covered by desktop browser projects");
     await page.setViewportSize({ width, height: 900 });
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
@@ -15,15 +16,16 @@ for (const width of [320, 390, 768, 1440]) {
     page.on('response', r => { if (r.url().startsWith('http://127.0.0.1') && r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
     await page.goto('/');
     await expect(page.locator('h1')).toContainText('Las ideas,');
-    await expect(page.locator('.rail-building')).toHaveCount(2);
-    await expect(page.locator('.rail-building a')).toHaveCount(0);
-    await expect(page.locator('.rail-status').first()).toHaveText('EN CONSTRUCCIÓN');
+    await expect(page.locator('.cover-links .cover-node')).toHaveCount(4);
+    await expect(page.locator('.hero-rail')).toHaveCount(0);
+    await expect(page.locator('.lab-more-card')).toHaveCount(2);
+    await expect(page.locator('[data-i18n="revopsStatus"]')).toHaveText('DEMO PÚBLICA');
     await page.locator('[data-set-lang="en"]').click();
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.locator('h1')).toContainText('Ideas,');
-    await expect(page.locator('.rail-status').first()).toHaveText('BUILDING');
-    await expect(page.locator('.rail-building').last()).toContainText('Video → clips → local export');
-    await expect(page.locator('.rail-building').last()).toContainText('Automatic publishing is not available.');
+    await expect(page.locator('[data-i18n="revopsStatus"]')).toHaveText('PUBLIC DEMO');
+    await expect(page.locator('.lab-more-card').last()).toContainText('Private local clip editor');
+    await expect(page.locator('.lab-more-card').last().locator('a')).toHaveCount(0);
     await page.locator('[data-set-theme="light"]').click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
     await page.reload();
@@ -43,6 +45,7 @@ for (const width of [320, 390, 768, 1440]) {
       await expect(page.locator('#drawer')).toBeHidden();
     }
     await page.locator('#agente').scrollIntoViewIfNeeded();
+    await page.locator('#agente summary').click();
     const frame = page.frameLocator('iframe');
     await expect(frame.locator('#disclaimer')).toContainText('fictional');
     await frame.locator('[data-intent="shipping"]').click();
