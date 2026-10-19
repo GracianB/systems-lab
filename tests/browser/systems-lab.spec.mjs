@@ -124,3 +124,12 @@ test("P30 explorer links lead directly to real sections, and mobile animation st
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1);
   expect(overflow).toBe(false);
 });
+
+test("P30 optional agent iframe loads only after explicit disclosure", async ({ page }) => {
+  await page.goto("/?lang=en");
+  const frame = page.locator("#agente iframe");
+  await expect(frame).not.toHaveAttribute("src", /embed=1/);
+  await page.locator("#agente summary").click();
+  await expect(frame).toHaveAttribute("src", /embed=1/);
+  await expect(page.frameLocator("#agente iframe").locator("#disclaimer")).toContainText("fictional");
+});

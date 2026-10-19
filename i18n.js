@@ -65,7 +65,7 @@ window.LAB_I18N = {
     csEyebrow: "03 · CUSTOMER SUCCESS",
     csH: "De la intención a la resolución.",
     csLead: "Un ejemplo profesional real: diseñar una entrada clara al soporte y dar contexto al equipo que resuelve cada caso.",
-    s0badge: "ZENDESK · EN PRODUCCIÓN",
+    s0badge: "ZENDESK · LIVE SUPPORT",
     s0h: "Bodytone Support OS",
     s0p: "Diseñé el Help Center que da acceso al soporte. El equipo de 3–4 agentes gestionaba aproximadamente 1.000 tickets mensuales.",
     s0cta: "Ver Help Center ↗",

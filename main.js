@@ -52,6 +52,17 @@ function persistURL(key, value) {
     if (frame) frame.contentWindow?.postMessage({ type: "lab-settings", lang: currentLang, theme }, location.origin);
   }
   document.querySelector(".agent-stage iframe")?.addEventListener("load", syncAgent);
+  // Opt-in loading: WebKit may indefinitely defer a loading="lazy" iframe inside
+  // a closed <details>. Assign the real src only after the visitor expands it.
+  const agentDisclosure = document.querySelector("#agente");
+  const agentFrame = agentDisclosure?.querySelector("iframe[data-src]");
+  function openAgent() {
+    if (!agentDisclosure?.open || !agentFrame?.dataset.src) return;
+    agentFrame.src = agentFrame.dataset.src;
+    agentFrame.removeAttribute("data-src");
+  }
+  agentDisclosure?.addEventListener("toggle", openAgent);
+  openAgent();
 
   function applyLang(code, persist) {
     currentLang = code === "en" ? "en" : "es";
