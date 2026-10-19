@@ -28,6 +28,20 @@ try {
           const response = await page.goto(urls[k], { waitUntil: "load", timeout: 20_000 });
           assert.equal(response?.status(), 200, id + " page failed: " + urls[k]);
           await page.evaluate(() => document.fonts?.ready);
+          // Full-page screenshots do not guarantee that lazy images below the fold
+          // have decoded. Load all first-party posters before taking the capture.
+          await page.evaluate(async () => {
+            const images = [...document.images];
+            for (const img of images) img.loading = "eager";
+            await Promise.all(images.map(async img => {
+              if (typeof img.decode === "function") await img.decode();
+              else if (!img.complete) await new Promise((resolve, reject) => {
+                img.addEventListener("load", resolve, { once: true });
+                img.addEventListener("error", reject, { once: true });
+              });
+              if (img.naturalWidth === 0) throw new Error("Broken image: " + img.currentSrc);
+            }));
+          });
           const metrics = await page.evaluate(() => ({
             scrollWidth: document.documentElement.scrollWidth,
             viewportWidth: innerWidth,
