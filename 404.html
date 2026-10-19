@@ -4,82 +4,44 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark light">
+  <meta name="robots" content="noindex, nofollow">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta name="robots" content="noindex">
-  <title>404 — Systems Lab · Gracián Baena</title>
-  <meta name="description" content="Ruta no encontrada en Systems Lab.">
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;600&family=JetBrains+Mono:wght@800&display=swap" rel="stylesheet">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>404 · Systems Lab</title>
+  <meta name="description" content="Esta ruta no está disponible. Vuelve a las experiencias de Systems Lab.">
   <style>
-    :root { --bg:#06070a; --ink:#f4f3ee; --muted:#9a9991; --ice:#7af3ff; --r:4px; --display:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace; }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; min-height: 100%; }
-    body {
-      min-height: 100svh;
-      display: grid;
-      place-items: center;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      padding: 24px;
+    :root { color-scheme: dark; --bg:#06080d; --surface:#0e131a; --ink:#f7f9fc; --muted:#b2beca; --line:#34404c; --ice:#8cebf5; --ice-ink:#06252e; }
+    @media (prefers-color-scheme: light) {
+      :root { color-scheme: light; --bg:#f5f7fa; --surface:#fff; --ink:#101820; --muted:#53616e; --line:#c9d4dc; --ice:#006674; --ice-ink:#fff; }
     }
-    .card { max-width: 28rem; }
-    .mark {
-      display: grid; place-items: center;
-      width: 40px; height: 40px;
-      border: 1px solid var(--ice);
-      border-radius: var(--r);
-      color: var(--ice);
-      font: 800 12px var(--mono);
-      letter-spacing: .04em;
-      margin-bottom: 28px;
-    }
-    p.kicker {
-      margin: 0 0 10px;
-      color: var(--ice);
-      font: 800 11px var(--mono);
-      letter-spacing: .18em;
-    }
-    h1 {
-      margin: 0 0 12px;
-      font: 600 clamp(32px, 6vw, 44px)/1.05 var(--display);
-      letter-spacing: -.03em;
-    }
-    p.lead { margin: 0 0 28px; color: var(--muted); line-height: 1.5; }
-    .actions { display: flex; flex-wrap: wrap; gap: 8px; }
-    a {
-      display: inline-flex;
-      min-height: 44px;
-      align-items: center;
-      padding: 0 16px;
-      background: var(--ice);
-      color: #031016;
-      font: 800 11px var(--mono);
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: var(--r);
-    }
-    a.ghost {
-      background: transparent;
-      color: var(--ice);
-      border: 1px solid color-mix(in srgb, var(--ice) 50%, transparent);
-    }
-    :focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; }
+    *,*::before,*::after { box-sizing:border-box; }
+    html,body { min-height:100%; margin:0; }
+    body { min-height:100svh; display:grid; place-items:center; padding:clamp(16px,5vw,64px); background:var(--bg); color:var(--ink); font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    main { width:min(100%,580px); padding:clamp(24px,6vw,50px); background:var(--surface); border:1px solid var(--line); border-radius:18px; }
+    .top { display:flex; align-items:center; justify-content:space-between; gap:16px; padding-bottom:28px; border-bottom:1px solid var(--line); }
+    .brand { font:750 12px/1.3 ui-monospace,Consolas,monospace; letter-spacing:.15em; }
+    .code { font:750 12px/1.2 ui-monospace,Consolas,monospace; color:var(--ice); letter-spacing:.13em; }
+    h1 { font-size:clamp(32px,6vw,52px); letter-spacing:-.045em; line-height:1.07; margin:32px 0 16px; }
+    p { margin:0 0 12px; color:var(--muted); max-width:46ch; }
+    p[lang="en"] { font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+    a { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:12px 18px; border:1px solid var(--line); border-radius:9px; color:var(--ink); font-size:14px; font-weight:650; text-decoration:none; }
+    a.primary { background:var(--ice); color:var(--ice-ink); border-color:var(--ice); }
+    a:hover { border-color:var(--ice); }
+    a:focus-visible { outline:3px solid var(--ice); outline-offset:4px; }
+    @media (max-width:420px) { .actions a { width:100%; } }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="mark">GB</div>
-    <p class="kicker">404</p>
-    <h1>Esta ruta no existe.</h1>
-    <p class="lead">Este es el mundo PLAY de Gracián Baena. Ohana, Vórtice y el Help Center están en la raíz.</p>
-    <div class="actions">
-      <a href="./index.html">Volver →</a>
-      <a class="ghost" href="https://gracianb.github.io/GracianB/">Hub</a>
-    </div>
-  </div>
+  <main aria-labelledby="not-found-heading">
+    <div class="top"><span class="brand">GB / SYSTEMS LAB</span><span class="code">404</span></div>
+    <h1 id="not-found-heading">Esta ruta no existe.</h1>
+    <p>La dirección ha cambiado o no está disponible. Puedes volver directamente a las experiencias.</p>
+    <p lang="en">This page isn't available. Return to the experiences in Systems Lab.</p>
+    <nav class="actions" aria-label="Volver a los proyectos / Back to the projects">
+      <a class="primary" href="https://gracianb.github.io/systems-lab/">Systems Lab ↗</a>
+      <a href="https://gracianb.github.io/GracianB/">Hub ↗</a>
+    </nav>
+  </main>
 </body>
 </html>
