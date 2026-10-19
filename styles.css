@@ -762,7 +762,7 @@ body.menu-on { overflow: hidden; }
 @media(max-width:480px){.hero-frame{padding:18px 15px}.hero-content h1{font-size:42px}.cover-atlas{min-height:300px}.cover-links{inset:40px 9px 9px;gap:7px}.cover-node{min-height:110px;padding:13px 10px}.cover-node strong{font-size:22px}.cover-node small{font-size:10px}.field-caption{font-size:8px}}
 
 /* P30/2 · One authentic preview per experience; secondary projects after the main work. */
-.featured{display:block;max-width:720px}
+.featured{display:block;width:100%}
 .feat-ohana{min-height:0}
 .feat-ohana .feat-stage{height:clamp(175px,26vw,290px)}
 .vortex-live{scroll-margin-top:calc(var(--header) + 18px)}
@@ -795,3 +795,13 @@ body.menu-on { overflow: hidden; }
 .agent-block>.hint{padding:0 24px 16px;font-size:12px}
 .agent-summary:focus-visible{outline:3px solid var(--ice);outline-offset:-4px}
 @media(max-width:640px){.agent-summary{display:grid;gap:10px;padding:18px}.agent-summary .code{font-size:10px}.agent-open{justify-self:start}}
+
+/* P30 screenshot review · make OHANA genuinely full-width on desktop. */
+@media(min-width:851px){
+.feat-ohana{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);grid-template-rows:auto auto 1fr auto;column-gap:clamp(24px,4vw,52px);row-gap:10px;align-items:start;padding:clamp(20px,3vw,30px)}
+.feat-ohana .feat-stage{grid-column:1;grid-row:1/5;min-height:270px;height:100%;margin:0;align-self:stretch}
+.feat-ohana header{grid-column:2;grid-row:1}
+.feat-ohana h3{grid-column:2;grid-row:2}
+.feat-ohana p{grid-column:2;grid-row:3}
+.feat-ohana .feat-cta{grid-column:2;grid-row:4;align-self:end}
+}
