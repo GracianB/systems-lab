@@ -209,10 +209,13 @@ test("P37 themes use native light and dark art, without artificial dark cards", 
   await expect(page.locator(".vortex-poster-light")).toBeVisible();
   await expect(page.locator(".vortex-poster-dark")).toBeHidden();
   const framing = await page.locator(".feat-ohana .project-poster img").evaluate(img => ({
-    fit:getComputedStyle(img).objectFit, scale:getComputedStyle(img).transform, width:img.getBoundingClientRect().width
+    fit:getComputedStyle(img).objectFit, scale:getComputedStyle(img).transform, width:img.getBoundingClientRect().width,
+    naturalWidth:img.naturalWidth, naturalHeight:img.naturalHeight
   }));
-  expect(framing.fit).toBe("cover");
-  expect(framing.scale).not.toBe("none");
+  expect(framing.fit).toBe("contain");
+  expect(framing.scale).toBe("none");
+  expect(framing.naturalWidth).toBe(1280);
+  expect(framing.naturalHeight).toBe(880);
   const placement = await page.locator(".feat-ohana").evaluate(card => {
     const stage = card.querySelector(".feat-stage").getBoundingClientRect();
     const heading = card.querySelector("h3").getBoundingClientRect();
@@ -223,8 +226,8 @@ test("P37 themes use native light and dark art, without artificial dark cards", 
   if (await page.evaluate(() => innerWidth > 850)) {
     expect(placement.stageRight).toBeLessThan(placement.headingLeft);
   }
-  expect(placement.aspect).toBeGreaterThan(1.58);
-  expect(placement.aspect).toBeLessThan(1.62);
+  expect(placement.aspect).toBeGreaterThan(1.44);
+  expect(placement.aspect).toBeLessThan(1.47);
   expect(placement.imgHeight).toBeGreaterThan(155);
   await page.locator("[data-vortex-start]").click();
   await expect(page.locator("#vortex-window iframe")).toHaveCount(1);
@@ -251,7 +254,7 @@ test("P37 mobile/tablet have no overflow and enough visible cover field", async 
     });
     expect(state.overflow,"overflow at "+width).toBe(false);
     expect(state.freeTop,"visible field at "+width).toBeGreaterThan(145);
-    expect(state.ohanaHeight).toBeGreaterThan(width<851?155:280);
+    expect(state.ohanaHeight).toBeGreaterThan(width<851?170:310);
     expect(state.vortexWidth).toBeGreaterThan(200);
   }
 });
