@@ -132,3 +132,7 @@ There were broken runs, protection rules, a local checkout that lost its `.git` 
 5. One Playwright config tests the production build; an independent GitHub Actions comparison captures **before (PR base)** and **after (PR head)** screenshots at mobile/desktop widths, both languages and themes. Its HTML report is an artifact for human visual review, not an automated artistic approval or Core Web Vitals measurement.
 
 Released via [PR #30](https://github.com/GracianB/systems-lab/pull/30). [Post-merge Quality](https://github.com/GracianB/systems-lab/actions/runs/39187168311) and [GitHub Pages Deploy](https://github.com/GracianB/systems-lab/actions/runs/39187168328) both succeeded. See [P30 design criteria](docs/P30_FIVE_PHASES.md) and the [verified release record](RELEASE_CERTIFICATE.md). A separate external HTTP/browser smoke of the public URL was not performed from the review environment.
+
+## P32 · Structural CSS and CI simplification
+
+Once P30 is published, a small maintenance pass removes stylesheet rules for elements that no longer exist (former rail, feature stats, retired particle overlays, old support pillars and the two-column Vórtice card). Live selectors are preserved, and cross-browser/reduced-motion tests guard the layout. GitHub Actions Quality runs on PRs; on main, the Deploy workflow owns the full Node/browser verification before publishing, avoiding two redundant full browser matrices per production change. Workflow dispatch remains available for manual Quality runs.
