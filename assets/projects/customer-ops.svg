@@ -39,19 +39,19 @@
 <circle cx="740" cy="349" r="5" fill="#7af3ff"/><circle cx="758" cy="349" r="5" fill="#668da1"/><circle cx="776" cy="349" r="5" fill="#466b7c"/>
 <text x="805" y="357" font-family="monospace" font-size="18" fill="#badce4" letter-spacing="1.8">SERVICE CONSOLE</text>
 <path d="M728 380H1114" stroke="#6793a5" stroke-opacity=".32"/>
-<rect x="730" y="396" width="387" height="83" rx="13" fill="#102331" stroke="#659cb2" stroke-opacity=".20"/>
-<circle cx="758" cy="425" r="7" fill="#7af3ff"/>
-<text x="778" y="431" fill="#eaf7f9" font-family="Arial,Helvetica,sans-serif" font-size="24">Entrada</text>
-<rect x="758" y="451" width="330" height="6" rx="3" fill="#203746"/>
-<rect x="758" y="451" width="245" height="6" rx="3" fill="#7af3ff" opacity=".80"/><rect x="730" y="491" width="387" height="83" rx="13" fill="#102331" stroke="#659cb2" stroke-opacity=".20"/>
-<circle cx="758" cy="520" r="7" fill="#8ba5dc"/>
-<text x="778" y="526" fill="#eaf7f9" font-family="Arial,Helvetica,sans-serif" font-size="24">Prioridad</text>
-<rect x="758" y="546" width="330" height="6" rx="3" fill="#203746"/>
-<rect x="758" y="546" width="174" height="6" rx="3" fill="#8ba5dc" opacity=".80"/><rect x="730" y="586" width="387" height="83" rx="13" fill="#102331" stroke="#659cb2" stroke-opacity=".20"/>
-<circle cx="758" cy="615" r="7" fill="#87dbcd"/>
-<text x="778" y="621" fill="#eaf7f9" font-family="Arial,Helvetica,sans-serif" font-size="24">Resolución</text>
-<rect x="758" y="641" width="330" height="6" rx="3" fill="#203746"/>
-<rect x="758" y="641" width="290" height="6" rx="3" fill="#87dbcd" opacity=".80"/>
+<rect x="730" y="393" width="387" height="63" rx="13" fill="#102331" stroke="#659cb2" stroke-opacity=".20"/>
+<circle cx="758" cy="422" r="7" fill="#7af3ff"/>
+<text x="778" y="428" fill="#eaf7f9" font-family="Arial,Helvetica,sans-serif" font-size="24">Entrada</text>
+<rect x="758" y="448" width="330" height="6" rx="3" fill="#203746"/>
+<rect x="758" y="448" width="245" height="6" rx="3" fill="#7af3ff" opacity=".80"/><rect x="730" y="481" width="387" height="63" rx="13" fill="#102331" stroke="#659cb2" stroke-opacity=".20"/>
+<circle cx="758" cy="510" r="7" fill="#8ba5dc"/>
+<text x="778" y="516" fill="#eaf7f9" font-family="Arial,Helvetica,sans-serif" font-size="24">Prioridad</text>
+<rect x="758" y="536" width="330" height="6" rx="3" fill="#203746"/>
+<rect x="758" y="536" width="174" height="6" rx="3" fill="#8ba5dc" opacity=".80"/><rect x="730" y="569" width="387" height="63" rx="13" fill="#102331" stroke="#659cb2" stroke-opacity=".20"/>
+<circle cx="758" cy="598" r="7" fill="#87dbcd"/>
+<text x="778" y="604" fill="#eaf7f9" font-family="Arial,Helvetica,sans-serif" font-size="24">Resolución</text>
+<rect x="758" y="624" width="330" height="6" rx="3" fill="#203746"/>
+<rect x="758" y="624" width="290" height="6" rx="3" fill="#87dbcd" opacity=".80"/>
 <g font-family="monospace" fill="#90b9c8"><text x="76" y="692" font-size="17" letter-spacing="2">CUSTOMER SUCCESS  /  DATA  /  AUTOMATION</text></g>
 <path d="M76 714H1124" stroke="#7af3ff" stroke-opacity=".22"/>
 </svg>
