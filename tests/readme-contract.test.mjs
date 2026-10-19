@@ -10,6 +10,7 @@ test('README is a concise front page with real entry points and accurate product
     assert.ok(fs.existsSync(path.join(root,pathName)), 'Missing README asset/link: '+pathName);
   }
   assert.match(doc,/privada y local/);
+  assert.doesNotMatch(doc,/<table>[\\s\\S]*?^### /m,'Markdown headings inside raw HTML tables are not reliably rendered on GitHub');
   assert.match(doc,/datos ficticios/);
   assert.doesNotMatch(doc,/127\.0\.0\.1:8001|https:\/\/github\.com\/GracianB\/aigoritmo/);
   assert.match(doc,/github\.io\/systems-lab/);
