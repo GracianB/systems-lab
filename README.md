@@ -144,3 +144,7 @@ Navigation mirrors the four experiences in the homepage explorer, with one Hub l
 ## P34 · Simulación sin controles engañosos
 
 The optional sample agent no longer offers a file picker that never performed an action. It shows a clear fictional-data notice in ES/EN, contains only three demonstrable intents (shipping, invoices, tickets), preserves keyboard access and works without network/API permissions. A browser regression test verifies that the frontend never issues XHR/fetch requests when interacting with examples. The sitemap date now records the 19 October 2026 updates.
+
+## P35 · Tema claro, proyectos con identidad coherente
+
+En el modo claro, el fondo general sigue siendo claro, pero las dos experiencias OHANA y Vórtice comparten una galería contenida de tonos petróleo, tipografía marfil, acentos cian y bordes discretos. Esto integra sus imágenes originales, muy oscuras, sin alterarlas ni inventar una versión clara de los juegos. El modo oscuro permanece intacto. Playwright verifica ambas tarjetas, el flujo de activación/detención de Vórtice, el cambio de tema y el layout móvil. Las ocho comparativas generales de P30 siguen disponibles en la PR.

@@ -198,3 +198,47 @@ test("P33 intermediate widths have no colliding header navigation", async ({ pag
     expect(state.menuVisible, "menu availability at " + width).toBe(width < 1200);
   }
 });
+
+test("P35 light mode uses a cohesive dark gallery for OHANA and Vórtice", async ({ page }) => {
+  await page.goto("/?lang=es&theme=light#juegos");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  for (const selector of [".feat-ohana", ".vortex-live"]) {
+    const colors = await page.locator(selector).evaluate(el => {
+      const style = getComputedStyle(el);
+      const text = el.querySelector("h3");
+      const title = getComputedStyle(text).color;
+      return { background: style.backgroundImage, color: title, border: style.borderColor };
+    });
+    expect(colors.background).toContain("linear-gradient");
+    expect(colors.background).toContain("rgb(24, 50, 62)");
+    expect(colors.color).toBe("rgb(242, 248, 249)");
+    expect(colors.border).not.toBe("rgba(16, 24, 32, 0.12)");
+  }
+  await expect(page.locator(".feat-ohana img")).toBeVisible();
+  await expect(page.locator(".vortex-window > img")).toBeVisible();
+  await page.locator("[data-vortex-start]").click();
+  await expect(page.locator("#vortex-window iframe")).toHaveCount(1);
+  await page.locator("[data-vortex-stop]").click();
+  await expect(page.locator("#vortex-window iframe")).toHaveCount(0);
+  await page.locator('[data-set-theme="dark"]').click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(page.locator(".vortex-copy h3")).not.toHaveCSS("color", "rgb(242, 248, 249)");
+});
+
+test("P35 narrow light mode preserves stacked playable previews and contrast", async ({ page }) => {
+  await page.setViewportSize({width:390, height:844});
+  await page.goto("/?lang=en&theme=light#juegos");
+  const result = await page.evaluate(() => {
+    const ohana = document.querySelector(".feat-ohana").getBoundingClientRect();
+    const vortex = document.querySelector(".vortex-live").getBoundingClientRect();
+    const preview = document.querySelector(".vortex-window").getBoundingClientRect();
+    return { overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      order: vortex.top > ohana.top, previewInside: preview.left >= vortex.left - 1 && preview.right <= vortex.right + 1,
+      ohanaBg: getComputedStyle(document.querySelector(".feat-ohana")).backgroundImage,
+      vortexBg: getComputedStyle(document.querySelector(".vortex-live")).backgroundImage };
+  });
+  expect(result.overflow).toBe(false);
+  expect(result.order).toBe(true);
+  expect(result.previewInside).toBe(true);
+  expect(result.ohanaBg).toBe(result.vortexBg);
+});
