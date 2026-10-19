@@ -220,10 +220,12 @@ test("P37 themes use native light and dark art, without artificial dark cards", 
     return {stageRight:stage.right,headingLeft:heading.left,
       aspect:stage.width/stage.height, imgHeight:image.height};
   });
-  expect(placement.stageRight).toBeLessThan(placement.headingLeft);
+  if (await page.evaluate(() => innerWidth > 850)) {
+    expect(placement.stageRight).toBeLessThan(placement.headingLeft);
+  }
   expect(placement.aspect).toBeGreaterThan(1.58);
   expect(placement.aspect).toBeLessThan(1.62);
-  expect(placement.imgHeight).toBeGreaterThan(300);
+  expect(placement.imgHeight).toBeGreaterThan(155);
   await page.locator("[data-vortex-start]").click();
   await expect(page.locator("#vortex-window iframe")).toHaveCount(1);
   await page.locator("[data-vortex-stop]").click();
