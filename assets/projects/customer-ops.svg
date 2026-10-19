@@ -1,1 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 770" width="1200" height="770" role="img" aria-labelledby="title desc"><title id="title">Customer Operations · Diseño de un sistema de soporte</title><desc id="desc">Vista abstracta de tres fuentes de tickets que convergen en un panel de seguimiento, con indicadores de flujo.</desc><defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#f9fcfd"/><stop offset="1" stop-color="#e8f2f5"/></linearGradient><linearGradient id="card" x2="1" y2=".8"><stop stop-color="#fff"/><stop offset="1" stop-color="#f2f8fa"/></linearGradient></defs><rect width="1200" height="770" rx="36" fill="url(#bg)"/><g font-family="Arial,Helvetica,sans-serif"><text x="80" y="100" font-size="20" letter-spacing="6" fill="#537581">SYSTEMS LAB / 04</text><text x="76" y="192" font-family="Georgia,serif" font-size="75" fill="#143543">Customer Ops</text><text x="80" y="242" font-size="24" fill="#56717d">Canales dispersos. Un sistema visible.</text></g><g fill="url(#card)" stroke="#b9d5dd" stroke-width="2"><rect x="72" y="326" width="254" height="108" rx="18"/><rect x="72" y="458" width="254" height="108" rx="18"/><rect x="72" y="590" width="254" height="108" rx="18"/><rect x="500" y="315" width="628" height="382" rx="24"/></g><g fill="#264958" font-family="Arial,Helvetica,sans-serif" font-size="26"><text x="108" y="391">B2C / email</text><text x="108" y="523">B2B / cuentas</text><text x="108" y="655">Marketplaces</text><text x="547" y="375" font-size="23">Panel de servicio</text></g><g fill="none" stroke="#2b8190" stroke-width="3" stroke-linecap="round"><path d="M330 380H419V480H493"/><path d="M330 512H493"/><path d="M330 644H419V536H493"/></g><path d="M484 470L495 480L484 490M484 502L495 512L484 522M484 526L495 536L484 546" fill="none" stroke="#2b8190" stroke-width="3"/><g><rect x="546" y="424" width="540" height="68" rx="12" fill="#e0f4f6"/><rect x="546" y="512" width="540" height="68" rx="12" fill="#f0f6f8"/><rect x="546" y="600" width="540" height="52" rx="12" fill="#f0f6f8"/><circle cx="575" cy="458" r="9" fill="#147b89"/><circle cx="575" cy="546" r="9" fill="#63aeba"/><circle cx="575" cy="626" r="9" fill="#9ecbd3"/><g fill="#426471"><rect x="599" y="449" width="259" height="13" rx="5"/><rect x="599" y="537" width="319" height="13" rx="5"/><rect x="599" y="620" width="228" height="13" rx="5"/></g><g fill="#168193"><rect x="930" y="450" width="119" height="13" rx="6" opacity=".85"/><rect x="949" y="539" width="100" height="13" rx="6" opacity=".48"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="770" viewBox="0 0 1200 770" role="img" aria-labelledby="title desc"><title id="title">Customer Operations · Dark Edition</title><desc id="desc">Póster vectorial oscuro de Customer Ops: correo, cuentas B2B y marketplaces se integran en un panel único de operaciones; flujos ilustrativos sin datos reales.</desc><defs>
+<linearGradient id="night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b1827"/><stop offset=".52" stop-color="#060c14"/><stop offset="1" stop-color="#05090f"/></linearGradient>
+<linearGradient id="ice" x1="0" y1="0" x2="1" y2=".6"><stop stop-color="#356f87"/><stop offset=".48" stop-color="#7af3ff"/><stop offset="1" stop-color="#aec9d9"/></linearGradient>
+<radialGradient id="halo"><stop stop-color="#1d9aaf" stop-opacity=".24"/><stop offset=".55" stop-color="#117b92" stop-opacity=".07"/><stop offset="1" stop-color="#117b92" stop-opacity="0"/></radialGradient>
+<pattern id="dots" width="33" height="33" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#8cc7d8" opacity=".17"/></pattern>
+<filter id="soft" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="12"/></filter>
+</defs>
+<rect width="1200" height="770" fill="url(#night)"/><rect width="1200" height="770" fill="url(#dots)" opacity=".38"/>
+<rect x="34" y="34" width="1132" height="702" rx="22" fill="none" stroke="#7ac9df" stroke-opacity=".22"/>
+<path d="M68 120H1132M68 645H1132" stroke="#78baca" stroke-opacity=".24"/>
+<ellipse cx="744" cy="438" rx="410" ry="280" fill="url(#halo)" opacity=".74"/>
+<text x="76" y="88" font-family="monospace" font-size="16" letter-spacing="4" fill="#91bcca">SYSTEMS LAB / 04 — OPERATIONS</text>
+<text x="1124" y="88" text-anchor="end" font-family="monospace" font-size="15" letter-spacing="3" fill="#7af3ff">CONNECTED WORKFLOWS</text>
+<text x="73" y="213" font-family="Georgia,'Times New Roman',serif" font-size="77" letter-spacing="-2" fill="#eff7fa">Customer Ops</text>
+<text x="78" y="259" font-family="Arial,Helvetica,sans-serif" font-size="25" fill="#aac9d3">De canales dispersos a un sistema visible.</text>
+<g><rect x="76" y="331" width="264" height="83" rx="15" fill="#101f2d" stroke="#70bacb" stroke-opacity=".37"/>
+<circle cx="105" cy="373" r="6" fill="#7af3ff" opacity=".85"/>
+<text x="125" y="370" font-family="Arial,Helvetica,sans-serif" font-size="24" fill="#e7f5f8">Correo</text>
+<text x="125" y="393" font-family="monospace" font-size="13" letter-spacing="1.7" fill="#8caab9">B2C / SOPORTE</text><rect x="76" y="438" width="264" height="83" rx="15" fill="#101f2d" stroke="#70bacb" stroke-opacity=".37"/>
+<circle cx="105" cy="480" r="6" fill="#7af3ff" opacity=".85"/>
+<text x="125" y="477" font-family="Arial,Helvetica,sans-serif" font-size="24" fill="#e7f5f8">Cuentas</text>
+<text x="125" y="500" font-family="monospace" font-size="13" letter-spacing="1.7" fill="#8caab9">B2B / CLIENTES</text><rect x="76" y="545" width="264" height="83" rx="15" fill="#101f2d" stroke="#70bacb" stroke-opacity=".37"/>
+<circle cx="105" cy="587" r="6" fill="#7af3ff" opacity=".85"/>
+<text x="125" y="584" font-family="Arial,Helvetica,sans-serif" font-size="24" fill="#e7f5f8">Marketplaces</text>
+<text x="125" y="607" font-family="monospace" font-size="13" letter-spacing="1.7" fill="#8caab9">CANALES / ENTRADA</text></g>
+<g fill="none" stroke="#7af3ff" stroke-opacity=".5" stroke-width="2">
+<path d="M340 373H395Q411 373 411 389V467H483"/>
+<path d="M340 480H483"/>
+<path d="M340 587H395Q411 587 411 571V493H483"/>
+<path d="M583 480H706"/>
+</g>
+<path d="M693 469L706 480L693 491" stroke="#7af3ff" stroke-opacity=".8" stroke-width="2" fill="none"/>
+<circle cx="532" cy="480" r="69" fill="url(#halo)" filter="url(#soft)"/>
+<circle cx="532" cy="480" r="53" fill="#081722" stroke="#7af3ff" stroke-opacity=".75" stroke-width="1.8"/>
+<circle cx="532" cy="480" r="35" fill="none" stroke="#7af3ff" stroke-opacity=".32" stroke-dasharray="3 7"/>
+<circle cx="532" cy="480" r="8" fill="#a1f6ff"/>
+<g font-family="monospace" fill="#9ed6e0"><text x="496" y="576" font-size="14" letter-spacing="2">HUB</text></g>
+<rect x="709" y="318" width="425" height="319" rx="22" fill="#0c1c29" stroke="#84c8d7" stroke-opacity=".40"/>
+<circle cx="740" cy="349" r="5" fill="#7af3ff"/><circle cx="758" cy="349" r="5" fill="#668da1"/><circle cx="776" cy="349" r="5" fill="#466b7c"/>
+<text x="805" y="357" font-family="monospace" font-size="18" fill="#badce4" letter-spacing="1.8">SERVICE CONSOLE</text>
+<path d="M728 380H1114" stroke="#6793a5" stroke-opacity=".32"/>
+<rect x="730" y="396" width="387" height="83" rx="13" fill="#102331" stroke="#659cb2" stroke-opacity=".20"/>
+<circle cx="758" cy="425" r="7" fill="#7af3ff"/>
+<text x="778" y="431" fill="#eaf7f9" font-family="Arial,Helvetica,sans-serif" font-size="24">Entrada</text>
+<rect x="758" y="451" width="330" height="6" rx="3" fill="#203746"/>
+<rect x="758" y="451" width="245" height="6" rx="3" fill="#7af3ff" opacity=".80"/><rect x="730" y="491" width="387" height="83" rx="13" fill="#102331" stroke="#659cb2" stroke-opacity=".20"/>
+<circle cx="758" cy="520" r="7" fill="#8ba5dc"/>
+<text x="778" y="526" fill="#eaf7f9" font-family="Arial,Helvetica,sans-serif" font-size="24">Prioridad</text>
+<rect x="758" y="546" width="330" height="6" rx="3" fill="#203746"/>
+<rect x="758" y="546" width="174" height="6" rx="3" fill="#8ba5dc" opacity=".80"/><rect x="730" y="586" width="387" height="83" rx="13" fill="#102331" stroke="#659cb2" stroke-opacity=".20"/>
+<circle cx="758" cy="615" r="7" fill="#87dbcd"/>
+<text x="778" y="621" fill="#eaf7f9" font-family="Arial,Helvetica,sans-serif" font-size="24">Resolución</text>
+<rect x="758" y="641" width="330" height="6" rx="3" fill="#203746"/>
+<rect x="758" y="641" width="290" height="6" rx="3" fill="#87dbcd" opacity=".80"/>
+<g font-family="monospace" fill="#90b9c8"><text x="76" y="692" font-size="17" letter-spacing="2">CUSTOMER SUCCESS  /  DATA  /  AUTOMATION</text></g>
+<path d="M76 714H1124" stroke="#7af3ff" stroke-opacity=".22"/>
+</svg>

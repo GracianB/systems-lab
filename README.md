@@ -27,7 +27,7 @@ Una colección de proyectos que puedes **abrir, experimentar y comprobar**. Meno
 <p><strong>Juega.</strong> Un mundo con diez personajes, evolución, salas y combate. <a href="https://github.com/GracianB/project-ohana">Código</a>.</p>
 </td>
 <td width="50%" valign="top">
-<a href="https://vortex-gilt-xi.vercel.app/"><img src="./assets/projects/vortex-cover-light.svg" alt="Vórtice: campo de órbitas generativas en diseño claro" width="100%"></a>
+<a href="https://vortex-gilt-xi.vercel.app/"><img src="./assets/projects/vortex-readme-dark.svg" alt="Vórtice: póster vectorial del campo generativo en modo oscuro azul hielo" width="100%"></a>
 
 <h3><a href="https://vortex-gilt-xi.vercel.app/">Vórtice ↗</a></h3>
 <p><strong>Experimenta.</strong> Campo WebGL con cuatro movimientos y estados visuales configurables. <a href="https://github.com/GracianB/vortex">Código</a>.</p>
@@ -44,7 +44,7 @@ Una colección de proyectos que puedes **abrir, experimentar y comprobar**. Meno
 <p><strong>Descubre.</strong> Cuatro identidades: Llama, Qwen, Arcana y Arcano. La app es <strong>privada y local</strong>; la web muestra una presentación visual, no una API ni un chat público.</p>
 </td>
 <td width="50%" valign="top">
-<a href="https://gracianb.github.io/systems-lab/#cs"><img src="./assets/projects/customer-ops.svg" alt="Customer Ops: canales de soporte conectados a un panel de servicio" width="100%"></a>
+<a href="https://gracianb.github.io/systems-lab/#cs"><img src="./assets/projects/customer-ops.svg" alt="Customer Ops: sistema nocturno de canales y flujos de soporte unificados" width="100%"></a>
 
 <h3><a href="https://gracianb.github.io/systems-lab/#cs">Customer Operations ↗</a></h3>
 <p><strong>Resuelve.</strong> Caso real de operaciones de soporte y una <strong>simulación local con datos ficticios</strong>. <a href="https://bodytonehelp.zendesk.com/hc/es">Help Center de referencia</a>.</p>
