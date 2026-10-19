@@ -162,7 +162,7 @@ check("seo:sitemap-lastmod", /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sitema
 
 check("pkg:name", pkg.name === "systems-lab");
 check("pkg:version", pkg.version === "5.0.0");
-check("pkg:check-script", pkg.scripts?.check?.includes("npm test") && pkg.scripts?.["test:browser"] === "playwright test");
+check("pkg:check-script", pkg.scripts?.check?.includes("npm test") && pkg.scripts?.["test:browser"] === "playwright test --config=playwright.config.mjs");
 check("pkg:node-engine", typeof pkg.engines?.node === "string" && pkg.engines.node.includes("24"));
 check("ci:read-only", /permissions:\s*\n\s+contents:\s*read/.test(workflow));
 check("ci:no-feature-push-duplication", !/push:\s*\n(?:.|\n)*branches:\s*\n(?:.|\n)*feat\//.test(workflow));
