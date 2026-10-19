@@ -16,9 +16,10 @@
     "audit:performance": "node tools/performance-budget.mjs",
     "start": "node tools/serve.mjs",
     "start:open": "node tools/serve.mjs",
-    "test": "node --test tests/runtime.test.mjs tests/share-card.test.mjs",
-    "test:browser": "playwright test",
-    "build": "node tools/build.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "playwright test --config=playwright.config.mjs",
+    "build": "node tools/build.mjs",
+    "visual:compare": "node tools/compare-visual.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.1",

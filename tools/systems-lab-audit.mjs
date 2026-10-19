@@ -105,7 +105,7 @@ check("html:external-links", unsafeBlank.length === 0, unsafeBlank.length ? unsa
 
 check("html:no-javascript-hrefs", !/href\s*=\s*["']javascript:/i.test(html));
 
-check("ecosystem:revops-not-public", !/href=["'](?:https:\/\/gracianb\.github\.io\/revops-studio\/|https:\/\/github\.com\/GracianB\/revops-studio)/i.test(html));
+check("ecosystem:revops-public-demo", html.includes("https://gracianb.github.io/revops-studio/demo.html") && html.includes('data-i18n="revopsStatus"'));
 check("ecosystem:private-sources-not-linked", !/href=["']https:\/\/github\.com\/GracianB\/(?:aigoritmo|cutter-studio)/i.test(html));
 check("ecosystem:cutter-private", html.includes("CUTTER STUDIO") && !/href=["\']https:\/\/github\.com\/GracianB\/cutter-studio/i.test(html));
 
@@ -120,6 +120,7 @@ const i18nKeys = [...new Set(i18nKeyMatches)];
 const htmlKeys = [...html.matchAll(/data-i18n(?:-html)?="([^"]+)"/g)].map((m) => m[1]);
 const missingKeys = [...new Set(htmlKeys.filter((key) => !i18nKeys.includes(key)))];
 check("i18n:key-coverage", missingKeys.length === 0, missingKeys.join(", ") || "complete");
+check("i18n:both-locales", /moreTitle:[^\n]+/.test(i18n) && (i18n.match(/moreTitle:/g) || []).length === 2);
 const programmaticKeys = new Set(["htmlLang", "title"]);
 const unusedKeys = i18nKeys.filter((key) => !htmlKeys.includes(key) && !programmaticKeys.has(key));
 check("i18n:no-retired-keys", unusedKeys.length === 0, unusedKeys.join(", ") || "clean");
@@ -170,6 +171,7 @@ check("ci:runs-check", /run:\s*npm run check/.test(workflow));
 check("ci:browser-matrix", /playwright install --with-deps chromium firefox webkit/.test(workflow) && /run:\s*npm run test:browser/.test(workflow));
 check("test:runtime-contract", exists("tests/runtime.test.mjs") && /retains Document receiver/.test(read("tests/runtime.test.mjs")));
 check("test:browser-contract", exists("tests/browser/systems-lab.spec.mjs") && /pageerror/.test(read("tests/browser/systems-lab.spec.mjs")) && /console/.test(read("tests/browser/systems-lab.spec.mjs")));
+check("test:single-playwright-config", exists("playwright.config.mjs") && !exists("playwright.config.js") && pkg.scripts["test:browser"].includes("--config=playwright.config.mjs"));
 check("test:playwright-matrix", exists("playwright.config.mjs") && /Desktop Firefox/.test(read("playwright.config.mjs")) && /Desktop Safari/.test(read("playwright.config.mjs")) && /Pixel 7/.test(read("playwright.config.mjs")));
 
 const sourceExtensions = new Set([".html", ".htm", ".js", ".mjs", ".cjs", ".css", ".json", ".jsonc", ".md", ".txt", ".xml", ".yml", ".yaml", ".svg", ".sh", ".ps1", ".py"]);
