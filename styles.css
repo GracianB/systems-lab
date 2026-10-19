@@ -235,6 +235,8 @@ iframe { border: 0; width: 100%; display: block; }
 .btn-play {
   background: var(--ice); color: var(--accent-ink);
   box-shadow: 0 12px 36px var(--ice-glow);
+  /* Theme switches must not cross a low-contrast intermediate color. */
+  transition: transform .2s var(--ease), box-shadow .25s;
 }
 .btn-ghost {
   background: transparent; color: var(--ink); border-color: var(--line-strong);
