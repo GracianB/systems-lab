@@ -200,6 +200,7 @@ test("P33 intermediate widths have no colliding header navigation", async ({ pag
 });
 
 test("P35 light mode uses a cohesive dark gallery for OHANA and Vórtice", async ({ page }) => {
+  await page.route("https://vortex-gilt-xi.vercel.app/", route => route.fulfill({ contentType: "text/html", body: "<h1>Vórtice test preview</h1>" }));
   await page.goto("/?lang=es&theme=light#juegos");
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   for (const selector of [".feat-ohana", ".vortex-live"]) {
