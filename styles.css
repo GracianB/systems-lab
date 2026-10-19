@@ -775,3 +775,23 @@ body.menu-on { overflow: hidden; }
 .lab-more-card p{margin:15px 0;color:var(--muted);font-size:14px;line-height:1.6}
 .lab-more-card .btn{min-height:44px}
 @media(max-width:640px){.lab-more-grid{grid-template-columns:1fr}.lab-more-card{padding:18px}}
+
+/* P30/3 · Professional proof first, optional simulation second. */
+.cs{padding-block:clamp(36px,5vw,58px)}
+.cs .section-head{max-width:780px}
+.cs-hero{padding:clamp(20px,3vw,32px);max-width:920px;margin-top:22px}
+.cs-hero p{max-width:65ch}
+.cs-hero .btn{display:inline-flex;margin-top:10px}
+.agent-block{display:block;padding:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;scroll-margin-top:calc(var(--header) + 22px)}
+.agent-summary{display:flex;align-items:center;gap:18px;padding:24px;cursor:pointer;list-style:none;background:var(--surface)}
+.agent-summary::-webkit-details-marker{display:none}
+.agent-summary .code{flex:none}
+.agent-summary-main{display:grid;flex:1;gap:6px;min-width:0}
+.agent-summary-main strong{font:500 clamp(22px,3vw,31px)/1.2 var(--display)}
+.agent-summary-main span{color:var(--muted);font-size:13px;line-height:1.5}
+.agent-open{color:var(--ice);font-size:12px;flex:none}
+.agent-block[open] .agent-open{opacity:.65}
+.agent-block>.agent-stage{display:block;max-width:940px;margin:0 auto 10px;grid-column:auto;grid-row:auto}
+.agent-block>.hint{padding:0 24px 16px;font-size:12px}
+.agent-summary:focus-visible{outline:3px solid var(--ice);outline-offset:-4px}
+@media(max-width:640px){.agent-summary{display:grid;gap:10px;padding:18px}.agent-summary .code{font-size:10px}.agent-open{justify-self:start}}
