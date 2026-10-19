@@ -59,7 +59,7 @@ There is no application backend or build framework. The public build copies an e
 
 ### Agent demo and privacy
 
-`bodytone-chatbot/frontend/` simulates shipping, invoice and ticket responses. Files remain on the user's device. It makes no uploads, API calls, real tickets, credential requests or microphone requests. Messages use `textContent`. Language and theme follow the parent page through checked messages.
+`bodytone-chatbot/frontend/` simulates shipping, invoice and ticket responses. It offers no file picker because the demo cannot process attachments. It makes no uploads, API calls, real tickets, credential requests or microphone requests. Messages use `textContent`. Language and theme follow the parent page through checked messages.
 
 The demo shows an interaction pattern. It is not evidence of a deployed AI integration.
 
@@ -136,3 +136,7 @@ Released via [PR #30](https://github.com/GracianB/systems-lab/pull/30). [Post-me
 ## P32 · Structural CSS and CI simplification
 
 Once P30 is published, a small maintenance pass removes stylesheet rules for elements that no longer exist (former rail, feature stats, retired particle overlays, old support pillars and the two-column Vórtice card). Live selectors are preserved, and cross-browser/reduced-motion tests guard the layout. GitHub Actions Quality runs on PRs; on main, the Deploy workflow owns the full Node/browser verification before publishing, avoiding two redundant full browser matrices per production change. Workflow dispatch remains available for manual Quality runs.
+
+## P34 · Simulación sin controles engañosos
+
+The optional sample agent no longer offers a file picker that never performed an action. It shows a clear fictional-data notice in ES/EN, contains only three demonstrable intents (shipping, invoices, tickets), preserves keyboard access and works without network/API permissions. A browser regression test verifies that the frontend never issues XHR/fetch requests when interacting with examples. The sitemap date now records the 19 October 2026 updates.
