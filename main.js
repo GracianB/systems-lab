@@ -81,7 +81,7 @@ function persistURL(key, value) {
     const labelsByLanguage = currentLang === "en"
       ? ["Language", "Theme", "Mobile navigation", "Ecosystem"]
       : ["Idioma", "Tema", "Navegación móvil", "Ecosistema"];
-    $(".topbar-actions .seg").forEach((group, index) =>
+    $$(".topbar-actions .seg").forEach((group, index) =>
       group.setAttribute("aria-label", labelsByLanguage[index]));
     $(".drawer-panel")?.setAttribute("aria-label", labelsByLanguage[2]);
     $(".foot-links")?.setAttribute("aria-label", labelsByLanguage[3]);
