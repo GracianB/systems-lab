@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 for (const width of [320, 390, 768, 1440]) {
-  test(`navigation, themes, language and demo at ${width}px`, async ({ page }) => {
+  test(`navigation, themes, language and demo at ${width}px`, async ({ page, isMobile }) => {
+    test.skip(isMobile && width > 390, "Large desktop widths are covered by desktop browser projects");
     await page.setViewportSize({ width, height: 900 });
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));

@@ -5,14 +5,19 @@ function strictConsole(page) {
   const failures = [];
   page.on("pageerror", (error) => failures.push("pageerror: " + error.message));
   page.on("console", (message) => {
-    if (message.type() === "error" || message.type() === "warning") {
-      failures.push(message.type() + ": " + message.text());
+    const text = message.text();
+    const benignFirefoxLayoutNotice = message.type() === "warning"
+      && text.includes("JavaScript Warning:")
+      && text.includes("Layout was forced before the page was fully loaded.")
+      && text.includes("line: 0");
+    if ((message.type() === "error" || message.type() === "warning") && !benignFirefoxLayoutNotice) {
+      failures.push(message.type() + ": " + text);
     }
   });
   return () => expect(failures, failures.join("\n")).toEqual([]);
 }
 
-test("Aigoritmo shows four peers, translated scope and an explicit local launch", async ({ page }) => {
+test("Aigoritmo shows four peers, translated scope and no public localhost launch", async ({ page }) => {
   const assertClean = strictConsole(page);
   await page.goto("/?lang=es#aigoritmo");
   const showcase = page.locator("#aigoritmo");
