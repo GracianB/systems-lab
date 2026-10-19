@@ -123,7 +123,7 @@ There were broken runs, protection rules, a local checkout that lost its `.git` 
 
 **That is the part of V5 worth remembering. ❤️**
 
-## P30 · Five-phase reconstruction (review branch)
+## P30 · Five-phase reconstruction (released 19 October 2026)
 
 1. One compact explorer replaces the duplicated hero rail and KPI pills.
 2. OHANA and Vórtice have distinct entry points; the RevOps sample demo is public, Cutter remains private and Aigoritmo does not direct strangers to localhost.
@@ -131,4 +131,4 @@ There were broken runs, protection rules, a local checkout that lost its `.git` 
 4. Retired network canvas code and unused translation keys are removed, and the cover field is static on mobile/reduced motion.
 5. One Playwright config tests the production build; an independent GitHub Actions comparison captures **before (PR base)** and **after (PR head)** screenshots at mobile/desktop widths, both languages and themes. Its HTML report is an artifact for human visual review, not an automated artistic approval or Core Web Vitals measurement.
 
-See [P30 design and release criteria](docs/P30_FIVE_PHASES.md). No PR is published until CI, screenshots and the merge/deploy gates are reviewed.
+Released via [PR #30](https://github.com/GracianB/systems-lab/pull/30). [Post-merge Quality](https://github.com/GracianB/systems-lab/actions/runs/39187168311) and [GitHub Pages Deploy](https://github.com/GracianB/systems-lab/actions/runs/39187168328) both succeeded. See [P30 design criteria](docs/P30_FIVE_PHASES.md) and the [verified release record](RELEASE_CERTIFICATE.md). A separate external HTTP/browser smoke of the public URL was not performed from the review environment.
