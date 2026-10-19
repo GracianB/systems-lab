@@ -649,7 +649,8 @@ body.menu-on { overflow: hidden; }
 .feat-ohana .feat-bar{display:none}
 .feat-ohana{column-gap:clamp(20px,3.1vw,42px)}
 .feat-ohana .feat-stage{
-  border:0; margin:0; min-width:0; overflow:hidden;
+  width:100%; height:auto; min-width:0; min-height:0;
+  aspect-ratio:8/5; border:0; margin:0; overflow:hidden;
   border-radius:13px; background:var(--surface2);
   box-shadow:none; isolation:isolate;
 }
@@ -658,7 +659,7 @@ body.menu-on { overflow: hidden; }
   object-fit:cover; object-position:50% 50%;
   /* The source screenshot includes empty black side bands: crop them,
      preserving the entire card's image aspect ratio without stretching. */
-  transform:scale(1.28); transform-origin:center center;
+  transform:scale(1.10); transform-origin:center center;
 }
 .feat-ohana .stage-live{top:14px;left:14px}
 .feat-ohana .feat-cta{display:inline-flex;align-items:center;gap:12px;font-size:13px}
@@ -669,7 +670,7 @@ body.menu-on { overflow: hidden; }
 .vortex-window{background:var(--surface2);min-width:0}
 .vortex-window>.vortex-poster{
   width:100%;height:100%;min-height:100%;max-width:none;
-  aspect-ratio:auto;object-fit:cover;object-position:50% 50%;
+  aspect-ratio:auto;object-fit:contain;object-position:50% 50%;
 }
 .vortex-window>.vortex-poster-light{display:none}
 [data-theme="light"] .vortex-window>.vortex-poster-dark{display:none}
@@ -736,13 +737,13 @@ body.menu-on { overflow: hidden; }
     grid-template-columns:minmax(0,1.65fr) minmax(0,.8fr);
     padding:clamp(20px,2.6vw,30px);
   }
-  .feat-ohana .feat-stage{height:clamp(320px,31vw,420px);min-height:320px}
+  .feat-ohana .feat-stage{width:100%;height:auto;min-height:0;aspect-ratio:8/5}
 }
 @media(max-width:850px){
   .cover-atlas{min-height:410px}
   .cover-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   .cover-node{min-height:108px}
-  .feat-ohana .feat-stage{height:auto;min-height:0;aspect-ratio:16/10}
+  .feat-ohana .feat-stage{width:100%;height:auto;min-height:0;aspect-ratio:8/5}
   .vortex-window{aspect-ratio:1200/630}
   [data-theme="light"] .vortex-window{border-left:0;border-top:1px solid #e0e9ed}
 }
@@ -751,7 +752,7 @@ body.menu-on { overflow: hidden; }
   .cover-links{left:9px;right:9px;bottom:9px}
   .cover-node{padding:12px 10px;min-height:108px}
   .cover-node strong{font-size:22px}
-  .feat-ohana .feat-stage{aspect-ratio:1.65}
+  .feat-ohana .feat-stage{aspect-ratio:8/5}
   .vortex-window{min-height:0}
 }
 @media(prefers-reduced-motion:reduce){

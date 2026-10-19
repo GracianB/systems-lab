@@ -213,6 +213,17 @@ test("P37 themes use native light and dark art, without artificial dark cards", 
   }));
   expect(framing.fit).toBe("cover");
   expect(framing.scale).not.toBe("none");
+  const placement = await page.locator(".feat-ohana").evaluate(card => {
+    const stage = card.querySelector(".feat-stage").getBoundingClientRect();
+    const heading = card.querySelector("h3").getBoundingClientRect();
+    const image = card.querySelector(".feat-stage img").getBoundingClientRect();
+    return {stageRight:stage.right,headingLeft:heading.left,
+      aspect:stage.width/stage.height, imgHeight:image.height};
+  });
+  expect(placement.stageRight).toBeLessThan(placement.headingLeft);
+  expect(placement.aspect).toBeGreaterThan(1.58);
+  expect(placement.aspect).toBeLessThan(1.62);
+  expect(placement.imgHeight).toBeGreaterThan(300);
   await page.locator("[data-vortex-start]").click();
   await expect(page.locator("#vortex-window iframe")).toHaveCount(1);
   await page.locator("[data-vortex-stop]").click();
@@ -238,7 +249,7 @@ test("P37 mobile/tablet have no overflow and enough visible cover field", async 
     });
     expect(state.overflow,"overflow at "+width).toBe(false);
     expect(state.freeTop,"visible field at "+width).toBeGreaterThan(145);
-    expect(state.ohanaHeight).toBeGreaterThan(width<851?155:310);
+    expect(state.ohanaHeight).toBeGreaterThan(width<851?155:280);
     expect(state.vortexWidth).toBeGreaterThan(200);
   }
 });
