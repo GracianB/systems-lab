@@ -1,11 +1,14 @@
 window.LAB_I18N = {
   es: {
-    fieldHint: "Mueve el cursor. Deja una señal.",
+    fieldHint: "Cuatro puertas. Una experiencia.",
+    vxCoverShort: "Un campo que responde",
+    aiCoverShort: "Cuatro identidades de IA",
+    opsCoverShort: "Sistemas para personas",
     coverOhana: "Juego · evolución · CI",
     coverPlay: "Juega.",
-    coverField: "Siente.",
+    coverField: "Experimenta.",
     coverAI: "Conversa.",
-    coverOps: "Conecta.",
+    coverOps: "Resuelve.",
 
     projectArtwork: "ARTE DEL PROYECTO",
     projectCapture: "CAPTURA REAL",

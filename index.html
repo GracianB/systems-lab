@@ -29,7 +29,7 @@
   <meta name="twitter:image" content="https://gracianb.github.io/systems-lab/og-cover.png?v=1">
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-src 'self' https://vortex-gilt-xi.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="stylesheet" href="./styles.css?v=lab-v48">
+  <link rel="stylesheet" href="./styles.css?v=lab-p30">
   <link rel="preload" href="./boot.js?v=lab-v5" as="script">
   <script src="./boot.js?v=lab-v5"></script>
   <script src="./i18n.js?v=lab-v48"></script>
@@ -79,74 +79,24 @@
 
   <main id="main" class="shell">
 
-    <section class="hero" id="inicio">
+    <section class="hero" id="inicio" aria-labelledby="lab-title">
       <div class="hero-frame">
-        <div class="cover-atlas" id="cover-atlas">
-          <canvas id="lab-field" aria-hidden="true"></canvas>
-          <div class="field-caption"><span>GB / SYSTEMS LAB</span><span data-i18n="fieldHint">Mueve el cursor. Deja una señal.</span></div>
-          <div class="cover-links">
-            <a class="cover-node node-play" href="#juegos"><span>01 / OHANA</span><strong data-i18n="coverPlay">Juega.</strong><b aria-hidden="true">↗</b></a>
-            <a class="cover-node node-field" href="#vortex-live"><span>02 / VØRTICE</span><strong data-i18n="coverField">Siente.</strong><b aria-hidden="true">↗</b></a>
-            <a class="cover-node node-ai" href="#aigoritmo"><span>03 / AIGORITMO</span><strong data-i18n="coverAI">Conversa.</strong><b aria-hidden="true">↗</b></a>
-            <a class="cover-node node-ops" href="#cs"><span>04 / CUSTOMER OPS</span><strong data-i18n="coverOps">Conecta.</strong><b aria-hidden="true">↗</b></a>
-          </div>
-        </div>
         <div class="hero-content">
-        <div class="hero-meta-row">
-          <span class="pulse-dot" aria-hidden="true"></span>
           <p class="eyebrow" data-i18n="eyebrow">SYSTEMS LAB · BUILD / PLAY / PROVE</p>
+          <h1 id="lab-title" data-i18n-html="h1">Las ideas,<br><em>en acción.</em></h1>
+          <p class="lead" data-i18n="lead">Juegos, IA y herramientas que puedes explorar. Elige una experiencia y entra directamente.</p>
         </div>
-        <h1 data-i18n-html="h1">Las ideas,<br><em>en acción.</em></h1>
-        <p class="lead" data-i18n="lead">Construyo sistemas que conectan personas, datos y acción. Explora juegos, operaciones de cliente y experiencias de IA en el navegador.</p>
-        <div class="actions">
-          <a class="btn btn-play" href="#cover-atlas" data-i18n="ctaPlay">Elige tu universo ↗</a>
-          <a class="btn btn-ghost" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener" data-i18n="ctaLive">Help Center live →</a>
-        </div>
-        <div class="pills">
-          <span class="pill live"><i></i> <span data-i18n="pill1">2 experiencias interactivas</span></span>
-          <span class="pill live"><i></i> <span data-i18n="pill2">1 Help Center en producción</span></span>
-          <span class="pill" data-i18n="pill3">1 ejemplo de agente</span>
-          <span class="pill" data-i18n="aiRail">4 presencias · app local</span>
-        </div>
-        <div class="hero-signal" role="status" aria-label="Estado del laboratorio">
-          <div class="signal-main"><span class="signal-live" aria-hidden="true"></span><span data-i18n="signalTitle">SYSTEMS LAB</span></div>
-          <div class="signal-detail" data-i18n="signalDesc">Personas × datos × sistemas</div>
-          <span class="signal-clock" aria-hidden="true"></span>
-        </div>
-        </div>
+        <nav class="cover-atlas" id="cover-atlas" aria-label="Explorador de experiencias">
+          <canvas id="lab-field" aria-hidden="true"></canvas>
+          <div class="field-caption" aria-hidden="true"><span>GB / SYSTEMS LAB</span><span data-i18n="fieldHint">Cuatro puertas. Una experiencia.</span></div>
+          <div class="cover-links">
+            <a class="cover-node node-play" href="#juegos"><span>01 / OHANA</span><strong data-i18n="coverPlay">Juega.</strong><small data-i18n="coverOhana">Un mundo para explorar</small><b aria-hidden="true">↗</b></a>
+            <a class="cover-node node-field" href="#vortex-live"><span>02 / VÓRTICE</span><strong data-i18n="coverField">Experimenta.</strong><small data-i18n="vxCoverShort">Un campo que responde</small><b aria-hidden="true">↗</b></a>
+            <a class="cover-node node-ai" href="#aigoritmo"><span>03 / AIGORITMO</span><strong data-i18n="coverAI">Conversa.</strong><small data-i18n="aiCoverShort">Cuatro identidades de IA</small><b aria-hidden="true">↗</b></a>
+            <a class="cover-node node-ops" href="#cs"><span>04 / CUSTOMER OPS</span><strong data-i18n="coverOps">Resuelve.</strong><small data-i18n="opsCoverShort">Sistemas para personas</small><b aria-hidden="true">↗</b></a>
+          </div>
+        </nav>
       </div>
-      <aside class="hero-rail" aria-label="Proyectos seleccionados">
-        <a class="rail-card" href="#aigoritmo"><span class="rail-code">AI</span><b>AIGORITMO</b><small data-i18n="aiRail">4 presencias · app local</small></a>
-        <a class="rail-card" href="https://gracianb.github.io/project-ohana/" rel="noopener">
-          <span class="rail-code">01</span>
-          <b>OHANA</b>
-          <small data-i18n="coverOhana">Juego · evolución · CI</small>
-        </a>
-        <a class="rail-card" href="https://vortex-gilt-xi.vercel.app/" target="_blank" rel="noopener">
-          <span class="rail-code">02</span>
-          <b>VÓRTICE</b>
-          <small>webgl · live</small>
-        </a>
-        <a class="rail-card rail-live" href="https://bodytonehelp.zendesk.com/hc/es" target="_blank" rel="noopener">
-          <span class="rail-code">CS</span>
-          <b>BODYTONE</b>
-          <small>zendesk · prod</small>
-        </a>
-        <article class="rail-card rail-building">
-          <span class="rail-code">03</span>
-          <b>REVOPS</b>
-          <span class="rail-status" data-i18n="building">EN CONSTRUCCIÓN</span>
-          <small data-i18n="revopsFlow">Datos → decisiones → acción</small>
-          <p data-i18n="revopsDesc">Proyecto en desarrollo. Esta ficha no ofrece todavía una demo pública.</p>
-        </article>
-        <article class="rail-card rail-building">
-          <span class="rail-code">04</span>
-          <b>CUTTER / CONTENT ENGINE</b>
-          <span class="rail-status" data-i18n="building">EN CONSTRUCCIÓN</span>
-          <small data-i18n="contentFlow">Vídeo → clips → exportación local</small>
-          <p data-i18n="contentDesc">Herramienta local en desarrollo para editar, subtitular y exportar clips. La publicación automática no está disponible.</p>
-        </article>
-      </aside>
     </section>
 
     <section class="play" id="juegos">
