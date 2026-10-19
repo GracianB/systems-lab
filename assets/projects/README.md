@@ -1,8 +1,10 @@
-# Project preview sources
+# Recursos visuales publicados
 
-- `ohana.webp`: capture of the public OHANA introduction, https://gracianb.github.io/project-ohana/, captured 2026-10-14. Shows all ten characters. Compressed to WebP.
-- `vortex.webp`: official project artwork from `GracianB/vortex/public/og.jpg` on main, retrieved 2026-10-14. This is labelled project artwork, not a gameplay capture.
+- `ohana.webp`: captura real de la portada de OHANA (1280 × 880). Se muestra **entera, sin zoom ni recorte** mediante relación nativa 16:11. Incluye los diez personajes.
+- `vortex-cover.svg`: ilustración editorial oscura propia, no captura del canvas.
+- `vortex-cover-light.svg`: ilustración editorial clara propia, seleccionada por el tema de Systems Lab.
+- `customer-ops.svg`: ilustración editorial de flujos de soporte, exclusiva del README. No son datos reales de tickets.
 
-Both previews load lazily. The Vortex iframe is created only by the Start demo button and removed by Stop demo. The public external link remains available without JavaScript and if embedding or WebGL is unavailable.
-- `vortex-cover-light.svg`: bespoke pale editorial counterpart for light mode; its dark equivalent stays unchanged. Both are design artworks, not live screenshots. Switched by CSS on the document's explicit theme.
-- OHANA's original screenshot remains unedited. The larger image stage crops its empty black side bands without distortion.
+Los dos pósteres de Vórtice no prueban disponibilidad de WebGL. La demo real se carga **solo** después de pulsar «Activar demo»; puede abrirse en pestaña independiente cuando el iframe esté bloqueado.
+
+La web copia únicamente los recursos previstos en `tools/build.mjs`. Antes de añadir un archivo nuevo, comprobar peso, derechos de uso, texto alternativo y si es realmente necesario para el producto público.
