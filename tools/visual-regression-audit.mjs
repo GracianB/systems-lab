@@ -30,7 +30,7 @@ check("surface:cards", /\.feat/.test(css) && /\.cover-node/.test(css) && /\.lab-
 check("surface:agent", /\.agent-block/.test(css));
 check("interaction:focus", /:focus-visible/.test(css));
 check("interaction:drawer", /\.drawer-panel/.test(css));
-console.log("SYSTEMS LAB — VISUAL REGRESSION CONTRACT");
+console.log("SYSTEMS LAB — VISUAL SOURCE CONTRACT (pixel screenshots compared separately in P30 CI)");
 for (const label of checks) console.log("PASS", label);
 console.log("RESULT");
 console.log("PASS:", checks.length);

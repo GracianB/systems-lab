@@ -34,3 +34,40 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 7
+
+  visual-review:
+    name: Before / after screenshot review
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: comparison-base
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - name: Build base commit
+        working-directory: comparison-base
+        run: node tools/build.mjs
+      - name: Start both build servers
+        run: |
+          PORT=4174 SITE_ROOT=dist node comparison-base/tools/serve.mjs > /tmp/p30-base.log 2>&1 &
+          PORT=4175 SITE_ROOT=dist node tools/serve.mjs > /tmp/p30-head.log 2>&1 &
+      - name: Capture before / after screenshots
+        env:
+          VISUAL_BASE_URL: http://127.0.0.1:4174
+          VISUAL_HEAD_URL: http://127.0.0.1:4175
+        run: npm run visual:compare
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p30-visual-review
+          path: visual-results/
+          retention-days: 14
