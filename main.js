@@ -66,9 +66,9 @@ function persistURL(key, value) {
   }
   // The click is the explicit user intent; load immediately instead of relying
   // exclusively on a delayed toggle event in a busy Firefox/WebKit process.
-  agentDisclosure?.addEventListener("click", (event) => {
-    if (!agentDisclosure.open && event.target instanceof Element
-        && event.target.closest("summary")) loadAgentFrame();
+  const agentSummary = agentDisclosure?.querySelector("summary");
+  agentSummary?.addEventListener("click", () => {
+    if (!agentDisclosure.open) loadAgentFrame();
   });
   agentDisclosure?.addEventListener("toggle", openAgent);
   // A direct /#agente link is an intentional request to open this optional demo.

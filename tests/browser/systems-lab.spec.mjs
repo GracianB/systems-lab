@@ -243,3 +243,19 @@ test("P35 narrow light mode preserves stacked playable previews and contrast", a
   expect(result.previewInside).toBe(true);
   expect(result.ohanaBg).toBe(result.vortexBg);
 });
+
+test("P35 agent disclosure loads its iframe on direct mouse and keyboard activation", async ({ page }) => {
+  await page.goto("/?lang=en");
+  const summary = page.locator("#agente summary");
+  const frame = page.locator("#agente iframe");
+  await expect(frame).toHaveAttribute("data-src", /embed=1/);
+  await summary.click();
+  await expect(frame).toHaveAttribute("src", /embed=1/, { timeout: 5000 });
+  await expect(page.frameLocator("#agente iframe").locator("#disclaimer")).toContainText("fictional");
+  await summary.click();
+  await expect(page.locator("#agente")).not.toHaveAttribute("open", "");
+  await summary.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("#agente")).toHaveAttribute("open", "");
+  await expect(frame).toHaveAttribute("src", /embed=1/);
+});
