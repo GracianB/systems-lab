@@ -59,7 +59,7 @@ There is no application backend or build framework. The public build copies an e
 
 ### Agent demo and privacy
 
-`bodytone-chatbot/frontend/` simulates shipping, invoice and ticket responses. It offers no file picker because the demo cannot process attachments. It makes no uploads, API calls, real tickets, credential requests or microphone requests. Messages use `textContent`. Language and theme follow the parent page through checked messages.
+`bodytone-chatbot/frontend/` simulates shipping, invoice and ticket responses. Files remain on the user's device. It makes no uploads, API calls, real tickets, credential requests or microphone requests. Messages use `textContent`. Language and theme follow the parent page through checked messages.
 
 The demo shows an interaction pattern. It is not evidence of a deployed AI integration.
 
@@ -136,6 +136,10 @@ Released via [PR #30](https://github.com/GracianB/systems-lab/pull/30). [Post-me
 ## P32 · Structural CSS and CI simplification
 
 Once P30 is published, a small maintenance pass removes stylesheet rules for elements that no longer exist (former rail, feature stats, retired particle overlays, old support pillars and the two-column Vórtice card). Live selectors are preserved, and cross-browser/reduced-motion tests guard the layout. GitHub Actions Quality runs on PRs; on main, the Deploy workflow owns the full Node/browser verification before publishing, avoiding two redundant full browser matrices per production change. Workflow dispatch remains available for manual Quality runs.
+
+## P33 · Direct navigation and accurate discoverability
+
+Navigation mirrors the four experiences in the homepage explorer, with one Hub link rather than a list of repeated external destinations in the mobile drawer. Direct `#agente` deep links open the optional simulated-agent disclosure (ordinary visits still leave it closed). The public metadata no longer describes Systems Lab as a hosted Aigoritmo chatbot; ES/EN controls have localized accessible names. Cross-browser tests cover navigation, deep-linking, and metadata.
 
 ## P34 · Simulación sin controles engañosos
 
