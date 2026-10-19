@@ -175,3 +175,26 @@ test("P33 metadata describes public destinations accurately and controls localiz
   await expect(page.locator(".drawer-panel")).toHaveAttribute("aria-label", "Mobile navigation");
   await expect(page.locator(".cover-node.node-ai strong")).toHaveText("Discover.");
 });
+
+test("P33 intermediate widths have no colliding header navigation", async ({ page }) => {
+  await page.goto("/?lang=es");
+  for (const width of [900, 1024, 1152, 1199, 1200, 1440]) {
+    await page.setViewportSize({width, height:900});
+    const state = await page.evaluate(() => {
+      const nav = document.querySelector(".nav");
+      const menu = document.querySelector("[data-menu-toggle]");
+      const actions = document.querySelector(".topbar-actions").getBoundingClientRect();
+      const navVisible = getComputedStyle(nav).display !== "none";
+      const menuVisible = getComputedStyle(menu).display !== "none";
+      return {
+        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+        navVisible, menuVisible,
+        collision: navVisible && nav.getBoundingClientRect().right > actions.left - 4
+      };
+    });
+    expect(state.overflow, "horizontal overflow at " + width).toBe(false);
+    expect(state.collision, "header collision at " + width).toBe(false);
+    expect(state.navVisible, "desktop nav at " + width).toBe(width >= 1200);
+    expect(state.menuVisible, "menu availability at " + width).toBe(width < 1200);
+  }
+});

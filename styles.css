@@ -632,3 +632,10 @@ body.menu-on { overflow: hidden; }
 .feat-ohana p{grid-column:2;grid-row:3}
 .feat-ohana .feat-cta{grid-column:2;grid-row:4;align-self:end}
 }
+
+/* P33 · Use the accessible drawer on compact laptops instead of squeezing
+   five destinations into the header between 900 and 1199 px. */
+@media (min-width:900px) and (max-width:1199px) {
+  .nav { display:none; }
+  .menu-toggle { display:inline-flex; }
+}
