@@ -6,7 +6,7 @@ const root=process.cwd();
 const doc=fs.readFileSync('README.md','utf8');
 test('README is a concise front page with real entry points and accurate product status',()=>{
   assert.ok(doc.length<7000,'Readme became a changelog');
-  for(const pathName of ['assets/readme-cover.svg','assets/projects/ohana.webp','assets/projects/vortex-cover-light.svg','assets/projects/customer-ops.svg','assets/aigoritmo/arcana-poster.jpg','assets/aigoritmo/qwen-poster.jpg','docs/ARCHITECTURE.md','docs/QUALITY_AND_BOUNDARIES.md','docs/RELEASES.md','docs/GITHUB_CONFIGURATION.md']){
+  for(const pathName of ['assets/readme-cover.svg','assets/projects/ohana.webp','assets/projects/vortex-readme-dark.svg','assets/projects/customer-ops.svg','assets/aigoritmo/arcana-poster.jpg','assets/aigoritmo/qwen-poster.jpg','docs/ARCHITECTURE.md','docs/QUALITY_AND_BOUNDARIES.md','docs/RELEASES.md','docs/GITHUB_CONFIGURATION.md']){
     assert.ok(fs.existsSync(path.join(root,pathName)), 'Missing README asset/link: '+pathName);
   }
   assert.match(doc,/privada y local/);
@@ -33,5 +33,19 @@ test('README gallery renders valid HTML and references existing artwork',()=>{
     if(src && src.startsWith('./')){
       assert.ok(fs.existsSync(path.join(root,src.slice(2))),'Missing local image: '+src);
     }
+  }
+});
+
+test('README uses dark showcase art for Vórtice and Customer Ops',()=>{
+  assert.match(doc,/assets\/projects\/vortex-readme-dark\.svg/);
+  assert.match(doc,/assets\/projects\/customer-ops\.svg/);
+  assert.doesNotMatch(doc,/vortex-cover-light\.svg/,'The README must use the dark Vórtice edition');
+  for(const name of ['vortex-readme-dark.svg','customer-ops.svg']){
+    const art=fs.readFileSync(path.join(root,'assets/projects',name),'utf8');
+    assert.match(art,/<svg\b/);
+    assert.match(art,/<title\b[^>]*>/);
+    assert.match(art,/<desc\b[^>]*>/);
+    assert.match(art,/#0[0-9a-f]{5}/i,'Dark ink should be present in both covers');
+    assert.doesNotMatch(art,/<script\b|<foreignObject\b|<image\b/i,'README SVGs must be standalone, script-free vectors');
   }
 });
