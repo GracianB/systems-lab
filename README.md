@@ -148,3 +148,7 @@ The optional sample agent no longer offers a file picker that never performed an
 ## P35 · Tema claro, proyectos con identidad coherente
 
 En el modo claro, el fondo general sigue siendo claro, pero las dos experiencias OHANA y Vórtice comparten una galería contenida de tonos petróleo, tipografía marfil, acentos cian y bordes discretos. Esto integra sus imágenes originales, muy oscuras, sin alterarlas ni inventar una versión clara de los juegos. El modo oscuro permanece intacto. Playwright verifica ambas tarjetas, el flujo de activación/detención de Vórtice, el cambio de tema y el layout móvil. Las ocho comparativas generales de P30 siguen disponibles en la PR.
+
+## P36 · 404 y rutas públicas
+
+La página 404 usa ahora la misma identidad y paleta petróleo/azul hielo del laboratorio, con preferencia clara/oscura del sistema. Es autocontenida, no carga Google Fonts ni JavaScript, expone un mensaje corto en español e inglés y dirige al visitante mediante una URL absoluta a la raíz real del laboratorio, incluso desde rutas anidadas. Los tests nuevos comprueban enlaces internos, recursos locales, rutas 404 reales, ausencia de peticiones externas, diseño responsivo y accesibilidad AA.
