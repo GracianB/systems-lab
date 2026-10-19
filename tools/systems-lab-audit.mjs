@@ -60,6 +60,7 @@ for (const name of required) {
 
 const html = read("index.html");
 const main = read("main.js");
+const cover = read("cover-canvas.js");
 const i18n = read("i18n.js");
 const css = read("styles.css");
 const sitemap = read("sitemap.xml");
@@ -106,8 +107,12 @@ check("html:no-javascript-hrefs", !/href\s*=\s*["']javascript:/i.test(html));
 
 check("ecosystem:revops-not-public", !/href=["'](?:https:\/\/gracianb\.github\.io\/revops-studio\/|https:\/\/github\.com\/GracianB\/revops-studio)/i.test(html));
 check("ecosystem:private-sources-not-linked", !/href=["']https:\/\/github\.com\/GracianB\/(?:aigoritmo|cutter-studio)/i.test(html));
-check("ecosystem:cutter-roadmap-not-public-launch", html.includes("CUTTER / CONTENT ENGINE") && /<article class="rail-card rail-building">[\s\S]*?CUTTER \/ CONTENT ENGINE/.test(html));
+check("ecosystem:cutter-private", html.includes("CUTTER STUDIO") && !/href=["\']https:\/\/github\.com\/GracianB\/cutter-studio/i.test(html));
 
+check("html:single-explorer", (html.match(/class="cover-links"/g) || []).length === 1 && !html.includes("hero-rail") && !html.includes("class=\"pills\""));
+check("html:no-localhost-cta", !/href=["\']http:\/\/127\.0\.0\.1/.test(html));
+check("js:no-retired-canvas", !main.includes(".fx-net") && !main.includes("PLAY MAX PASS"));
+check("canvas:static-mobile", /window\.innerWidth < 768/.test(cover) && /isStatic\(\)/.test(cover));
 check("html:intro-single-owner", !/setTimeout\(function \(\) \{ document\.documentElement\.classList\.add\("intro-done"\)/.test(html));
 
 const i18nKeyMatches = [...i18n.matchAll(/^\s{4}([A-Za-z0-9_]+):/gm)].map((m) => m[1]);
@@ -130,8 +135,8 @@ check("js:active-location", /aria-current\", \"location\"/.test(main));
 check("js:menu-escape", count(main, /e\.key === "Escape"/g) === 1);
 check("js:menu-focus-return", /menuReturnFocus/.test(main) && /target\?\.focus\(\)/.test(main));
 check("js:menu-focus-trap", /e\.key === "Tab"/.test(main) && /focusable = \[\.\.\.drawer\.querySelectorAll/.test(main));
-check("js:canvas-visibility", /document\.addEventListener\("visibilitychange"/.test(main) && /!running \|\| document\.hidden/.test(main));
-check("js:canvas-cancel", /window\.cancelAnimationFrame\(id\)/.test(main));
+check("js:canvas-visibility", /document\.addEventListener\(\x27visibilitychange\x27/.test(cover) && /document\.hidden/.test(cover));
+check("js:canvas-cancel", /cancelAnimationFrame\(frame\)/.test(cover));
 check("js:no-exposed-integrations", !/LAB_(?:GAS|ZENDESK)|script\.google\.com\/macros/i.test(main));
 check("js:no-retired-demo-selectors", !/q-name|out-find|q-seg|out-mail|q-machine|q-kind|out-mant|data-run=/i.test(main));
 check("js:view-transition-bound", /document\.startViewTransition\(\(\) => applyTheme\(\)\)/.test(main));

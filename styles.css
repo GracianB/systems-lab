@@ -645,9 +645,9 @@ body.menu-on { overflow: hidden; }
 .foot-links a { min-height: 44px; display: inline-flex; align-items: center; }
 .fx { opacity: .28; }
 .fx-scan, .fx-noise, .fx-orb, .spotlight { display: none; }
-.fx-net { width: 100%; height: 100%; }
-.scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 90; pointer-events: none; }
-.scroll-progress i { display: block; width: var(--sp, 0%); height: 100%; background: var(--ice); }
+
+
+
 @media (min-width: 900px) {
   .hero { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 24px; }
   .hero-rail { grid-template-columns: 1fr; }
