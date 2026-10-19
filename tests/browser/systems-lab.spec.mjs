@@ -9,7 +9,7 @@ function strictConsole(page) {
     const benignFirefoxLayoutNotice = message.type() === "warning"
       && text.includes("JavaScript Warning:")
       && text.includes("Layout was forced before the page was fully loaded.")
-      && text.includes("line: 0");
+      && (text.includes("line: 0") || text.includes('file: "debugger eval code"'));
     if ((message.type() === "error" || message.type() === "warning") && !benignFirefoxLayoutNotice) {
       failures.push(message.type() + ": " + text);
     }

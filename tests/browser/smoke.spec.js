@@ -10,7 +10,7 @@ for (const width of [320, 390, 768, 1440]) {
       const text = m.text();
       // Firefox's lazy-frame renderer emits this internal line-0 diagnostic;
       // application warnings and all console/runtime errors remain failures.
-      const frameNotice = m.type() === 'warning' && text.includes('JavaScript Warning:') && text.includes('Layout was forced before the page was fully loaded.') && text.includes('line: 0');
+      const frameNotice = m.type() === 'warning' && text.includes('JavaScript Warning:') && text.includes('Layout was forced before the page was fully loaded.') && (text.includes('line: 0') || text.includes('file: "debugger eval code"'));
       if (['warning', 'error'].includes(m.type()) && !frameNotice) errors.push(text);
     });
     page.on('response', r => { if (r.url().startsWith('http://127.0.0.1') && r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
