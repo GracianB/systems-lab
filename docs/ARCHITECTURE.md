@@ -1,0 +1,34 @@
+# Arquitectura y estructura del repositorio
+
+**Regla:** el código estático público vive aquí; los motores de OHANA, Vórtice y Aigoritmo pertenecen a sus proyectos independientes.
+
+```text
+systems-lab/
+├── index.html, 404.html            # documentos publicados
+├── main.js, boot.js, i18n.js       # navegación, temas e idiomas
+├── cover-canvas.js, styles.css     # campo visual y diseño
+├── assets/
+│   ├── readme-cover.svg           # banner exclusivo del repositorio
+│   ├── projects/                  # previews OHANA + Vórtice, claro/oscuro
+│   └── aigoritmo/                 # cuatro imágenes aprobadas, sin backend
+├── bodytone-chatbot/frontend/      # simulación estática y explícitamente ficticia
+├── tests/                         # contratos Node + navegadores Playwright
+├── tools/                         # auditorías, servidor de pruebas, build
+├── docs/                          # contexto técnico, decisiones, releases
+└── .github/workflows/             # PR Quality + Deploy sobre main
+```
+
+### Flujo reproducible
+
+`npm ci` → `npm run check` → `npm run test:browser` → `npm run build`.
+
+- `tools/build.mjs` publica solo una lista explícita de archivos en `dist/`. No se copia ninguna carpeta privada.
+- `playwright.config.mjs` es la única configuración de navegador. Los tests comparan interacciones, accesibilidad, errores, recursos, responsive y preferencias.
+- El workflow **Quality** comprueba PRs y genera comparativas visuales antes/después; el workflow **Deploy** vuelve a validar `main` y publica el artefacto.
+- El campo `cover-canvas.js` se detiene con movimiento reducido, en móviles y cuando la pestaña está oculta. Vórtice se inserta en iframe solo al pulsar «Activar demo».
+
+### Política de organización
+
+Las páginas y recursos referenciados por `index.html` se quedan en su ruta pública para **no romper URLs ya indexadas ni el build**. Los documentos de ingeniería y los historiales no van a la portada; están bajo `docs/`. No se reorganizan rutas de producción únicamente para que el árbol parezca más elegante.
+
+Los cambios en motores externos se prueban y publican en sus respectivos repositorios, no copiando su código dentro de este.
