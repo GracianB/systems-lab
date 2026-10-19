@@ -138,3 +138,63 @@ test("P30 optional agent iframe loads only after explicit disclosure", async ({ 
   await expect(frame).toHaveAttribute("src", /embed=1/);
   await expect(page.frameLocator("#agente iframe").locator("#disclaimer")).toContainText("fictional");
 });
+
+test("P33 header and mobile menu mirror four experiences without duplicate external links", async ({ page }) => {
+  await page.goto("/?lang=es");
+  const internal = ["#juegos", "#vortex-live", "#aigoritmo", "#cs"];
+  expect(await page.locator(".nav a[href^='#']").evaluateAll(els => els.map(a => a.getAttribute("href")))).toEqual(internal);
+  const mobileLinks = await page.locator("#drawer a").evaluateAll(els => els.map(a => a.getAttribute("href")));
+  expect(mobileLinks.slice(0,4)).toEqual(internal);
+  expect(mobileLinks).toHaveLength(5);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator("[data-menu-toggle]").click();
+  await expect(page.locator("#drawer a[href='#vortex-live']")).toBeVisible();
+  await page.locator("#drawer a[href='#vortex-live']").click();
+  await expect(page).toHaveURL(/#vortex-live$/);
+  await expect(page.locator("#drawer")).toBeHidden();
+});
+
+test("P33 direct agent deep-link opens optional demo, ordinary visits remain closed", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("#agente")).not.toHaveAttribute("open", "");
+  await expect(page.locator("#agente iframe")).not.toHaveAttribute("src", /embed=1/);
+  await page.goto("/?lang=en#agente");
+  await expect(page.locator("#agente")).toHaveAttribute("open", "");
+  await expect(page.locator("#agente iframe")).toHaveAttribute("src", /embed=1/);
+  await expect(page.frameLocator("#agente iframe").locator("#disclaimer")).toContainText("fictional");
+});
+
+test("P33 metadata describes public destinations accurately and controls localize", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /OHANA.*Vórtice.*Aigoritmo/);
+  await expect(page.locator('meta[property="og:description"]')).not.toHaveAttribute("content", /cuatro presencias en una aplicación local/);
+  await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", "Systems Lab | Gracián Baena");
+  await expect(page.locator(".topbar-actions .seg").first()).toHaveAttribute("aria-label", "Idioma");
+  await page.locator('[data-set-lang="en"]').click();
+  await expect(page.locator(".topbar-actions .seg").first()).toHaveAttribute("aria-label", "Language");
+  await expect(page.locator(".drawer-panel")).toHaveAttribute("aria-label", "Mobile navigation");
+  await expect(page.locator(".cover-node.node-ai strong")).toHaveText("Discover.");
+});
+
+test("P33 intermediate widths have no colliding header navigation", async ({ page }) => {
+  await page.goto("/?lang=es");
+  for (const width of [900, 1024, 1152, 1199, 1200, 1440]) {
+    await page.setViewportSize({width, height:900});
+    const state = await page.evaluate(() => {
+      const nav = document.querySelector(".nav");
+      const menu = document.querySelector("[data-menu-toggle]");
+      const actions = document.querySelector(".topbar-actions").getBoundingClientRect();
+      const navVisible = getComputedStyle(nav).display !== "none";
+      const menuVisible = getComputedStyle(menu).display !== "none";
+      return {
+        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+        navVisible, menuVisible,
+        collision: navVisible && nav.getBoundingClientRect().right > actions.left - 4
+      };
+    });
+    expect(state.overflow, "horizontal overflow at " + width).toBe(false);
+    expect(state.collision, "header collision at " + width).toBe(false);
+    expect(state.navVisible, "desktop nav at " + width).toBe(width >= 1200);
+    expect(state.menuVisible, "menu availability at " + width).toBe(width < 1200);
+  }
+});

@@ -46,8 +46,9 @@ for (const width of [320, 390, 768, 1440]) {
     }
     await page.locator('#agente').scrollIntoViewIfNeeded();
     await page.locator('#agente summary').click();
-    const frame = page.frameLocator('iframe');
-    await expect(frame.locator('#disclaimer')).toContainText('fictional');
+    const frame = page.frameLocator('#agente iframe');
+    await expect(page.locator('#agente iframe')).toHaveAttribute('src', /embed=1/);
+    await expect(frame.locator('#disclaimer')).toContainText('fictional', { timeout: 12_000 });
     await frame.locator('[data-intent="shipping"]').click();
     await expect(frame.locator('#messages')).toContainText('DEMO-4821');
     await page.locator('[data-set-theme="dark"]').click();
