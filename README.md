@@ -4,11 +4,11 @@
   <img src="./assets/readme-cover.svg" width="100%" alt="Systems Lab: cuatro experiencias, un mismo laboratorio" />
 </a>
 
-# Systems Lab
+# Systems Lab · V2 Interactive Explorer
 
 **Juegos · Arte generativo · IA aplicada · Customer Operations**
 
-Una colección de proyectos que puedes **abrir, experimentar y comprobar**. Menos promesas, más producto.
+Una colección de proyectos que puedes **abrir, experimentar y comprobar**. Menos promesas, más producto.\n\n**Navegación V2:** botón «Explorar» siempre accesible y atajo **Ctrl/Cmd + K**. Busca proyectos y tecnologías en español o inglés, utiliza ↑/↓ + Enter para seleccionar, o Esc para cerrar. Los enlaces internos llevan a la sección exacta; las demos externas se abren en una pestaña nueva. No necesita cuenta, cookies de seguimiento ni APIs.
 
 [**Explorar el laboratorio ↗**](https://gracianb.github.io/systems-lab/) · [Modo claro ↗](https://gracianb.github.io/systems-lab/?theme=light) · [Portafolio principal ↗](https://gracianb.github.io/GracianB/)
 
@@ -58,7 +58,7 @@ Una colección de proyectos que puedes **abrir, experimentar y comprobar**. Meno
 
 | Capa | Implementación |
 | --- | --- |
-| Sitio | HTML, CSS y JavaScript sin framework; ES/EN; temas claro/oscuro |
+| Sitio | HTML, CSS y JavaScript sin framework; ES/EN; temas claro/oscuro |\n| Exploración | Buscador accesible V2 con ocho destinos públicos, búsqueda normalizada, teclado y restauración de foco |
 | Experiencias | Enlaces directos y carga optativa del iframe de Vórtice y del agente |
 | Visual | Campo Canvas con reducción de movimiento y posters específicos por tema |
 | Calidad | Node 24, pruebas de contrato, Playwright (Chromium, Firefox, WebKit), comprobaciones de accesibilidad y presupuestos |
@@ -71,7 +71,7 @@ npm run test:browser
 npm run build
 ```
 
-Para ejecutar localmente: `npm start` (normalmente [127.0.0.1:4173](http://127.0.0.1:4173/)).
+El build es **allowlist**: copia solo los archivos públicos declarados y comprueba que todos los recursos locales referenciados por la portada existan en `dist/`. El buscador es una ayuda a la navegación, no una nueva app ni un motor de búsqueda remoto.\n\nPara ejecutar localmente: `npm start` (normalmente [127.0.0.1:4173](http://127.0.0.1:4173/)).
 
 ## Documentación, sin duplicar la portada
 
