@@ -10,6 +10,8 @@ const BUDGETS = {
   "i18n.js": 13000,
   "boot.js": 1000,
   "cover-canvas.js": 6000,
+  "experience-navigator.js": 12000,
+  "experience-navigator.css": 6500,
   "bodytone-chatbot/frontend/index.html": 3000,
   "bodytone-chatbot/frontend/demo.js": 10000,
   "bodytone-chatbot/frontend/demo.css": 10000
@@ -27,15 +29,15 @@ for (const [name, budget] of Object.entries(BUDGETS)) {
   console.log((ok ? "PASS " : "FAIL ") + name + " — " + bytes + " / " + budget + " bytes");
   if (!ok) failures++;
 }
-const aggregateBudget = 118000;
+const aggregateBudget = 137000;
 console.log((total <= aggregateBudget ? "PASS " : "FAIL ") + "first-party surface — " + total + " / " + aggregateBudget + " bytes");
 if (total > aggregateBudget) failures++;
 console.log("RESULT");
 console.log("FAIL:", failures);
 if (failures) process.exit(1);
 
-console.log("Gzip surface:", compressed, "/ 35000 bytes");
-if (compressed > 35000) process.exit(1);
+console.log("Gzip surface:", compressed, "/ 41500 bytes");
+if (compressed > 41500) process.exit(1);
 let imageBytes = 0;
 for (const name of ['llama','qwen','arcana','arcano']) {
   const bytes = fs.statSync(path.join(ROOT, `assets/aigoritmo/${name}-poster.jpg`)).size;

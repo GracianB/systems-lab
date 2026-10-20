@@ -1,0 +1,192 @@
+/* Systems Lab V2 / Experience Navigator
+   Quiet laboratory chrome. No extra palette, no zoom, no external assets. */
+.lab-command-launch {
+  position:fixed;
+  right:clamp(14px,3vw,30px);
+  bottom:clamp(14px,2.5vw,28px);
+  z-index:44;
+  display:flex;
+  align-items:center;
+  gap:.66rem;
+  min-height:48px;
+  padding:.63rem .92rem;
+  border:1px solid color-mix(in srgb,var(--ice) 34%,var(--line));
+  border-radius:999px;
+  color:var(--ink);
+  background:color-mix(in srgb,var(--surface) 95%,transparent);
+  box-shadow:0 12px 35px rgba(0,0,0,.18),inset 0 1px 0 color-mix(in srgb,var(--ink) 9%,transparent);
+  backdrop-filter:blur(14px);
+  cursor:pointer;
+  font:700 .7rem/1.2 var(--mono);
+  letter-spacing:.055em;
+  transition:border-color .22s ease,box-shadow .22s ease,color .22s ease;
+}
+.lab-command-launch:hover,.lab-command-launch:focus-visible {
+  border-color:var(--ice);
+  box-shadow:0 0 0 3px var(--ice-dim),0 12px 34px rgba(0,0,0,.2);
+}
+.lab-command-symbol {
+  display:grid;place-items:center;
+  width:26px;height:26px;
+  border-radius:50%;
+  background:var(--ice-dim);
+  color:var(--ice);
+  font:500 1.37rem/1 var(--sans);
+}
+.lab-command-launch kbd {
+  padding:.3rem .38rem;
+  border:1px solid var(--line);
+  border-radius:5px;
+  color:var(--muted);
+  background:var(--surface2);
+  font:650 .62rem/1 var(--mono);
+}
+body.menu-on .lab-command-launch {opacity:0;pointer-events:none}
+.lab-command-overlay {
+  position:fixed;
+  inset:0;
+  z-index:150;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:clamp(20px,9vh,96px) 16px 24px;
+  background:rgba(3,9,17,.77);
+  backdrop-filter:blur(12px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+.lab-command-overlay[hidden]{display:none}
+.lab-command-box {
+  width:min(100%,640px);
+  max-height:min(84dvh,720px);
+  display:flex;flex-direction:column;
+  padding:clamp(16px,2.5vw,25px);
+  border:1px solid color-mix(in srgb,var(--ice) 28%,var(--line));
+  border-radius:18px;
+  background:linear-gradient(145deg,var(--surface),var(--bg2));
+  box-shadow:0 40px 120px rgba(0,0,0,.44),inset 0 1px 0 color-mix(in srgb,var(--ink) 8%,transparent);
+  color:var(--ink);
+}
+.lab-command-top {
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.lab-command-kicker {
+  color:var(--ice);
+  font:750 .62rem/1.4 var(--mono);
+  letter-spacing:.15em;
+}
+.lab-command-exit {
+  flex:none;
+  min-height:35px;
+  padding:.35rem .55rem;
+  border:1px solid var(--line-strong);
+  border-radius:7px;
+  background:var(--surface2);
+  color:var(--muted);
+  font:650 .64rem/1 var(--mono);
+  cursor:pointer;
+}
+.lab-command-exit span{font:400 1.05rem/1 var(--sans);margin-left:.2rem}
+.lab-command-exit:hover,.lab-command-exit:focus-visible {
+  border-color:var(--ice);color:var(--ink);
+}
+.lab-command-box h2 {
+  margin:.82rem 0 .22rem;
+  font:500 clamp(1.55rem,3vw,2.25rem)/1.1 var(--display);
+  letter-spacing:-.025em;
+}
+.lab-command-description {
+  margin:0 0 1.1rem;
+  color:var(--muted);
+  font:.9rem/1.55 var(--sans);
+}
+.lab-command-search {
+  display:flex;align-items:center;gap:.7rem;
+  min-height:55px;
+  padding:.8rem .96rem;
+  border:1px solid color-mix(in srgb,var(--ice) 34%,var(--line));
+  border-radius:10px;
+  background:var(--surface2);
+}
+.lab-command-search:focus-within {
+  border-color:var(--ice);
+  box-shadow:0 0 0 3px var(--ice-dim);
+}
+.lab-command-search > span{color:var(--ice);font:400 1.5rem/1 var(--sans)}
+.lab-command-input {
+  min-width:0;
+  width:100%;
+  flex:1;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:var(--ink);
+  font:500 1rem/1.4 var(--sans);
+  caret-color:var(--ice);
+}
+.lab-command-input::placeholder {color:var(--muted);opacity:.85}
+.lab-command-results {overflow-y:auto;overscroll-behavior:contain;min-height:0;padding:.65rem 0}
+.lab-command-item {
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  min-height:63px;
+  width:100%;
+  padding:.65rem .85rem;
+  color:var(--ink);
+  text-align:left;
+  text-decoration:none;
+  border:1px solid transparent;
+  border-radius:10px;
+  cursor:pointer;
+  transition:background .18s ease,border-color .18s ease;
+}
+.lab-command-item:is(:hover,:focus-visible,.is-active) {
+  border-color:color-mix(in srgb,var(--ice) 28%,transparent);
+  background:var(--ice-dim);
+}
+.lab-command-item:focus-visible {outline:2px solid var(--ice);outline-offset:-2px}
+.lab-command-type {
+  flex:none;
+  display:grid;place-items:center;
+  width:54px;min-height:27px;
+  padding:0 .3rem;
+  border:1px solid var(--line-strong);
+  border-radius:5px;
+  color:var(--ice);
+  font:700 .56rem/1.1 var(--mono);
+  letter-spacing:.03em;
+}
+.lab-command-copy {display:grid;gap:.17rem;min-width:0;flex:1}
+.lab-command-copy strong {color:var(--ink);font:700 .82rem/1.2 var(--sans);letter-spacing:.015em}
+.lab-command-copy small {color:var(--muted);font:400 .74rem/1.35 var(--sans)}
+.lab-command-arrow {font:400 1.18rem/1 var(--sans);color:var(--ice)}
+.lab-command-empty {
+  margin:0;
+  padding:1.6rem .85rem;
+  color:var(--muted);
+  font:.85rem/1.5 var(--sans);
+}
+.lab-command-foot {
+  display:flex;gap:1rem;align-items:center;justify-content:space-between;
+  padding-top:.9rem;border-top:1px solid var(--line);
+  color:var(--muted);font:600 .62rem/1.4 var(--mono);
+  letter-spacing:.01em;
+}
+.lab-command-count {color:var(--ice);white-space:nowrap}
+html[data-theme="light"] .lab-command-overlay {background:rgba(12,34,48,.58)}
+html[data-theme="light"] .lab-command-box {box-shadow:0 30px 100px rgba(10,37,54,.19)}
+@media(max-width:600px){
+  .lab-command-launch {right:12px;bottom:12px;padding:.55rem .7rem;gap:.46rem;min-height:44px}
+  .lab-command-launch kbd {display:none}
+  .lab-command-overlay {padding:12px;align-items:flex-start}
+  .lab-command-box {border-radius:13px;max-height:calc(100dvh - 24px);padding:15px}
+  .lab-command-item {gap:.55rem;padding:.65rem .35rem;min-height:57px}
+  .lab-command-type {width:49px;font-size:.53rem}
+  .lab-command-foot {align-items:flex-start;flex-wrap:wrap;gap:.36rem}
+  .lab-command-description{font-size:.83rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .lab-command-launch,.lab-command-item{transition:none}
+  .lab-command-overlay {backdrop-filter:none}
+}
