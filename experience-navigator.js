@@ -132,7 +132,7 @@
   }
   function open() {
     if (!overlay.hidden)return;
-    returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:launch;
+    returnFocus=document.activeElement instanceof HTMLElement && document.activeElement!==document.body && document.activeElement!==document.documentElement?document.activeElement:launch;
     previousOverflow=document.body.style.overflow;
     overlay.hidden=false;
     document.body.style.overflow='hidden';
