@@ -1,74 +1,186 @@
-/* V2: accessible project navigator. No external requests or dependencies. */
+/* Systems Lab V2 · Progressive, keyboard-friendly experience navigator.
+   All targets are public destinations or in-page sections. No network, tracking or storage. */
 (() => {
-  const options = [
-    { name: 'OHANA', note: 'Juego · personajes y salas', en: 'Game · characters and rooms', href: '#juegos', terms: 'game play juego' },
-    { name: 'Vórtice', note: 'Arte generativo · WebGL', en: 'Generative art · WebGL', href: '#vortex-live', terms: 'particles field campo visual' },
-    { name: 'Aigoritmo', note: 'IA local · cuatro identidades', en: 'Local AI · four identities', href: '#aigoritmo', terms: 'arcana arcano qwen llama tarot' },
-    { name: 'Customer Ops', note: 'Automatización de soporte', en: 'Support automation', href: '#cs', terms: 'customer data support' },
-    { name: 'RevOps Studio', note: 'Analítica · revenue operations', en: 'Analytics · revenue operations', href: 'https://gracianb.github.io/revops-studio/demo.html', terms: 'dashboard data pipeline' },
-    { name: 'GitHub', note: 'Código y documentación', en: 'Source and documentation', href: 'https://github.com/GracianB/systems-lab', terms: 'source repository' }
+  if (!document.body || document.querySelector('[data-lab-command-root]')) return;
+  const entries = [
+    { key:'ohana', title:'OHANA', es:'Jugar · 10 personajes, salas y combate', en:'Play · 10 characters, rooms and combat', category:'PLAY', href:'#juegos', words:'ohana videojuego juego game play isla evolution evolucion' },
+    { key:'vortex', title:'VÓRTICE', es:'Experimentar · arte generativo WebGL', en:'Explore · generative WebGL art', category:'LIVE', href:'#vortex-live', words:'vortice vortex webgl particles particulas visual generativo field campo' },
+    { key:'aigoritmo', title:'AIGORITMO', es:'Conocer · cuatro identidades de IA local', en:'Meet · four local AI identities', category:'LOCAL', href:'#aigoritmo', words:'ia ai llama qwen arcana arcano modelos chat privado private' },
+    { key:'customer', title:'BODYTONE SUPPORT OS', es:'Comprobar · operaciones y soporte reales', en:'Inspect · real customer operations', category:'CASE', href:'#cs', words:'customer success ops zendesk help center tickets support' },
+    { key:'agent', title:'AGENTE DE SOPORTE', es:'Probar · simulación con datos ficticios', en:'Try · fictional support simulation', category:'DEMO', href:'#agente', words:'bot agente chatbot envio shipping factura invoice ticket simulacion agent' },
+    { key:'revops', title:'REVOPS STUDIO', es:'Explorar · demo pública con datos de ejemplo', en:'Explore · public demo with sample data', category:'DEMO', href:'https://gracianb.github.io/revops-studio/demo.html', words:'revenue analytics pipeline dashboard forecast datos analitica' },
+    { key:'source', title:'CÓDIGO Y ARQUITECTURA', es:'Examinar · repositorio y documentación', en:'Inspect · source and documentation', category:'SOURCE', href:'https://github.com/GracianB/systems-lab', words:'github code codigo readme architecture tests pruebas ci' },
+    { key:'hub', title:'GRACIANB', es:'Volver · portfolio y otros universos', en:'Return · portfolio and other worlds', category:'HUB', href:'https://gracianb.github.io/GracianB/', words:'portfolio home inicio universo yoga professional deck' }
   ];
+  const root = document.createElement('div');
+  root.dataset.labCommandRoot = '';
   const launch = document.createElement('button');
   launch.type = 'button';
   launch.className = 'lab-command-launch';
-  launch.innerHTML = '<span aria-hidden="true">⌕</span><span class="lab-command-label">Explorar</span><kbd>Ctrl K</kbd>';
+  launch.setAttribute('aria-controls','lab-command-overlay');
+  launch.setAttribute('aria-expanded','false');
+  launch.setAttribute('aria-haspopup','dialog');
+  launch.innerHTML = '<span class="lab-command-symbol" aria-hidden="true">⌕</span><span class="lab-command-label">Explorar</span><kbd aria-hidden="true">Ctrl K</kbd>';
   const overlay = document.createElement('div');
   overlay.className = 'lab-command-overlay';
+  overlay.id = 'lab-command-overlay';
   overlay.hidden = true;
-  overlay.innerHTML = '<section class="lab-command-box" role="dialog" aria-modal="true" aria-labelledby="lab-command-title"><div class="lab-command-head"><span aria-hidden="true">⌕</span><input class="lab-command-input" type="search" autocomplete="off" spellcheck="false" aria-label="Buscar proyectos" placeholder="Buscar una experiencia…"><button type="button" class="lab-command-exit" aria-label="Cerrar">ESC</button></div><div class="lab-command-results" role="listbox" aria-label="Resultados"></div><div class="lab-command-foot" id="lab-command-title">↑ ↓ navegar · Enter abrir · ESC cerrar</div></section>';
-  document.body.append(launch, overlay);
-  const input = overlay.querySelector('input');
+  overlay.innerHTML = '<section class="lab-command-box" role="dialog" aria-modal="true" aria-labelledby="lab-command-title" aria-describedby="lab-command-description"><div class="lab-command-top"><span class="lab-command-kicker">SYSTEMS LAB / INDEX</span><button type="button" class="lab-command-exit" aria-label="Cerrar buscador">ESC <span aria-hidden="true">×</span></button></div><h2 id="lab-command-title">¿Qué quieres explorar?</h2><p id="lab-command-description" class="lab-command-description">Busca un proyecto, una tecnología o una experiencia.</p><div class="lab-command-search"><span aria-hidden="true">⌕</span><input class="lab-command-input" type="search" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="true" aria-controls="lab-command-results" autocomplete="off" spellcheck="false" placeholder="Buscar proyectos…"></div><div id="lab-command-results" class="lab-command-results" role="listbox" aria-label="Proyectos"></div><div class="lab-command-foot"><span class="lab-command-count" aria-live="polite">08 destinos</span><span class="lab-command-hint">↑ ↓ seleccionar · Enter abrir · Esc cerrar</span></div></section>';
+  root.append(launch,overlay);
+  document.body.append(root);
+  const input = overlay.querySelector('.lab-command-input');
   const results = overlay.querySelector('.lab-command-results');
   const closeButton = overlay.querySelector('.lab-command-exit');
+  const title = overlay.querySelector('#lab-command-title');
+  const description = overlay.querySelector('#lab-command-description');
+  const count = overlay.querySelector('.lab-command-count');
+  const hint = overlay.querySelector('.lab-command-hint');
+  let matched = entries;
   let selected = 0;
-  let shown = options;
   let returnFocus = launch;
-  const isEn = () => document.documentElement.lang.startsWith('en');
-  const normalize = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-  function render() {
-    const query = normalize(input.value.trim());
-    shown = options.filter(o => normalize([o.name,o.note,o.en,o.terms].join(' ')).includes(query));
-    selected = Math.min(selected, Math.max(0,shown.length-1));
-    results.replaceChildren();
-    shown.forEach((item,index) => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'lab-command-item';
-      button.setAttribute('role','option');
-      button.setAttribute('aria-selected',String(index===selected));
-      const description = document.createElement('span');
-      const title = document.createElement('strong');
-      title.textContent = item.name;
-      const note = document.createElement('small');
-      note.textContent = isEn() ? item.en : item.note;
-      description.append(title,note);
-      const arrow = document.createElement('span');
-      arrow.className = 'lab-arrow';
-      arrow.textContent = '↗';
-      arrow.setAttribute('aria-hidden','true');
-      button.append(description,arrow);
-      button.addEventListener('mouseenter',()=>{selected=index;syncSelected()});
-      button.addEventListener('click',()=>activate(item));
-      results.append(button);
-    });
-    if(!shown.length){const empty=document.createElement('p');empty.className='lab-command-empty';empty.textContent=isEn()?'No matching projects.':'No hay proyectos coincidentes.';results.append(empty)}
+  let previousOverflow = '';
+  const isEn = () => document.documentElement.lang.toLowerCase().startsWith('en');
+  const normalize = v => String(v).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase();
+  const reduced = () => {try{return typeof matchMedia==='function' && matchMedia('(prefers-reduced-motion: reduce)').matches}catch{return true}};
+  const isInternal = url => url.startsWith('#');
+  function localize() {
+    const english = isEn();
+    launch.querySelector('.lab-command-label').textContent=english?'Explore':'Explorar';
+    launch.setAttribute('aria-label',english?'Explore projects (Ctrl K)':'Explorar proyectos (Ctrl K)');
+    title.textContent=english?'Where do you want to go?':'¿Qué quieres explorar?';
+    description.textContent=english?'Search a project, technology or experience.':'Busca un proyecto, una tecnología o una experiencia.';
+    closeButton.setAttribute('aria-label',english?'Close search':'Cerrar buscador');
+    input.placeholder=english?'Search projects…':'Buscar proyectos…';
+    input.setAttribute('aria-label',english?'Search projects':'Buscar proyectos');
+    results.setAttribute('aria-label',english?'Projects':'Proyectos');
+    hint.textContent=english?'↑ ↓ select · Enter open · Esc close':'↑ ↓ seleccionar · Enter abrir · Esc cerrar';
+    if (!overlay.hidden) render();
   }
-  function syncSelected(){results.querySelectorAll('[role="option"]').forEach((el,i)=>el.setAttribute('aria-selected',String(i===selected)));results.querySelectorAll('[role="option"]')[selected]?.scrollIntoView({block:'nearest'})}
-  function activate(item){close();if(item.href.startsWith('#')){document.querySelector(item.href)?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});history.replaceState(null,'',item.href)}else{window.open(item.href,'_blank','noopener,noreferrer')}}
-  function open(){returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:launch;overlay.hidden=false;document.body.style.overflow='hidden';launch.setAttribute('aria-expanded','true');input.value='';selected=0;render();input.focus()}
-  function close(){overlay.hidden=true;document.body.style.overflow='';launch.setAttribute('aria-expanded','false');returnFocus?.focus()}
-  launch.setAttribute('aria-haspopup','dialog');
-  launch.setAttribute('aria-expanded','false');
+  function setActive(index) {
+    selected=Math.max(0,Math.min(index,matched.length-1));
+    [...results.querySelectorAll('[role="option"]')].forEach((el,i)=>{
+      const on = i===selected;
+      el.setAttribute('aria-selected',String(on));
+      el.classList.toggle('is-active',on);
+      if (on) {
+        input.setAttribute('aria-activedescendant',el.id);
+        el.scrollIntoView({block:'nearest',behavior:'instant'});
+      }
+    });
+    if (!matched.length) input.removeAttribute('aria-activedescendant');
+  }
+  function render() {
+    const words=normalize(input.value.trim()).split(/\s+/).filter(Boolean);
+    matched=entries.filter(e=>words.every(term=>normalize([e.title,e.es,e.en,e.category,e.words].join(' ')).includes(term)));
+    results.replaceChildren();
+    const english=isEn();
+    matched.forEach((entry,index)=>{
+      const row=document.createElement('a');
+      row.className='lab-command-item';
+      row.id='lab-command-option-'+entry.key;
+      row.setAttribute('role','option');
+      row.setAttribute('aria-selected',String(index===selected));
+      row.href=entry.href;
+      row.tabIndex=-1;
+      if (!isInternal(entry.href)){row.target='_blank';row.rel='noopener noreferrer'}
+      const badge=document.createElement('span');
+      badge.className='lab-command-type';
+      badge.textContent=entry.category;
+      const content=document.createElement('span');
+      content.className='lab-command-copy';
+      const name=document.createElement('strong');
+      name.textContent=entry.title;
+      const subtitle=document.createElement('small');
+      subtitle.textContent=english?entry.en:entry.es;
+      content.append(name,subtitle);
+      const arrow=document.createElement('span');
+      arrow.className='lab-command-arrow';
+      arrow.setAttribute('aria-hidden','true');
+      arrow.textContent=isInternal(entry.href)?'↘':'↗';
+      row.append(badge,content,arrow);
+      row.addEventListener('pointermove',()=>setActive(index));
+      row.addEventListener('click',(event)=>{
+        if (!isInternal(entry.href)){close(false);return}
+        event.preventDefault();activate(entry);
+      });
+      results.append(row);
+    });
+    if (!matched.length){
+      const empty=document.createElement('p');
+      empty.className='lab-command-empty';
+      empty.textContent=english?'Nothing found. Try another word.':'Nada por aquí. Prueba otra palabra.';
+      results.append(empty);
+    }
+    count.textContent=matched.length+' '+(english?'destinations':'destinos');
+    setActive(Math.min(selected,matched.length-1));
+  }
+  function activate(entry) {
+    if(!entry)return;
+    if(!isInternal(entry.href)){
+      const anchor=results.querySelectorAll('[role="option"]')[selected];
+      anchor?.click();
+      return;
+    }
+    const section=document.querySelector(entry.href);
+    close(false);
+    if(!section)return;
+    history.replaceState(null,'',entry.href);
+    if(entry.href==='#agente' && section.tagName==='DETAILS')section.open=true;
+    section.scrollIntoView({block:'start',behavior:reduced()?'instant':'smooth'});
+    section.setAttribute('tabindex','-1');
+    section.focus({preventScroll:true});
+  }
+  function open() {
+    if (!overlay.hidden)return;
+    returnFocus=document.activeElement instanceof HTMLElement?document.activeElement:launch;
+    previousOverflow=document.body.style.overflow;
+    overlay.hidden=false;
+    document.body.style.overflow='hidden';
+    launch.setAttribute('aria-expanded','true');
+    input.value='';
+    selected=0;
+    localize();
+    render();
+    input.focus();
+  }
+  function close(restore=true) {
+    if (overlay.hidden)return;
+    overlay.hidden=true;
+    document.body.style.overflow=previousOverflow;
+    launch.setAttribute('aria-expanded','false');
+    input.removeAttribute('aria-activedescendant');
+    if(restore && returnFocus?.isConnected)returnFocus.focus();
+  }
   launch.addEventListener('click',open);
-  closeButton.addEventListener('click',close);
+  closeButton.addEventListener('click',()=>close());
   overlay.addEventListener('pointerdown',event=>{if(event.target===overlay)close()});
   input.addEventListener('input',()=>{selected=0;render()});
   overlay.addEventListener('keydown',event=>{
-    if(event.key==='Escape'){event.preventDefault();close()}
-    if(event.key==='ArrowDown'||event.key==='ArrowUp'){event.preventDefault();selected=(selected+(event.key==='ArrowDown'?1:-1)+shown.length)%Math.max(1,shown.length);syncSelected()}
-    if(event.key==='Enter'&&shown.length){event.preventDefault();activate(shown[selected])}
-    if(event.key==='Tab'){const elements=[input,closeButton,...results.querySelectorAll('button')];const next=elements.indexOf(document.activeElement)+(event.shiftKey?-1:1);if(next<0||next>=elements.length){event.preventDefault();elements[(next+elements.length)%elements.length].focus()}}
+    if(event.key==='Escape'){event.preventDefault();close();return}
+    if(event.key==='ArrowDown' || event.key==='ArrowUp'){
+      event.preventDefault();
+      if(matched.length)setActive((selected+(event.key==='ArrowDown'?1:-1)+matched.length)%matched.length);
+      input.focus();
+      return;
+    }
+    if(event.key==='Enter' && matched.length && !event.isComposing){event.preventDefault();activate(matched[selected]);return}
+    if(event.key==='Tab'){
+      const focusable=[input,...results.querySelectorAll('a'),closeButton];
+      const index=focusable.indexOf(document.activeElement);
+      if(index<0 || (event.shiftKey&&index===0) || (!event.shiftKey&&index===focusable.length-1)){
+        event.preventDefault();
+        focusable[event.shiftKey?focusable.length-1:0]?.focus();
+      }
+    }
   });
-  document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();overlay.hidden?open():close()}});
-  new MutationObserver(()=>{launch.querySelector('.lab-command-label').textContent=isEn()?'Explore':'Explorar';input.placeholder=isEn()?'Find a project…':'Buscar una experiencia…';input.setAttribute('aria-label',isEn()?'Search projects':'Buscar proyectos');if(!overlay.hidden)render()}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  document.addEventListener('keydown',event=>{
+    if((event.ctrlKey||event.metaKey) && event.key.toLowerCase()==='k' && !event.altKey){
+      event.preventDefault();overlay.hidden?open():close();return;
+    }
+    if(event.key==='Escape' && !overlay.hidden){event.preventDefault();close()}
+  });
+  if(typeof MutationObserver==='function'){
+    new MutationObserver(()=>localize()).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  }
+  localize();
 })();
