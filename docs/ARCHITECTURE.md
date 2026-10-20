@@ -6,7 +6,8 @@
 systems-lab/
 ├── index.html, 404.html            # documentos publicados
 ├── main.js, boot.js, i18n.js       # navegación, temas e idiomas
-├── cover-canvas.js, styles.css     # campo visual y diseño\n├── experience-navigator.js/.css    # búsqueda local y navegación accesible
+├── cover-canvas.js, styles.css     # campo visual y diseño
+├── experience-navigator.js/.css    # búsqueda local y navegación accesible
 ├── assets/
 │   ├── readme-cover.svg           # banner exclusivo del repositorio
 │   ├── projects/                  # previews OHANA + Vórtice, claro/oscuro
