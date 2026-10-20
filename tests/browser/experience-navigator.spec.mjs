@@ -61,7 +61,7 @@ test('V2 keyboard selection is wrapped, accessible and links never point to loca
   await page.keyboard.press('ArrowDown');
   await expect(page.getByRole('option').first()).toHaveAttribute('aria-selected','true');
   await expect(page.locator('[role=option][href^="http"]')).toHaveCount(3);
-  expect(await page.locator('[role=option]').evaluateAll(els=>els.every(el=>!el.href.includes('localhost')&&!el.href.includes('127.0.0.1')))).toBe(true);
+  expect(await page.locator('[role=option]').evaluateAll(els=>els.every(el=>{const href=el.getAttribute('href')||'';return !href.includes('localhost')&&!href.includes('127.0.0.1')}))).toBe(true);
   await page.keyboard.press('Escape');
 });
 
