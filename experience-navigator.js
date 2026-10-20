@@ -163,7 +163,7 @@
       input.focus();
       return;
     }
-    if(event.key==='Enter' && matched.length && !event.isComposing){event.preventDefault();activate(matched[selected]);return}
+    if(event.key==='Enter' && matched.length && !event.isComposing && (event.target===input || event.target.closest?.('[role="option"]'))){event.preventDefault();activate(matched[selected]);return}
     if(event.key==='Tab'){
       const focusable=[input,...results.querySelectorAll('a'),closeButton];
       const index=focusable.indexOf(document.activeElement);
