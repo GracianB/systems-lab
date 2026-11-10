@@ -1,85 +1,94 @@
 <div align="center">
 
 <a href="https://gracianb.github.io/systems-lab/">
-  <img src="./assets/readme-cover.svg" width="100%" alt="Systems Lab: cuatro experiencias, un mismo laboratorio" />
+  <img src="./assets/readme-cover.svg" width="100%" alt="Systems Lab — Gracián Baena: interactive software, generative art and applied AI">
 </a>
 
-# Systems Lab · V2 Interactive Explorer
+# Systems Lab · Gracián Baena
 
-**Juegos · Arte generativo · IA aplicada · Customer Operations**
+### Play · Experiment · Understand · Build
 
-Una colección de proyectos que puedes **abrir, experimentar y comprobar**. Menos promesas, más producto.
+**An interactive universe where software ideas become things you can actually explore.**
 
-**Navegación V2:** botón «Explorar» siempre accesible y atajo **Ctrl/Cmd + K**. Busca proyectos y tecnologías en español o inglés, utiliza ↑/↓ + Enter para seleccionar, o Esc para cerrar. Los enlaces internos llevan a la sección exacta; las demos externas se abren en una pestaña nueva. No necesita cuenta, cookies de seguimiento ni APIs.
-
-[**Explorar el laboratorio ↗**](https://gracianb.github.io/systems-lab/) · [Modo claro ↗](https://gracianb.github.io/systems-lab/?theme=light) · [Portafolio principal ↗](https://gracianb.github.io/GracianB/)
+[**Enter Systems Lab ↗**](https://gracianb.github.io/systems-lab/) &nbsp; · &nbsp; [**Open the personal hub ↗**](https://gracianb.github.io/GracianB/) &nbsp; · &nbsp; [**Explore Professional Deck ↗**](https://gracianb.github.io/professional-deck/)
 
 </div>
 
 ---
 
-## Empieza por una experiencia
+## Four doors. Four ways to explore.
+
+Systems Lab connects game design, real-time visuals, local AI experiments and the operations work that inspired my journey into software.
+
+Not everything is the same kind of product. Some experiences are fully public, some are **showcases of software that runs locally**, and some are **demonstrations with fictional data**. That distinction is part of the design, not a footnote.
 
 <table>
 <tr>
 <td width="50%" valign="top">
-<a href="https://gracianb.github.io/project-ohana/"><img src="./assets/projects/ohana.webp" alt="OHANA: isla y personajes jugables" width="100%"></a>
-
-<h3><a href="https://gracianb.github.io/project-ohana/">OHANA ↗</a></h3>
-<p><strong>Juega.</strong> Un mundo con diez personajes, evolución, salas y combate. <a href="https://github.com/GracianB/project-ohana">Código</a>.</p>
+<a href="https://gracianb.github.io/project-ohana/"><img src="./assets/projects/ohana.webp" alt="Project OHANA — browser game set in Isla Hoku" width="100%"></a>
+<h3><a href="https://gracianb.github.io/project-ohana/">01 · PROJECT OHANA ↗</a></h3>
+<p><strong>Play.</strong> Explore a browser-based game with character evolution, movement, worlds and changing systems. A public creative-engineering project, under active iteration.</p>
 </td>
 <td width="50%" valign="top">
-<a href="https://vortex-gilt-xi.vercel.app/"><img src="./assets/projects/vortex-readme-dark.svg" alt="Vórtice: póster vectorial del campo generativo en modo oscuro azul hielo" width="100%"></a>
-
-<h3><a href="https://vortex-gilt-xi.vercel.app/">Vórtice ↗</a></h3>
-<p><strong>Experimenta.</strong> Campo WebGL con cuatro movimientos y estados visuales configurables. <a href="https://github.com/GracianB/vortex">Código</a>.</p>
+<a href="https://vortex-gilt-xi.vercel.app/"><img src="./assets/projects/vortex-readme-dark.svg" alt="VØRTICE — real-time generative WebGL field" width="100%"></a>
+<h3><a href="https://vortex-gilt-xi.vercel.app/">02 · VØRTICE ↗</a></h3>
+<p><strong>Experiment.</strong> A responsive WebGL field with four movements, curated visual states, pointer interaction and optional sound. A public interactive experience.</p>
 </td>
 </tr>
-</table>
-
-<table>
 <tr>
 <td width="50%" valign="top">
-<a href="https://gracianb.github.io/systems-lab/#aigoritmo"><img src="./assets/aigoritmo/arcana-poster.jpg" alt="Arcana: una de las cuatro identidades visuales de Aigoritmo" width="100%"></a>
-
-<h3><a href="https://gracianb.github.io/systems-lab/#aigoritmo">Aigoritmo · Showcase ↗</a></h3>
-<p><strong>Descubre.</strong> Cuatro identidades: Llama, Qwen, Arcana y Arcano. La app es <strong>privada y local</strong>; la web muestra una presentación visual, no una API ni un chat público.</p>
+<a href="https://gracianb.github.io/systems-lab/#aigoritmo"><img src="./assets/aigoritmo/arcana-poster.jpg" alt="Aigoritmo — four local AI identities" width="100%"></a>
+<h3><a href="https://gracianb.github.io/systems-lab/#aigoritmo">03 · AIGORITMO ↗</a></h3>
+<p><strong>Discover.</strong> Llama, Qwen, Arcana and Arcano are four identities inside a private/local AI application. This page is an illustrated showcase, <strong>not</strong> an online chat you can use.</p>
 </td>
 <td width="50%" valign="top">
-<a href="https://gracianb.github.io/systems-lab/#cs"><img src="./assets/projects/customer-ops.svg" alt="Customer Ops: sistema nocturno de canales y flujos de soporte unificados" width="100%"></a>
-
-<h3><a href="https://gracianb.github.io/systems-lab/#cs">Customer Operations ↗</a></h3>
-<p><strong>Resuelve.</strong> Caso real de operaciones de soporte y una <strong>simulación local con datos ficticios</strong>. <a href="https://bodytonehelp.zendesk.com/hc/es">Help Center de referencia</a>.</p>
+<a href="https://gracianb.github.io/systems-lab/#cs"><img src="./assets/projects/customer-ops.svg" alt="Customer Operations — people, knowledge and support workflows" width="100%"></a>
+<h3><a href="https://gracianb.github.io/systems-lab/#cs">04 · CUSTOMER OPERATIONS ↗</a></h3>
+<p><strong>Understand.</strong> Explore a real support-operations context alongside a clearly marked local simulation using fictional requests and outcomes.</p>
 </td>
 </tr>
 </table>
 
-**También:** [RevOps Studio · demo con datos de ejemplo ↗](https://gracianb.github.io/revops-studio/demo.html). Cutter Studio sigue siendo una herramienta privada, no una demo pública.
+## A bridge between people and technology
 
-## Cómo está construido
+I came to software through Customer Success and operations: customer journeys, knowledge, support workflows, data quality and the moments where people need a tool to make sense.
 
-| Capa | Implementación |
-| --- | --- |
-| Sitio | HTML, CSS y JavaScript sin framework; ES/EN; temas claro/oscuro |
-| Exploración | Buscador accesible V2 con ocho destinos públicos, búsqueda normalizada, teclado y restauración de foco |
-| Experiencias | Enlaces directos y carga optativa del iframe de Vórtice y del agente |
-| Visual | Campo Canvas con reducción de movimiento y posters específicos por tema |
-| Calidad | Node 24, pruebas de contrato, Playwright (Chromium, Firefox, WebKit), comprobaciones de accesibilidad y presupuestos |
-| Publicación | GitHub Actions → `dist/` → GitHub Pages; sin publicar código privado |
+Systems Lab asks a related question: **what happens when those ideas become interactive systems?**
 
-```bash
-npm ci
-npm run check
-npm run test:browser
-npm run build
-```
+That can mean a browser game with evolving states, a field of thousands of responsive particles, an AI conversation with a distinct identity or an explainable support workflow.
 
-El build es **allowlist**: copia solo los archivos públicos declarados y comprueba que todos los recursos locales referenciados por la portada existan en `dist/`. El buscador es una ayuda a la navegación, no una nueva app ni un motor de búsqueda remoto.
+The goal is not to claim every prototype is a finished SaaS product. It is to make the design choices, interaction and boundaries visible.
 
-Para ejecutar localmente: `npm start` (normalmente [127.0.0.1:4173](http://127.0.0.1:4173/)).
+## More to investigate
 
-## Documentación, sin duplicar la portada
+**[RevOps Studio · Public sample-data demo](https://gracianb.github.io/revops-studio/demo.html)**  
+Operational decision logic, data quality, scoring and traceability. This is a simulation, not access to a real customer environment.
 
-[**Arquitectura y estructura**](docs/ARCHITECTURE.md) · [**Calidad y límites de las demos**](docs/QUALITY_AND_BOUNDARIES.md) · [**Releases y decisiones**](docs/RELEASES.md) · [**Configuración GitHub**](docs/GITHUB_CONFIGURATION.md) · [**Seguridad**](SECURITY.md) · [**Historial**](CHANGELOG.md) · [**Acciones CI**](https://github.com/GracianB/systems-lab/actions)
+**[GuruSup Brain · Knowledge confidence prototype](https://gracianb.github.io/systems-lab/gurusup-brain/)**  
+A small experiment in what an assistant should do when sources are missing, outdated or contradictory.
 
-<sub>El código público permite inspeccionar el escaparate. Aigoritmo y Cutter no se publican aquí, ni sus claves, modelos o datos locales. Los despliegues externos se mantienen de forma independiente.</sub>
+**Cutter Studio · Local video creator (private)**  
+An experimental desktop/local workflow for clips and captions. There is no public editor service to launch from this site.
+
+## How to explore
+
+Open the [**live Systems Lab**](https://gracianb.github.io/systems-lab/) and choose a door. The experience offers English and Spanish content, light and dark themes and a quick navigator with keyboard search. External projects open on their own websites; some content is an illustrative project showcase only.
+
+No account is required to visit the public laboratory. Private model files, keys, local conversations and unreleased applications are not part of the public showcase.
+
+## Connected universes
+
+The other two worlds are intentionally different expressions of the same curiosity:
+
+[**Professional Deck**](https://gracianb.github.io/professional-deck/) · People, operations, systems and real-world evidence  
+[**Yoga Instructor**](https://gracianb.github.io/yoga-instructor/) · Presence, movement and teaching
+
+---
+
+<div align="center">
+
+**Build carefully. Explain clearly. Let people explore.**
+
+[**Systems Lab**](https://gracianb.github.io/systems-lab/) · [**GitHub profile**](https://github.com/GracianB) · [**Personal hub**](https://gracianb.github.io/GracianB/)
+
+</div>
