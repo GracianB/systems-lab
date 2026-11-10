@@ -19,7 +19,7 @@ test('README is a concise front page with real entry points and accurate product
 test('README gallery renders valid HTML and references existing artwork',()=>{test('README headline and calls to action render in GitHub Flavored Markdown',()=>{
   assert.match(doc,/<h1 align="center">Systems Lab/);
   assert.doesNotMatch(doc,/<div align="center">/,'Markdown inside HTML containers loses styling');
-  assert.match(doc,/<p align="center"><a href="https:\/\/gracianb.github.io\/systems-lab\//);
+  assert.match(doc,/<p align="center">\s*<a href="https:\/\/gracianb.github.io\/systems-lab\//);
 });
 
 
