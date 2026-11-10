@@ -1,18 +1,15 @@
-<div align="center">
+<p align="center">
+  <a href="https://gracianb.github.io/systems-lab/"><img src="./assets/readme-cover.svg" alt="Systems Lab — Gracián Baena: interactive software, generative art and applied AI" width="100%"></a>
+</p>
 
-<a href="https://gracianb.github.io/systems-lab/">
-  <img src="./assets/readme-cover.svg" width="100%" alt="Systems Lab — Gracián Baena: interactive software, generative art and applied AI">
-</a>
+<h1 align="center">Systems Lab · Gracián Baena</h1>
 
-# Systems Lab · Gracián Baena
+<h3 align="center">Play · Experiment · Understand · Build</h3>
 
-### Play · Experiment · Understand · Build
+<p align="center"><strong>An interactive universe where software ideas become things you can actually explore.</strong></p>
 
-**An interactive universe where software ideas become things you can actually explore.**
+<p align="center"><a href="https://gracianb.github.io/systems-lab/"><strong>Enter Systems Lab ↗</strong></a> &nbsp;·&nbsp; <a href="https://gracianb.github.io/GracianB/"><strong>Open the personal hub ↗</strong></a> &nbsp;·&nbsp; <a href="https://gracianb.github.io/professional-deck/"><strong>Explore Professional Deck ↗</strong></a></p>
 
-[**Enter Systems Lab ↗**](https://gracianb.github.io/systems-lab/) &nbsp; · &nbsp; [**Open the personal hub ↗**](https://gracianb.github.io/GracianB/) &nbsp; · &nbsp; [**Explore Professional Deck ↗**](https://gracianb.github.io/professional-deck/)
-
-</div>
 
 ---
 
@@ -88,10 +85,7 @@ The other two worlds are intentionally different expressions of the same curiosi
 
 ---
 
-<div align="center">
+<p align="center"><strong>Build carefully. Explain clearly. Let people explore.</strong></p>
 
-**Build carefully. Explain clearly. Let people explore.**
+<p align="center"><a href="https://gracianb.github.io/systems-lab/"><strong>Systems Lab</strong></a> &nbsp;·&nbsp; <a href="https://github.com/GracianB"><strong>GitHub profile</strong></a> &nbsp;·&nbsp; <a href="https://gracianb.github.io/GracianB/"><strong>Personal hub</strong></a></p>
 
-[**Systems Lab**](https://gracianb.github.io/systems-lab/) · [**GitHub profile**](https://github.com/GracianB) · [**Personal hub**](https://gracianb.github.io/GracianB/)
-
-</div>
