@@ -35,6 +35,9 @@ Not everything is the same kind of product. Some experiences are fully public, s
 <p><strong>Experiment.</strong> A responsive WebGL field with four movements, curated visual states, pointer interaction and optional sound. A public interactive experience.</p>
 </td>
 </tr>
+</table>
+
+<table>
 <tr>
 <td width="50%" valign="top">
 <a href="https://gracianb.github.io/systems-lab/#aigoritmo"><img src="./assets/aigoritmo/arcana-poster.jpg" alt="Aigoritmo — four local AI identities" width="100%"></a>

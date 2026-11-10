@@ -17,7 +17,7 @@ test("Lab door availability is explicit and bilingual",()=>{
 test("The GitHub README is a visitor showroom with honest boundaries",()=>{
   for(const value of ["PROJECT OHANA","VØRTICE","AIGORITMO","CUSTOMER OPERATIONS","Professional Deck","Yoga Instructor"])
     assert.ok(readme.includes(value),value);
-  assert.match(readme,/not an online chat/);
+  assert.match(readme.replace(/<[^>]+>/g,""),/not an online chat/);
   assert.match(readme,/fictional data/);
   assert.doesNotMatch(readme,/npm run check|Version V2|CHANGELOG.md|Tools directory/);
 });
