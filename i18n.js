@@ -1,5 +1,9 @@
 window.LAB_I18N = {
   es: {
+    labProofLegendAria: "Estado y acceso de las experiencias",
+    labLegendPlayable: "EXPERIENCIAS PÚBLICAS",
+    labLegendShowcase: "MUESTRA DE APP LOCAL",
+    labLegendCase: "CASO + SIMULACIÓN",
     fieldHint: "Cuatro puertas. Una experiencia.",
     vxCoverShort: "Un campo que responde",
     aiCoverShort: "Cuatro identidades de IA",
@@ -80,6 +84,10 @@ window.LAB_I18N = {
     moreTitle: "Also in the lab.",
     revopsStatus: "PUBLIC DEMO",
     revopsCta: "Explore demo ↗",
+    labProofLegendAria: "Experience access and availability",
+    labLegendPlayable: "PUBLIC EXPERIENCES",
+    labLegendShowcase: "LOCAL APP SHOWCASE",
+    labLegendCase: "CASE + SIMULATION",
     fieldHint: "Four doors. One experience.",
     vxCoverShort: "A responsive visual field",
     aiCoverShort: "Four AI personalities",

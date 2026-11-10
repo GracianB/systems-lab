@@ -757,3 +757,24 @@ body.menu-on { overflow: hidden; }
 @media(prefers-reduced-motion:reduce){
   .feat-ohana,.vortex-live,.cover-node{transition:none}
 }
+
+/* Visitor-first access legend · ownership/status clarity without additional JS. */
+.lab-proof-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:clamp(1rem,2.6vw,1.75rem) auto 0;
+  border:1px solid rgba(182,216,228,.27);border-radius:12px;overflow:hidden;background:rgba(14,31,41,.77);color:#f0f7f7;
+  box-shadow:0 12px 30px rgba(0,0,0,.14)}
+.lab-proof-legend>div{display:grid;grid-template-columns:10px minmax(0,1fr);grid-template-rows:auto auto;align-content:center;
+  column-gap:.65rem;row-gap:.2rem;padding:clamp(.7rem,1.5vw,1rem);min-width:0;}
+.lab-proof-legend>div+div{border-left:1px solid rgba(182,216,228,.22)}
+.lab-proof-legend strong{grid-column:2;font-size:clamp(.65rem,.8vw,.76rem);line-height:1.5;letter-spacing:.06em;overflow-wrap:anywhere}
+.lab-proof-legend small{grid-column:2;font-size:clamp(.64rem,.73vw,.7rem);line-height:1.4;letter-spacing:.06em;color:#c4d4dd}
+.lab-legend-marker{grid-row:1/span 2;grid-column:1;align-self:start;margin-top:.42rem;width:7px;height:7px;border-radius:50%}
+.marker-live{background:#8fe2ce;box-shadow:0 0 0 3px rgba(143,226,206,.12)}
+.marker-private{background:#d9c49b;box-shadow:0 0 0 3px rgba(217,196,155,.13)}
+.marker-evidence{background:#a4b8f5;box-shadow:0 0 0 3px rgba(164,184,245,.13)}
+html[data-theme="light"] .lab-proof-legend{background:#f6f9f8;border-color:rgba(36,65,74,.2);color:#16343d;box-shadow:0 10px 30px rgba(44,70,71,.08)}
+html[data-theme="light"] .lab-proof-legend>div+div{border-left-color:rgba(36,65,74,.17)}
+html[data-theme="light"] .lab-proof-legend small{color:#45606b}
+@media(max-width:650px){.lab-proof-legend{grid-template-columns:minmax(0,1fr)}
+  .lab-proof-legend>div{padding:.76rem .95rem}
+  .lab-proof-legend>div+div,html[data-theme="light"] .lab-proof-legend>div+div{border-left:0;border-top:1px solid rgba(133,174,183,.27)}}
+@media(prefers-reduced-motion:reduce){.lab-proof-legend *{animation:none;transition:none}}
