@@ -777,4 +777,4 @@ html[data-theme="light"] .lab-proof-legend small{color:#45606b}
 @media(max-width:650px){.lab-proof-legend{grid-template-columns:minmax(0,1fr)}
   .lab-proof-legend>div{padding:.76rem .95rem}
   .lab-proof-legend>div+div,html[data-theme="light"] .lab-proof-legend>div+div{border-left:0;border-top:1px solid rgba(133,174,183,.27)}}
-@media(prefers-reduced-motion:reduce){.lab-proof-legend *{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){.lab-proof-legend *{animation:none;transition:none}}
