@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 const html=readFileSync(new URL("../index.html",import.meta.url),"utf8");
 const i18n=readFileSync(new URL("../i18n.js",import.meta.url),"utf8");
-const css=readFileSync(new URL("../experience-navigator.css",import.meta.url),"utf8");
+const css=readFileSync(new URL("../styles.css",import.meta.url),"utf8");
 const readme=readFileSync(new URL("../README.md",import.meta.url),"utf8");
 
 test("Lab door availability is explicit and bilingual",()=>{
