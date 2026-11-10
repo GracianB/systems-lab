@@ -16,7 +16,13 @@ test('README is a concise front page with real entry points and accurate product
 });
 
 
-test('README gallery renders valid HTML and references existing artwork',()=>{
+test('README gallery renders valid HTML and references existing artwork',()=>{test('README headline and calls to action render in GitHub Flavored Markdown',()=>{
+  assert.match(doc,/<h1 align="center">Systems Lab/);
+  assert.doesNotMatch(doc,/<div align="center">/,'Markdown inside HTML containers loses styling');
+  assert.match(doc,/<p align="center"><a href="https:\/\/gracianb.github.io\/systems-lab\//);
+});
+
+
   const tables=[...doc.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/gi)].map(match=>match[0]);
   assert.equal(tables.length,2,'Expected two project gallery tables');
   for(const table of tables){
