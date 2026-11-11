@@ -71,6 +71,17 @@ function persistURL(key, value) {
     if (!agentDisclosure.open) loadAgentFrame();
   });
   agentDisclosure?.addEventListener("toggle", openAgent);
+  const chiPreview = document.querySelector("#chi-preview");
+  const chiFrame = chiPreview?.querySelector("iframe[data-src]");
+  function loadChiFrame() {
+    if (!chiFrame?.dataset.src) return;
+    chiFrame.src = chiFrame.dataset.src;
+    chiFrame.removeAttribute("data-src");
+  }
+  chiPreview?.querySelector("summary")?.addEventListener("click", () => {
+    if (!chiPreview.open) loadChiFrame();
+  });
+  chiPreview?.addEventListener("toggle", () => { if (chiPreview.open) loadChiFrame(); });
   // A direct /#agente link is an intentional request to open this optional demo.
   function openLinkedAgent() {
     if (location.hash === "#agente" && agentDisclosure) {

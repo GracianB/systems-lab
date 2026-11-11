@@ -61,6 +61,9 @@ The goal is not to claim every prototype is a finished SaaS product. It is to ma
 
 ## More to investigate
 
+**[Customer Health Intelligence · Live Command Center](https://gracianb.github.io/customer-health-intelligence/)**  
+Rules-based CS/RevOps health scoring with a public Command Center. Demo data is fictitious; sector cases are conceptual and the named companies do not use this system. [Source repository](https://github.com/GracianB/customer-health-intelligence).
+
 **[RevOps Studio · Public sample-data demo](https://gracianb.github.io/revops-studio/demo.html)**  
 Operational decision logic, data quality, scoring and traceability. This is a simulation, not access to a real customer environment.
 
