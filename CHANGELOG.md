@@ -1,3 +1,8 @@
+# 5.0.2 — n8n workflow on the Customer Health card
+
+- Add a compact n8n workflow block to the Customer Health Intelligence case: canvas, scoring zoom and code-node screenshots, each opening at full size.
+- Caption stays honest: importable inactive workflow, rules-based scoring (not ML), Slack node pending configuration, fictitious data.
+
 # 5.0.1 — Customer Health Intelligence case
 
 - Add a Customer Ops case study for Customer Health Intelligence: live demo, repository, screenshots, profile links and an embedded Command Center preview.
