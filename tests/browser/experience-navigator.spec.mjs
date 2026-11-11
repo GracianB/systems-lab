@@ -14,7 +14,7 @@ test('V2 explorer loads as a production asset and navigates directly to real pro
   await expect(page.getByRole('dialog',{name:'¿Qué quieres explorar?'})).toBeVisible();
   const search=page.getByRole('combobox',{name:'Buscar proyectos'});
   await expect(search).toBeFocused();
-  await expect(page.getByRole('option')).toHaveCount(8);
+  await expect(page.getByRole('option')).toHaveCount(9);
   await search.fill('vortice');
   await expect(page.getByRole('option')).toHaveCount(1);
   await expect(page.getByRole('option')).toContainText('VÓRTICE');
