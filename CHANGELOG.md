@@ -1,7 +1,7 @@
 # 5.0.1 — Customer Health Intelligence case
 
 - Add a Customer Ops case study for Customer Health Intelligence: live demo, repository, screenshots, profile links and an embedded Command Center preview.
-- Honest framing: rules-based scoring (not ML), fictitious data, conceptual cases; named companies do not use the system. Simulated euros. Slack is not connected yet.
+- Honest framing: rules-based scoring (not ML), fictitious data, generic sector archetypes (healthcare marketplace, real-estate brokerage, dynamic pricing SaaS). Simulated euros. Slack is not connected yet.
 
 # 5.0.0 — runtime and portfolio renewal
 
