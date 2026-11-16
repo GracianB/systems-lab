@@ -627,13 +627,17 @@ body.menu-on { overflow: hidden; }
 
 /* P30 screenshot review · make OHANA genuinely full-width on desktop. */
 @media(min-width:851px){
-.feat-ohana{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);grid-template-rows:auto auto 1fr auto;column-gap:clamp(24px,4vw,52px);row-gap:10px;align-items:start;padding:clamp(20px,3vw,30px)}
-.feat-ohana .feat-stage{grid-column:1;grid-row:1/5;min-height:270px;height:100%;margin:0;align-self:stretch}
+.feat-ohana{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);grid-template-rows:auto auto auto auto auto;column-gap:clamp(24px,4vw,52px);row-gap:8px;align-items:start;padding:clamp(20px,3vw,30px)}
+.feat-ohana .feat-stage{grid-column:1;grid-row:1/6;min-height:270px;height:100%;margin:0;align-self:stretch}
 .feat-ohana header{grid-column:2;grid-row:1}
 .feat-ohana h3{grid-column:2;grid-row:2}
 .feat-ohana p{grid-column:2;grid-row:3}
-.feat-ohana .feat-cta{grid-column:2;grid-row:4;align-self:end}
+.feat-ohana .ohana-specs{grid-column:2;grid-row:4}
+.feat-ohana .feat-cta{grid-column:2;grid-row:5;align-self:end}
 }
+.ohana-specs{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px}
+.spec-pill{display:inline-flex;align-items:center;padding:3px 8px;font-size:11px;font-family:var(--mono);border-radius:6px;background:rgba(100,222,232,.08);color:var(--ice);border:1px solid rgba(100,222,232,.22);letter-spacing:.02em}
+[data-theme="light"] .spec-pill{background:#edf5f7;color:#0e5866;border-color:#b8d7df}
 
 /* P33 · Use the accessible drawer on compact laptops instead of squeezing
    five destinations into the header between 900 and 1199 px. */

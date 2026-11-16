@@ -24,12 +24,12 @@ Not everything is the same kind of product. Some experiences are fully public, s
 <td width="50%" valign="top">
 <a href="https://gracianb.github.io/project-ohana/"><img src="./assets/projects/ohana.webp" alt="Project OHANA — browser game set in Isla Hoku" width="100%"></a>
 <h3><a href="https://gracianb.github.io/project-ohana/">01 · PROJECT OHANA ↗</a></h3>
-<p><strong>Play.</strong> Explore a browser-based game with character evolution, movement, worlds and changing systems. A public creative-engineering project, under active iteration.</p>
+<p><strong>Play.</strong> Explore a Canvas-based adventure with 10 heroes, 50 evolutionary forms, real-time combat and Isla Hoku worlds. A public creative-engineering project.</p>
 </td>
 <td width="50%" valign="top">
 <a href="https://vortex-gilt-xi.vercel.app/"><img src="./assets/projects/vortex-readme-dark.svg" alt="VØRTICE — real-time generative WebGL field" width="100%"></a>
 <h3><a href="https://vortex-gilt-xi.vercel.app/">02 · VØRTICE ↗</a></h3>
-<p><strong>Experiment.</strong> A responsive WebGL field with four movements, curated visual states, pointer interaction and optional sound. A public interactive experience.</p>
+<p><strong>Experiment.</strong> A responsive WebGL field with 7 canonical movements, 32,000 particles, physical shockwaves and reactive audio synth. A public interactive experience.</p>
 </td>
 </tr>
 </table>

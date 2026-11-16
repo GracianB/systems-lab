@@ -1,3 +1,11 @@
+# 5.1.0 — OHANA showcase evolution, Vórtice v8 synchronization & interactive field glow
+
+- Upgraded Project OHANA card presentation with responsive spec pills (10 heroes, 50 forms, 10 Canvas rooms, co-op multiplayer).
+- Synchronized Vórtice showcase with v8.0.0 (32,000 particles, 7 canonical movements, physical shockwaves and audio synth).
+- Enhanced `cover-canvas.js` constellation simulation: added interactive pointer glow auras, dynamic shockwave pulses, and 86 constellation nodes.
+- Updated bilingual dictionaries (ES/EN) and experience navigator search indexes.
+- Maintained strict accessibility, CSP, and performance budgets across all assets.
+
 # 5.0.2 — n8n workflow on the Customer Health card
 
 - Add a compact n8n workflow block to the Customer Health Intelligence case: canvas, scoring zoom and code-node screenshots, each opening at full size.
