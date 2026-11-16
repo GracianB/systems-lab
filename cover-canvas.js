@@ -10,9 +10,9 @@
   let motionQuery;
   try { motionQuery = window.matchMedia?.('(prefers-reduced-motion: reduce)'); reduced = !!motionQuery?.matches; } catch { /* Static fallback remains available. */ }
   canvas.dataset.motion = isStatic() ? 'static' : 'animated';
-  const particles = Array.from({length: 78}, (_, i) => ({
-    angle: i * 2.399963, radius: 0.1 + (i % 19) / 23,
-    speed: 0.15 + (i % 7) / 18,
+  const particles = Array.from({length: 86}, (_, i) => ({
+    angle: i * 2.399963, radius: 0.12 + (i % 21) / 24,
+    speed: 0.14 + (i % 7) / 19,
   }));
   function draw() {
     const light = document.documentElement.dataset.theme === 'light';
@@ -22,6 +22,13 @@
     const glow = context.createRadialGradient(cx, cy, 1, cx, cy, radius);
     glow.addColorStop(0, `rgba(${ink},${light ? '.22' : '.28'})`); glow.addColorStop(1, `rgba(${ink},0)`);
     context.fillStyle = glow; context.fillRect(0, 0, width, height);
+    if (pointer) {
+      const pGlow = context.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 90);
+      pGlow.addColorStop(0, `rgba(${ink},${light ? '.16' : '.24'})`);
+      pGlow.addColorStop(1, `rgba(${ink},0)`);
+      context.fillStyle = pGlow;
+      context.beginPath(); context.arc(pointer.x, pointer.y, 90, 0, Math.PI * 2); context.fill();
+    }
     const points = particles.map(p => {
       const a = p.angle + phase * p.speed;
       const r = radius * p.radius * (1 + pulse * 0.18);
@@ -37,7 +44,12 @@
         context.strokeStyle = `rgba(${ink},${(1 - distance / 82) * (light ? 0.36 : 0.44)})`;
         context.beginPath(); context.moveTo(p.x, p.y); context.lineTo(q.x, q.y); context.stroke();
       }
-      context.fillStyle = `rgba(${ink},${light ? '.85' : '.95'})`; context.beginPath(); context.arc(p.x, p.y, i % 9 === 0 ? 2.3 : 1.1, 0, Math.PI * 2); context.fill();
+      context.fillStyle = `rgba(${ink},${light ? '.85' : '.95'})`; context.beginPath(); context.arc(p.x, p.y, i % 8 === 0 ? 2.4 : 1.15, 0, Math.PI * 2); context.fill();
+    }
+    if (pulse > 0.04) {
+      context.strokeStyle = `rgba(${ink},${pulse * (light ? 0.45 : 0.55)})`;
+      context.lineWidth = 1.2;
+      context.beginPath(); context.arc(cx, cy, (1 - pulse) * radius * 0.88, 0, Math.PI * 2); context.stroke();
     }
     context.strokeStyle = `rgba(${ink},.65)`; context.lineWidth = 1.4;
     context.beginPath(); context.moveTo(cx, cy - 25); context.lineTo(cx + 9, cy - 9); context.lineTo(cx + 25, cy); context.lineTo(cx + 9, cy + 9); context.lineTo(cx, cy + 25); context.lineTo(cx - 9, cy + 9); context.lineTo(cx - 25, cy); context.lineTo(cx - 9, cy - 9); context.closePath(); context.stroke();

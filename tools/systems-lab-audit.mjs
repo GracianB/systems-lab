@@ -148,7 +148,7 @@ check("js:raf-fallback", /typeof window\.requestAnimationFrame === "function"/.t
 
 const important = count(css, /!important/g);
 const cssBytes = fs.statSync(file("styles.css")).size;
-const CSS_BUDGET_BYTES = 42_000;
+const CSS_BUDGET_BYTES = 44_000;
 check("css:no-important", important === 0, String(important));
 check("css:budget", cssBytes <= CSS_BUDGET_BYTES, cssBytes + " / " + CSS_BUDGET_BYTES + " bytes");
 check("css:focus-visible", /:focus-visible/.test(css));

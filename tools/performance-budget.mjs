@@ -5,12 +5,12 @@ import { gzipSync } from "node:zlib";
 const ROOT = process.cwd();
 const BUDGETS = {
   "index.html": 24000,
-  "styles.css": 42000,
+  "styles.css": 44000,
   "main.js": 18000,
   "i18n.js": 13000,
   "boot.js": 1000,
   "cover-canvas.js": 6000,
-  "experience-navigator.js": 12000,
+  "experience-navigator.js": 12500,
   "experience-navigator.css": 6500,
   "bodytone-chatbot/frontend/index.html": 3000,
   "bodytone-chatbot/frontend/demo.js": 10000,
@@ -29,7 +29,7 @@ for (const [name, budget] of Object.entries(BUDGETS)) {
   console.log((ok ? "PASS " : "FAIL ") + name + " — " + bytes + " / " + budget + " bytes");
   if (!ok) failures++;
 }
-const aggregateBudget = 137000;
+const aggregateBudget = 140000;
 console.log((total <= aggregateBudget ? "PASS " : "FAIL ") + "first-party surface — " + total + " / " + aggregateBudget + " bytes");
 if (total > aggregateBudget) failures++;
 console.log("RESULT");

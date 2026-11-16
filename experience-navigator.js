@@ -2,8 +2,8 @@
 (() => {
   if (!document.body || document.querySelector('[data-lab-command-root]')) return;
   const entries = [
-    { key:'ohana', title:'OHANA', es:'Jugar · 10 personajes, salas y combate', en:'Play · 10 characters, rooms and combat', category:'PLAY', href:'#juegos', words:'ohana videojuego juego game play isla evolution evolucion' },
-    { key:'vortex', title:'VÓRTICE', es:'Experimentar · arte generativo WebGL', en:'Explore · generative WebGL art', category:'LIVE', href:'#vortex-live', words:'vortice vortex webgl particles particulas visual generativo field campo' },
+    { key:'ohana', title:'OHANA', es:'Jugar · 10 héroes, 50 formas y aventura Canvas', en:'Play · 10 heroes, 50 forms & Canvas adventure', category:'PLAY', href:'#juegos', words:'ohana michi kilo chispín videojuego juego game play isla evolution evolucion hoku canvas co-op multijugador' },
+    { key:'vortex', title:'VÓRTICE', es:'Experimentar · arte generativo WebGL v8', en:'Explore · generative WebGL art v8', category:'LIVE', href:'#vortex-live', words:'vortice vortex webgl particles particulas visual generativo field campo shockwaves 32k' },
     { key:'aigoritmo', title:'AIGORITMO', es:'Conocer · cuatro identidades de IA local', en:'Meet · four local AI identities', category:'LOCAL', href:'#aigoritmo', words:'ia ai llama qwen arcana arcano modelos chat privado private' },
     { key:'customer', title:'BODYTONE SUPPORT OS', es:'Comprobar · operaciones y soporte reales', en:'Inspect · real customer operations', category:'CASE', href:'#cs', words:'customer success ops zendesk help center tickets support' },
     { key:'agent', title:'AGENTE DE SOPORTE', es:'Probar · simulación con datos ficticios', en:'Try · fictional support simulation', category:'DEMO', href:'#agente', words:'bot agente chatbot envio shipping factura invoice ticket simulacion agent' },
