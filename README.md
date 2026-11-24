@@ -25,7 +25,7 @@
 
 **Systems Lab is a product showcase, not a repository changelog.** I build at the intersection of software, AI, playful interaction and customer operations. My background in SaaS and Customer Success shaped one rule: a product should be useful, understandable and honest about what it can do.
 
-Every project has a purpose, an interaction and a clear access level. Some are **playable online**; others use **fictional demonstration data**, need authentication or run only on a local machine.
+Every project has a purpose, an interaction and a clear access level. Some are **playable online**; others use **fictional demonstration data**, need authentication or run only on a local machine. Systems Lab itself is **not an online chat** or hosted AI service.
 
 **Start exploring:** [AI universe](#01--aigoritmo--the-ai-universe) · [Playable worlds](#02--03--interactive-worlds) · [Decision systems](#04--05--intelligence--operations) · [Real-world craft](#06--07--support--creator-tools)
 
@@ -111,7 +111,7 @@ The local-first application explores **FastAPI, Ollama model options and Piper s
 <td width="50%" valign="top">
   <a href="https://bodytonehelp.zendesk.com/hc/es"><img src="./assets/projects/bodytone-support-visual.svg" alt="Bodytone Support OS — editorial illustration of a Help Center and knowledge workflow, not a screenshot of the live portal" width="100%"></a>
   <h3><a href="https://bodytonehelp.zendesk.com/hc/es">06 · BODYTONE SUPPORT OS ↗</a></h3>
-  <p><strong>REAL PROFESSIONAL CASE / SUPPORT</strong></p>
+  <p><strong>REAL PROFESSIONAL CASE / CUSTOMER OPERATIONS</strong></p>
   <p>Work on the service experience: a public <strong>Zendesk Help Center</strong>, support knowledge and customer-operations processes. The portal is a real public artifact; private tickets and customer information are not part of this showcase.</p>
   <p><a href="https://bodytonehelp.zendesk.com/hc/es"><strong>View the Help Center ↗</strong></a> · <a href="https://gracianb.github.io/professional-deck/proyecto-bodytone.html">Read the professional case ↗</a></p>
 </td>
@@ -146,7 +146,7 @@ The showroom is a lightweight, bilingual **ES/EN static site** with product disc
 ### What visitors can access
 
 - **Public:** live experiences such as OHANA and VØRTICE.
-- **Sample-data demos:** functioning interfaces, simulated operational records, no live customer integrations.
+- **Sample-data demos:** functioning interfaces, fictional data and simulated operational records, no live customer integrations.
 - **Protected cloud preview:** authenticated entry, with scripted scenarios clearly separated from paid AI.
 - **Private/local:** documented concepts or workflows without a public launch link.
 
@@ -161,14 +161,7 @@ The showroom is a lightweight, bilingual **ES/EN static site** with product disc
 <details>
 <summary><strong>For developers · Architecture, tests and publication</strong></summary>
 
-The public site is static and intentionally does **not** contain the private implementation of AIGORITMO, operational customer data or secrets. Local development with Node.js 24+:
-
-```bash
-npm ci
-npm run check
-npm run test:browser
-npm run build
-```
+The public site is static and intentionally does **not** contain the private implementation of AIGORITMO, operational customer data or secrets. Development commands and workflow internals are kept in the technical documentation, not the product storefront.
 
 Read the [architecture](docs/ARCHITECTURE.md), [quality and security boundaries](docs/QUALITY_AND_BOUNDARIES.md), [release decisions](docs/RELEASES.md) and [GitHub configuration](docs/GITHUB_CONFIGURATION.md). The GitHub Pages deployment and the product demos are independently verified; passing source tests alone is not proof that every external service is online.
 
