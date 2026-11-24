@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+<title id="title">Project OHANA · Isla Hoku · Edición 802</title>
+<desc id="desc">Ilustración editorial nueva de la edición 802, con santuario bioluminiscente, islas de fantasía, doce personajes nombrados y cinco formas por personaje. No es una captura de pantalla del juego.</desc>
+<defs>
+<linearGradient id="sky" x2="0" y2="1"><stop stop-color="#07182b"/><stop offset=".52" stop-color="#142b4c"/><stop offset="1" stop-color="#192237"/></linearGradient>
+<radialGradient id="aurora"><stop stop-color="#84f1d7" stop-opacity=".54"/><stop offset=".58" stop-color="#6b92d7" stop-opacity=".23"/><stop offset="1" stop-color="#405687" stop-opacity="0"/></radialGradient>
+<linearGradient id="lake" x2="0" y2="1"><stop stop-color="#375b6d"/><stop offset=".48" stop-color="#152e46"/><stop offset="1" stop-color="#0c1b32"/></linearGradient>
+<linearGradient id="island" x2=".3" y2="1"><stop stop-color="#568982"/><stop offset=".52" stop-color="#294a4e"/><stop offset="1" stop-color="#102b3e"/></linearGradient>
+<linearGradient id="text" x2="1" y2="0"><stop stop-color="#f9fff9"/><stop offset="1" stop-color="#b0f1ec"/></linearGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="17"/></filter>
+<filter id="glow"><feGaussianBlur stdDeviation="3"/></filter>
+<clipPath id="clip"><rect width="1200" height="680" rx="22"/></clipPath>
+</defs>
+<g clip-path="url(#clip)">
+<rect width="1200" height="680" fill="url(#sky)"/>
+<ellipse cx="615" cy="212" rx="400" ry="265" fill="url(#aurora)"/>
+<path d="M-20 278Q180 105 373 241T791 207T1230 255" fill="none" stroke="#89e8d7" stroke-width="36" stroke-opacity=".1" filter="url(#soft)"/>
+<circle cx="49" cy="28" r="2.4" fill="#aaf6f2" opacity=".8"/>
+<circle cx="186" cy="101" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="323" cy="174" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="460" cy="247" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="597" cy="320" r="2.4" fill="#cad4ff" opacity=".8"/>
+<circle cx="734" cy="393" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="871" cy="66" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="1008" cy="139" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="1145" cy="212" r="2.4" fill="#cad4ff" opacity=".8"/>
+<circle cx="82" cy="285" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="219" cy="358" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="356" cy="31" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="493" cy="104" r="2.4" fill="#aaf6f2" opacity=".8"/>
+<circle cx="630" cy="177" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="767" cy="250" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="904" cy="323" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="1041" cy="396" r="2.4" fill="#cad4ff" opacity=".8"/>
+<circle cx="1178" cy="69" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="115" cy="142" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="252" cy="215" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="389" cy="288" r="2.4" fill="#cad4ff" opacity=".8"/>
+<circle cx="526" cy="361" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="663" cy="34" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="800" cy="107" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="937" cy="180" r="2.4" fill="#aaf6f2" opacity=".8"/>
+<circle cx="1074" cy="253" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="11" cy="326" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="148" cy="399" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="285" cy="72" r="2.4" fill="#cad4ff" opacity=".8"/>
+<circle cx="422" cy="145" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="559" cy="218" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="696" cy="291" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="833" cy="364" r="2.4" fill="#cad4ff" opacity=".8"/>
+<circle cx="970" cy="37" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="1107" cy="110" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="44" cy="183" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="181" cy="256" r="2.4" fill="#aaf6f2" opacity=".8"/>
+<circle cx="318" cy="329" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="455" cy="2" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="592" cy="75" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="729" cy="148" r="2.4" fill="#cad4ff" opacity=".8"/>
+<circle cx="866" cy="221" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="1003" cy="294" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="1140" cy="367" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="77" cy="40" r="2.4" fill="#cad4ff" opacity=".8"/>
+<circle cx="214" cy="113" r="1" fill="#aaf6f2" opacity=".48"/>
+<circle cx="351" cy="186" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="488" cy="259" r="1" fill="#cad4ff" opacity=".48"/>
+<circle cx="755" cy="192" r="110" fill="#8ce2db" opacity=".14" filter="url(#soft)"/>
+<circle cx="755" cy="192" r="67" fill="#c8fff0" opacity=".17"/>
+<circle cx="755" cy="192" r="48" fill="#d8fff1" opacity=".2"/>
+<path d="M0 375C130 310 185 359 275 345S444 280 531 328 695 327 762 314s144 46 223 9 142 2 215-3V492H0Z" fill="#143049"/>
+<path d="M0 423Q95 395 210 420T420 418T646 405T854 416T1200 398V530H0Z" fill="url(#lake)"/>
+<path d="M60 411q35-48 89-40t103 25q54-7 102-45t129-13q51 24 99 42-44 17-85 41-44 17-150 13-148 17-287-23Z" fill="url(#island)" stroke="#8bd5c6" stroke-opacity=".23"/>
+<path d="M786 398q80-52 151-33t101 6q61-29 124 16l72 51q-226 43-448-40Z" fill="url(#island)" stroke="#8bd5c6" stroke-opacity=".2"/>
+<path d="M620 415C666 371 681 336 725 304" fill="none" stroke="#d6ffdf" stroke-width="12" stroke-opacity=".22" filter="url(#glow)"/>
+<path d="M620 415C666 371 681 336 725 304" fill="none" stroke="#a6ffe4" stroke-width="2" stroke-dasharray="4 18" stroke-opacity=".8"/>
+<g stroke="#b4ffe9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+<path d="M660 359Q683 319 674 266Q667 224 696 198" stroke-width="15" stroke-opacity=".18"/>
+<path d="M660 359Q683 319 674 266Q667 224 696 198" stroke-width="3.5" stroke-opacity=".74"/>
+<path d="M674 268Q627 251 610 209M678 231Q720 226 739 188M658 323Q618 311 606 283" stroke-width="2.7" stroke-opacity=".72"/>
+</g>
+<g opacity=".9">
+<path d="M575 375Q589 346 613 335l16 41Z" fill="#95fad9" opacity=".33"/>
+<path d="M574 376q-15-29-38-26l-15 21Z" fill="#bcb5ff" opacity=".27"/>
+<path d="M592 360q4-26 32-28l11 32Z" fill="#e3ceff" opacity=".36"/>
+<circle cx="594" cy="359" r="8" fill="#e1ffeb"/>
+</g>
+<path d="M-15 466q266-58 537-3t692-11" fill="none" stroke="#8ed1ef" stroke-opacity=".21" stroke-width="2"/>
+<path d="M-20 482q260-44 556-8t685-7" fill="none" stroke="#e0f4ff" stroke-opacity=".12" stroke-width="1.5"/>
+<rect y="440" width="1200" height="240" fill="#061322" opacity=".82"/>
+<rect y="478" width="1200" height="202" fill="#050d1b" opacity=".64"/>
+<rect x="38" y="34" width="168" height="33" rx="16.5" fill="#0a2138" stroke="#c8f4ef" stroke-opacity=".49"/>
+<circle cx="57" cy="50.5" r="4" fill="#8be8d4"/>
+<text x="71" y="55" fill="#d3fff3" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="2">OHANA · 802</text>
+<text x="45" y="150" fill="url(#text)" font-family="Georgia,serif" font-size="103" letter-spacing="-5">OHANA</text>
+<text x="51" y="194" fill="#cee4ec" font-family="Arial,sans-serif" font-size="16" letter-spacing="3.5">ISLA HOKU · UN MUNDO QUE EVOLUCIONA</text>
+<path d="M50 217h253" stroke="#affce6" stroke-width="2" stroke-opacity=".74"/>
+<text x="51" y="249" fill="#acc7d8" font-family="Arial,sans-serif" font-size="14">12 personajes · 5 formas · aventuras y poderes</text>
+<text x="51" y="475" fill="#95d9d7" font-family="Arial,sans-serif" font-size="10" font-weight="700" letter-spacing="2.5">LA FAMILIA DE OHANA · ELENCO ACTUAL</text>
+<g><rect x="65" y="520" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#ffb6cf" stroke-opacity=".43"/><circle cx="86" cy="540" r="8" fill="#ffb6cf" fill-opacity=".88"/><text x="104" y="545" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">KILO</text></g>
+<g><rect x="279" y="520" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#8faaff" stroke-opacity=".43"/><circle cx="300" cy="540" r="8" fill="#8faaff" fill-opacity=".88"/><text x="318" y="545" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">STITCHO</text></g>
+<g><rect x="493" y="520" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#ffe18f" stroke-opacity=".43"/><circle cx="514" cy="540" r="8" fill="#ffe18f" fill-opacity=".88"/><text x="532" y="545" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">CHISPÍN</text></g>
+<g><rect x="707" y="520" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#afffe3" stroke-opacity=".43"/><circle cx="728" cy="540" r="8" fill="#afffe3" fill-opacity=".88"/><text x="746" y="545" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">MICHI</text></g>
+<g><rect x="921" y="520" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#f8adbb" stroke-opacity=".43"/><circle cx="942" cy="540" r="8" fill="#f8adbb" fill-opacity=".88"/><text x="960" y="545" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">DRAGÓN</text></g>
+<g><rect x="1135" y="520" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#8be0d5" stroke-opacity=".43"/><circle cx="1156" cy="540" r="8" fill="#8be0d5" fill-opacity=".88"/><text x="1174" y="545" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">DINO</text></g>
+<g><rect x="65" y="575" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#ffb39f" stroke-opacity=".43"/><circle cx="86" cy="595" r="8" fill="#ffb39f" fill-opacity=".88"/><text x="104" y="600" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">FRITA</text></g>
+<g><rect x="279" y="575" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#ffd1a6" stroke-opacity=".43"/><circle cx="300" cy="595" r="8" fill="#ffd1a6" fill-opacity=".88"/><text x="318" y="600" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">PIZZA</text></g>
+<g><rect x="493" y="575" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#b5a3f8" stroke-opacity=".43"/><circle cx="514" cy="595" r="8" fill="#b5a3f8" fill-opacity=".88"/><text x="532" y="600" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">YOMI</text></g>
+<g><rect x="707" y="575" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#e8d7fa" stroke-opacity=".43"/><circle cx="728" cy="595" r="8" fill="#e8d7fa" fill-opacity=".88"/><text x="746" y="600" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">CUERNO</text></g>
+<g><rect x="921" y="575" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#b2e3f0" stroke-opacity=".43"/><circle cx="942" cy="595" r="8" fill="#b2e3f0" fill-opacity=".88"/><text x="960" y="600" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">NÁCAR</text></g>
+<g><rect x="1135" y="575" width="197" height="40" rx="20" fill="#0b1c38" fill-opacity=".82" stroke="#a5f0ff" stroke-opacity=".43"/><circle cx="1156" cy="595" r="8" fill="#a5f0ff" fill-opacity=".88"/><text x="1174" y="600" fill="#e9f7ff" font-size="13" font-weight="750" letter-spacing="1.2">IA</text></g>
+<text x="51" y="663" fill="#9cb8c8" font-family="Arial,sans-serif" font-size="10">VISUAL EDITORIAL DE LA VERSIÓN 802 · PERSONAJES Y CAPTURAS REALES EN LA GALERÍA DEL JUEGO</text>
+<rect x="1.5" y="1.5" width="1197" height="677" rx="20" fill="none" stroke="#a3e6e4" stroke-opacity=".25" stroke-width="2"/>
+</g></svg>
