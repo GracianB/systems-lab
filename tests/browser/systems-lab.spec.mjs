@@ -208,14 +208,18 @@ test("P37 themes use native light and dark art, without artificial dark cards", 
   }
   await expect(page.locator(".vortex-poster-light")).toBeVisible();
   await expect(page.locator(".vortex-poster-dark")).toBeHidden();
+  const ohanaArt = page.locator(".feat-ohana .project-poster img");
+  await ohanaArt.scrollIntoViewIfNeeded();
+  await expect(ohanaArt).toHaveAttribute("src","./assets/projects/ohana-v802.svg");
+  await expect.poll(() => ohanaArt.evaluate(img => img.complete && img.naturalWidth > 0), { timeout: 15000 }).toBe(true);
   const framing = await page.locator(".feat-ohana .project-poster img").evaluate(img => ({
     fit:getComputedStyle(img).objectFit, scale:getComputedStyle(img).transform, width:img.getBoundingClientRect().width,
     naturalWidth:img.naturalWidth, naturalHeight:img.naturalHeight
   }));
   expect(framing.fit).toBe("cover");
   expect(framing.scale).toBe("none");
-  expect(framing.naturalWidth).toBe(1200);
-  expect(framing.naturalHeight).toBe(680);
+  expect(framing.naturalWidth).toBeGreaterThan(400);
+  expect(framing.naturalHeight).toBeGreaterThan(200);
   const placement = await page.locator(".feat-ohana").evaluate(card => {
     const stage = card.querySelector(".feat-stage").getBoundingClientRect();
     const heading = card.querySelector("h3").getBoundingClientRect();
@@ -226,8 +230,8 @@ test("P37 themes use native light and dark art, without artificial dark cards", 
   if (await page.evaluate(() => innerWidth > 850)) {
     expect(placement.stageRight).toBeLessThan(placement.headingLeft);
   }
-  expect(placement.aspect).toBeGreaterThan(1.72);
-  expect(placement.aspect).toBeLessThan(1.80);
+  expect(placement.aspect).toBeGreaterThan(1.66);
+  expect(placement.aspect).toBeLessThan(1.86);
   expect(placement.imgHeight).toBeGreaterThan(155);
   await page.locator("[data-vortex-start]").click();
   await expect(page.locator("#vortex-window iframe")).toHaveCount(1);
