@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">RevOps Studio · Explainable operations</title>
+<desc id="desc">Editorial illustration of an operations workflow with sample-data validation, audit trail and explainable decision panel. It is not a screenshot from a connected customer CRM.</desc>
+<defs>
+<linearGradient id="bg" x2="1" y2="1"><stop stop-color="#081724"/><stop offset=".55" stop-color="#132c3a"/><stop offset="1" stop-color="#10283b"/></linearGradient>
+<linearGradient id="card" x2="1" y2="1"><stop stop-color="#e7f3f4"/><stop offset="1" stop-color="#cfe8e9"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#6fc8d1" stop-opacity=".39"/><stop offset="1" stop-color="#75d0d4" stop-opacity="0"/></radialGradient>
+<filter id="shadow" x="-30%" y="-35%" width="180%" height="180%"><feDropShadow dx="0" dy="25" stdDeviation="21" flood-color="#030d18" flood-opacity=".65"/></filter>
+<clipPath id="clip"><rect width="1200" height="675" rx="18"/></clipPath>
+</defs>
+<g clip-path="url(#clip)" font-family="Arial,Helvetica,sans-serif">
+<rect width="1200" height="675" fill="url(#bg)"/>
+<circle cx="960" cy="135" r="470" fill="url(#glow)"/>
+<g fill="none" stroke="#9acdd9" stroke-opacity=".11">
+<path d="M0 175h1200M0 345h1200M0 520h1200M185 0v675M420 0v675M660 0v675M900 0v675"/>
+</g>
+<rect x="52" y="51" width="198" height="39" rx="19.5" fill="#8cdeeb" fill-opacity=".1" stroke="#9ce2e8" stroke-opacity=".48"/>
+<circle cx="77" cy="70" r="5.5" fill="#87ecdf"/>
+<text x="92" y="76" fill="#c7eef3" font-size="15" font-weight="750" letter-spacing="1.5">SAMPLE-DATA DEMO</text>
+<text x="51" y="170" fill="#f0fbff" font-size="71" font-weight="700" letter-spacing="-3">RevOps</text>
+<text x="55" y="234" fill="#91e9e4" font-size="48">Studio</text>
+<path d="M55 264h312" stroke="#86d9e1" stroke-width="2"/>
+<text x="55" y="309" font-size="20" fill="#bdd2de">From messy data</text>
+<text x="55" y="340" font-size="20" fill="#bdd2de">to clear decisions.</text>
+<g>
+<rect x="54" y="394" width="153" height="46" rx="8" fill="#8de8db" fill-opacity=".14" stroke="#99e8d8" stroke-opacity=".57"/>
+<text x="75" y="423" font-size="17" font-weight="700" fill="#dafbf3">VALIDATE</text>
+<path d="M217 417h35m-7-7 7 7-7 7" stroke="#a1dde0" stroke-width="2.5" fill="none"/>
+<rect x="261" y="394" width="152" height="46" rx="8" fill="#8de8db" fill-opacity=".1" stroke="#99e8d8" stroke-opacity=".4"/>
+<text x="286" y="423" font-size="17" font-weight="700" fill="#dafbf3">DECIDE</text>
+</g>
+<text x="55" y="602" font-size="15" letter-spacing="2.8" fill="#a0c4d0">DATA QUALITY / HUMAN REVIEW</text>
+<g transform="translate(459 73) rotate(-2 350 250)" filter="url(#shadow)">
+<rect width="710" height="512" rx="20" fill="#071b29" stroke="#a7e4e7" stroke-opacity=".45" stroke-width="2"/>
+<rect x="9" y="9" width="692" height="494" rx="13" fill="url(#card)"/>
+<path d="M9 27a18 18 0 0 1 18-18h656a18 18 0 0 1 18 18v49H9Z" fill="#f5fbfa"/>
+<circle cx="33" cy="38" r="6" fill="#90bebf"/><circle cx="53" cy="38" r="6" fill="#b7d8cd"/><circle cx="73" cy="38" r="6" fill="#cddad9"/>
+<text x="105" y="44" font-size="18" fill="#183947" font-weight="800" letter-spacing="1.2">REVOPS / CONTROL ROOM</text>
+<rect x="534" y="23" width="145" height="29" rx="14.5" fill="#d7f2eb"/><circle cx="552" cy="37" r="4" fill="#3fa693"/>
+<text x="567" y="42" font-size="12" fill="#357567" font-weight="700">SANDBOX DATA</text>
+<g>
+<rect x="27" y="98" width="204" height="106" rx="12" fill="#f9ffff" stroke="#bcd9dc"/>
+<text x="42" y="125" fill="#5a7782" font-size="13" font-weight="700">DATA READINESS</text>
+<text x="42" y="174" fill="#1a4d54" font-size="47" font-weight="800">94%</text>
+<rect x="43" y="186" width="169" height="6" rx="3" fill="#d9eaea"/><rect x="43" y="186" width="159" height="6" rx="3" fill="#56bead"/>
+<rect x="245" y="98" width="202" height="106" rx="12" fill="#f9ffff" stroke="#bcd9dc"/>
+<text x="261" y="125" fill="#5a7782" font-size="13" font-weight="700">REVIEW QUEUE</text>
+<text x="261" y="174" fill="#1a4d54" font-size="47" font-weight="800">12</text>
+<text x="335" y="171" fill="#649b92" font-size="15">items</text>
+<rect x="461" y="98" width="215" height="106" rx="12" fill="#f9ffff" stroke="#bcd9dc"/>
+<text x="477" y="125" fill="#5a7782" font-size="13" font-weight="700">RULE COVERAGE</text>
+<text x="477" y="174" fill="#1a4d54" font-size="47" font-weight="800">08</text>
+<text x="551" y="171" fill="#649b92" font-size="15">policies</text>
+<rect x="27" y="223" width="421" height="242" rx="11" fill="#f9ffff" stroke="#bcd9dc"/>
+<text x="43" y="253" font-size="17" font-weight="800" fill="#254857">Workflow validation</text>
+<text x="43" y="274" font-size="13" fill="#789099">Sample import → quality checks → review</text>
+<g fill="none" stroke-width="2.5">
+<path d="M68 320h118" stroke="#99cfc9"/><path d="M191 320h88" stroke="#99cfc9"/><path d="M283 320h106" stroke="#99cfc9"/>
+</g>
+<g>
+<circle cx="73" cy="320" r="20" fill="#e1f1ec" stroke="#65beae" stroke-width="2"/><path d="m64 319 8 8 13-16" fill="none" stroke="#4fa795" stroke-width="3"/>
+<circle cx="192" cy="320" r="20" fill="#e1f1ec" stroke="#65beae" stroke-width="2"/><path d="m183 319 8 8 13-16" fill="none" stroke="#4fa795" stroke-width="3"/>
+<circle cx="296" cy="320" r="20" fill="#f7ead6" stroke="#b8a277" stroke-width="2"/><path d="M296 307v15m0 6v4" stroke="#b19458" stroke-width="3"/>
+<circle cx="399" cy="320" r="20" fill="#e8ebf5" stroke="#8d9fbe" stroke-width="2"/><path d="M390 321h17m-8-8 8 8-8 8" fill="none" stroke="#8397b2" stroke-width="3"/>
+</g>
+<text x="48" y="361" font-size="12" fill="#60808b">Import</text><text x="166" y="361" font-size="12" fill="#60808b">Normalize</text><text x="274" y="361" font-size="12" fill="#60808b">Flag</text><text x="373" y="361" font-size="12" fill="#60808b">Review</text>
+<rect x="43" y="386" width="390" height="60" rx="9" fill="#ecf6f5"/>
+<text x="57" y="410" font-size="14" font-weight="750" fill="#24525b">12 records require attention</text>
+<text x="57" y="431" font-size="13" fill="#6b9197">Missing data · duplicate IDs · policy threshold</text>
+<rect x="461" y="223" width="215" height="242" rx="11" fill="#f9ffff" stroke="#bcd9dc"/>
+<text x="479" y="253" font-size="17" font-weight="800" fill="#254857">Decision trace</text>
+<text x="479" y="278" font-size="13" fill="#789099">Explainable outcomes</text>
+<rect x="479" y="300" width="175" height="51" rx="8" fill="#e1f2ed"/>
+<circle cx="498" cy="326" r="6" fill="#4db49d"/>
+<text x="516" y="323" font-size="14" font-weight="750" fill="#285c56">Validation passed</text>
+<text x="516" y="338" font-size="11" fill="#6c918e">Rules: 01 / 04 / 08</text>
+<rect x="479" y="365" width="175" height="77" rx="8" fill="#f8efdf"/>
+<circle cx="498" cy="390" r="6" fill="#cda560"/>
+<text x="516" y="389" font-size="13" font-weight="750" fill="#7d6640">Human review</text>
+<text x="493" y="415" font-size="12" fill="#977d58">No automatic override</text>
+</g>
+</g>
+<rect width="1200" height="675" rx="18" fill="none" stroke="#a5d7e4" stroke-opacity=".2"/>
+</g></svg>
