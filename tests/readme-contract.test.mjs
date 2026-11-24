@@ -1,69 +1,107 @@
-import {test} from 'node:test';
-import assert from 'node:assert/strict';
-import fs from 'node:fs';
-import path from 'node:path';
-const root=process.cwd();
-const doc=fs.readFileSync('README.md','utf8');
-test('README is a concise front page with real entry points and accurate product status',()=>{
-  assert.ok(doc.length<7000,'Readme became a changelog');
-  for(const pathName of ['assets/readme-cover.svg','assets/projects/ohana-v802.svg','assets/projects/vortex-readme-dark.svg','assets/projects/customer-ops.svg','assets/aigoritmo/arcana-poster.jpg','assets/aigoritmo/qwen-poster.jpg','docs/ARCHITECTURE.md','docs/QUALITY_AND_BOUNDARIES.md','docs/RELEASES.md','docs/GITHUB_CONFIGURATION.md']){
-    assert.ok(fs.existsSync(path.join(root,pathName)), 'Missing README asset/link: '+pathName);
-  }
-  assert.match(doc,/private\/local AI application/i);
-  assert.match(doc,/fictional data/i);
-  assert.doesNotMatch(doc,/127\.0\.0\.1:8001|https:\/\/github\.com\/GracianB\/aigoritmo/);
-  assert.match(doc,/github\.io\/systems-lab/);
-});
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 
+const root = process.cwd();
+const doc = fs.readFileSync("README.md", "utf8");
+const cells = [...doc.matchAll(/<td\b[^>]*>[\s\S]*?<\/td>/gi)].map(m => m[0]);
+const tables = [...doc.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/gi)].map(m => m[0]);
 
-test('README gallery renders valid HTML and references existing artwork',()=>{test('README headline and calls to action render in GitHub Flavored Markdown',()=>{
-  assert.match(doc,/<h1 align="center">Systems Lab/);
-  assert.doesNotMatch(doc,/<div align="center">/,'Markdown inside HTML containers loses styling');
-  assert.match(doc,/<p align="center">\s*<a href="https:\/\/gracianb.github.io\/systems-lab\//);
-});
-
-
-  const tables=[...doc.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/gi)].map(match=>match[0]);
-  assert.equal(tables.length,2,'Expected two project gallery tables');
-  for(const table of tables){
-    assert.doesNotMatch(table,/^\s*#{1,6}\s/m,'Markdown headings will not render inside HTML tables');
-    assert.match(table,/<h3>\s*<a\b/i,'Use HTML heading links inside table cells');
-    assert.match(table,/<p>\s*<strong>/i,'Use HTML descriptions inside table cells');
-  }
-  const images=[...doc.matchAll(/<img\b[^>]*>/gi)].map(match=>match[0]);
-  assert.ok(images.length>=5,'Expected hero and all four project previews');
-  for(const tag of images){
-    const src=tag.match(/\bsrc="([^"]+)"/i)?.[1];
-    const alt=tag.match(/\balt="([^"]+)"/i)?.[1];
-    assert.ok(alt && alt.trim().length>=12,'Missing descriptive image alt: '+tag);
-    if(src && src.startsWith('./')){
-      assert.ok(fs.existsSync(path.join(root,src.slice(2))),'Missing local image: '+src);
-    }
+test("README is an English-first product showroom, not a long changelog", () => {
+  assert.ok(doc.length >= 10500 && doc.length < 15000, "README should be substantive but scannable");
+  assert.match(doc, /<h1 align="center">SYSTEMS LAB<\/h1>/);
+  assert.match(doc, /GitHub Pages|public showroom|product showroom/i);
+  assert.match(doc, /fictional demonstration data/i);
+  assert.match(doc, /<details>[\s\S]*?For developers[\s\S]*?<\/details>/i);
+  assert.match(doc, /En español/);
+  assert.doesNotMatch(doc, /gurusup|127\.0\.0\.1:8001|github\.com\/GracianB\/aigoritmo/i);
+  for (const product of ["AIGORITMO", "PROJECT OHANA", "VØRTICE", "CUSTOMER HEALTH INTELLIGENCE", "REVOPS STUDIO", "BODYTONE SUPPORT OS", "CUTTER STUDIO"]) {
+    assert.ok(doc.includes(product), "Missing product: " + product);
   }
 });
 
-test('README uses dark showcase art for Vórtice and Customer Ops',()=>{
-  assert.match(doc,/assets\/projects\/vortex-readme-dark\.svg/);
-  assert.match(doc,/assets\/projects\/customer-ops\.svg/);
-  assert.doesNotMatch(doc,/vortex-cover-light\.svg/,'The README must use the dark Vórtice edition');
-  for(const name of ['vortex-readme-dark.svg','customer-ops.svg']){
-    const art=fs.readFileSync(path.join(root,'assets/projects',name),'utf8');
-    assert.match(art,/<svg\b/);
-    assert.match(art,/<title\b[^>]*>/);
-    assert.match(art,/<desc\b[^>]*>/);
-    assert.match(art,/#0[0-9a-f]{5}/i,'Dark ink should be present in both covers');
-    assert.doesNotMatch(art,/<script\b|<foreignObject\b|<image\b/i,'README SVGs must be standalone, script-free vectors');
+test("GitHub-safe HTML tables have no literal Markdown syntax", () => {
+  assert.equal(tables.length, 4, "1 featured AI gallery + 3 paired product galleries");
+  assert.equal(cells.length, 8, "2 AI visuals + 6 project cards");
+  for (const cell of cells) {
+    assert.doesNotMatch(cell, /\*\*[^*]+\*\*/, "Markdown strong markers render literally inside HTML tables");
+    assert.doesNotMatch(cell, /\[[^\]]+\]\((?:https?:|\.\/)/, "Markdown links render literally inside HTML tables");
+    assert.doesNotMatch(cell, /^#{1,6}\s/m, "Markdown headings inside HTML tables render literally");
+    assert.match(cell, /<img\b[^>]*>/i);
+  }
+  assert.equal((doc.match(/<td\b/g)||[]).length, (doc.match(/<\/td>/g)||[]).length, "Table cells must be balanced");
+  assert.equal((doc.match(/<tr\b/g)||[]).length, (doc.match(/<\/tr>/g)||[]).length, "Table rows must be balanced");
+  assert.equal((doc.match(/<table\b/g)||[]).length, (doc.match(/<\/table>/g)||[]).length, "Tables must be balanced");
+  assert.doesNotMatch(doc, /<div align="center">/i, "GitHub does not reliably render Markdown inside HTML divs");
+});
+
+test("AIGORITMO is featured with two matched 16:9 landscape images, not a dangling Qwen thumbnail", () => {
+  const featured = tables[0];
+  assert.match(featured, /assets\/aigoritmo\/arcana-poster\.jpg/);
+  assert.match(featured, /assets\/aigoritmo\/arcano-poster\.jpg/);
+  assert.doesNotMatch(featured, /qwen-poster\.jpg|llama-poster\.jpg/);
+  assert.doesNotMatch(doc, /width="30%"/);
+  assert.equal((featured.match(/width="50%"/g)||[]).length, 2);
+  assert.equal((featured.match(/width="100%"/g)||[]).length, 2);
+  assert.match(doc, /LLAMA[\s\S]*?QWEN[\s\S]*?ARCANA[\s\S]*?ARCANO/);
+  assert.match(doc, /24 guided character\/scenario\/language examples/);
+  assert.match(doc, /authored scripts/);
+  assert.match(doc, /off by default/);
+  assert.match(doc, /aigoritmo-universe-lab-gracianbs-projects\.vercel\.app/);
+});
+
+test("All README artwork is present with accessible alt text and no untrusted remote assets", () => {
+  const expected = [
+    "assets/readme-cover.svg",
+    "assets/aigoritmo/arcana-poster.jpg",
+    "assets/aigoritmo/arcano-poster.jpg",
+    "assets/projects/ohana-v802.svg",
+    "assets/projects/vortex-readme-dark.svg",
+    "assets/projects/customer-health/healthcare-overview.jpg",
+    "assets/projects/revops-studio-visual.svg",
+    "assets/projects/bodytone-support-visual.svg",
+    "assets/projects/cutter-studio-visual.svg"
+  ];
+  for (const file of expected) {
+    assert.ok(fs.existsSync(path.join(root, file)), "Missing README artwork: " + file);
+    assert.ok(doc.includes('./' + file), "README does not reference artwork: " + file);
+  }
+  const images = [...doc.matchAll(/<img\b[^>]*>/gi)].map(m => m[0]);
+  assert.equal(images.length, expected.length);
+  for (const image of images) {
+    const alt = image.match(/\balt="([^"]+)"/i)?.[1];
+    const src = image.match(/\bsrc="([^"]+)"/i)?.[1];
+    assert.ok(alt && alt.length >= 20, "Missing meaningful alternative text");
+    assert.ok(src?.startsWith("./assets/"), "Use local and verified artwork rather than third-party hotlinks");
+    assert.ok(image.includes('width="100%"'), "Avoid uneven small images");
   }
 });
 
+test("Claims are grounded in documented projects and access is never overstated", () => {
+  assert.match(doc, /12 characters, five forms each/);
+  assert.match(doc, /seven motion systems, eleven visual presets/);
+  assert.match(doc, /rules-based/);
+  assert.match(doc, /All customer data and monetary figures are fictitious/);
+  assert.match(doc, /sample data/);
+  assert.match(doc, /not a public online editor/);
+  assert.match(doc, /Private\/local|PRIVATE DEVELOPMENT\/ CREATE|PRIVATE DEVELOPMENT \/ CREATE/i);
+  assert.doesNotMatch(doc, /<script\b|<iframe\b|<foreignObject\b/i);
+});
 
-test("README and new OHANA visual reflect V802 and exclude obsolete references",()=>{
-  assert.doesNotMatch(doc,/gurusup/i);
-  assert.doesNotMatch(doc,/assets\/projects\/ohana\.webp/);
-  assert.match(doc,/assets\/projects\/ohana-v802\.svg/);
-  assert.match(doc,/gallery\.html/);
-  const artwork=fs.readFileSync(path.join(root,"assets/projects/ohana-v802.svg"),"utf8");
-  assert.match(artwork,/OHANA · 802/);
-  assert.match(artwork,/12 personajes/);
-  assert.doesNotMatch(artwork,/<script\b|<foreignObject\b|<image\b/i);
+test("The project previews are local script-free SVGs with full descriptions", () => {
+  for (const file of [
+    "assets/readme-cover.svg",
+    "assets/projects/ohana-v802.svg",
+    "assets/projects/vortex-readme-dark.svg",
+    "assets/projects/revops-studio-visual.svg",
+    "assets/projects/bodytone-support-visual.svg",
+    "assets/projects/cutter-studio-visual.svg"
+  ]) {
+    const art = fs.readFileSync(file, "utf8");
+    assert.match(art, /<svg\b/);
+    assert.match(art, /<title(?:\s|>)/);
+    assert.match(art, /<desc(?:\s|>)/);
+    assert.doesNotMatch(art, /<script\b|<foreignObject\b|<image\b/i);
+  }
 });
