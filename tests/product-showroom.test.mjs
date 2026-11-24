@@ -44,6 +44,6 @@ test("product copy is translated in both locales",()=>{
 test("no excluded product, no obsolete images or status legend",()=>{
   assert.doesNotMatch(html,/gurusup/i);
   assert.doesNotMatch(html,/lab-proof-legend/);
-  assert.doesNotMatch(html,/assets\\/projects\\/ohana\\.webp/);
-  assert.match(html,/assets\\/projects\\/ohana-v802\\.svg/);
+  assert.doesNotMatch(html,/assets\/projects\/ohana\.webp/);
+  assert.match(html,/assets\/projects\/ohana-v802\.svg/);
 });
