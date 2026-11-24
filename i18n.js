@@ -98,7 +98,7 @@ window.LAB_I18N = {
     playH: "Diseñado para explorar.",
     playLead: "Dos experiencias interactivas. Abre un proyecto y descubre cómo se siente el sistema en movimiento.",
     ohH: "Ohana",
-    ohP: "Aventura individual y cooperativa de 10 héroes, 50 formas y 10 salas en Isla Hoku. Combate en tiempo real, recuerdos y Quimera dibujados en Canvas.",
+    ohP: "Aventura anime con 12 personajes, cinco formas por personaje, combate en tiempo real y nuevos escenarios de Isla Hoku dibujados con Canvas.",
     ohSpecHeroes: "12 personajes",
     ohSpecForms: "60 formas",
     ohSpecRooms: "10 salas Canvas",
