@@ -52,7 +52,7 @@ test("product artwork describes actual workflows rather than initials or fake sc
   for(const slug of ["revops-studio","bodytone-support","cutter-studio"]){
     const file="assets/projects/"+slug+"-visual.svg";
     const art=readFileSync(file,"utf8");
-    assert.match(html,new RegExp(file.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")));
+    assert.ok(html.includes(file),"Missing image in HTML: "+file);
     assert.ok(art.includes("<title")&&art.includes("<desc"),"accessible title and description: "+slug);
     assert.doesNotMatch(art,/<script\b|<foreignObject\b|<image\b/i);
     assert.match(art,/[Nn]ot a screenshot|[Ii]t is not a screenshot/);
