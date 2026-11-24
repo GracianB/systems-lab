@@ -777,7 +777,7 @@ body.menu-on { overflow: hidden; }
 .cover-node{min-height:110px}
 .cover-node strong{font-size:clamp(20px,1.9vw,28px)}
 .feat-ohana .project-poster img{object-fit:cover;background:#071829}
-.feat-ohana .feat-stage{aspect-ratio:1200/680;min-height:0}
+.feat-ohana .feat-stage{aspect-ratio:1200/680;min-height:0;height:auto;align-self:start}
 .feat-ohana .stage-live{background:#0a1d2dd9;color:#c9fff3}
 @media(max-width:960px){
  .cover-links{grid-template-columns:repeat(2,minmax(0,1fr))}
