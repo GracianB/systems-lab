@@ -1,35 +1,31 @@
 <p align="center">
-  <a href="https://gracianb.github.io/systems-lab/"><img src="./assets/readme-cover.svg" alt="Systems Lab — Gracián Baena: interactive software, generative art and applied AI" width="100%"></a>
+<a href="https://gracianb.github.io/systems-lab/"><img src="./assets/readme-cover.svg" alt="Systems Lab — independent technology product studio by Gracián Baena" width="100%"></a>
 </p>
 
-<h1 align="center">Systems Lab · Gracián Baena</h1>
-
-<h3 align="center">Play · Experiment · Understand · Build</h3>
-
-<p align="center"><strong>An interactive universe where software ideas become things you can actually explore.</strong></p>
-
-<p align="center"><a href="https://gracianb.github.io/systems-lab/"><strong>Enter Systems Lab ↗</strong></a> &nbsp;·&nbsp; <a href="https://gracianb.github.io/GracianB/"><strong>Open the personal hub ↗</strong></a> &nbsp;·&nbsp; <a href="https://gracianb.github.io/professional-deck/"><strong>Explore Professional Deck ↗</strong></a></p>
-
+<h1 align="center">Systems Lab · Product Studio</h1>
+<h3 align="center">Applied AI · Games · Creative Computing · Operational Systems</h3>
+<p align="center"><strong>Software you can explore. Systems you can understand.</strong></p>
+<p align="center"><a href="https://gracianb.github.io/systems-lab/"><strong>Enter the product showroom ↗</strong></a> &nbsp;·&nbsp; <a href="https://gracianb.github.io/professional-deck/"><strong>Professional Deck ↗</strong></a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/gracianbaena/"><strong>Connect ↗</strong></a></p>
 
 ---
 
-## Four doors. Four ways to explore.
+## Eight products. Real interfaces. Clear boundaries.
 
-Systems Lab connects game design, real-time visuals, local AI experiments and the operations work that inspired my journey into software.
+**Systems Lab is my technology product showcase.** I build software at the intersection of applied AI, interactive design, creative tools, customer operations and explainable decisions.
 
-Not everything is the same kind of product. Some experiences are fully public, some are **showcases of software that runs locally**, and some are **demonstrations with fictional data**. That distinction is part of the design, not a footnote.
+Some creations are **public and playable**; others use **fictional data**, require authentication or run only on my machine. Systems Lab itself is **not an online chat**. Every product explains what works, where to try it and what remains private.
 
 <table>
 <tr>
 <td width="50%" valign="top">
-<a href="https://gracianb.github.io/project-ohana/"><img src="./assets/projects/ohana.webp" alt="Project OHANA — browser game set in Isla Hoku" width="100%"></a>
+<a href="https://gracianb.github.io/project-ohana/"><img src="./assets/projects/ohana.webp" alt="PROJECT OHANA — anime-inspired browser adventure in Isla Hoku" width="100%"></a>
 <h3><a href="https://gracianb.github.io/project-ohana/">01 · PROJECT OHANA ↗</a></h3>
-<p><strong>Play.</strong> Explore a Canvas-based adventure with 10 heroes, 50 evolutionary forms, real-time combat and Isla Hoku worlds. A public creative-engineering project.</p>
+<p><strong>PUBLIC / PLAY.</strong> A Canvas adventure with powers, real-time combat and evolving characters. The current game repo documents 12 characters with five forms each.</p>
 </td>
 <td width="50%" valign="top">
-<a href="https://vortex-gilt-xi.vercel.app/"><img src="./assets/projects/vortex-readme-dark.svg" alt="VØRTICE — real-time generative WebGL field" width="100%"></a>
+<a href="https://vortex-gilt-xi.vercel.app/"><img src="./assets/projects/vortex-readme-dark.svg" alt="VØRTICE — interactive WebGL generative instrument" width="100%"></a>
 <h3><a href="https://vortex-gilt-xi.vercel.app/">02 · VØRTICE ↗</a></h3>
-<p><strong>Experiment.</strong> A responsive WebGL field with 7 canonical movements, 32,000 particles, physical shockwaves and reactive audio synth. A public interactive experience.</p>
+<p><strong>PUBLIC / EXPERIMENT.</strong> A reactive WebGL particle instrument: seven movements, dynamic physics and generative sound. Not a pre-rendered video.</p>
 </td>
 </tr>
 </table>
@@ -37,58 +33,58 @@ Not everything is the same kind of product. Some experiences are fully public, s
 <table>
 <tr>
 <td width="50%" valign="top">
-<a href="https://gracianb.github.io/systems-lab/#aigoritmo"><img src="./assets/aigoritmo/arcana-poster.jpg" alt="Aigoritmo — four local AI identities" width="100%"></a>
-<h3><a href="https://gracianb.github.io/systems-lab/#aigoritmo">03 · AIGORITMO ↗</a></h3>
-<p><strong>Discover.</strong> Llama, Qwen, Arcana and Arcano are four identities inside a private/local AI application. This page is an illustrated showcase, <strong>not</strong> an online chat you can use.</p>
+<a href="https://aigoritmo-universe-lab-gracianbs-projects.vercel.app/"><img src="./assets/aigoritmo/arcana-poster.jpg" alt="AIGORITMO — Arcana, one of four featured AI characters" width="100%"></a>
+<h3><a href="https://aigoritmo-universe-lab-gracianbs-projects.vercel.app/">03 · AIGORITMO ↗</a></h3>
+<p><strong>PROTECTED / THINK.</strong> A private/local AI application with Ollama and Piper options, plus a protected FastAPI Cloud Lab. Its 24 guided examples are scripted; GPT and ElevenLabs paid calls are disabled by default.</p>
+<img src="./assets/aigoritmo/qwen-poster.jpg" alt="AIGORITMO — Qwen, the code-focused AI character" width="30%">
 </td>
 <td width="50%" valign="top">
-<a href="https://gracianb.github.io/systems-lab/#cs"><img src="./assets/projects/customer-ops.svg" alt="Customer Operations — people, knowledge and support workflows" width="100%"></a>
-<h3><a href="https://gracianb.github.io/systems-lab/#cs">04 · CUSTOMER OPERATIONS ↗</a></h3>
-<p><strong>Understand.</strong> Explore a real support-operations context alongside a clearly marked local simulation using fictional requests and outcomes.</p>
+<a href="https://gracianb.github.io/customer-health-intelligence/"><img src="./assets/projects/customer-ops.svg" alt="Customer Operations — systems and data flow artwork" width="100%"></a>
+<h3><a href="https://gracianb.github.io/customer-health-intelligence/">04 · CUSTOMER HEALTH INTELLIGENCE ↗</a></h3>
+<p><strong>PUBLIC DEMO / EXPLAIN.</strong> Account risk, adoption and next actions from a rules-based Command Center. All customer profiles and monetary figures are fictional data, not real accounts.</p>
 </td>
 </tr>
 </table>
 
-## A bridge between people and technology
+## More products in the lab
 
-I came to software through Customer Success and operations: customer journeys, knowledge, support workflows, data quality and the moments where people need a tool to make sense.
+**05 · [RevOps Studio ↗](https://gracianb.github.io/revops-studio/demo.html)** · *Sample-data demo*  
+Operational workflows, CSV quality, explainable decision rules and human review. No production CRM or ERP connection.
 
-Systems Lab asks a related question: **what happens when those ideas become interactive systems?**
+**06 · [GuruSup Brain ↗](https://github.com/GracianB/gurusup-brain-demo)** · *Limited-access prototype*  
+Knowledge confidence for support assistants: conflicting, missing, valid and outdated sources. Public documentation, not a guaranteed hosted agent.
 
-That can mean a browser game with evolving states, a field of thousands of responsive particles, an AI conversation with a distinct identity or an explainable support workflow.
+**07 · [Bodytone Support OS ↗](https://bodytonehelp.zendesk.com/hc/es)** · *Real CUSTOMER OPERATIONS case*  
+A public Zendesk Help Center and operational knowledge work. Private support tickets are not exposed. [Professional case ↗](https://gracianb.github.io/professional-deck/proyecto-bodytone.html).
 
-The goal is not to claim every prototype is a finished SaaS product. It is to make the design choices, interaction and boundaries visible.
-
-## More to investigate
-
-**[Customer Health Intelligence · Live Command Center](https://gracianb.github.io/customer-health-intelligence/)**  
-Rules-based CS/RevOps health scoring with a public Command Center and an importable n8n workflow (inactive; Slack is not connected). Demo data is fictitious; sector profiles are generic archetypes (healthcare marketplace, real-estate brokerage, dynamic pricing SaaS). [Source repository](https://github.com/GracianB/customer-health-intelligence).
-
-**[RevOps Studio · Public sample-data demo](https://gracianb.github.io/revops-studio/demo.html)**  
-Operational decision logic, data quality, scoring and traceability. This is a simulation, not access to a real customer environment.
-
-**[GuruSup Brain · Knowledge confidence prototype](https://gracianb.github.io/systems-lab/gurusup-brain/)**  
-A small experiment in what an assistant should do when sources are missing, outdated or contradictory.
-
-**Cutter Studio · Local video creator (private)**  
-An experimental desktop/local workflow for clips and captions. There is no public editor service to launch from this site.
-
-## How to explore
-
-Open the [**live Systems Lab**](https://gracianb.github.io/systems-lab/) and choose a door. The experience offers English and Spanish content, light and dark themes and a quick navigator with keyboard search. External projects open on their own websites; some content is an illustrative project showcase only.
-
-No account is required to visit the public laboratory. Private model files, keys, local conversations and unreleased applications are not part of the public showcase.
-
-## Connected universes
-
-The other two worlds are intentionally different expressions of the same curiosity:
-
-[**Professional Deck**](https://gracianb.github.io/professional-deck/) · People, operations, systems and real-world evidence  
-[**Yoga Instructor**](https://gracianb.github.io/yoga-instructor/) · Presence, movement and teaching
+**08 · Cutter Studio** · *Private local creator tool*  
+Video projects, transcription, editable captions and vertical exports. No public online editor or misleading launch link.
 
 ---
 
-<p align="center"><strong>Build carefully. Explain clearly. Let people explore.</strong></p>
+## The ideas behind the work
 
-<p align="center"><a href="https://gracianb.github.io/systems-lab/"><strong>Systems Lab</strong></a> &nbsp;·&nbsp; <a href="https://github.com/GracianB"><strong>GitHub profile</strong></a> &nbsp;·&nbsp; <a href="https://gracianb.github.io/GracianB/"><strong>Personal hub</strong></a></p>
+My path started in **SaaS Customer Success and operations**. Working with technical teams inspired me to learn how to build the products I used to explain.
 
+**The approach:** understand a real need → design a useful interaction → ship a testable system → explain its boundaries.
+
+| Public experience | Sample-data demo | Protected preview | Private build |
+| :--- | :--- | :--- | :--- |
+| Open and interact. | Working simulation, fictional records. | Authorised access; examples may be scripted. | Local or unpublished software. |
+
+**Stack across projects:** Python / FastAPI · JavaScript / TypeScript · Canvas · WebGL · local AI · API integrations · speech · data validation · automated browser testing.
+
+**This repository is the public showroom**, not the full source of every project. No customer records, keys or local conversations are published. Static password gates are not server-side authentication; protected demos use the appropriate hosting controls.
+
+## Explore further
+
+The [**live Systems Lab**](https://gracianb.github.io/systems-lab/) includes ES / EN, dark and light themes, product search and filters. Quality checks precede GitHub Pages deployment.
+
+[**Architecture**](docs/ARCHITECTURE.md) · [**Quality & boundaries**](docs/QUALITY_AND_BOUNDARIES.md) · [**Release notes**](docs/RELEASES.md) · [**GitHub configuration**](docs/GITHUB_CONFIGURATION.md)
+
+**Connected universes:** [Professional Deck](https://gracianb.github.io/professional-deck/) · [Yoga Instructor](https://gracianb.github.io/yoga-instructor/) · [Personal hub](https://gracianb.github.io/GracianB/)
+
+**En español:** Systems Lab es mi escaparate de productos tecnológicos: IA, videojuegos, software creativo y herramientas para operaciones, con accesos y límites reales.
+
+<p align="center"><strong>Build thoughtfully. Show the product. Let people explore.</strong></p>
+<p align="center"><a href="https://github.com/GracianB">GitHub</a> · <a href="https://www.linkedin.com/in/gracianbaena/">LinkedIn</a></p>

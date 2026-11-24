@@ -23,8 +23,8 @@ test("Aigoritmo shows four peers, translated scope and no public localhost launc
   const showcase = page.locator("#aigoritmo");
   await showcase.scrollIntoViewIfNeeded();
   await expect(showcase.locator(".ai-persona")).toHaveCount(4);
-  await expect(showcase.locator("h3")).toContainText(["Llama", "Qwen", "Arcana", "Arcano", "La experiencia vive en tu máquina."]);
-  await expect(showcase.locator(".ai-launch a")).toHaveCount(0);
+  await expect(showcase.locator("h3")).toContainText(["Llama", "Qwen", "Arcana", "Arcano", "Dos formas de explorar AIGORITMO."]);
+  await expect(showcase.locator(".ai-launch a")).toHaveAttribute("href", "https://aigoritmo-universe-lab-gracianbs-projects.vercel.app/");
   await expect(showcase).toContainText("llama3.2:3b");
   await expect(showcase).toContainText("qwen2.5-coder:3b");
   for (const image of await showcase.locator("img").all()) {
@@ -32,8 +32,8 @@ test("Aigoritmo shows four peers, translated scope and no public localhost launc
   }
   await page.locator('[data-set-lang="en"]').click();
   await expect(showcase.locator("h2")).toHaveText("Four presences. A space of your own.");
-  await expect(showcase).toContainText("LOCAL APP / PRIVATE SOURCE");
-  await expect(showcase.locator(".ai-launch p")).toContainText("not hosted on this website");
+  await expect(showcase).toContainText("LOCAL-FIRST · PRIVATE CLOUD");
+  await expect(showcase.locator(".ai-launch p")).toContainText("outside this website");
   await page.locator('[data-set-theme="light"]').click();
   await showcase.scrollIntoViewIfNeeded();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
