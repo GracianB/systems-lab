@@ -33,12 +33,12 @@
 .product-visual-ohana img{object-position:50% 48%;object-fit:cover}
 .product-visual-health img{object-position:50% 19%}
 .product-visual-vortex img{object-fit:cover}
-.product-visual-ops{background:radial-gradient(circle at 75% 32%,#3b71813d,transparent 36%),repeating-linear-gradient(90deg,transparent 0 36px,#d2e9f408 37px),linear-gradient(145deg,#112a37,#111b30)}
-.product-visual-brain{background:radial-gradient(circle at 37% 50%,#ad9fe857,transparent 34%),radial-gradient(circle at 68% 42%,#5aaabb38,transparent 32%),#171b34}
-.product-visual-bodytone{background:radial-gradient(circle at 25% 32%,#98d9e847,transparent 44%),linear-gradient(130deg,#0e1d2a,#1e3346)}
-.product-visual-cutter{background:repeating-linear-gradient(135deg,#e5f5ff08 0 2px,transparent 2px 22px),radial-gradient(circle at 70% 45%,#d7adca43,transparent 36%),#181e34}
-.visual-type{position:absolute;inset:0;display:grid;place-items:center;font:450 100px/1 var(--display);color:#e9f7fc;letter-spacing:-.11em;text-shadow:0 10px 28px #0008}
-.visual-type span{font-size:.52em;color:#a3e7e9;align-self:center}
+
+
+
+
+
+
 .product-tile-copy{padding:21px 23px 23px;display:flex;flex-direction:column;flex:1;min-width:0}
 .product-tile-top{display:flex;align-items:flex-start;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-bottom:17px}
 .product-num{font:750 9px/1.5 var(--mono);letter-spacing:.13em;color:var(--muted)}
@@ -92,9 +92,48 @@
 .product-visual-ohana img{filter:none}
 .product-gallery-link{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;min-height:39px;margin-top:4px;font:700 11px/1.4 var(--sans);text-decoration:none;color:var(--muted);border-bottom:1px solid var(--line)}
 .product-gallery-link:hover,.product-gallery-link:focus-visible{color:var(--ice);border-color:var(--ice)}
-.product-visual-brain{display:none}
+
 @media(max-width:620px){
  .product-spotlight{grid-column:1}
  .showroom-grid{grid-template-columns:1fr}
  .product-visual-ohana{min-height:195px}
+}
+
+/* Product-specific editorial interface artwork (not fictional screenshots).
+   The illustrations explain the workflows while keeping the site honest. */
+.product-visual-ops,.product-visual-bodytone,.product-visual-cutter{
+  background:#102330;
+  isolation:isolate;
+}
+.product-visual-ops img,.product-visual-bodytone img,.product-visual-cutter img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:none;
+  opacity:1;
+}
+.product-visual-ops::after,.product-visual-bodytone::after,.product-visual-cutter::after{
+  background:linear-gradient(to top,rgba(5,13,26,.48) 0%,rgba(5,13,26,0) 26%);
+}
+.product-visual-ops .visual-caption,.product-visual-bodytone .visual-caption,.product-visual-cutter .visual-caption{
+  color:#ecffff;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.13em;
+  bottom:16px;
+  left:21px;
+  text-shadow:0 2px 14px rgba(0,0,0,.85);
+}
+.product-tile:not(.product-spotlight) .product-tile-description{font-size:13.5px;line-height:1.72}
+.product-tile:not(.product-spotlight) .product-tile-copy{padding:22px 26px 26px}
+.product-tile:not(.product-spotlight) h3{font-size:clamp(27px,2.35vw,35px);line-height:1.12}
+.product-tile:not(.product-spotlight) .product-tile-top{margin-bottom:14px}
+.product-tile:not(.product-spotlight) .product-stack{margin-bottom:15px}
+@media(max-width:620px){
+  .product-tile:not(.product-spotlight) .product-tile-copy{padding:19px 19px 23px}
+  .product-visual-ops .visual-caption,.product-visual-bodytone .visual-caption,.product-visual-cutter .visual-caption{
+    font-size:9px;bottom:12px;left:15px;
+  }
 }

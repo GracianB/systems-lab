@@ -95,3 +95,27 @@ test("no obsolete status legend, no excluded product, current OHANA artwork and 
   await expect(page.locator("a.product-gallery-link")).toHaveAttribute("href", "https://gracianb.github.io/project-ohana/gallery.html");
   await expect(page.getByText("GuruSup", { exact:false })).toHaveCount(0);
 });
+
+test("all three product concept visuals load as real vector artwork, not giant initials", async ({ page }) => {
+  await page.goto("/?lang=es");
+  const cards = [
+    ["revops-studio-visual.svg", "revops"],
+    ["bodytone-support-visual.svg", "bodytone"],
+    ["cutter-studio-visual.svg", "cutter"]
+  ];
+  await expect(page.locator("#products .visual-type")).toHaveCount(0);
+  for (const [file, name] of cards) {
+    const art = page.locator(`#products img[src$="${file}"]`);
+    await art.scrollIntoViewIfNeeded();
+    await expect(art).toBeVisible();
+    await expect.poll(() => art.evaluate(el => el.complete && el.naturalWidth > 100), { timeout: 15000 }).toBe(true);
+    await expect(art).toHaveAttribute("alt", /Ilustración conceptual/);
+    const xml = await page.evaluate(async path => {
+      const response = await fetch(path);
+      if(!response.ok) return { ok:false, status:response.status };
+      const doc = new DOMParser().parseFromString(await response.text(), "image/svg+xml");
+      return { ok:!doc.querySelector("parsererror"), title:!!doc.querySelector("title"), description:!!doc.querySelector("desc") };
+    }, `./assets/projects/${file}`);
+    expect(xml, name + " should render as valid standalone SVG").toEqual({ok:true,title:true,description:true});
+  }
+});

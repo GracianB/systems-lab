@@ -47,3 +47,18 @@ test("no excluded product, no obsolete images or status legend",()=>{
   assert.doesNotMatch(html,/assets\/projects\/ohana\.webp/);
   assert.match(html,/assets\/projects\/ohana-v802\.svg/);
 });
+
+test("product artwork describes actual workflows rather than initials or fake screenshots",()=>{
+  for(const slug of ["revops-studio","bodytone-support","cutter-studio"]){
+    const file="assets/projects/"+slug+"-visual.svg";
+    const art=readFileSync(file,"utf8");
+    assert.ok(html.includes(file),"Missing image in HTML: "+file);
+    assert.ok(art.includes("<title")&&art.includes("<desc"),"accessible title and description: "+slug);
+    assert.doesNotMatch(art,/<script\b|<foreignObject\b|<image\b/i);
+    assert.match(art,/[Nn]ot a screenshot|[Ii]t is not a screenshot/);
+    assert.ok(Buffer.byteLength(art)<75000,"artwork within budget");
+  }
+  assert.doesNotMatch(html,/class="visual-type"/);
+  assert.doesNotMatch(css,/\.visual-type/);
+  assert.match(html,/product-showroom\.css\?v=product-3/);
+});

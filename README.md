@@ -48,6 +48,10 @@ Some creations are **public and playable**; others use **fictional data**, requi
 
 ## More products in the lab
 
+<p align="center"><img src="./assets/projects/revops-studio-visual.svg" width="32%" alt="RevOps Studio workflow concept"> <img src="./assets/projects/bodytone-support-visual.svg" width="32%" alt="Bodytone support concept"> <img src="./assets/projects/cutter-studio-visual.svg" width="32%" alt="Cutter Studio editor concept"></p>
+
+*Editorial workflow illustrations, not screenshots of deployed customer systems.*
+
 **05 · [RevOps Studio ↗](https://gracianb.github.io/revops-studio/demo.html)** · *Sample-data demo*  
 Operational workflows, CSV quality, explainable decision rules and human review. No production CRM or ERP connection.
 

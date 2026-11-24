@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+<title id="title">Bodytone Support OS · Help Center and Customer Operations</title>
+<desc id="desc">Editorial concept illustration of a support knowledge center with article search, delivery, returns and warranty categories. Not a screenshot of the real Bodytone Help Center.</desc>
+<defs>
+<linearGradient id="bg" x2="1" y2="1"><stop stop-color="#081723"/><stop offset=".54" stop-color="#123445"/><stop offset="1" stop-color="#173043"/></linearGradient>
+<linearGradient id="screen" x2="1" y2="1"><stop stop-color="#ecf4f6"/><stop offset="1" stop-color="#d7e9ed"/></linearGradient>
+<linearGradient id="green" x2="1" y2="1"><stop stop-color="#80f2de"/><stop offset="1" stop-color="#5cafa9"/></linearGradient>
+<radialGradient id="aura"><stop stop-color="#6ce9da" stop-opacity=".35"/><stop offset="1" stop-color="#6ce9da" stop-opacity="0"/></radialGradient>
+<filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#010b18" flood-opacity=".6"/></filter>
+<clipPath id="c"><rect width="1200" height="675" rx="18"/></clipPath>
+</defs>
+<g clip-path="url(#c)">
+<rect width="1200" height="675" fill="url(#bg)"/>
+<circle cx="1010" cy="120" r="440" fill="url(#aura)"/>
+<g stroke="#bdecef" stroke-opacity=".1" fill="none">
+<path d="M-50 560L420 88M-30 616L490 92M0 676L560 92M0 730L635 92"/>
+<path d="M0 598Q370 270 850 420T1330 320M0 656Q345 348 850 468T1330 365"/>
+</g>
+<g font-family="Arial,Helvetica,sans-serif">
+<rect x="54" y="54" width="156" height="37" rx="18.5" fill="#d3fff7" fill-opacity=".1" stroke="#a0e7df" stroke-opacity=".5"/>
+<circle cx="77" cy="73" r="5" fill="#7df8d9"/>
+<text x="92" y="78" fill="#c7f8f0" font-size="15" font-weight="700" letter-spacing="2.1">REAL CASE</text>
+<text x="52" y="173" fill="#ffffff" font-size="66" font-weight="650" letter-spacing="-2.5">Bodytone</text>
+<text x="54" y="229" fill="#d9fcf6" font-size="37" font-weight="400" letter-spacing=".3">Support OS</text>
+<path d="M54 262H387" stroke="url(#green)" stroke-width="2"/>
+<text x="54" y="310" fill="#b4d1dc" font-size="21">Knowledge, clarity</text>
+<text x="54" y="342" fill="#b4d1dc" font-size="21">and better service.</text>
+<g transform="translate(54 401)">
+<rect width="153" height="40" rx="7" fill="#7ad8c7" fill-opacity=".14" stroke="#76dace" stroke-opacity=".48"/>
+<text x="19" y="26" fill="#d6fff4" font-size="16" font-weight="700">HELP CENTER</text>
+<rect x="167" width="178" height="40" rx="7" fill="#fff" fill-opacity=".06" stroke="#b3d3e8" stroke-opacity=".27"/>
+<text x="184" y="26" fill="#d3e4ed" font-size="16" font-weight="700">SUPPORT OPS</text>
+</g>
+<text x="55" y="602" fill="#a5c2cd" font-size="15" letter-spacing="2.8">SERVICE DESIGN / KNOWLEDGE</text>
+</g>
+<g transform="translate(456 78) rotate(-3 350 250)" filter="url(#shadow)" font-family="Arial,Helvetica,sans-serif">
+<rect width="698" height="494" rx="22" fill="#0c202e" stroke="#a8efe5" stroke-opacity=".35" stroke-width="2"/>
+<rect x="9" y="9" width="680" height="476" rx="16" fill="url(#screen)"/>
+<path d="M9 24a15 15 0 0 1 15-15h650a15 15 0 0 1 15 15v63H9Z" fill="#f8fbfb"/>
+<circle cx="31" cy="36" r="6" fill="#8eb9be"/><circle cx="52" cy="36" r="6" fill="#a6d8d5"/><circle cx="73" cy="36" r="6" fill="#c8dee1"/>
+<text x="102" y="41" font-size="18" fill="#163342" font-weight="800" letter-spacing="1.5">BODYTONE</text>
+<text x="528" y="41" font-size="14" fill="#617a82" font-weight="700">AYUDA</text>
+<text x="598" y="41" font-size="14" fill="#617a82">CONTACTO</text>
+<rect x="36" y="113" width="618" height="121" rx="16" fill="#e5eff0"/>
+<text x="63" y="156" fill="#183a46" font-size="29" font-weight="700">¿En qué podemos ayudarte?</text>
+<rect x="60" y="178" width="562" height="43" rx="9" fill="#ffffff" stroke="#b5cdd0"/>
+<circle cx="83" cy="199" r="8" stroke="#67838a" fill="none" stroke-width="3"/><path d="M89 205l7 7" stroke="#67838a" stroke-width="3"/>
+<text x="114" y="205" font-size="15" fill="#93a9ae">Buscar respuestas, pedidos, devoluciones...</text>
+<g font-size="16" font-weight="800" fill="#1b4149">
+<rect x="36" y="252" width="292" height="83" rx="12" fill="#f7fafa" stroke="#cadee2"/>
+<circle cx="74" cy="294" r="19" fill="#d9eee9"/><path d="M66 290h17v10H66Zm4-5h10" stroke="#518e83" stroke-width="2" fill="none"/>
+<text x="107" y="295">Pedidos y envíos</text><text x="107" y="313" font-size="13" font-weight="400" fill="#718c94">Seguimiento y entrega</text>
+<rect x="341" y="252" width="313" height="83" rx="12" fill="#f7fafa" stroke="#cadee2"/>
+<circle cx="379" cy="294" r="19" fill="#d9eee9"/><path d="M387 290q-4-10-14-4m0 0l-1 7m1-7l7 2" stroke="#518e83" stroke-width="2" fill="none"/>
+<text x="413" y="295">Cambios y devoluciones</text><text x="413" y="313" font-size="13" font-weight="400" fill="#718c94">Gestiones frecuentes</text>
+<rect x="36" y="349" width="292" height="83" rx="12" fill="#f7fafa" stroke="#cadee2"/>
+<circle cx="74" cy="390" r="19" fill="#d9eee9"/><path d="M74 380l10 5v9l-10 8-10-8v-9Z" stroke="#518e83" stroke-width="2" fill="none"/>
+<text x="107" y="391">Garantías</text><text x="107" y="410" font-size="13" font-weight="400" fill="#718c94">Asistencia posventa</text>
+<rect x="341" y="349" width="313" height="83" rx="12" fill="#f7fafa" stroke="#cadee2"/>
+<circle cx="379" cy="390" r="19" fill="#d9eee9"/><path d="M370 388q0-8 9-8t9 8v8h-8l-4 5v-5h-6Z" stroke="#518e83" stroke-width="2" fill="none"/>
+<text x="413" y="391">Contactar con soporte</text><text x="413" y="410" font-size="13" font-weight="400" fill="#718c94">Ayuda cuando importa</text>
+</g>
+<rect x="36" y="447" width="618" height="18" rx="9" fill="#d3e6e7"/>
+<rect x="36" y="447" width="364" height="18" rx="9" fill="#88cfc8"/>
+</g>
+<path d="M422 548C580 530 738 560 864 637" fill="none" stroke="#77dfcf" stroke-opacity=".58" stroke-width="2" stroke-dasharray="6 12"/>
+<circle cx="865" cy="635" r="8" fill="#98fae8"/>
+<rect width="1200" height="675" rx="18" fill="none" stroke="#c1e7f5" stroke-opacity=".2"/>
+</g>
+</svg>
