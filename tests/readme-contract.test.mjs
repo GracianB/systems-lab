@@ -59,11 +59,11 @@ test('README uses dark showcase art for Vórtice and Customer Ops',()=>{
 
 test("README and new OHANA visual reflect V802 and exclude obsolete references",()=>{
   assert.doesNotMatch(doc,/gurusup/i);
-  assert.doesNotMatch(doc,/assets\\/projects\\/ohana\\.webp/);
-  assert.match(doc,/assets\\/projects\\/ohana-v802\\.svg/);
-  assert.match(doc,/gallery\\.html/);
+  assert.doesNotMatch(doc,/assets\/projects\/ohana\.webp/);
+  assert.match(doc,/assets\/projects\/ohana-v802\.svg/);
+  assert.match(doc,/gallery\.html/);
   const artwork=fs.readFileSync(path.join(root,"assets/projects/ohana-v802.svg"),"utf8");
   assert.match(artwork,/OHANA · 802/);
   assert.match(artwork,/12 personajes/);
-  assert.doesNotMatch(artwork,/<script\\b|<foreignObject\\b|<image\\b/i);
+  assert.doesNotMatch(artwork,/<script\b|<foreignObject\b|<image\b/i);
 });
