@@ -6,7 +6,7 @@ const root=process.cwd();
 const doc=fs.readFileSync('README.md','utf8');
 test('README is a concise front page with real entry points and accurate product status',()=>{
   assert.ok(doc.length<7000,'Readme became a changelog');
-  for(const pathName of ['assets/readme-cover.svg','assets/projects/ohana.webp','assets/projects/vortex-readme-dark.svg','assets/projects/customer-ops.svg','assets/aigoritmo/arcana-poster.jpg','assets/aigoritmo/qwen-poster.jpg','docs/ARCHITECTURE.md','docs/QUALITY_AND_BOUNDARIES.md','docs/RELEASES.md','docs/GITHUB_CONFIGURATION.md']){
+  for(const pathName of ['assets/readme-cover.svg','assets/projects/ohana-v802.svg','assets/projects/vortex-readme-dark.svg','assets/projects/customer-ops.svg','assets/aigoritmo/arcana-poster.jpg','assets/aigoritmo/qwen-poster.jpg','docs/ARCHITECTURE.md','docs/QUALITY_AND_BOUNDARIES.md','docs/RELEASES.md','docs/GITHUB_CONFIGURATION.md']){
     assert.ok(fs.existsSync(path.join(root,pathName)), 'Missing README asset/link: '+pathName);
   }
   assert.match(doc,/private\/local AI application/i);
@@ -54,4 +54,16 @@ test('README uses dark showcase art for Vórtice and Customer Ops',()=>{
     assert.match(art,/#0[0-9a-f]{5}/i,'Dark ink should be present in both covers');
     assert.doesNotMatch(art,/<script\b|<foreignObject\b|<image\b/i,'README SVGs must be standalone, script-free vectors');
   }
+});
+
+
+test("README and new OHANA visual reflect V802 and exclude obsolete references",()=>{
+  assert.doesNotMatch(doc,/gurusup/i);
+  assert.doesNotMatch(doc,/assets\/projects\/ohana\.webp/);
+  assert.match(doc,/assets\/projects\/ohana-v802\.svg/);
+  assert.match(doc,/gallery\.html/);
+  const artwork=fs.readFileSync(path.join(root,"assets/projects/ohana-v802.svg"),"utf8");
+  assert.match(artwork,/OHANA · 802/);
+  assert.match(artwork,/12 personajes/);
+  assert.doesNotMatch(artwork,/<script\b|<foreignObject\b|<image\b/i);
 });

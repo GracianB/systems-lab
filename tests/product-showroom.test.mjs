@@ -8,10 +8,10 @@ const js=readFileSync("product-showroom.js","utf8");
 const css=readFileSync("product-showroom.css","utf8");
 const locale=readFileSync("i18n.js","utf8");
 
-test("product showroom ships eight distinct product cards",()=>{
-  assert.equal((html.match(/<article class="product-tile/g)||[]).length,8);
+test("product showroom ships seven distinct product cards",()=>{
+  assert.equal((html.match(/<article class="product-tile/g)||[]).length,7);
   for(const id of ["products","juegos","vortex-live","aigoritmo","cs"]) assert.ok(html.includes('id="'+id+'"'),id);
-  for(const status of ["protected","public","demo","prototype","case","private"]) assert.ok(html.includes('data-product-status="'+status+'"'),status);
+  for(const status of ["protected","public","demo","case","private"]) assert.ok(html.includes('data-product-status="'+status+'"'),status);
 });
 
 test("no private source URLs or false public paid service",()=>{
@@ -33,9 +33,17 @@ test("search enhancement compiles and static content remains present",()=>{
 
 test("product copy is translated in both locales",()=>{
   const keys=[...html.matchAll(/data-i18n="(products[A-Za-z0-9]+)"/g)].map(m=>m[1]);
-  assert.ok(keys.length>=35,keys.length+" translated fields");
+  assert.ok(keys.length>=32,keys.length+" translated fields");
   for(const key of new Set(keys)){
     const occurrences=(locale.match(new RegExp("\\b"+key+":","g"))||[]).length;
     assert.equal(occurrences,2,key+" must exist in ES and EN");
   }
+});
+
+
+test("no excluded product, no obsolete images or status legend",()=>{
+  assert.doesNotMatch(html,/gurusup/i);
+  assert.doesNotMatch(html,/lab-proof-legend/);
+  assert.doesNotMatch(html,/assets\/projects\/ohana\.webp/);
+  assert.match(html,/assets\/projects\/ohana-v802\.svg/);
 });

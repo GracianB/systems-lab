@@ -9,7 +9,7 @@
 
 ---
 
-## Eight products. Real interfaces. Clear boundaries.
+## Seven products. Real interfaces. Clear boundaries.
 
 **Systems Lab is my technology product showcase.** I build software at the intersection of applied AI, interactive design, creative tools, customer operations and explainable decisions.
 
@@ -18,9 +18,9 @@ Some creations are **public and playable**; others use **fictional data**, requi
 <table>
 <tr>
 <td width="50%" valign="top">
-<a href="https://gracianb.github.io/project-ohana/"><img src="./assets/projects/ohana.webp" alt="PROJECT OHANA — anime-inspired browser adventure in Isla Hoku" width="100%"></a>
+<a href="https://gracianb.github.io/project-ohana/"><img src="./assets/projects/ohana-v802.svg" alt="Project OHANA 802 editorial artwork showing Isla Hoku and its current twelve-character roster, not a gameplay screenshot" width="100%"></a>
 <h3><a href="https://gracianb.github.io/project-ohana/">01 · PROJECT OHANA ↗</a></h3>
-<p><strong>PUBLIC / PLAY.</strong> A Canvas adventure with powers, real-time combat and evolving characters. The current game repo documents 12 characters with five forms each.</p>
+<p><strong>PUBLIC / PLAY.</strong> A Canvas adventure with powers, real-time combat and evolving characters. The current game repo documents **12 characters and 60 forms**. [Explore the live character gallery ↗](https://gracianb.github.io/project-ohana/gallery.html). This illustration represents the current roster; the gallery is rendered from the game code.</p>
 </td>
 <td width="50%" valign="top">
 <a href="https://vortex-gilt-xi.vercel.app/"><img src="./assets/projects/vortex-readme-dark.svg" alt="VØRTICE — interactive WebGL generative instrument" width="100%"></a>
@@ -51,13 +51,11 @@ Some creations are **public and playable**; others use **fictional data**, requi
 **05 · [RevOps Studio ↗](https://gracianb.github.io/revops-studio/demo.html)** · *Sample-data demo*  
 Operational workflows, CSV quality, explainable decision rules and human review. No production CRM or ERP connection.
 
-**06 · [GuruSup Brain ↗](https://github.com/GracianB/gurusup-brain-demo)** · *Limited-access prototype*  
-Knowledge confidence for support assistants: conflicting, missing, valid and outdated sources. Public documentation, not a guaranteed hosted agent.
 
-**07 · [Bodytone Support OS ↗](https://bodytonehelp.zendesk.com/hc/es)** · *Real CUSTOMER OPERATIONS case*  
+**06 · [Bodytone Support OS ↗](https://bodytonehelp.zendesk.com/hc/es)** · *Real CUSTOMER OPERATIONS case*  
 A public Zendesk Help Center and operational knowledge work. Private support tickets are not exposed. [Professional case ↗](https://gracianb.github.io/professional-deck/proyecto-bodytone.html).
 
-**08 · Cutter Studio** · *Private local creator tool*  
+**07 · Cutter Studio** · *Private local creator tool*  
 Video projects, transcription, editable captions and vertical exports. No public online editor or misleading launch link.
 
 ---
