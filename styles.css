@@ -777,7 +777,7 @@ body.menu-on { overflow: hidden; }
 .cover-node{min-height:110px}
 .cover-node strong{font-size:clamp(20px,1.9vw,28px)}
 .feat-ohana .project-poster img{object-fit:cover;background:#071829}
-.feat-ohana .feat-stage{aspect-ratio:1200/680;min-height:260px}
+.feat-ohana .feat-stage{aspect-ratio:1200/680;min-height:0}
 .feat-ohana .stage-live{background:#0a1d2dd9;color:#c9fff3}
 @media(max-width:960px){
  .cover-links{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -786,7 +786,7 @@ body.menu-on { overflow: hidden; }
 @media(max-width:650px){
  .hero-content h1{font-size:clamp(42px,10vw,66px)}
  .hero-frame{padding:20px 16px}
- .cover-atlas{min-height:350px}
+ .cover-atlas{min-height:450px}
  .cover-node{min-height:112px}
  .cover-node strong{font-size:21px}
 }
@@ -794,3 +794,6 @@ body.menu-on { overflow: hidden; }
  .cover-node{padding:12px 10px}
  .cover-node strong{font-size:19px}
 }
+
+/* Keep the editorial OHANA frame legible at intermediate tablet widths. */
+@media (min-width:851px) and (max-width:1100px){.feat-ohana .feat-stage{min-height:320px}}
