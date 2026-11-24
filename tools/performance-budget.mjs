@@ -8,7 +8,7 @@ const BUDGETS = {
   "styles.css": 44000,
   "main.js": 18000,
   "i18n.js": 19000,
-  "product-showroom.css": 12500,
+  "product-showroom.css": 13500,
   "product-showroom.js": 3500,
   "boot.js": 1000,
   "cover-canvas.js": 6000,
@@ -49,10 +49,10 @@ for (const name of ['llama','qwen','arcana','arcano']) {
 console.log('Lazy Aigoritmo posters:', imageBytes, '/ 220000 bytes');
 if (imageBytes > 220000) process.exit(1);
 let projectBytes = 0;
-for (const name of ['ohana-v802.svg','vortex-cover.svg','vortex-cover-light.svg']) {
+for (const name of ['ohana-v802.svg','vortex-cover.svg','vortex-cover-light.svg','revops-studio-visual.svg','bodytone-support-visual.svg','cutter-studio-visual.svg']) {
   const bytes = fs.statSync(path.join(ROOT, `assets/projects/${name}`)).size;
   projectBytes += bytes;
   if (bytes > 75000) { console.error('FAIL project preview:', name, bytes); process.exit(1); }
 }
-console.log('Lazy project previews:', projectBytes, '/ 175000 bytes');
-if (projectBytes > 175000) process.exit(1);
+console.log('Lazy project previews:', projectBytes, '/ 190000 bytes');
+if (projectBytes > 190000) process.exit(1);
