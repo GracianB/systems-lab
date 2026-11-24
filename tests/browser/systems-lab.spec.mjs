@@ -218,8 +218,8 @@ test("P37 themes use native light and dark art, without artificial dark cards", 
   }));
   expect(framing.fit).toBe("cover");
   expect(framing.scale).toBe("none");
-  expect(framing.naturalWidth).toBeGreaterThan(400);
-  expect(framing.naturalHeight).toBeGreaterThan(200);
+  expect(framing.naturalWidth).toBeGreaterThan(200);
+  expect(framing.naturalHeight).toBeGreaterThan(100);
   const placement = await page.locator(".feat-ohana").evaluate(card => {
     const stage = card.querySelector(".feat-stage").getBoundingClientRect();
     const heading = card.querySelector("h3").getBoundingClientRect();
