@@ -8,10 +8,10 @@ const readme=readFileSync(new URL("../README.md",import.meta.url),"utf8");
 
 test("The hero is clear and product states live in the cards",()=>{
   assert.doesNotMatch(html,/class="lab-proof-legend"/);
-  assert.doesNotMatch(css,/\\.lab-proof-legend/);
+  assert.doesNotMatch(css,/\.lab-proof-legend/);
   assert.equal((html.match(/<article class="product-tile/g)||[]).length,7);
   for(const label of ["data-product-status=\"public\"","data-product-status=\"protected\"","data-product-status=\"private\""]) assert.ok(html.includes(label),label);
-  assert.match(html,/assets\\/projects\\/ohana-v802\\.svg/);
+  assert.match(html,/assets\/projects\/ohana-v802\.svg/);
   assert.doesNotMatch(html,/gurusup/i);
   assert.doesNotMatch(readme,/gurusup/i);
 });
