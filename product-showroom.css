@@ -21,7 +21,7 @@
 .showroom-search input{display:block;width:100%;min-width:0;min-height:42px;padding:10px 13px;border:1px solid var(--line-strong);border-radius:7px;color:var(--ink);background:var(--surface);font-size:11px}
 .showroom-search input::placeholder{color:var(--muted);opacity:.85}
 .showroom-search input:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
-.showroom-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;position:relative}
+.showroom-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;position:relative}
 .product-tile{position:relative;min-width:0;min-height:430px;display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line-strong);border-radius:15px;background:linear-gradient(145deg,var(--surface2),var(--surface));box-shadow:0 16px 44px rgba(0,0,0,.06);transition:border-color .25s,transform .25s,box-shadow .25s}
 .product-tile:hover,.product-tile:focus-within{border-color:color-mix(in srgb,var(--ice) 55%,var(--line));transform:translateY(-3px);box-shadow:0 21px 56px rgba(0,0,0,.14)}
 .product-tile[hidden]{display:none}
@@ -30,7 +30,7 @@
 .product-tile:hover .product-visual img{transform:scale(1.025)}
 .product-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(4,9,18,.66),transparent 52%);pointer-events:none}
 .visual-caption{position:absolute;bottom:12px;left:17px;z-index:2;color:#d3f6fa;font:700 9px/1.4 var(--mono);letter-spacing:.15em;text-shadow:0 1px 6px #000}
-.product-visual-ohana img{object-position:50% 42%}
+.product-visual-ohana img{object-position:50% 48%;object-fit:cover}
 .product-visual-health img{object-position:50% 19%}
 .product-visual-vortex img{object-fit:cover}
 .product-visual-ops{background:radial-gradient(circle at 75% 32%,#3b71813d,transparent 36%),repeating-linear-gradient(90deg,transparent 0 36px,#d2e9f408 37px),linear-gradient(145deg,#112a37,#111b30)}
@@ -56,7 +56,7 @@
 .product-main-link,.product-tile-actions a{display:inline-flex;align-items:center;gap:9px;align-self:flex-start;min-height:39px;font:800 11px/1.4 var(--sans);letter-spacing:.01em;color:var(--ice);border-bottom:1px solid color-mix(in srgb,var(--ice) 75%,transparent);text-decoration:none}
 .product-main-link:hover,.product-tile-actions a:hover{color:var(--ink);border-color:var(--ink)}
 .product-no-demo{font:650 11px/1.6 var(--sans);color:var(--muted);padding:9px 0}
-.product-spotlight{grid-column:span 2;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(180px,.85fr);min-height:430px;background:linear-gradient(122deg,#0b1c2a,#172137 58%,#1f2039)}
+.product-spotlight{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(180px,.85fr);min-height:430px;background:linear-gradient(122deg,#0b1c2a,#172137 58%,#1f2039)}
 .product-spotlight .product-tile-copy{position:relative;z-index:2;padding:clamp(22px,3vw,37px);justify-content:center}
 .product-spotlight h3{font-size:clamp(37px,4.3vw,61px);letter-spacing:-.057em;color:#f5fbff;max-width:100%}
 .product-arrow{font-size:.5em;vertical-align:top;color:#a4e5ec}
@@ -78,7 +78,7 @@
 [data-theme=light] .access-private{color:#875c78}
 [data-theme=light] .access-public,[data-theme=light] .access-demo{color:#126a74}
 [data-theme=light] .product-spotlight .access-protected{color:#eddbff}
-@media(max-width:1040px){.showroom-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-spotlight{grid-column:span 2}.showroom-heading{grid-template-columns:1fr minmax(170px,.4fr)}}
+@media(max-width:1040px){.showroom-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-spotlight{grid-column:1/-1}.showroom-heading{grid-template-columns:1fr minmax(170px,.4fr)}}
 @media(max-width:740px){.product-showroom{margin:40px 0 74px;padding-top:48px}.showroom-heading{display:block}.showroom-side{margin-top:22px;padding:12px 0 0;border-left:0;border-top:1px solid var(--line)}.showroom-toolbar{gap:4px}.showroom-toolbar>button{padding:9px}.showroom-search{flex-basis:100%;max-width:none;margin-top:6px;margin-left:0}.product-spotlight{grid-template-columns:1.2fr .8fr}.product-spotlight h3{font-size:clamp(35px,5vw,51px)}}
 @media(max-width:620px){.showroom-grid{grid-template-columns:1fr;gap:14px}.product-tile{min-height:0}.product-spotlight{grid-column:auto;display:flex;flex-direction:column-reverse}.product-spotlight .product-visual-ai{min-height:220px;max-height:230px}.product-spotlight .product-visual-ai img{mask-image:linear-gradient(to bottom,black 0%,black 67%,transparent 100%)}.product-spotlight .product-tile-copy{padding:22px}.product-spotlight h3{font-size:42px}.product-spotlight .product-tile-description{font-size:12.5px}.product-visual{min-height:180px}.product-tile-copy{padding:19px}.product-tile h3{font-size:28px}.showroom-heading h2{font-size:44px}}
 @media(prefers-reduced-motion:reduce){.product-tile,.product-visual img,.showroom-toolbar>button{transition:none}.product-tile:hover{transform:none}.product-tile:hover .product-visual img{transform:none}}
@@ -86,3 +86,15 @@
 /* Main AIGORITMO detail links to the protected lab, not a private source repo. */
 .ai-cloud-link{display:inline-flex;align-items:center;min-height:44px;padding:9px 13px;margin-top:9px;border:1px solid color-mix(in srgb,var(--ice) 48%,transparent);border-radius:7px;color:var(--ice);font:750 11px/1.45 var(--sans);text-decoration:none}
 .ai-cloud-link:hover,.ai-cloud-link:focus-visible{color:var(--ink);border-color:var(--ice);background:var(--ice-dim)}
+
+/* V802: honest editorial cover, not a mislabeled gameplay screenshot. */
+.product-visual-ohana{background:#07192a}
+.product-visual-ohana img{filter:none}
+.product-gallery-link{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;min-height:39px;margin-top:4px;font:700 11px/1.4 var(--sans);text-decoration:none;color:var(--muted);border-bottom:1px solid var(--line)}
+.product-gallery-link:hover,.product-gallery-link:focus-visible{color:var(--ice);border-color:var(--ice)}
+.product-visual-brain{display:none}
+@media(max-width:620px){
+ .product-spotlight{grid-column:1}
+ .showroom-grid{grid-template-columns:1fr}
+ .product-visual-ohana{min-height:195px}
+}
