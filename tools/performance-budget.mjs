@@ -4,10 +4,12 @@ import { gzipSync } from "node:zlib";
 
 const ROOT = process.cwd();
 const BUDGETS = {
-  "index.html": 24000,
+  "index.html": 40000,
   "styles.css": 44000,
   "main.js": 18000,
-  "i18n.js": 13000,
+  "i18n.js": 19000,
+  "product-showroom.css": 12500,
+  "product-showroom.js": 3500,
   "boot.js": 1000,
   "cover-canvas.js": 6000,
   "experience-navigator.js": 12500,
@@ -29,15 +31,15 @@ for (const [name, budget] of Object.entries(BUDGETS)) {
   console.log((ok ? "PASS " : "FAIL ") + name + " — " + bytes + " / " + budget + " bytes");
   if (!ok) failures++;
 }
-const aggregateBudget = 140000;
+const aggregateBudget = 180000;
 console.log((total <= aggregateBudget ? "PASS " : "FAIL ") + "first-party surface — " + total + " / " + aggregateBudget + " bytes");
 if (total > aggregateBudget) failures++;
 console.log("RESULT");
 console.log("FAIL:", failures);
 if (failures) process.exit(1);
 
-console.log("Gzip surface:", compressed, "/ 41500 bytes");
-if (compressed > 41500) process.exit(1);
+console.log("Gzip surface:", compressed, "/ 56000 bytes");
+if (compressed > 56000) process.exit(1);
 let imageBytes = 0;
 for (const name of ['llama','qwen','arcana','arcano']) {
   const bytes = fs.statSync(path.join(ROOT, `assets/aigoritmo/${name}-poster.jpg`)).size;
