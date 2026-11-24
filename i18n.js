@@ -44,7 +44,6 @@ window.LAB_I18N = {
     coverAI: "Descubre.",
     coverOps: "Resuelve.",
 
-    projectCapture: "IMAGEN DEL JUEGO",
     vxLiveTitle: "Entra en el campo.",
     vxLiveDesc: "Activa la experiencia y mueve el cursor dentro de la ventana. Explora sus modos, cambia el ritmo y descubre cómo responde el campo.",
     vxLiveNote: "La demo se carga al activarla. Puedes detenerla cuando quieras o abrirla en una pestaña propia.",
@@ -175,7 +174,6 @@ window.LAB_I18N = {
     coverAI: "Discover.",
     coverOps: "Solve.",
 
-    projectCapture: "GAME IMAGE",
     vxLiveTitle: "Step into the field.",
     vxLiveDesc: "Start the experience and move your cursor inside the window. Explore its modes, change the rhythm and discover how the field responds.",
     vxLiveNote: "The demo loads when you start it. Stop it whenever you like or open it in its own tab.",
